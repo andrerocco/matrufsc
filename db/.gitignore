@@ -1,28 +1,3 @@
-# Front-end
-
-bin
-backend
-data
-frontend
-install
-ods.py
-config.mak
-index.html
-index.html.gz
-capim.css.gz
-cursos_turmas
-cursos_turmas.js
-header_gen
-header_gen_pdf
-capim.js
-capim.js.gz
-capim.py
-.htaccess
-dispatch.cgi
-dispatch.fcgi
-
-# Python files
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -161,3 +136,5 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+
+node_modules
