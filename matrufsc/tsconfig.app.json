@@ -20,7 +20,13 @@
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "noFallthroughCasesInSwitch": true,
-        "noUncheckedSideEffectImports": true
+        "noUncheckedSideEffectImports": true,
+
+        /* Aliases (also change vite.config.ts) */
+        "baseUrl": ".",
+        "paths": {
+            "~/*": ["src/*"]
+        }
     },
     "include": ["src"]
 }
