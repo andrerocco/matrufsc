@@ -27,6 +27,7 @@ export default function Search<T>({
         Math.min(shownAmount ?? filteredData.length, filteredData.length) + (displayShowMore ? 1 : 0);
 
     const handleClose = () => {
+        // TODO: Clear search
         setOpen(false);
         setShownAmount(limit ?? data.length);
         setFocusedIndex(0);
@@ -48,8 +49,12 @@ export default function Search<T>({
                     handleShowMore();
                     break;
                 }
-                onSelect(filteredData[focusedIndex]);
-                handleClose();
+
+                const item = filteredData[focusedIndex];
+                if (item) {
+                    onSelect(item);
+                }
+
                 break;
             case "Escape":
                 handleClose();
@@ -90,6 +95,24 @@ export default function Search<T>({
         setShownAmount((prev) => prev + limit);
     }, [limit]);
 
+    const handleClick = useCallback(
+        (index: number) => {
+            const item = filteredData[index];
+            if (item) {
+                onSelect(item);
+            }
+        },
+        [filteredData, onSelect],
+    );
+
+    const memoizedHandleClicks = useMemo(
+        () =>
+            filteredData.map((_, index) => () => {
+                handleClick(index);
+            }),
+        [filteredData, handleClick],
+    );
+
     return (
         <div>
             <div className="relative w-full">
@@ -122,7 +145,7 @@ export default function Search<T>({
                             label={getLabel(item)}
                             isSelected={focusedIndex === index}
                             onMouseEnter={memoizedMouseEnterHandlers[index]}
-                            // TODO: onSelect without re-rendering
+                            onClick={memoizedHandleClicks[index]}
                         />
                     ))}
 

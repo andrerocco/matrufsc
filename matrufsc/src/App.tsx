@@ -1,90 +1,87 @@
-import InfoWrapper from "./components/info-wrapper/InfoWrapper";
-import Horarios from "./components/horarios/Horarios";
-import Campus from "./components/campus/Campus";
-import Logger from "./components/logger/Logger";
-import Turmas from "./components/turmas/Turmas";
-import Planos from "./components/planos/Planos";
-import Saver from "./components/saver/Saver";
+import { useEffect, useState } from "react";
+import useLocalStorageState from "use-local-storage-state";
+import { getDisciplinaFromJSON, type JSONCampus, type JSONDisciplina } from "./providers/plano/parser";
+import { usePlano } from "./providers/plano/store";
 import Materias from "./components/materias/Materias";
+import Search from "./components/search/Search";
+import Footer from "./components/footer/Footer";
+import Header from "./components/header/Header";
+
+const CAMPUS = [
+    { title: "Florianópolis", value: "FLO" },
+    { title: "Joinvile", value: "JOI" },
+    { title: "Curitibanos", value: "CBS" },
+    { title: "Araranguá", value: "ARA" },
+    { title: "Blumenal", value: "BLN" },
+];
+
+const SEMESTER_OPTIONS = [
+    {
+        title: "2024.2",
+        value: "20242",
+    },
+    {
+        title: "2024.1",
+        value: "20241",
+    },
+];
 
 function App() {
+    const { addMateria } = usePlano();
+
+    const [campus, setCampus] = useLocalStorageState("matrufsc_campus", { defaultValue: CAMPUS[0].value });
+    const [semester, setSemester] = useState("20242");
+    const [data, setData] = useState<JSONCampus>();
+
+    useEffect(() => {
+        fetch(`/data/${semester}.json`) // TODO: Query by campus, once set user will rarely ever change to a new campus
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                setData(data);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }, [semester]);
+
+    const handleSelectMateria = (disciplina: JSONDisciplina) => {
+        const materia = getDisciplinaFromJSON(disciplina);
+        const error = addMateria(materia);
+
+        if (error) {
+            alert(error.message); // TODO: Handle visually
+            return;
+        }
+    };
+
     return (
-        <InfoWrapper>
-            <table>
-                <tbody>
-                    <tr>
-                        <td colSpan={2}>
-                            <table cellPadding={0} cellSpacing={0} width="100%">
-                                <tbody>
-                                    <tr>
-                                        <td className="ui_campus" align="left">
-                                            <div id="campus">
-                                                <Campus />
-                                            </div>
-                                        </td>
-                                        <td className="ui_planos" align="left" style={{ width: "280px" }}>
-                                            <div id="planos">
-                                                <Planos />
-                                            </div>
-                                        </td>
-                                        <td className="ui_saver" align="right">
-                                            <div id="saver">
-                                                <Saver />   
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <table cellPadding={0} cellSpacing={0} width="100%">
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <input type="text" id="materias_input" />
-                                            <br />
-                                            <div id="materias_suggestions" style={{display: "none"}}>{/*MATERIAS_SUGGESTIONS COMPONENT HERE*/}</div>
-                                        </td>
-                                        <td style={{ border: "1px solid lightblue", width: "100%" }}>
-                                            <div id="logger">
-                                                <Logger />
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colSpan={2}>
-                            <div id="avisos" style={{display: "none"}}>
-                                {/*AVISOS COMPONENT HERE*/}
-                            </div>
-                            <div id="updates_list" style={{display: "none"}}>
-                                {/*UPDATE_LIST COMPONENT HERE*/}
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colSpan={2}>
-                            <div className="ui_materias">
-                                <Materias />
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style={{ width: "440px", verticalAlign:"top" }}>
-                            <div className="ui_horario">
-                                <Horarios />
-                            </div>
-                        </td>
-                        <td style={{ width: "440px" }} valign="top">
-                            <div className="ui_turmas">
-                                <Turmas />
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </InfoWrapper>
+        <div className="mx-auto w-full max-w-[1000px] px-6 py-8">
+            <Header
+                campusOptions={CAMPUS}
+                campusValue={campus}
+                onCampusChange={setCampus}
+                semesterOptions={SEMESTER_OPTIONS}
+                semesterValue={semester}
+                onSemesterChange={setSemester}
+            />
+            <main>
+                {/* <Search data={data?.FLO ?? []} onSelect={handleSelectMateria} /> */}
+                {data?.FLO && (
+                    <Search
+                        placeholder="Pesquisar disciplina"
+                        limit={10}
+                        data={data?.FLO}
+                        onSelect={handleSelectMateria}
+                        getLabel={(disciplina) => `${disciplina[0]} - ${disciplina[2]}`}
+                    />
+                )}
+                <Materias />
+                {/* <Horarios /> */}
+            </main>
+            <Footer />
+        </div>
     );
 }
 export default App;
