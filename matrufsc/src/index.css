@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
     font-family: monospace;
 
@@ -14,4 +18,32 @@
 
 body {
     background-color: #eeeeee;
+}
+
+h1 {
+    @apply text-4xl font-medium;
+}
+
+h2 {
+    @apply text-3xl font-medium;
+}
+
+h3 {
+    @apply text-2xl font-medium;
+}
+
+h4 {
+    @apply text-xl font-medium;
+}
+
+h5 {
+    @apply text-lg font-medium;
+}
+
+h6 {
+    @apply text-base font-medium;
+}
+
+a {
+    @apply text-blue-600 underline transition-colors duration-75 hover:text-blue-900;
 }
