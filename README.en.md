@@ -9,4 +9,5 @@ Site: https://matrufsc.caravela.club
 ## Structure
 
 `db`: Python scrapper
+
 `matrufsc`: React frontend
