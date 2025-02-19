@@ -1,4 +1,4 @@
-import { usePlano } from "../../providers/plano/store";
+import { usePlanoStore } from "../../providers/plano/store";
 
 const COLORS = [
     "lightblue",
@@ -19,7 +19,8 @@ const COLORS = [
 ];
 
 export default function Materias() {
-    const { materias, removeMateria } = usePlano();
+    const materias = usePlanoStore((state) => state.materias);
+    const removeMateria = usePlanoStore((state) => state.removeMateria);
 
     const handleRemove = (id: string) => {
         removeMateria(id);
@@ -49,54 +50,27 @@ export default function Materias() {
                             </th>
                         </tr>
                     </thead>
-                    {/* <tbody className="divide-y divide-neutral-300">
-                        <tr className="group min-h-7 cursor-pointer divide-x divide-neutral-300">
-                            <td className="px-3 py-1.5 align-middle">
-                                <input
-                                    type="checkbox"
-                                    defaultChecked
-                                    className="mr-0 translate-y-[3px] cursor-pointer"
-                                />
-                            </td>
-                            <td className="px-3 py-1.5">INE101</td>
-                            <td className="px-3 py-1.5">
-                                <div className="flex items-center justify-between">
-                                    <p>Math</p>
-                                    <button className="absolute right-0 mr-3 opacity-0 group-hover:opacity-100">
-                                        Remover
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr className="group cursor-pointer divide-x divide-neutral-300">
-                            <td className="px-3 py-1.5">
-                                <input
-                                    type="checkbox"
-                                    defaultChecked
-                                    className="mr-0 translate-y-[2px] cursor-pointer"
-                                />
-                            </td>
-                            <td className="px-3 py-1.5">INE101</td>
-                            <td className="px-3 py-1.5">
-                                <div className="flex items-center justify-between">
-                                    <p>Math</p>
-                                    <button className="absolute right-0 mr-3 opacity-0 group-hover:opacity-100">
-                                        Remover
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody> */}
 
                     <tbody className="divide-y divide-neutral-400">
                         {materias.map((materia, index) => {
                             return (
                                 <tr
                                     key={index}
+                                    data-materia-id={materia.id}
                                     style={{
                                         backgroundColor: materia.cor,
                                     }}
-                                    className="group min-h-7 cursor-pointer divide-x divide-neutral-400"
+                                    className="materia-item group min-h-7 cursor-pointer divide-x divide-neutral-400"
+                                    onMouseEnter={() =>
+                                        document
+                                            .querySelectorAll(`.horario-item[data-materia-id="${materia.id}"]`)
+                                            ?.forEach((el) => el.classList.add("hovering"))
+                                    }
+                                    onMouseLeave={() =>
+                                        document
+                                            .querySelectorAll(`.horario-item[data-materia-id="${materia.id}"]`)
+                                            ?.forEach((el) => el.classList.remove("hovering"))
+                                    }
                                 >
                                     <td className="px-3 py-1.5">
                                         <input

@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import useLocalStorageState from "use-local-storage-state";
 import { getDisciplinaFromJSON, type JSONCampus, type JSONDisciplina } from "./providers/plano/parser";
-import { usePlano } from "./providers/plano/store";
+import { usePlanoStore } from "./providers/plano/store";
 import Materias from "./components/materias/Materias";
 import Search from "./components/search/Search";
 import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header";
+import Horarios from "./components/horarios/Horarios";
 
 const CAMPUS = [
     { title: "Florianópolis", value: "FLO" },
@@ -27,7 +28,7 @@ const SEMESTER_OPTIONS = [
 ];
 
 function App() {
-    const { addMateria } = usePlano();
+    const addMateria = usePlanoStore((state) => state.addMateria);
 
     const [campus, setCampus] = useLocalStorageState("matrufsc_campus", { defaultValue: CAMPUS[0].value });
     const [semester, setSemester] = useState("20242");
@@ -78,7 +79,7 @@ function App() {
                     />
                 )}
                 <Materias />
-                {/* <Horarios /> */}
+                <Horarios />
             </main>
             <Footer />
         </div>
