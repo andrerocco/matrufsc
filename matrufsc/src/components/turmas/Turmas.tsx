@@ -1,10 +1,3 @@
-function Turmas() {
-
-    return (
-        <>
-
-        </>
-    )
+export default function Turmas() {
+    return <></>;
 }
-
-export default Turmas
