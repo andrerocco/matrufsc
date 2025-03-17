@@ -1,9 +1,57 @@
-import { Fragment, useEffect, useState } from "react";
-import { Materia, usePlanoStore } from "~/providers/plano/store";
-import { Plano } from "~/lib/combinacoes";
-import { HORAS } from "~/providers/plano/constants";
+import { Fragment, useState } from "react";
+import { create } from "zustand";
+import { cn } from "~/lib/utils";
+// Providers
+import { usePlanoStore } from "~/providers/plano/store";
+import { type Plano } from "~/lib/combinacoes";
+// Components
+import HorarioCell, { type HorarioCellBase, type HorarioCellOverlay } from "./HorarioCell";
+import CombinacaoSpinner from "~/components/horarios/CombinacaoSpinner";
 
-const DIAS = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
+// TODO: Move constants to a separate file?
+const HORAS = [
+    "07:30",
+    "08:20",
+    "09:10",
+    "10:10",
+    "11:00",
+    "13:30",
+    "14:20",
+    "15:10",
+    "16:20",
+    "17:10",
+    "18:30",
+    "19:20",
+    "20:20",
+    "21:10",
+];
+
+const DIAS = [
+    {
+        number: 2,
+        name: "Segunda",
+    },
+    {
+        number: 3,
+        name: "Terça",
+    },
+    {
+        number: 4,
+        name: "Quarta",
+    },
+    {
+        number: 5,
+        name: "Quinta",
+    },
+    {
+        number: 6,
+        name: "Sexta",
+    },
+    {
+        number: 7,
+        name: "Sábado",
+    },
+];
 
 const HORAS_FIM = [
     "08:20",
@@ -22,291 +70,195 @@ const HORAS_FIM = [
     "22:00",
 ];
 
-interface HorarioCell {
-    id: string;
-    sala: string;
-    color: string;
-}
-
-interface HorariosDescriptor {
+// Type definitions
+interface HorariosDescriptor<T> {
     [dia: number]: {
-        [hora: string]: HorarioCell | null;
+        [hora: string]: T | null;
     };
 }
 
-// TODO: Improve
-const HORARIOS_DESCRIPTOR: HorariosDescriptor = {
-    1: {
-        "0730": null,
-        "0820": null,
-        "0910": null,
-        "1010": null,
-        "1100": null,
-        "1330": null,
-        "1420": null,
-        "1510": null,
-        "1620": null,
-        "1710": null,
-        "1830": null,
-        "1920": null,
-        "2020": null,
-        "2110": null,
+// Zustand store for managing the grid data
+interface HorariosStore {
+    horarios: HorariosDescriptor<HorarioCellOverlay>;
+    updateCell: (dia: number, hora: string, cell: HorarioCellOverlay | null) => void;
+    bulkUpdate: (newData: Partial<HorariosDescriptor<HorarioCellOverlay>>) => void;
+    clear: () => void;
+}
+
+const useHorariosStore = create<HorariosStore>((set) => ({
+    horarios: {},
+    updateCell: (dia, hora, cell) =>
+        set((state) => {
+            const newHorarios = { ...state.horarios };
+
+            if (!newHorarios[dia]) {
+                newHorarios[dia] = {};
+            }
+
+            newHorarios[dia] = { ...newHorarios[dia], [hora]: cell };
+            return { horarios: newHorarios };
+        }),
+    bulkUpdate: (newData) =>
+        set((state) => {
+            const newHorarios = { ...state.horarios };
+
+            // Merge new data with existing data
+            Object.entries(newData).forEach(([diaStr, horasData]) => {
+                const dia = Number(diaStr);
+                if (!newHorarios[dia]) {
+                    newHorarios[dia] = {};
+                }
+
+                newHorarios[dia] = { ...newHorarios[dia], ...horasData };
+            });
+
+            return { horarios: newHorarios };
+        }),
+    clear: () => set({ horarios: {} }),
+}));
+
+// API for external components to interact with the store
+export const horariosApi = {
+    updateCell: (dia: number, hora: string, cell: HorarioCellOverlay | null) => {
+        useHorariosStore.getState().updateCell(dia, hora, cell);
     },
-    2: {
-        "0730": null,
-        "0820": null,
-        "0910": null,
-        "1010": null,
-        "1100": null,
-        "1330": null,
-        "1420": null,
-        "1510": null,
-        "1620": null,
-        "1710": null,
-        "1830": null,
-        "1920": null,
-        "2020": null,
-        "2110": null,
+    bulkUpdate: (newData: Partial<HorariosDescriptor<HorarioCellOverlay>>) => {
+        useHorariosStore.getState().bulkUpdate(newData);
     },
-    3: {
-        "0730": null,
-        "0820": null,
-        "0910": null,
-        "1010": null,
-        "1100": null,
-        "1330": null,
-        "1420": null,
-        "1510": null,
-        "1620": null,
-        "1710": null,
-        "1830": null,
-        "1920": null,
-        "2020": null,
-        "2110": null,
-    },
-    4: {
-        "0730": null,
-        "0820": null,
-        "0910": null,
-        "1010": null,
-        "1100": null,
-        "1330": null,
-        "1420": null,
-        "1510": null,
-        "1620": null,
-        "1710": null,
-        "1830": null,
-        "1920": null,
-        "2020": null,
-        "2110": null,
-    },
-    5: {
-        "0730": null,
-        "0820": null,
-        "0910": null,
-        "1010": null,
-        "1100": null,
-        "1330": null,
-        "1420": null,
-        "1510": null,
-        "1620": null,
-        "1710": null,
-        "1830": null,
-        "1920": null,
-        "2020": null,
-        "2110": null,
-    },
-    6: {
-        "0730": null,
-        "0820": null,
-        "0910": null,
-        "1010": null,
-        "1100": null,
-        "1330": null,
-        "1420": null,
-        "1510": null,
-        "1620": null,
-        "1710": null,
-        "1830": null,
-        "1920": null,
-        "2020": null,
-        "2110": null,
-    },
-    7: {
-        "0730": null,
-        "0820": null,
-        "0910": null,
-        "1010": null,
-        "1100": null,
-        "1330": null,
-        "1420": null,
-        "1510": null,
-        "1620": null,
-        "1710": null,
-        "1830": null,
-        "1920": null,
-        "2020": null,
-        "2110": null,
+    clear: () => {
+        useHorariosStore.getState().clear();
     },
 };
 
-function generateHorariosFromPlano(plano?: Plano): HorariosDescriptor {
-    if (!plano) return JSON.parse(JSON.stringify(HORARIOS_DESCRIPTOR)); // Deep clone the descriptor
+// Memoize for fine grained updates (only re-renders the cell where the data has changed).
+// TODO: Remove, React compiler should handle this automatically
+// const Cell = memo(HorarioCell, (prevProps, nextProps) => {
+//     // Custom comparison function for memoization
+//     if (!prevProps.base && !nextProps.base) return true;
+//     if (!prevProps.base || !nextProps.base) return false;
 
-    const horarios: HorariosDescriptor = JSON.parse(JSON.stringify(HORARIOS_DESCRIPTOR)); // Deep clone the descriptor
+//     return (
+//         prevProps.base.id === nextProps.base.id &&
+//         prevProps.base.sala === nextProps.base.sala &&
+//         prevProps.base.color === nextProps.base.color
+//     );
+// });
 
-    plano.forEach(({ materia, turma }) => {
-        turma.aulas.forEach((aula) => {
-            aula.horarios.forEach((horarioIndex) => {
-                const dia = aula.dia_semana;
-                const hora = HORAS[horarioIndex];
-                horarios[dia][hora] = {
+// CellContainer wraps over the Cell component and provides it the data from the store.
+// By referencing a specific cell in the zustand store, re-renders only happen when that cell's data changes.
+// Changes to other cells do not trigger updates in this component.
+const CellContainer = ({ dia, hora, base }: { dia: number; hora: string; base?: HorarioCellBase }) => {
+    const cellOverlay = useHorariosStore((state) => state.horarios[dia]?.[hora]);
+
+    return <HorarioCell base={base ?? undefined} overlay={cellOverlay ?? undefined} />;
+};
+
+function planoToHorariosDescriptor(plano: Plano | null): HorariosDescriptor<HorarioCellBase> {
+    if (!plano) return {};
+
+    const horarios: HorariosDescriptor<HorarioCellBase> = {};
+
+    for (const { materia, turma } of plano) {
+        for (const aula of turma.aulas) {
+            for (const hora of aula.horarios) {
+                if (!horarios[aula.dia_semana]) {
+                    horarios[aula.dia_semana] = {};
+                }
+
+                horarios[aula.dia_semana]![HORAS[hora]] = {
                     id: materia.id,
                     sala: aula.sala,
-                    color: materia.cor ?? "white", // TODO: How?
+                    color: materia.cor ?? "lightblue",
                 };
-            });
-        });
-    });
+            }
+        }
+    }
 
     return horarios;
 }
 
-export default function Horarios() {
-    const combinacoes = usePlanoStore((state) => state.planos);
-    const selectedCombinacaoIndex = usePlanoStore((state) => state.selectedPlanoIndex);
-
-    const horarios = generateHorariosFromPlano(combinacoes[selectedCombinacaoIndex]);
-
-    useEffect(() => {
-        console.log(horarios);
-    });
+function HorariosGrid({
+    dias,
+    horas,
+    // base,
+    // overlay,
+}: {
+    dias: { number: number; name: string }[];
+    horas: string[];
+    // base: HorariosDescriptor<HorarioCellBase>;
+    // overlay: HorariosDescriptor<HorarioCellOverlay>;
+}) {
+    const plano = usePlanoStore((state) => state.currentPlano);
+    const horarios = planoToHorariosDescriptor(plano);
 
     const [showDetails, setShowDetails] = useState(false);
 
+    const SpacerRow = () => (
+        <tr className="h-[4px]">
+            <td colSpan={dias.length + 1} />
+        </tr>
+    );
+
     return (
-        <div>
-            <table className="min-w-[520px] border-separate">
-                <thead>
-                    <tr>
-                        <th className="w-0 whitespace-nowrap px-1 py-[5px] align-middle">
-                            <input
-                                title="Mostrar Salas"
-                                type="checkbox"
-                                onClick={() => setShowDetails(!showDetails)}
-                                className="mx-auto w-4 cursor-pointer"
-                            />
+        <table className="min-w-[520px] table-fixed border-separate">
+            <thead>
+                <tr>
+                    <th className="whitespace-nowrap px-1 py-[5px]">
+                        <input
+                            title="Mostrar salas..."
+                            type="checkbox"
+                            onClick={() => setShowDetails(!showDetails)}
+                            className="mx-auto w-4 cursor-pointer align-middle"
+                        />
+                    </th>
+                    {dias.map((dia) => (
+                        <th
+                            key={dia.number}
+                            className="w-[80px] rounded border border-neutral-400 bg-neutral-100 px-1 py-[5px] uppercase text-neutral-500 shadow-sm"
+                        >
+                            {dia.name}
                         </th>
-                        {DIAS.map((dia, index) => (
-                            <th
-                                key={index}
-                                className="min-w-[60px] rounded border border-neutral-400 bg-neutral-100 px-1 py-[5px] uppercase text-neutral-500 shadow-sm"
-                            >
-                                {dia}
-                            </th>
-                        ))}
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr style={{ height: "4px" }}>
-                        <td></td>
-                        <td colSpan={DIAS.length} className=""></td>
-                    </tr>
-                    {HORAS.map((hora, hourIndex) => (
-                        <Fragment key={hourIndex}>
-                            {hora === "1330" || hora === "1830" ? (
-                                <tr style={{ height: "4px" }}>
-                                    <td></td>
-                                    <td colSpan={DIAS.length} className=""></td>
-                                </tr>
-                            ) : null}
-                            <tr>
-                                <td className="w-0 whitespace-nowrap px-1 py-[5px]">
-                                    {`${hora[0]}${hora[1]}:${hora[2]}${hora[3]}`}
-                                    {showDetails && (
-                                        <p className="block text-sm text-neutral-500">{HORAS_FIM[hourIndex]}</p>
-                                    )}
-                                </td>
-                                {DIAS.map((_, dayIndex) => {
-                                    const materia = horarios[dayIndex + 2]?.[hora]; // +2 já que segunda é 2
-                                    // const materia = materiaId ? getMateria(materiaId) : null;
-
-                                    if (!materia)
-                                        return (
-                                            <td
-                                                key={dayIndex}
-                                                className="min-w-[60px] rounded border border-neutral-500/80 bg-white px-1 py-[5px] shadow-sm"
-                                            ></td>
-                                        );
-                                    else {
-                                        console.log(materia);
-                                    }
-
-                                    return (
-                                        <td
-                                            key={dayIndex}
-                                            data-materia-id={materia?.id}
-                                            style={{ backgroundColor: materia?.color }}
-                                            className="horario-item min-w-[60px] rounded border border-neutral-500/80 bg-white px-1 py-[5px] shadow-sm"
-                                            align="center"
-                                            onMouseEnter={() =>
-                                                document
-                                                    .querySelector(`.materia-item[data-materia-id="${materia?.id}"]`)
-                                                    ?.classList.add("hovering")
-                                            }
-                                            onMouseLeave={() =>
-                                                document
-                                                    .querySelector(`.materia-item[data-materia-id="${materia?.id}"]`)
-                                                    ?.classList.remove("hovering")
-                                            }
-                                        >
-                                            <p className="block w-fit leading-none">{materia?.id}</p>
-                                        </td>
-                                    );
-                                    // return (
-                                    //     <HorarioItem
-                                    //         key={dayIndex}
-                                    //         materia={{
-                                    //             id: "CIT7146",
-                                    //             nome: "Introdução à Economia na Engenharia",
-                                    //             turmas: [
-                                    //                 {
-                                    //                     id: "06653",
-                                    //                     carga_horaria: 36,
-                                    //                     aulas: [
-                                    //                         {
-                                    //                             dia_semana: 5,
-                                    //                             horarios: [6, 7], // indices for 1420 and 1510
-                                    //                             sala: "CTS-LB118A",
-                                    //                         },
-                                    //                     ],
-                                    //                     professores: ["Simone Meister Sommer Bilessimo"],
-                                    //                     selected: true,
-                                    //                 },
-                                    //             ],
-                                    //             selected: true,
-                                    //             cor: "lightblue",
-                                    //         }}
-                                    //     />
-                                    // );
-                                })}
-                            </tr>
-                        </Fragment>
                     ))}
-                </tbody>
-            </table>
-        </div>
+                </tr>
+            </thead>
+
+            <tbody>
+                {horas.map((hora, index) => (
+                    <Fragment key={hora}>
+                        {index % 5 === 0 && <SpacerRow />}
+                        <tr>
+                            <td
+                                className={cn(
+                                    "whitespace-nowrap px-2 tracking-tight",
+                                    showDetails ? "py-0.5" : "py-1.5",
+                                )}
+                            >
+                                <p>{hora}</p>
+                                {showDetails && <p className="block text-sm text-neutral-500">{HORAS_FIM[index]}</p>}
+                            </td>
+                            {dias.map((dia) => (
+                                <CellContainer
+                                    key={`${dia.number}-${hora}`}
+                                    dia={dia.number}
+                                    hora={hora}
+                                    base={horarios[dia.number]?.[hora] ?? undefined}
+                                />
+                            ))}
+                        </tr>
+                    </Fragment>
+                ))}
+            </tbody>
+        </table>
     );
 }
 
-function HorarioItem({ materia }: { materia: Materia }) {
+export default function Horarios() {
     return (
-        <td
-            style={{ backgroundColor: materia?.cor }}
-            className="min-w-[60px] rounded border border-neutral-500/80 bg-white px-1 py-[5px] shadow-sm"
-            align="center"
-        >
-            <p className="block w-fit leading-none">{materia?.id}</p>
-        </td>
+        <div className="my-8 flex w-full flex-col items-center">
+            <HorariosGrid dias={DIAS} horas={HORAS} />
+            <div className="mt-2 flex w-full justify-center">
+                <CombinacaoSpinner />
+            </div>
+        </div>
     );
 }

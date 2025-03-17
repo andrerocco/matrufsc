@@ -1,11 +1,13 @@
 import { create } from "zustand";
 import { MateriaExistsError, MateriaNotFoundError } from "./errors";
-import { getCombinacoes, Plano } from "~/lib/combinacoes";
+// import { combinacoes, Plano, findClosestCombination } from "~/lib/combinacoes";
+import { combinacoes, Plano, findClosestCombination } from "~/lib/combinacoes";
 
 export interface Aula {
     dia_semana: number; // 1 = domingo, 2 = segunda, ..., 7 = sábado
     horarios: number[]; // Indexes of HORAS array
     sala: string;
+    fixed?: boolean; // New property to indicate fixed classes
 }
 
 export interface Turma {
@@ -22,27 +24,8 @@ export interface Materia {
     turmas: Turma[];
     cor?: string;
     selected: boolean;
-    // TODO: Add 'blocked'/'disabled' for when it collides with another materia that is higher on the list
+    blocked?: boolean; // New property to indicate clash status
 }
-
-// type Plano = Materia[];
-
-type PlanoState = {
-    materias: Materia[];
-    planos: Plano[]; // Materia[][]
-
-    selectedPlanoIndex: number; // TODO: Private? Does not need to be exposed to components
-    nextMateriaColorIndex: number; // TODO: Private? Does not need to be exposed to components
-
-    addMateria: (materia: Materia) => MateriaExistsError | null;
-    removeMateria: (id: string) => MateriaNotFoundError | null;
-    updateSelected: (id: string, selected: boolean) => void;
-
-    // plano: Plano;
-
-    // updateMateria: (id: string, data: Partial<Materia>) => void;
-    // resetPlano: (newPlano: Plano) => void;
-};
 
 const COLORS = [
     "lightblue",
@@ -61,68 +44,173 @@ const COLORS = [
     "lightyellow",
 ];
 
-export const usePlanoStore = create<PlanoState>((set, get) => ({
-    selectedPlanoIndex: 0,
-    nextMateriaColorIndex: 0,
+// Define the public state interface
+interface PlanoState {
+    planos: Plano[];
 
-    materias: [],
+    // State
+    materias: Materia[];
+    currentPlano: Plano | null;
+    currentPlanoIndex: number;
 
-    planos: [],
+    // Actions
+    addMateria: (materia: Materia) => MateriaExistsError | null;
+    removeMateria: (id: string) => MateriaNotFoundError | null;
+    updateSelected: (id: string, selected: boolean) => void;
+    nextPlano: () => void;
+    previousPlano: () => void;
+    setPlanoIndex: (index: number) => void;
+}
 
-    addMateria: (materia) => {
-        const { materias, nextMateriaColorIndex } = get();
+export const usePlanoStore = create<PlanoState>((set, get) => {
+    // Helper function to recalculate plans and update state
+    const recalculatePlanos = (materias: Materia[]) => {
+        const planos = combinacoes(materias);
+        return {
+            materias,
+            planos,
+            currentPlanoIndex: 0,
+            currentPlano: planos.length > 0 ? planos[0] : null,
+        };
+    };
 
-        const exists = materias.some((m) => m.id === materia.id);
-        if (exists) return new MateriaExistsError();
+    let colorIndex = 0;
 
-        const color = COLORS[nextMateriaColorIndex];
-        const updatedMaterias = [...materias, { ...materia, cor: color }];
+    return {
+        // Initial state
+        materias: [],
+        planos: [],
+        currentPlanoIndex: 0,
+        currentPlano: null,
+        totalPlanos: 0,
 
-        // Generate planos
-        let combinacoes = getCombinacoes(updatedMaterias);
-        console.log(combinacoes);
-        // if empty, disable last (newly added) materia and recalculate
-        if (combinacoes.length === 0 && updatedMaterias.length > 0) {
-            updatedMaterias[updatedMaterias.length - 1].selected = false;
-            console.log(">>>>", updatedMaterias);
-            console.log(">>>>", combinacoes);
-            combinacoes = getCombinacoes(updatedMaterias);
-        }
+        // Actions
+        addMateria: (materia) => {
+            const { materias } = get();
+            colorIndex = (colorIndex + 1) % COLORS.length;
 
-        set(() => ({
-            planos: combinacoes,
-            materias: updatedMaterias,
-            nextMateriaColorIndex: (nextMateriaColorIndex + 1) % COLORS.length,
-        }));
+            // Check if materia already exists
+            const exists = materias.some((m) => m.id === materia.id);
+            if (exists) return new MateriaExistsError();
 
-        return null;
-    },
+            // Add materia with color
+            const newMateria = {
+                ...materia,
+                cor: COLORS[colorIndex],
+                blocked: false,
+            };
+            let updatedMaterias = [...materias, newMateria];
 
-    removeMateria: (id) => {
-        const { materias } = get();
+            // Generate plan combinations
+            let planos = combinacoes(updatedMaterias);
 
-        const exists = materias.some((m) => m.id === id);
-        if (!exists) return new MateriaNotFoundError();
+            // Handle clash case: if no valid plans found, disable the new materia
+            if (planos.length === 0 && updatedMaterias.length > 0) {
+                // Mark the last added materia as blocked and not selected
+                updatedMaterias = updatedMaterias.map((m, index) => {
+                    if (index === updatedMaterias.length - 1) {
+                        return { ...m, selected: false, blocked: true };
+                    }
+                    return m;
+                });
 
-        const updatedMaterias = materias.filter((materia) => materia.id !== id);
+                // Recalculate plans with disabled materia
+                planos = combinacoes(updatedMaterias);
+            }
 
-        // Regenerate planos
-        const combinacoes = getCombinacoes(updatedMaterias);
-        console.log(combinacoes);
+            // Update state
+            set({
+                materias: updatedMaterias,
+                planos,
+                currentPlanoIndex: 0,
+                currentPlano: planos.length > 0 ? planos[0] : null,
+            });
 
-        set(() => ({
-            planos: combinacoes,
-            materias: updatedMaterias,
-        }));
+            return null;
+        },
 
-        return null;
-    },
+        removeMateria: (id) => {
+            const { materias, currentPlano } = get();
 
-    updateSelected: (id, selected) => {
-        set((state) => {
-            const materia = state.materias.find((m) => m.id === id);
-            if (materia) materia.selected = selected; // Modify directly
-            return { materias: state.materias }; // Keep the same array reference
-        });
-    },
-}));
+            // Check if materia exists
+            const materiaIndex = materias.findIndex((m) => m.id === id);
+            if (materiaIndex === -1) return new MateriaNotFoundError();
+
+            // Remove materia and recalculate plans
+            const updatedMaterias = materias.filter((m) => m.id !== id);
+
+            if (updatedMaterias.length === 0) {
+                console.log("Empty");
+                set({
+                    materias: [],
+                    planos: [],
+                    currentPlanoIndex: 0,
+                    currentPlano: null,
+                });
+                return null;
+            }
+
+            // Calculate new combinations
+            const newPlanos = combinacoes(updatedMaterias);
+
+            // Find the closest combination to the current one
+            const closestIndex = findClosestCombination(currentPlano, newPlanos);
+
+            set({
+                materias: updatedMaterias,
+                planos: newPlanos,
+                currentPlanoIndex: closestIndex,
+                currentPlano: newPlanos.length > 0 ? newPlanos[closestIndex] : null,
+            });
+
+            return null;
+        },
+
+        updateSelected: (id, selected) => {
+            const { materias } = get();
+
+            // Update selected state for the specific materia
+            const updatedMaterias = materias.map((m) => (m.id === id ? { ...m, selected } : m));
+
+            // Recalculate plans and update state
+            set(recalculatePlanos(updatedMaterias));
+        },
+
+        nextPlano: () => {
+            const { planos, currentPlanoIndex } = get();
+
+            if (planos.length === 0) return;
+
+            const newIndex = (currentPlanoIndex + 1) % planos.length;
+            set({
+                currentPlanoIndex: newIndex,
+                currentPlano: planos[newIndex],
+            });
+        },
+
+        previousPlano: () => {
+            const { planos, currentPlanoIndex } = get();
+
+            if (planos.length === 0) return;
+
+            const newIndex = (currentPlanoIndex - 1 + planos.length) % planos.length;
+            set({
+                currentPlanoIndex: newIndex,
+                currentPlano: planos[newIndex],
+            });
+        },
+
+        setPlanoIndex: (index) => {
+            const { planos } = get();
+
+            if (planos.length === 0) return;
+
+            // Ensure index is within valid range
+            const validIndex = Math.max(0, Math.min(index, planos.length - 1));
+            set({
+                currentPlanoIndex: validIndex,
+                currentPlano: planos[validIndex],
+            });
+        },
+    };
+});

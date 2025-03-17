@@ -47,3 +47,19 @@ h6 {
 a {
     @apply text-blue-600 underline transition-colors duration-75 hover:text-blue-900;
 }
+
+.materia-item.hovering,
+.horario-item.hovering {
+    /* TODO: Remove important */
+    background-color: black !important;
+    color: white !important;
+}
+
+.hide-spin-button::-webkit-inner-spin-button,
+.hide-spin-button::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.hide-spin-button {
+    -moz-appearance: textfield;
+}

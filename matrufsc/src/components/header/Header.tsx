@@ -44,9 +44,6 @@ export default function Header({
                     ))}
                 </select>
             </div>
-            <a target="_blank" href="https://github.com/caravelahc/capim#readme" rel="noreferrer">
-                Sobre
-            </a>
         </header>
     );
 }

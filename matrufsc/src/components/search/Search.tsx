@@ -1,5 +1,6 @@
 import { useState, KeyboardEvent, ChangeEvent, useMemo, memo, useCallback, useEffect, useRef } from "react";
 import { cn } from "~/lib/utils";
+import { useClickOutside } from "~/components/search/useClickOutside";
 
 export default function Search<T>({
     data,
@@ -21,26 +22,54 @@ export default function Search<T>({
     const [focusedIndex, setFocusedIndex] = useState(0);
     const [filteredData, setFilteredData] = useState(data);
 
-    const displayShowMore = filteredData.length > shownAmount;
+    const inputRef = useRef<HTMLInputElement>(null);
+    const listRef = useRef<HTMLDivElement>(null);
+    const listEndRef = useRef<HTMLDivElement>(null);
+    const navigationSourceRef = useRef<"keyboard" | "mouse">("keyboard");
+    const componentRef = useRef<HTMLDivElement>(null);
 
+    const displayShowMore = filteredData.length > shownAmount;
     const getShowingAmount = () =>
         Math.min(shownAmount ?? filteredData.length, filteredData.length) + (displayShowMore ? 1 : 0);
 
-    const handleClose = () => {
-        // TODO: Clear search
+    useClickOutside(componentRef, () => setOpen(false), open);
+
+    const handleClose = useCallback(() => {
+        if (inputRef.current) {
+            inputRef.current.value = "";
+        }
         setOpen(false);
         setShownAmount(limit ?? data.length);
         setFocusedIndex(0);
         setFilteredData(data);
-    };
+    }, [data, limit]);
+
+    const scrollFocusedIntoView = useCallback(() => {
+        if (!listRef.current) return;
+
+        const focusedElement = listRef.current.querySelector(`[data-index="${focusedIndex}"]`) as HTMLElement;
+
+        if (focusedElement) {
+            focusedElement.scrollIntoView({ block: "nearest" });
+        }
+    }, [focusedIndex]);
+
+    // Scroll focused element into view when navigating with keyboard
+    useEffect(() => {
+        if (navigationSourceRef.current === "keyboard") {
+            scrollFocusedIntoView();
+        }
+    }, [focusedIndex, scrollFocusedIntoView]);
 
     const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
         switch (e.key) {
             case "ArrowUp":
+                navigationSourceRef.current = "keyboard";
                 setFocusedIndex((prev) => (prev - 1 + getShowingAmount()) % getShowingAmount());
                 e.preventDefault();
                 break;
             case "ArrowDown":
+                navigationSourceRef.current = "keyboard";
                 setFocusedIndex((prev) => (prev + 1) % getShowingAmount());
                 e.preventDefault();
                 break;
@@ -65,6 +94,7 @@ export default function Search<T>({
     };
 
     const handleMouseEnter = useCallback((index: number) => {
+        navigationSourceRef.current = "mouse";
         setFocusedIndex(index);
     }, []);
 
@@ -90,10 +120,20 @@ export default function Search<T>({
         }
     };
 
-    const handleShowMore = useCallback(() => {
+    const scrollToListEnd = () => {
+        if (listEndRef.current) {
+            listEndRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+
+    const handleShowMore = () => {
         if (!limit) return;
-        setShownAmount((prev) => prev + limit);
-    }, [limit]);
+        const newShownAmount = Math.min(shownAmount + limit, filteredData.length);
+        setShownAmount(newShownAmount);
+        setFocusedIndex(newShownAmount);
+        const timeoutId = setTimeout(scrollToListEnd, 0); // Ensure the new items are rendered before scrolling
+        return () => clearTimeout(timeoutId);
+    };
 
     const handleClick = useCallback(
         (index: number) => {
@@ -114,13 +154,14 @@ export default function Search<T>({
     );
 
     return (
-        <div>
+        <div ref={componentRef}>
             <div className="relative w-full">
                 <input
+                    ref={inputRef}
                     placeholder={placeholder}
                     type="text"
                     className={cn(
-                        "w-full rounded-md border border-neutral-400 px-3 py-1 focus:border-neutral-600 focus:outline-none",
+                        "h-9 w-full rounded-md border border-neutral-400 px-3 focus:border-neutral-600 focus:outline-none",
                         open && "rounded-b-none",
                     )}
                     onKeyDown={handleKeyDown}
@@ -130,15 +171,18 @@ export default function Search<T>({
                 {open && (
                     <button
                         onClick={handleClose}
-                        className="absolute right-0 top-0 px-3 py-1 text-lg text-neutral-700 hover:text-black hover:underline"
+                        className="absolute right-0 top-0 h-9 -translate-y-0.5 px-3 text-lg text-neutral-700 hover:text-black hover:underline"
                     >
                         x
                     </button>
                 )}
             </div>
 
-            {open && (
-                <div className="max-h-[50vh] w-full overflow-y-auto rounded-b-md border border-t-0 border-neutral-400 bg-white lg:max-h-[400px]">
+            {open && ( // TODO: Position as overlay in smaller screens
+                <div
+                    ref={listRef}
+                    className="max-h-96 w-full overflow-y-auto rounded-b-md border border-t-0 border-neutral-400 bg-white"
+                >
                     {filteredData.slice(0, shownAmount).map((item, index) => (
                         <MemoizedSearchItem
                             key={index}
@@ -146,6 +190,7 @@ export default function Search<T>({
                             isSelected={focusedIndex === index}
                             onMouseEnter={memoizedMouseEnterHandlers[index]}
                             onClick={memoizedHandleClicks[index]}
+                            dataIndex={index}
                         />
                     ))}
 
@@ -156,8 +201,11 @@ export default function Search<T>({
                             onClick={handleShowMore}
                             isSelected={focusedIndex === shownAmount}
                             onMouseEnter={memoizedMouseEnterHandlers[shownAmount]}
+                            dataIndex={shownAmount}
                         />
                     )}
+
+                    <div ref={listEndRef} />
                 </div>
             )}
         </div>
@@ -169,24 +217,20 @@ const MemoizedSearchItem = memo(function SearchItem({
     isSelected,
     onMouseEnter,
     onClick,
+    dataIndex,
 }: {
     label: string;
     isSelected: boolean;
     onMouseEnter?: () => void;
     onClick?: () => void;
+    dataIndex: number;
 }) {
-    const ref = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        if (isSelected && ref.current) ref.current.scrollIntoView({ block: "nearest" });
-    }, [isSelected]); // TODO: Move to parent?
-
     return (
         <div
-            ref={ref}
-            className={`cursor-pointer px-3 py-1 ${isSelected ? "bg-neutral-200" : ""}`}
+            className={cn("flex h-8 cursor-pointer items-center px-3", isSelected && "bg-neutral-200")}
             onMouseEnter={onMouseEnter}
             onClick={onClick}
+            data-index={dataIndex}
         >
             <p className="overflow-hidden text-ellipsis whitespace-nowrap">{label}</p>
         </div>
@@ -195,7 +239,7 @@ const MemoizedSearchItem = memo(function SearchItem({
 
 function SearchEmptyItem() {
     return (
-        <div className="cursor-pointer px-3 py-1 data-[selected='true']:bg-neutral-200">
+        <div className="flex h-8 cursor-pointer items-center px-3 data-[selected='true']:bg-neutral-200">
             <p className="text-center text-neutral-400">Sem resultados</p>
         </div>
     );
@@ -205,27 +249,19 @@ const MemoizedSearchShowMore = memo(function SearchShowMore({
     isSelected,
     onClick,
     onMouseEnter,
+    dataIndex,
 }: {
     isSelected?: boolean;
     onClick?: () => void;
     onMouseEnter?: () => void;
+    dataIndex: number;
 }) {
-    const ref = useRef<HTMLButtonElement>(null);
-
-    useEffect(() => {
-        if (isSelected && ref.current) ref.current.scrollIntoView({ block: "nearest" });
-    }, [isSelected]); // TODO: Move to parent?
-
-    // useEffect(() => {
-    //     if (ref.current) ref.current.scrollIntoView({ block: "nearest" });
-    // }); // Scroll to element when it is rendered so it does not get hidden when new items are added and overflow-y is scroll
-
     return (
         <button
-            ref={ref}
-            className={`w-full cursor-pointer px-3 py-1 text-center text-blue-600 hover:underline ${isSelected ? "bg-neutral-200" : ""}`}
+            className={`h-8 w-full cursor-pointer px-3 text-center text-blue-600 hover:underline ${isSelected ? "bg-neutral-200" : ""}`}
             onClick={onClick}
             onMouseEnter={onMouseEnter}
+            data-index={dataIndex}
         >
             Carregar mais... {isSelected ? "👇" : ""}
         </button>

@@ -13,9 +13,25 @@ export default function Footer() {
                 </a>
             </p>
 
-            <a className="text-nowrap" target="_blank" href="https://github.com/caravelahc/capim/wiki" rel="noreferrer">
-                Como usar
-            </a>
+            <div className="flex gap-4">
+                <a
+                    className="text-nowrap"
+                    target="_blank"
+                    href="https://github.com/caravelahc/capim/wiki"
+                    rel="noreferrer"
+                    // TODO: Points to nowhere
+                >
+                    Como usar
+                </a>
+                <a
+                    target="_blank"
+                    href="https://github.com/caravelahc/capim#readme"
+                    rel="noreferrer"
+                    // TODO: Create a modal
+                >
+                    Sobre
+                </a>
+            </div>
         </footer>
     );
 }
