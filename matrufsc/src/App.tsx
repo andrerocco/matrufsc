@@ -35,7 +35,7 @@ function App() {
     const [data, setData] = useState<JSONCampus>();
 
     useEffect(() => {
-        fetch(`/data/${semester}.json`) // TODO: Query by campus, once set user will rarely ever change to a new campus
+        fetch(`${import.meta.env.BASE_URL}data/${semester}.json`) // TODO: Query by campus, once set user will rarely ever change to a new campus
             .then((response) => {
                 return response.json();
             })
