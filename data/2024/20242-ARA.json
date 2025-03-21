@@ -1,0 +1,3766 @@
+{
+    "campus": "ARA",
+    "data_extracao": "29/08/24 - 17:06",
+    "disciplinas": [
+        [
+            "CIT7122",
+            "ELABORACAO DE TRABALHOS ACADEMICOS *TECNOLOGIAS DA INFORMACAO E COMUNICACAO (NOTURNO) [CAMPUS ARARANGUA]",
+            "Elaboração de Trabalhos Acadêmicos *TECNOLOGIAS DA INFORMAÇÃO E COMUNICAÇÃO (noturno) [Campus Araranguá]",
+            [
+                [
+                    "01652",
+                    36,
+                    37,
+                    31,
+                    0,
+                    6,
+                    0,
+                    ["6.1830-2 / CTS-SL117A"],
+                    ["Fernando Jose Spanhol", "Professor A Contratar"]
+                ],
+                ["01653", 36, 30, 13, 0, 17, 0, ["6.1830-2 / CTS-SL117A"], ["Professor A Contratar"]],
+                ["02655", 36, 30, 28, 0, 2, 0, ["6.1830-2 / CTS-SL117A"], ["Professor A Contratar"]]
+            ]
+        ],
+        [
+            "CIT7139",
+            "PROGRAMACAO EM COMPUTADORES *TECNOLOGIAS DA INFORMACAO E COMUNICACAO (NOTURNO) [CAMPUS ARARANGUA]",
+            "Programação em Computadores *TECNOLOGIAS DA INFORMAÇÃO E COMUNICAÇÃO (noturno) [Campus Araranguá]",
+            [["02652", 72, 35, 32, 0, 3, 0, ["3.1830-2 / CTS-LB108A", "4.2020-2 / CTS-LB108A"], ["Cristian Cechinel"]]]
+        ],
+        [
+            "CIT7146",
+            "INTRODUCAO A ECONOMIA NA ENGENHARIA *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Introdução à Economia na Engenharia *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [["06653", 36, 45, 12, 0, 33, 0, ["5.1420-2 / CTS-LB118A"], ["Simone Meister Sommer Bilessimo"]]]
+        ],
+        [
+            "CIT7203",
+            "INFORMATICA NA EDUCACAO I *TECNOLOGIAS DA INFORMACAO E COMUNICACAO (NOTURNO) [CAMPUS ARARANGUA]",
+            "Informática na Educação I *TECNOLOGIAS DA INFORMAÇÃO E COMUNICAÇÃO (noturno) [Campus Araranguá]",
+            [
+                [
+                    "01652",
+                    72,
+                    50,
+                    44,
+                    0,
+                    6,
+                    8,
+                    ["3.1830-2 / CTS-SL106A", "5.1830-2 / CTS-SL106A"],
+                    ["Patricia Jantsch Fiuza"]
+                ]
+            ]
+        ],
+        [
+            "CIT7212",
+            "EMPREENDEDORISMO *TECNOLOGIAS DA INFORMACAO E COMUNICACAO (NOTURNO) [CAMPUS ARARANGUA]",
+            "Empreendedorismo *TECNOLOGIAS DA INFORMAÇÃO E COMUNICAÇÃO (noturno) [Campus Araranguá]",
+            [
+                [
+                    "01652",
+                    72,
+                    37,
+                    31,
+                    0,
+                    6,
+                    9,
+                    ["3.2020-2 / CTS-SL106A", "6.1620-2 / AUX-ALOCAR"],
+                    ["Simone Meister Sommer Bilessimo"]
+                ]
+            ]
+        ],
+        [
+            "CIT7213",
+            "INTERFACE HUMANO-COMPUTADOR *TECNOLOGIAS DA INFORMACAO E COMUNICACAO (NOTURNO) [CAMPUS ARARANGUA]",
+            "Interface Humano-Computador *TECNOLOGIAS DA INFORMAÇÃO E COMUNICAÇÃO (noturno) [Campus Araranguá]",
+            [
+                [
+                    "05652",
+                    72,
+                    35,
+                    11,
+                    0,
+                    24,
+                    0,
+                    ["2.0910-2 / AUX-ALOCAR", "3.1830-2 / CTS-LB119A"],
+                    ["Fabrício Herpich", "Professor A Contratar"]
+                ]
+            ]
+        ],
+        [
+            "CIT7222",
+            "REDES SOCIAIS E VIRTUAIS *TECNOLOGIAS DA INFORMACAO E COMUNICACAO (NOTURNO) [CAMPUS ARARANGUA]",
+            "Redes Sociais e Virtuais *TECNOLOGIAS DA INFORMAÇÃO E COMUNICAÇÃO (noturno) [Campus Araranguá]",
+            [
+                [
+                    "05652",
+                    72,
+                    50,
+                    12,
+                    0,
+                    38,
+                    0,
+                    ["3.2020-2 / CTS-SL117A", "5.1330-1 / AUX-ALOCAR", "5.1620-1 / AUX-ALOCAR"],
+                    ["Professor A Contratar", "Fernando Jose Spanhol"]
+                ]
+            ]
+        ],
+        [
+            "CIT7223",
+            "TOPICOS ESPECIAIS EM EDUCACAO E CULTURA DIGITAL I *TECNOLOGIAS DA INFORMACAO E COMUNICACAO (NOTURNO) [CAMPUS ARARANGUA]",
+            "Tópicos Especiais em Educação e Cultura Digital I *TECNOLOGIAS DA INFORMAÇÃO E COMUNICAÇÃO (noturno) [Campus Araranguá]",
+            [
+                [
+                    "06652",
+                    72,
+                    50,
+                    19,
+                    0,
+                    31,
+                    0,
+                    ["2.2020-2 / CTS-SL211A", "5.2020-2 / CTS-SL211A"],
+                    ["Giovani Mendonça Lunardi"]
+                ]
+            ]
+        ],
+        [
+            "CIT7224",
+            "GESTAO DO CONHECIMENTO *TECNOLOGIAS DA INFORMACAO E COMUNICACAO (NOTURNO) [CAMPUS ARARANGUA]",
+            "Gestão do Conhecimento *TECNOLOGIAS DA INFORMAÇÃO E COMUNICAÇÃO (noturno) [Campus Araranguá]",
+            [
+                [
+                    "06652",
+                    72,
+                    35,
+                    35,
+                    0,
+                    0,
+                    7,
+                    ["3.1830-2 / CTS-SL206A", "7.1620-2 / AUX-ALOCAR"],
+                    ["Professor A Contratar", "Fernando Jose Spanhol"]
+                ]
+            ]
+        ],
+        [
+            "CIT7226",
+            "PLANO DE NEGOCIOS *TECNOLOGIAS DA INFORMACAO E COMUNICACAO (NOTURNO) [CAMPUS ARARANGUA]",
+            "Plano de Negócios *TECNOLOGIAS DA INFORMAÇÃO E COMUNICAÇÃO (noturno) [Campus Araranguá]",
+            [
+                [
+                    "06652",
+                    72,
+                    40,
+                    40,
+                    0,
+                    0,
+                    5,
+                    ["4.1830-2 / CTS-SL106A", "7.1330-2 / AUX-ALOCAR"],
+                    ["Luziana Quadros da Rosa"]
+                ]
+            ]
+        ],
+        [
+            "CIT7232",
+            "TECNOLOGIAS DE INFORMACAO E COMUNICACAO E SUAS EVOLUCOES *TECNOLOGIAS DA INFORMACAO E COMUNICACAO (NOTURNO) [CAMPUS ARARANGUA]",
+            "Tecnologias de Informação e Comunicação e suas Evoluções *TECNOLOGIAS DA INFORMAÇÃO E COMUNICAÇÃO (noturno) [Campus Araranguá]",
+            [["06652", 72, 40, 24, 0, 16, 0, ["4.2020-2 / CTS-SL117A", "6.0730-2 / AUX-ALOCAR"], ["Vilson Gruber"]]]
+        ],
+        [
+            "CIT7236",
+            "GESTAO DE TECNOLOGIA *TECNOLOGIAS DA INFORMACAO E COMUNICACAO (NOTURNO) [CAMPUS ARARANGUA]",
+            "Gestão de Tecnologia *TECNOLOGIAS DA INFORMAÇÃO E COMUNICAÇÃO (noturno) [Campus Araranguá]",
+            [
+                [
+                    "06652",
+                    72,
+                    40,
+                    23,
+                    0,
+                    17,
+                    0,
+                    ["2.0730-2 / AUX-ALOCAR", "6.2020-2 / CTS-SL117A"],
+                    ["Professor A Contratar", "Fernando Jose Spanhol"]
+                ]
+            ]
+        ],
+        [
+            "CIT7243",
+            "INTRODUCAO AS TECNOLOGIAS DA INFORMACAO E COMUNICACAO *TECNOLOGIAS DA INFORMACAO E COMUNICACAO (NOTURNO) [CAMPUS ARARANGUA]",
+            "Introdução às Tecnologias da Informação e Comunicação *TECNOLOGIAS DA INFORMAÇÃO E COMUNICAÇÃO (noturno) [Campus Araranguá]",
+            [
+                [
+                    "01652",
+                    72,
+                    40,
+                    34,
+                    0,
+                    6,
+                    2,
+                    ["2.1830-2 / CTS-SL211A", "6.2020-2 / CTS-SL106A"],
+                    ["Professor A Contratar", "Fabrício Herpich"]
+                ]
+            ]
+        ],
+        [
+            "CIT7244",
+            "ESTRUTURAS DE COMPUTADORES *TECNOLOGIAS DA INFORMACAO E COMUNICACAO (NOTURNO) [CAMPUS ARARANGUA]",
+            "Estruturas de Computadores *TECNOLOGIAS DA INFORMAÇÃO E COMUNICAÇÃO (noturno) [Campus Araranguá]",
+            [
+                [
+                    "02652",
+                    72,
+                    45,
+                    21,
+                    0,
+                    24,
+                    0,
+                    ["2.2020-2 / CTS-SL206A", "4.1830-2 / CTS-SL206A"],
+                    ["Professor A Contratar", "Fabrício Herpich"]
+                ]
+            ]
+        ],
+        [
+            "CIT7245",
+            "ESTAGIO OBRIGATORIO *TECNOLOGIAS DA INFORMACAO E COMUNICACAO (NOTURNO) [CAMPUS ARARANGUA]",
+            "Estágio Obrigatório *TECNOLOGIAS DA INFORMAÇÃO E COMUNICAÇÃO (noturno) [Campus Araranguá]",
+            [["05652", 180, 50, 24, 0, 26, 0, [], []]]
+        ],
+        [
+            "CIT7246",
+            "PROJETO INTEGRADOR EM TECNOLOGIAS DE INFORMACAO E COMUNICACAO I *TECNOLOGIAS DA INFORMACAO E COMUNICACAO (NOTURNO) [CAMPUS ARARANGUA]",
+            "Projeto Integrador em Tecnologias de Informação e Comunicação I *TECNOLOGIAS DA INFORMAÇÃO E COMUNICAÇÃO (noturno) [Campus Araranguá]",
+            [
+                [
+                    "05652",
+                    36,
+                    50,
+                    15,
+                    0,
+                    35,
+                    0,
+                    ["5.2020-2 / CTS-SL207A"],
+                    ["Professor A Contratar", "Fernando Jose Spanhol"]
+                ]
+            ]
+        ],
+        [
+            "CIT7247",
+            "PROJETO INTEGRADOR EM TECNOLOGIAS DE INFORMACAO E COMUNICACAO II *TECNOLOGIAS DA INFORMACAO E COMUNICACAO (NOTURNO) [CAMPUS ARARANGUA]",
+            "Projeto Integrador em Tecnologias de Informação e Comunicação II *TECNOLOGIAS DA INFORMAÇÃO E COMUNICAÇÃO (noturno) [Campus Araranguá]",
+            [["06652", 72, 50, 45, 0, 5, 0, ["7.0820-4 / CTS-SL114A"], ["Fabrício Herpich"]]]
+        ],
+        [
+            "CIT7580",
+            "ALGORITMOS E PROGRAMACAO *TECNOLOGIAS DA INFORMACAO E COMUNICACAO (NOTURNO) [CAMPUS ARARANGUA]",
+            "Algoritmos e Programação *TECNOLOGIAS DA INFORMAÇÃO E COMUNICAÇÃO (noturno) [Campus Araranguá]",
+            [
+                [
+                    "01652",
+                    108,
+                    40,
+                    34,
+                    0,
+                    6,
+                    1,
+                    ["2.0730-2 / AUX-ALOCAR", "4.1830-2 / CTS-LB110A", "5.2020-2 / CTS-LB110A"],
+                    ["Fabrício Herpich"]
+                ]
+            ]
+        ],
+        [
+            "CIT7581",
+            "GESTAO ESTRATEGICA ORIENTADA AO MERCADO *TECNOLOGIAS DA INFORMACAO E COMUNICACAO (NOTURNO) [CAMPUS ARARANGUA]",
+            "Gestão Estratégica Orientada ao Mercado *TECNOLOGIAS DA INFORMAÇÃO E COMUNICAÇÃO (noturno) [Campus Araranguá]",
+            [
+                [
+                    "02652",
+                    72,
+                    50,
+                    23,
+                    0,
+                    27,
+                    0,
+                    ["3.0730-2 / AUX-ALOCAR", "6.1830-2 / CTS-SL114A"],
+                    ["Luziana Quadros da Rosa"]
+                ]
+            ]
+        ],
+        [
+            "CIT7582",
+            "GESTAO DE MARKETING *TECNOLOGIAS DA INFORMACAO E COMUNICACAO (NOTURNO) [CAMPUS ARARANGUA]",
+            "Gestão de Marketing *TECNOLOGIAS DA INFORMAÇÃO E COMUNICAÇÃO (noturno) [Campus Araranguá]",
+            [
+                [
+                    "03652",
+                    72,
+                    50,
+                    24,
+                    0,
+                    26,
+                    0,
+                    ["4.0730-2 / AUX-ALOCAR", "5.2020-2 / CTS-SL116A"],
+                    ["Luziana Quadros da Rosa"]
+                ]
+            ]
+        ],
+        [
+            "CIT7583",
+            "GESTAO DO CAPITAL INTELECTUAL *TECNOLOGIAS DA INFORMACAO E COMUNICACAO (NOTURNO) [CAMPUS ARARANGUA]",
+            "Gestão do Capital Intelectual *TECNOLOGIAS DA INFORMAÇÃO E COMUNICAÇÃO (noturno) [Campus Araranguá]",
+            [
+                [
+                    "03652",
+                    72,
+                    40,
+                    20,
+                    0,
+                    20,
+                    0,
+                    ["4.2020-2 / CTS-SL116A", "6.2020-2 / CTS-SL116A"],
+                    ["Luziana Quadros da Rosa"]
+                ]
+            ]
+        ],
+        [
+            "CIT7584",
+            "ESTRUTURA DE DADOS E ALGORITMOS *TECNOLOGIAS DA INFORMACAO E COMUNICACAO (NOTURNO) [CAMPUS ARARANGUA]",
+            "Estrutura de Dados e Algoritmos *TECNOLOGIAS DA INFORMAÇÃO E COMUNICAÇÃO (noturno) [Campus Araranguá]",
+            [["03652", 72, 35, 27, 0, 8, 0, ["3.2020-2 / CTS-LB108A", "4.1830-2 / CTS-LB108A"], ["Cristian Cechinel"]]]
+        ],
+        [
+            "CIT7585",
+            "ANALISE DA VIABILIDADE ECONOMICA DE NOVOS EMPREENDIMENTOS *TECNOLOGIAS DA INFORMACAO E COMUNICACAO (NOTURNO) [CAMPUS ARARANGUA]",
+            "Análise da Viabilidade Econômica de Novos Empreendimentos *TECNOLOGIAS DA INFORMAÇÃO E COMUNICAÇÃO (noturno) [Campus Araranguá]",
+            [
+                [
+                    "04652",
+                    72,
+                    35,
+                    18,
+                    0,
+                    17,
+                    0,
+                    ["3.1830-2 / CTS-LB118A", "5.0910-2 / AUX-LIVRE"],
+                    ["Simone Meister Sommer Bilessimo"]
+                ]
+            ]
+        ],
+        [
+            "CIT7586",
+            "GESTAO DE PROJETOS I *TECNOLOGIAS DA INFORMACAO E COMUNICACAO (NOTURNO) [CAMPUS ARARANGUA]",
+            "Gestão de Projetos I *TECNOLOGIAS DA INFORMAÇÃO E COMUNICAÇÃO (noturno) [Campus Araranguá]",
+            [["04652", 72, 40, 20, 0, 20, 0, ["4.1830-2 / CTS-SL207A", "6.1010-2 / AUX-ALOCAR"], ["Vilson Gruber"]]]
+        ],
+        [
+            "CIT7587",
+            "VISUALIZACAO DE DADOS *TECNOLOGIAS DA INFORMACAO E COMUNICACAO (NOTURNO) [CAMPUS ARARANGUA]",
+            "Visualização de Dados *TECNOLOGIAS DA INFORMAÇÃO E COMUNICAÇÃO (noturno) [Campus Araranguá]",
+            [
+                [
+                    "04652",
+                    72,
+                    35,
+                    28,
+                    0,
+                    7,
+                    0,
+                    ["5.2020-2 / CTS-LB119A", "6.1830-2 / CTS-LB119A"],
+                    ["Marina Carradore Sérgio"]
+                ]
+            ]
+        ],
+        [
+            "CIT7589",
+            "GESTAO DE PROJETOS II *TECNOLOGIAS DA INFORMACAO E COMUNICACAO (NOTURNO) [CAMPUS ARARANGUA]",
+            "Gestão de Projetos II *TECNOLOGIAS DA INFORMAÇÃO E COMUNICAÇÃO (noturno) [Campus Araranguá]",
+            [["05652", 36, 40, 11, 0, 29, 0, ["6.1830-2 / CTS-SL106A"], ["Vilson Gruber"]]]
+        ],
+        [
+            "CIT7590",
+            "CIENCIAS, TECNOLOGIA E SOCIEDADE *TECNOLOGIAS DA INFORMACAO E COMUNICACAO (NOTURNO) [CAMPUS ARARANGUA]",
+            "Ciências, Tecnologia e Sociedade *TECNOLOGIAS DA INFORMAÇÃO E COMUNICAÇÃO (noturno) [Campus Araranguá]",
+            [
+                [
+                    "06652",
+                    72,
+                    50,
+                    50,
+                    0,
+                    0,
+                    1,
+                    ["2.1830-2 / CTS-SL106A", "5.1830-2 / CTS-SL211A"],
+                    ["Giovani Mendonça Lunardi"]
+                ]
+            ]
+        ],
+        [
+            "CIT7593",
+            "TOPICOS ESPECIAIS EM NEGOCIOS DIGITAIS II *TECNOLOGIAS DA INFORMACAO E COMUNICACAO (NOTURNO) [CAMPUS ARARANGUA]",
+            "Tópicos Especiais em Negócios Digitais II *TECNOLOGIAS DA INFORMAÇÃO E COMUNICAÇÃO (noturno) [Campus Araranguá]",
+            [["06652", 72, 50, 13, 0, 37, 0, ["3.2020-2 / CTS-SL225A", "6.1830-2 / CTS-SL225A"], []]]
+        ],
+        [
+            "CIT7595",
+            "EDUCACAO A DISTANCIA *TECNOLOGIAS DA INFORMACAO E COMUNICACAO (NOTURNO) [CAMPUS ARARANGUA]",
+            "Educação a Distância *TECNOLOGIAS DA INFORMAÇÃO E COMUNICAÇÃO (noturno) [Campus Araranguá]",
+            [
+                [
+                    "02652",
+                    72,
+                    50,
+                    21,
+                    0,
+                    29,
+                    0,
+                    ["2.1830-2 / CTS-SL114A", "3.1010-2 / AUX-ALOCAR"],
+                    ["Fernando Jose Spanhol"]
+                ]
+            ]
+        ],
+        [
+            "CIT7596",
+            "SISTEMAS MULTIMIDIAS *TECNOLOGIAS DA INFORMACAO E COMUNICACAO (NOTURNO) [CAMPUS ARARANGUA]",
+            "Sistemas Multimídias *TECNOLOGIAS DA INFORMAÇÃO E COMUNICAÇÃO (noturno) [Campus Araranguá]",
+            [
+                [
+                    "02652",
+                    72,
+                    30,
+                    26,
+                    0,
+                    4,
+                    0,
+                    ["5.1830-2 / CTS-LB108A", "6.0820-2 / CTS-LB119A"],
+                    ["Marina Carradore Sérgio"]
+                ]
+            ]
+        ],
+        [
+            "CIT7597",
+            "AMBIENTES VIRTUAIS DE ENSINO E APRENDIZAGEM *TECNOLOGIAS DA INFORMACAO E COMUNICACAO (NOTURNO) [CAMPUS ARARANGUA]",
+            "Ambientes Virtuais de Ensino e Aprendizagem *TECNOLOGIAS DA INFORMAÇÃO E COMUNICAÇÃO (noturno) [Campus Araranguá]",
+            [
+                [
+                    "03652",
+                    72,
+                    40,
+                    30,
+                    0,
+                    10,
+                    0,
+                    ["2.2020-2 / CTS-SL114A", "5.0730-2 / AUX-ALOCAR"],
+                    ["Fernando Jose Spanhol"]
+                ]
+            ]
+        ],
+        [
+            "CIT7598",
+            "DESENVOLVIMENTO DE SISTEMAS WEB *TECNOLOGIAS DA INFORMACAO E COMUNICACAO (NOTURNO) [CAMPUS ARARANGUA]",
+            "Desenvolvimento de Sistemas Web *TECNOLOGIAS DA INFORMAÇÃO E COMUNICAÇÃO (noturno) [Campus Araranguá]",
+            [["05652", 72, 35, 25, 0, 10, 0, ["4.2020-2 / CTS-LB119A", "5.1830-2 / CTS-LB119A"], ["Fabrício Herpich"]]]
+        ],
+        [
+            "DCS7403",
+            "LEGISLACAO PROFISSIONAL E ADMINISTRACAO *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Legislação Profissional e Administração *FISIOTERAPIA [Campus Araranguá]",
+            [["04654", 54, 40, 19, 0, 21, 0, ["2.0730-3 / CTS-SL210A"], ["Tauana Prestes Schmidt"]]]
+        ],
+        [
+            "DCS7404",
+            "BASES, METODOS E TECNICAS DE AVALIACAO *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Bases, Métodos e Técnicas de Avaliação *FISIOTERAPIA [Campus Araranguá]",
+            [
+                [
+                    "04654A",
+                    90,
+                    30,
+                    20,
+                    0,
+                    10,
+                    0,
+                    ["3.0910-3 / CTS-SL215A", "5.1010-2 / CTS-LB106C"],
+                    ["Kelly Mônica Marinho e Lima"]
+                ]
+            ]
+        ],
+        [
+            "DCS7405",
+            "SAUDE COLETIVA *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Saúde Coletiva *FISIOTERAPIA [Campus Araranguá]",
+            [["01654", 54, 42, 32, 0, 10, 10, ["4.0910-3 / CTS-SL114A"], ["Ana Lucia Danielewicz"]]]
+        ],
+        [
+            "DCS7406",
+            "BIOSSEGURANCA *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Biossegurança *FISIOTERAPIA [Campus Araranguá]",
+            [["01654", 36, 42, 32, 0, 10, 8, ["5.0730-2 / CTS-SL114A"], ["Professor A Contratar"]]]
+        ],
+        [
+            "DCS7407",
+            "PATOLOGIA *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Patologia *FISIOTERAPIA [Campus Araranguá]",
+            [
+                [
+                    "03654",
+                    72,
+                    40,
+                    22,
+                    0,
+                    18,
+                    0,
+                    ["2.0820-2 / CTS-SL206A", "4.1010-2 / CTS-SL209A"],
+                    ["Gisele Agustini Lovatel"]
+                ]
+            ]
+        ],
+        [
+            "DCS7408",
+            "NEUROFISIOLOGIA *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Neurofisiologia *FISIOTERAPIA [Campus Araranguá]",
+            [
+                [
+                    "02654",
+                    108,
+                    40,
+                    29,
+                    0,
+                    11,
+                    0,
+                    ["2.1330-3 / CTS-SL114A", "4.1330-3 / CTS-SL114A"],
+                    ["Gisele Agustini Lovatel"]
+                ]
+            ]
+        ],
+        [
+            "DCS7409",
+            "CINESIOLOGIA I *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Cinesiologia I *FISIOTERAPIA [Campus Araranguá]",
+            [
+                [
+                    "03654",
+                    90,
+                    40,
+                    22,
+                    0,
+                    18,
+                    0,
+                    ["3.1510-3 / CTS-SL202A", "5.1620-2 / CTS-SL202A"],
+                    ["Aderbal Silva Aguiar Junior"]
+                ]
+            ]
+        ],
+        [
+            "DCS7412",
+            "BIOLOGIA CELULAR E MOLECULAR *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Biologia Celular e Molecular *FISIOTERAPIA [Campus Araranguá]",
+            [
+                [
+                    "01654",
+                    72,
+                    42,
+                    32,
+                    0,
+                    10,
+                    8,
+                    ["2.1330-2 / CTS-SL226A", "4.1330-2 / CTS-SL225A"],
+                    ["Professor A Contratar"]
+                ]
+            ]
+        ],
+        [
+            "DCS7415",
+            "BIOETICA *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Bioética *FISIOTERAPIA [Campus Araranguá]",
+            [["03654", 36, 40, 23, 0, 17, 0, ["4.0820-2 / CTS-SL219A"], ["João Matheus Acosta Dallmann"]]]
+        ],
+        [
+            "DCS7416",
+            "GENETICA *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Genética *FISIOTERAPIA [Campus Araranguá]",
+            [
+                [
+                    "01654",
+                    72,
+                    42,
+                    32,
+                    0,
+                    10,
+                    11,
+                    ["2.0820-2 / CTS-SL209A", "6.1010-2 / CTS-SL209A"],
+                    ["Giovana Pascoali Rodovanski"]
+                ]
+            ]
+        ],
+        [
+            "DCS7417",
+            "ANATOMIA I *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Anatomia I *FISIOTERAPIA [Campus Araranguá]",
+            [
+                [
+                    "01654A",
+                    108,
+                    21,
+                    16,
+                    0,
+                    5,
+                    3,
+                    ["3.0730-3 / CTS-SL202A", "5.0910-3 / CTS-LB103C"],
+                    ["Marcelo Gomes de Gomes"]
+                ],
+                [
+                    "01654B",
+                    108,
+                    43,
+                    26,
+                    0,
+                    17,
+                    0,
+                    ["3.0730-3 / CTS-SL202A", "5.1330-3 / CTS-LB103C"],
+                    ["Marcelo Gomes de Gomes"]
+                ]
+            ]
+        ],
+        [
+            "DCS7418",
+            "FUNDAMENTOS DE FISIOTERAPIA *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Fundamentos de Fisioterapia *FISIOTERAPIA [Campus Araranguá]",
+            [["01654", 36, 42, 32, 0, 10, 7, ["3.1330-2 / CTS-SL210A"], ["Tauana Prestes Schmidt"]]]
+        ],
+        [
+            "DCS7419",
+            "CINESIOLOGIA II *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Cinesiologia II *FISIOTERAPIA [Campus Araranguá]",
+            [
+                [
+                    "04654",
+                    90,
+                    40,
+                    16,
+                    0,
+                    24,
+                    0,
+                    ["3.1330-2 / CTS-SL202A", "5.1330-3 / CTS-SL202A"],
+                    ["Aderbal Silva Aguiar Junior"]
+                ]
+            ]
+        ],
+        [
+            "DCS7426",
+            "HISTOLOGIA E EMBRIOLOGIA *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Histologia e Embriologia *FISIOTERAPIA [Campus Araranguá]",
+            [["02654", 54, 40, 28, 0, 12, 0, ["4.0910-3 / CTS-SL202A"], ["Professor A Contratar"]]]
+        ],
+        [
+            "DCS7427",
+            "ANATOMIA II *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Anatomia II *FISIOTERAPIA [Campus Araranguá]",
+            [
+                [
+                    "02654A",
+                    72,
+                    20,
+                    17,
+                    0,
+                    3,
+                    0,
+                    ["2.1010-2 / CTS-SL218A", "6.0820-2 / CTS-LB103C"],
+                    ["Marcelo Gomes de Gomes"]
+                ],
+                [
+                    "02654B",
+                    72,
+                    20,
+                    9,
+                    0,
+                    11,
+                    0,
+                    ["2.1010-2 / CTS-SL218A", "6.1010-2 / CTS-LB103C"],
+                    ["Marcelo Gomes de Gomes"]
+                ]
+            ]
+        ],
+        [
+            "DCS7429",
+            "EPIDEMIOLOGIA *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Epidemiologia *FISIOTERAPIA [Campus Araranguá]",
+            [["02654", 36, 40, 30, 0, 10, 0, ["3.1010-2 / CTS-SL116A"], ["Ione Jayce Ceola Schneider"]]]
+        ],
+        [
+            "DCS7433",
+            "IMUNOLOGIA *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Imunologia *FISIOTERAPIA [Campus Araranguá]",
+            [
+                [
+                    "03654",
+                    72,
+                    40,
+                    10,
+                    0,
+                    30,
+                    0,
+                    ["3.1010-2 / CTS-SL226A", "5.1010-2 / CTS-SL226A"],
+                    ["Giovana Pascoali Rodovanski"]
+                ]
+            ]
+        ],
+        [
+            "DCS7437",
+            "METODOLOGIA DE PESQUISA *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Metodologia de Pesquisa *FISIOTERAPIA [Campus Araranguá]",
+            [["04654", 54, 40, 21, 0, 19, 0, ["4.0910-3 / CTS-SL116A"], ["Ione Jayce Ceola Schneider"]]]
+        ],
+        [
+            "DCS7439",
+            "FISIOTERAPIA PREVENTIVA *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Fisioterapia Preventiva *FISIOTERAPIA [Campus Araranguá]",
+            [["02654", 54, 40, 27, 0, 13, 0, ["5.0910-3 / CTS-SL116A"], ["Ione Jayce Ceola Schneider"]]]
+        ],
+        [
+            "DCS7449",
+            "DESENVOLVIMENTO HUMANO *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Desenvolvimento Humano *FISIOTERAPIA [Campus Araranguá]",
+            [["04654A", 54, 30, 17, 0, 13, 0, ["6.0820-3 / CTS-SL215A"], ["Nícolas Kickhofel Weisshahn"]]]
+        ],
+        [
+            "DCS7457",
+            "FISIOTERAPIA DA PESSOA IDOSA *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Fisioterapia da Pessoa Idosa *FISIOTERAPIA [Campus Araranguá]",
+            [
+                [
+                    "08654",
+                    72,
+                    40,
+                    22,
+                    0,
+                    18,
+                    0,
+                    ["3.0820-2 / CTS-SL211A", "5.0820-2 / CTS-SL211A"],
+                    ["Nícolas Kickhofel Weisshahn"]
+                ]
+            ]
+        ],
+        [
+            "DCS7458",
+            "CINESIOTERAPIA *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Cinesioterapia *FISIOTERAPIA [Campus Araranguá]",
+            [
+                [
+                    "05654A",
+                    108,
+                    30,
+                    21,
+                    0,
+                    9,
+                    0,
+                    ["2.0910-3 / CTS-SL106A", "4.0820-3 / CTS-SL106A"],
+                    ["Heloyse Uliam Kuriki"]
+                ]
+            ]
+        ],
+        [
+            "DCS7459",
+            "FISIOTERAPIA EM REUMATOLOGIA *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Fisioterapia em Reumatologia *FISIOTERAPIA [Campus Araranguá]",
+            [
+                [
+                    "06654",
+                    72,
+                    40,
+                    21,
+                    0,
+                    19,
+                    0,
+                    ["3.1010-2 / CTS-SL225A", "5.1510-2 / CTS-SL225A"],
+                    ["Daniela Pacheco dos Santos Haupenthal"]
+                ]
+            ]
+        ],
+        [
+            "DCS7461",
+            "FISIOTERAPIA EM CARDIOLOGIA I *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Fisioterapia em Cardiologia I *FISIOTERAPIA [Campus Araranguá]",
+            [
+                [
+                    "07654",
+                    72,
+                    40,
+                    16,
+                    0,
+                    24,
+                    0,
+                    ["4.0820-2 / CTS-SL210A", "6.1010-2 / CTS-SL210A"],
+                    ["Livia Arcêncio do Amaral"]
+                ]
+            ]
+        ],
+        [
+            "DCS7464",
+            "FISIOTERAPIA EM TRAUMATO-ORTOPEDIA I *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Fisioterapia em Traumato-Ortopedia I *FISIOTERAPIA [Campus Araranguá]",
+            [
+                [
+                    "07654",
+                    72,
+                    40,
+                    12,
+                    0,
+                    28,
+                    0,
+                    ["2.1010-2 / CTS-SL206A", "4.1010-2 / CTS-SL206A"],
+                    ["Rafael Inácio Barbosa"]
+                ]
+            ]
+        ],
+        [
+            "DCS7468",
+            "IMAGENOLOGIA APLICADA A FISIOTERAPIA *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Imagenologia Aplicada à Fisioterapia *FISIOTERAPIA [Campus Araranguá]",
+            [["05654", 36, 40, 19, 0, 21, 0, ["2.0730-2 / CTS-SL106A"], ["Professor A Contratar"]]]
+        ],
+        [
+            "DCS7478",
+            "FARMACOLOGIA *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Farmacologia *FISIOTERAPIA [Campus Araranguá]",
+            [
+                [
+                    "04654",
+                    72,
+                    40,
+                    17,
+                    0,
+                    23,
+                    0,
+                    ["2.1010-2 / CTS-SL202A", "4.0730-2 / CTS-SL202A"],
+                    ["Gisele Agustini Lovatel"]
+                ]
+            ]
+        ],
+        [
+            "DCS7479",
+            "FISIOTERAPIA EM PEDRIATRIA II *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Fisioterapia em Pedriatria II *FISIOTERAPIA [Campus Araranguá]",
+            [
+                [
+                    "07654",
+                    108,
+                    40,
+                    16,
+                    0,
+                    24,
+                    0,
+                    ["2.1330-2 / CTS-SL215A", "4.1330-2 / CTS-SL215A"],
+                    ["Giovana Pascoali Rodovanski"]
+                ]
+            ]
+        ],
+        [
+            "DCS7480",
+            "FISIOTERAPIA EM PEDIATRIA I *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Fisioterapia em Pediatria I *FISIOTERAPIA [Campus Araranguá]",
+            [
+                [
+                    "06654",
+                    108,
+                    40,
+                    22,
+                    0,
+                    18,
+                    0,
+                    ["3.0730-3 / CTS-SL210A", "5.0730-3 / CTS-SL210A"],
+                    ["Cristiane Aparecida Moran"]
+                ]
+            ]
+        ],
+        [
+            "DCS7485",
+            "FISIOTERAPIA EM NEUROLOGIA I *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Fisioterapia em Neurologia I *FISIOTERAPIA [Campus Araranguá]",
+            [
+                [
+                    "06654",
+                    108,
+                    40,
+                    23,
+                    0,
+                    17,
+                    0,
+                    ["2.0910-3 / CTS-SL211A", "4.0910-3 / CTS-SL211A"],
+                    ["Angelica Cristiane Ovando Bueno"]
+                ]
+            ]
+        ],
+        [
+            "DCS7487",
+            "FISIOTERAPIA EM NEUROLOGIA II *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Fisioterapia em Neurologia II *FISIOTERAPIA [Campus Araranguá]",
+            [
+                [
+                    "07654",
+                    108,
+                    40,
+                    13,
+                    0,
+                    27,
+                    0,
+                    ["3.0910-3 / CTS-SL313A", "5.0910-3 / CTS-SL313A"],
+                    ["Poliana Penasso Bezerra"]
+                ]
+            ]
+        ],
+        [
+            "DCS7490",
+            "PSICOLOGIA *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Psicologia *FISIOTERAPIA [Campus Araranguá]",
+            [["03654", 36, 40, 10, 0, 30, 0, ["5.1420-2 / CTS-SL211A"], ["Patricia Jantsch Fiuza"]]]
+        ],
+        [
+            "DCS7496",
+            "FISIOLOGIA DO EXERCICIO *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Fisiologia do Exercício *FISIOTERAPIA [Campus Araranguá]",
+            [["05654", 54, 40, 23, 0, 17, 0, ["2.1330-3 / CTS-SL106A"], ["Daiana Cristine Bundchen"]]]
+        ],
+        [
+            "DCS7821",
+            "TRABALHO DE CONCLUSAO DE CURSO I *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Trabalho de Conclusão de Curso I *FISIOTERAPIA [Campus Araranguá]",
+            [["09654", 90, 40, 18, 0, 22, 0, [], ["Poliana Penasso Bezerra"]]]
+        ],
+        [
+            "DCS7822",
+            "TRABALHO DE CONCLUSAO DE CURSO II *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Trabalho de Conclusão de Curso II *FISIOTERAPIA [Campus Araranguá]",
+            [["09654", 90, 40, 18, 0, 22, 0, [], ["Poliana Penasso Bezerra"]]]
+        ],
+        [
+            "DCS7902",
+            "ESTAGIO SUPERVISIONADO EM TRAUMATOLOGIA, ORTOPEDIA E REUMATOLOGIAS II *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Estágio Supervisionado em Traumatologia, Ortopedia e Reumatologias II *FISIOTERAPIA [Campus Araranguá]",
+            [
+                [
+                    "10654A",
+                    120,
+                    10,
+                    0,
+                    0,
+                    10,
+                    0,
+                    [],
+                    ["Professor A Contratar", "Rafael Inácio Barbosa", "Alexandre Marcio Marcolino", "Robson Pacheco"]
+                ],
+                [
+                    "10654B",
+                    120,
+                    10,
+                    0,
+                    0,
+                    10,
+                    0,
+                    [],
+                    ["Professor A Contratar", "Rafael Inácio Barbosa", "Robson Pacheco", "Alexandre Marcio Marcolino"]
+                ],
+                [
+                    "10654C",
+                    120,
+                    10,
+                    0,
+                    0,
+                    10,
+                    0,
+                    [],
+                    ["Professor A Contratar", "Rafael Inácio Barbosa", "Robson Pacheco", "Alexandre Marcio Marcolino"]
+                ],
+                [
+                    "10654D",
+                    120,
+                    10,
+                    3,
+                    0,
+                    7,
+                    0,
+                    [],
+                    ["Professor A Contratar", "Robson Pacheco", "Rafael Inácio Barbosa", "Alexandre Marcio Marcolino"]
+                ]
+            ]
+        ],
+        [
+            "DCS8000",
+            "FISIOLOGIA HUMANA *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Fisiologia Humana *FISIOTERAPIA [Campus Araranguá]",
+            [
+                [
+                    "03654A",
+                    90,
+                    40,
+                    20,
+                    0,
+                    20,
+                    0,
+                    ["3.1330-2 / CTS-SL201A", "6.0820-3 / CTS-SL201A"],
+                    ["Karoliny dos Santos Isoppo"]
+                ]
+            ]
+        ],
+        [
+            "DCS8001",
+            "FOTOTERMOELETROTERAPIA *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Fototermoeletroterapia *FISIOTERAPIA [Campus Araranguá]",
+            [
+                [
+                    "05654A",
+                    72,
+                    30,
+                    22,
+                    0,
+                    8,
+                    0,
+                    ["3.1010-2 / CTS-SL106A", "5.1010-2 / CTS-LB109C"],
+                    ["Mirieli Denardi Limana", "Joaquim Henrique Lorenzetti Branco"]
+                ]
+            ]
+        ],
+        [
+            "DCS8002",
+            "RECURSOS TERAPEUTICOS MANUAIS E FISITERAPIA AQUATICA *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Recursos Terapêuticos Manuais e Fisiterapia Aquática *FISIOTERAPIA [Campus Araranguá]",
+            [
+                [
+                    "05654A",
+                    72,
+                    30,
+                    22,
+                    0,
+                    8,
+                    0,
+                    ["3.1510-2 / CTS-SL106A", "5.1420-2 / CTS-LB109C"],
+                    ["Alessandro Haupenthal"]
+                ]
+            ]
+        ],
+        [
+            "DCS8003",
+            "PROTESE E ORTESE *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Prótese e Órtese *FISIOTERAPIA [Campus Araranguá]",
+            [["05654A", 54, 30, 25, 0, 5, 0, ["4.1330-3 / CTS-SL106A"], ["Daniela Pacheco dos Santos Haupenthal"]]]
+        ],
+        [
+            "DCS8004",
+            "FISIOTERAPIA APLICADA A GINECOLOGIA *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Fisioterapia Aplicada à Ginecologia *FISIOTERAPIA [Campus Araranguá]",
+            [
+                [
+                    "06654A",
+                    72,
+                    30,
+                    22,
+                    0,
+                    8,
+                    0,
+                    ["3.1330-3 / CTS-SL206A", "5.1330-1 / CTS-LB109C"],
+                    ["Janeisa Franck Virtuoso"]
+                ]
+            ]
+        ],
+        [
+            "DCS8005",
+            "FISIOTERAPIA DERMATOFUNCIONAL *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Fisioterapia Dermatofuncional *FISIOTERAPIA [Campus Araranguá]",
+            [
+                [
+                    "06654A",
+                    72,
+                    30,
+                    21,
+                    0,
+                    9,
+                    0,
+                    ["2.1330-2 / CTS-SL209A", "4.1330-2 / CTS-LB109C"],
+                    ["Mirieli Denardi Limana"]
+                ]
+            ]
+        ],
+        [
+            "DCS8006",
+            "FISIOTERAPIA EM PNEUMOLOGIA I *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Fisioterapia em Pneumologia I *FISIOTERAPIA [Campus Araranguá]",
+            [
+                [
+                    "07654A",
+                    72,
+                    30,
+                    15,
+                    0,
+                    15,
+                    0,
+                    ["3.0730-2 / CTS-SL225A", "5.1330-2 / CTS-SL225A"],
+                    ["Joaquim Henrique Lorenzetti Branco"]
+                ]
+            ]
+        ],
+        [
+            "DCS8007",
+            "FISIOTERAPIA EM PNEUMOLOGIA II *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Fisioterapia em Pneumologia II *FISIOTERAPIA [Campus Araranguá]",
+            [
+                [
+                    "08654",
+                    72,
+                    40,
+                    18,
+                    0,
+                    22,
+                    0,
+                    ["3.1010-2 / CTS-SL211A", "5.1010-2 / CTS-SL211A"],
+                    ["Livia Arcêncio do Amaral"]
+                ]
+            ]
+        ],
+        [
+            "DCS8008",
+            "FISIOTERAPIA EM CARDIOLOGIA II *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Fisioterapia em Cardiologia II *FISIOTERAPIA [Campus Araranguá]",
+            [
+                [
+                    "08654",
+                    72,
+                    40,
+                    16,
+                    0,
+                    24,
+                    0,
+                    ["2.1010-2 / CTS-SL210A", "4.1420-2 / CTS-SL210A"],
+                    ["Daiana Cristine Bundchen"]
+                ]
+            ]
+        ],
+        [
+            "DCS8009",
+            "FISIOTERAPIA EM TRAUMO-ORTOPEDIA II *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Fisioterapia em Traumo-Ortopedia II *FISIOTERAPIA [Campus Araranguá]",
+            [
+                [
+                    "08654A",
+                    72,
+                    30,
+                    13,
+                    0,
+                    17,
+                    0,
+                    ["2.0820-2 / CTS-SL207A", "4.1010-2 / CTS-LB105C"],
+                    ["Alexandre Marcio Marcolino"]
+                ]
+            ]
+        ],
+        [
+            "DCS8010",
+            "ESTAGIO DE OBSERVACAO CLINICA *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Estágio de Observação Clínica *FISIOTERAPIA [Campus Araranguá]",
+            [["08654", 90, 40, 14, 0, 26, 0, [], ["Cristiane Aparecida Moran"]]]
+        ],
+        [
+            "DCS8011",
+            "INTRODUCAO AO ESTAGIO I *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Introdução ao Estágio I *FISIOTERAPIA [Campus Araranguá]",
+            [
+                [
+                    "09654",
+                    14,
+                    40,
+                    12,
+                    0,
+                    28,
+                    0,
+                    [],
+                    [
+                        "Ana Lucia Danielewicz",
+                        "Kelly Mônica Marinho e Lima",
+                        "Daniela Pacheco dos Santos Haupenthal",
+                        "Alessandro Haupenthal",
+                        "Cristiane Aparecida Moran",
+                        "Janeisa Franck Virtuoso",
+                        "Heloyse Uliam Kuriki"
+                    ]
+                ]
+            ]
+        ],
+        [
+            "DCS8012",
+            "ESTAGIO SUPERVISIONADO EM FISIOTERAPIA EM TRAUMATOLOGIA, ORTOPEDIA E REUMATOLOGIA I *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Estágio Supervisionado em Fisioterapia em Traumatologia, Ortopedia e Reumatologia I *FISIOTERAPIA [Campus Araranguá]",
+            [
+                ["09654A", 100, 10, 6, 0, 4, 0, [], ["Kelly Mônica Marinho e Lima", "Alessandro Haupenthal"]],
+                ["09654B", 100, 10, 0, 0, 10, 0, [], ["Kelly Mônica Marinho e Lima", "Alessandro Haupenthal"]],
+                ["09654C", 100, 10, 0, 0, 10, 0, [], ["Kelly Mônica Marinho e Lima", "Alessandro Haupenthal"]],
+                ["09654D", 100, 10, 0, 0, 10, 0, [], ["Kelly Mônica Marinho e Lima", "Alessandro Haupenthal"]]
+            ]
+        ],
+        [
+            "DCS8013",
+            "ESTAGIO SUPERVISIONADO EM FISIOTERAPIA EM PESSOAS COM DEFICIENCIA (PDC) *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Estágio Supervisionado em Fisioterapia em Pessoas com Deficiência (PDC) *FISIOTERAPIA [Campus Araranguá]",
+            [
+                ["09654A", 100, 10, 6, 0, 4, 0, [], ["Daniela Pacheco dos Santos Haupenthal", "Robson Pacheco"]],
+                ["09654B", 100, 10, 0, 0, 10, 0, [], ["Daniela Pacheco dos Santos Haupenthal", "Robson Pacheco"]],
+                ["09654C", 100, 10, 0, 0, 10, 0, [], ["Daniela Pacheco dos Santos Haupenthal", "Robson Pacheco"]],
+                ["09654D", 100, 10, 0, 0, 10, 0, [], ["Daniela Pacheco dos Santos Haupenthal", "Robson Pacheco"]]
+            ]
+        ],
+        [
+            "DCS8014",
+            "ESTAGIO SUPERVISIONADO EM FISIOTERAPIA EM SAUDE COLETIVA E SAUDE DA MULHER *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Estágio Supervisionado em Fisioterapia em Saúde Coletiva e Saúde da Mulher *FISIOTERAPIA [Campus Araranguá]",
+            [
+                ["09654A", 100, 10, 4, 0, 6, 0, [], ["Ana Lucia Danielewicz", "Janeisa Franck Virtuoso"]],
+                ["09654B", 100, 10, 0, 0, 10, 0, [], ["Janeisa Franck Virtuoso", "Ana Lucia Danielewicz"]],
+                ["09654C", 100, 10, 0, 0, 10, 0, [], ["Janeisa Franck Virtuoso", "Ana Lucia Danielewicz"]],
+                ["09654D", 100, 10, 0, 0, 10, 0, [], ["Janeisa Franck Virtuoso", "Ana Lucia Danielewicz"]]
+            ]
+        ],
+        [
+            "DCS8015",
+            "ESTAGIO SUPERVISIONADO EM FISIOTERAPIA EM GERONTOLOGIA *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Estágio Supervisionado em Fisioterapia em Gerontologia *FISIOTERAPIA [Campus Araranguá]",
+            [
+                [
+                    "09654A",
+                    100,
+                    10,
+                    5,
+                    0,
+                    5,
+                    0,
+                    [],
+                    ["Professor A Contratar", "Nícolas Kickhofel Weisshahn", "Heloyse Uliam Kuriki"]
+                ],
+                [
+                    "09654B",
+                    100,
+                    10,
+                    0,
+                    0,
+                    10,
+                    0,
+                    [],
+                    ["Professor A Contratar", "Nícolas Kickhofel Weisshahn", "Heloyse Uliam Kuriki"]
+                ],
+                [
+                    "09654C",
+                    100,
+                    10,
+                    0,
+                    0,
+                    10,
+                    0,
+                    [],
+                    ["Professor A Contratar", "Nícolas Kickhofel Weisshahn", "Heloyse Uliam Kuriki"]
+                ],
+                [
+                    "09654D",
+                    100,
+                    10,
+                    0,
+                    0,
+                    10,
+                    0,
+                    [],
+                    ["Professor A Contratar", "Nícolas Kickhofel Weisshahn", "Heloyse Uliam Kuriki"]
+                ]
+            ]
+        ],
+        [
+            "DCS8016",
+            "INTRODUCAO AO ESTAGIO II *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Introdução ao Estágio II *FISIOTERAPIA [Campus Araranguá]",
+            [
+                [
+                    "10654",
+                    60,
+                    40,
+                    21,
+                    0,
+                    19,
+                    0,
+                    [],
+                    [
+                        "Rafaela Silva Moreira",
+                        "Daiana Cristine Bundchen",
+                        "Alexandre Marcio Marcolino",
+                        "Rafael Inácio Barbosa",
+                        "Angelica Cristiane Ovando Bueno",
+                        "Cristiane Aparecida Moran",
+                        "Karoliny dos Santos Isoppo"
+                    ]
+                ]
+            ]
+        ],
+        [
+            "DCS8017",
+            "ESTAGIO SUPERVISIONADO EM FISIOTERAPIA HOSPITALAR *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Estágio Supervisionado em Fisioterapia Hospitalar *FISIOTERAPIA [Campus Araranguá]",
+            [
+                [
+                    "10654A",
+                    120,
+                    10,
+                    7,
+                    0,
+                    3,
+                    0,
+                    [],
+                    [
+                        "Joaquim Henrique Lorenzetti Branco",
+                        "Daiana Cristine Bundchen",
+                        "Professor A Contratar",
+                        "Karoliny dos Santos Isoppo"
+                    ]
+                ],
+                [
+                    "10654B",
+                    120,
+                    10,
+                    7,
+                    0,
+                    3,
+                    0,
+                    [],
+                    [
+                        "Joaquim Henrique Lorenzetti Branco",
+                        "Daiana Cristine Bundchen",
+                        "Professor A Contratar",
+                        "Karoliny dos Santos Isoppo"
+                    ]
+                ],
+                [
+                    "10654C",
+                    120,
+                    10,
+                    0,
+                    0,
+                    10,
+                    0,
+                    [],
+                    [
+                        "Joaquim Henrique Lorenzetti Branco",
+                        "Daiana Cristine Bundchen",
+                        "Professor A Contratar",
+                        "Karoliny dos Santos Isoppo"
+                    ]
+                ],
+                [
+                    "10654D",
+                    120,
+                    10,
+                    0,
+                    0,
+                    10,
+                    0,
+                    [],
+                    [
+                        "Karoliny dos Santos Isoppo",
+                        "Joaquim Henrique Lorenzetti Branco",
+                        "Daiana Cristine Bundchen",
+                        "Professor A Contratar"
+                    ]
+                ]
+            ]
+        ],
+        [
+            "DCS8018",
+            "ESTAGIO SUPERVISIONADO EM FISIOTERAPIA PEDIATRICA *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Estágio Supervisionado em Fisioterapia Pediátrica *FISIOTERAPIA [Campus Araranguá]",
+            [
+                [
+                    "10654A",
+                    120,
+                    10,
+                    8,
+                    0,
+                    2,
+                    0,
+                    [],
+                    [
+                        "Tauana Prestes Schmidt",
+                        "Rafaela Silva Moreira",
+                        "Giovana Pascoali Rodovanski",
+                        "Professor A Contratar",
+                        "Cristiane Aparecida Moran"
+                    ]
+                ],
+                [
+                    "10654B",
+                    120,
+                    10,
+                    0,
+                    0,
+                    10,
+                    0,
+                    [],
+                    [
+                        "Tauana Prestes Schmidt",
+                        "Rafaela Silva Moreira",
+                        "Professor A Contratar",
+                        "Cristiane Aparecida Moran",
+                        "Giovana Pascoali Rodovanski"
+                    ]
+                ],
+                [
+                    "10654C",
+                    120,
+                    10,
+                    0,
+                    0,
+                    10,
+                    0,
+                    [],
+                    [
+                        "Tauana Prestes Schmidt",
+                        "Rafaela Silva Moreira",
+                        "Professor A Contratar",
+                        "Giovana Pascoali Rodovanski",
+                        "Cristiane Aparecida Moran"
+                    ]
+                ],
+                [
+                    "10654D",
+                    120,
+                    10,
+                    0,
+                    0,
+                    10,
+                    0,
+                    [],
+                    [
+                        "Tauana Prestes Schmidt",
+                        "Rafaela Silva Moreira",
+                        "Professor A Contratar",
+                        "Cristiane Aparecida Moran",
+                        "Giovana Pascoali Rodovanski"
+                    ]
+                ]
+            ]
+        ],
+        [
+            "DCS8019",
+            "ESTAGIO SUPERVISIONADO EM FISIOTERAPIA EM NEUROLOGIA *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Estágio Supervisionado em Fisioterapia em Neurologia *FISIOTERAPIA [Campus Araranguá]",
+            [
+                [
+                    "10654A",
+                    120,
+                    10,
+                    5,
+                    0,
+                    5,
+                    0,
+                    [],
+                    [
+                        "Tauana Prestes Schmidt",
+                        "Poliana Penasso Bezerra",
+                        "Angelica Cristiane Ovando Bueno",
+                        "Professor A Contratar"
+                    ]
+                ],
+                [
+                    "10654B",
+                    120,
+                    10,
+                    0,
+                    0,
+                    10,
+                    0,
+                    [],
+                    [
+                        "Tauana Prestes Schmidt",
+                        "Poliana Penasso Bezerra",
+                        "Professor A Contratar",
+                        "Angelica Cristiane Ovando Bueno"
+                    ]
+                ],
+                [
+                    "10654C",
+                    120,
+                    10,
+                    1,
+                    0,
+                    9,
+                    0,
+                    [],
+                    [
+                        "Tauana Prestes Schmidt",
+                        "Poliana Penasso Bezerra",
+                        "Professor A Contratar",
+                        "Angelica Cristiane Ovando Bueno"
+                    ]
+                ],
+                [
+                    "10654D",
+                    120,
+                    10,
+                    0,
+                    0,
+                    10,
+                    0,
+                    [],
+                    [
+                        "Tauana Prestes Schmidt",
+                        "Poliana Penasso Bezerra",
+                        "Professor A Contratar",
+                        "Angelica Cristiane Ovando Bueno"
+                    ]
+                ]
+            ]
+        ],
+        [
+            "DCS8103",
+            "MODULO SEQUENCIAL III *MEDICINA (CAMPUS ARARANGUA)",
+            "Módulo Sequencial III *MEDICINA (Campus Araranguá)",
+            [
+                [
+                    "03656",
+                    432,
+                    38,
+                    32,
+                    0,
+                    6,
+                    0,
+                    [
+                        "2.1330-4 / AUX-ALOCAR",
+                        "3.0820-4 / AUX-ALOCAR",
+                        "4.0910-3 / AUX-ALOCAR",
+                        "5.0820-4 / AUX-ALOCAR",
+                        "5.1330-4 / AUX-ALOCAR",
+                        "6.1330-1 / AUX-ALOCAR",
+                        "7.0820-4 / AUX-ALOCAR"
+                    ],
+                    [
+                        "Juliana Cavalli",
+                        "Josete Mazon",
+                        "Camila Bellettini Hirsch",
+                        "Thaís Oliveira de Sousa",
+                        "Maria Cristine Campos"
+                    ]
+                ]
+            ]
+        ],
+        [
+            "DCS8104",
+            "MODULO SEQUENCIAL IV *MEDICINA (CAMPUS ARARANGUA)",
+            "Módulo Sequencial IV *MEDICINA (Campus Araranguá)",
+            [
+                [
+                    "04656",
+                    432,
+                    34,
+                    25,
+                    0,
+                    9,
+                    0,
+                    [
+                        "2.1330-4 / AUX-ALOCAR",
+                        "3.0820-4 / AUX-ALOCAR",
+                        "3.1330-4 / AUX-ALOCAR",
+                        "5.0820-4 / AUX-ALOCAR",
+                        "6.0820-4 / AUX-ALOCAR",
+                        "6.1330-4 / AUX-ALOCAR"
+                    ],
+                    ["Murilo Zomer Frasson", "Christine Zomer Dal Molin", "Melissa Negro Dellacqua"]
+                ]
+            ]
+        ],
+        [
+            "DCS8105",
+            "MODULO SEQUENCIAL V *MEDICINA (CAMPUS ARARANGUA)",
+            "Módulo Sequencial V *MEDICINA (Campus Araranguá)",
+            [
+                [
+                    "05656",
+                    432,
+                    33,
+                    32,
+                    0,
+                    1,
+                    0,
+                    [
+                        "2.1330-4 / AUX-ALOCAR",
+                        "3.0820-4 / AUX-ALOCAR",
+                        "4.1330-4 / AUX-ALOCAR",
+                        "5.0820-4 / AUX-ALOCAR",
+                        "5.1330-4 / AUX-ALOCAR",
+                        "6.1330-4 / AUX-ALOCAR"
+                    ],
+                    [
+                        "Gregorio Wrublevski Pereira",
+                        "Thaise Brighente Volpato",
+                        "Camila Carvalho de Souza Amorim Matos",
+                        "Juliana Cavalli"
+                    ]
+                ]
+            ]
+        ],
+        [
+            "DCS8106",
+            "MODULO SEQUENCIAL VI *MEDICINA (CAMPUS ARARANGUA)",
+            "Módulo Sequencial VI *MEDICINA (Campus Araranguá)",
+            [
+                [
+                    "06656",
+                    432,
+                    30,
+                    25,
+                    0,
+                    5,
+                    0,
+                    [
+                        "2.0820-4 / AUX-ALOCAR",
+                        "2.1330-4 / AUX-ALOCAR",
+                        "3.0820-4 / AUX-ALOCAR",
+                        "3.1330-4 / AUX-ALOCAR",
+                        "6.1330-4 / AUX-ALOCAR",
+                        "7.1330-4 / AUX-ALOCAR"
+                    ],
+                    [
+                        "Melissa Negro Dellacqua",
+                        "Paulo Roberto Ramos Alves",
+                        "Gregorio Wrublevski Pereira",
+                        "Gabriela Serafim Keller"
+                    ]
+                ]
+            ]
+        ],
+        [
+            "DCS8107",
+            "MODULO SEQUENCIAL VII *MEDICINA (CAMPUS ARARANGUA)",
+            "Módulo Sequencial VII *MEDICINA (Campus Araranguá)",
+            [
+                [
+                    "07656",
+                    432,
+                    44,
+                    43,
+                    0,
+                    1,
+                    0,
+                    [
+                        "2.0820-4 / AUX-ALOCAR",
+                        "3.1330-4 / AUX-ALOCAR",
+                        "4.1330-4 / AUX-ALOCAR",
+                        "5.0820-4 / AUX-ALOCAR",
+                        "5.1330-4 / AUX-ALOCAR",
+                        "6.1330-4 / AUX-ALOCAR"
+                    ],
+                    [
+                        "Luciana Lacerda Burigo Trindade",
+                        "Cíntia Scherer",
+                        "Gabriel Hahn Monteiro Lufchitz",
+                        "Davi Francisco Machado",
+                        "Flávia Corrêa Guerra",
+                        "Ruan Matheus Nascimento Toledano"
+                    ]
+                ]
+            ]
+        ],
+        [
+            "DCS8108",
+            "MODULO SEQUENCIAL VIII *MEDICINA (CAMPUS ARARANGUA)",
+            "Módulo Sequencial VIII *MEDICINA (Campus Araranguá)",
+            [
+                [
+                    "08656",
+                    432,
+                    31,
+                    18,
+                    0,
+                    13,
+                    0,
+                    [
+                        "2.0820-4 / AUX-ALOCAR",
+                        "2.1330-4 / AUX-ALOCAR",
+                        "3.0820-4 / AUX-ALOCAR",
+                        "4.0820-4 / AUX-ALOCAR",
+                        "5.1330-4 / AUX-ALOCAR",
+                        "6.0820-4 / AUX-ALOCAR"
+                    ],
+                    [
+                        "Professor A Contratar",
+                        "Ruan Matheus Nascimento Toledano",
+                        "Ana Carolina Lobor Cancelier",
+                        "Gabriel Hahn Monteiro Lufchitz"
+                    ]
+                ]
+            ]
+        ],
+        [
+            "DCS8113",
+            "HABILIDADES E HUMANIDADES III *MEDICINA (CAMPUS ARARANGUA)",
+            "Habilidades e Humanidades III *MEDICINA (Campus Araranguá)",
+            [
+                [
+                    "03656",
+                    144,
+                    38,
+                    32,
+                    0,
+                    6,
+                    0,
+                    ["2.0820-4 / CTS-SL226A", "3.1330-4 / CTS-SL226A"],
+                    ["Tamiris Dal Bó Martinello", "Luciana Lacerda Burigo Trindade", "Ritele Hernandez da Silva"]
+                ]
+            ]
+        ],
+        [
+            "DCS8114",
+            "HABILIDADES E HUMANIDADES IV *MEDICINA (CAMPUS ARARANGUA)",
+            "Habilidades e Humanidades IV *MEDICINA (Campus Araranguá)",
+            [
+                [
+                    "04656",
+                    144,
+                    34,
+                    24,
+                    0,
+                    10,
+                    0,
+                    ["4.0820-4 / CTS-SL215A", "5.1330-4 / CTS-SL215A"],
+                    ["Maria Cristine Campos", "Oscar Cardoso Dimatos", "Professor A Contratar"]
+                ]
+            ]
+        ],
+        [
+            "DCS8115",
+            "HABILIDADES E HUMANIDADES V *MEDICINA (CAMPUS ARARANGUA)",
+            "Habilidades e Humanidades V *MEDICINA (Campus Araranguá)",
+            [
+                [
+                    "05656",
+                    144,
+                    33,
+                    31,
+                    0,
+                    2,
+                    0,
+                    ["2.0820-4 / CTS-SL216A", "6.0820-4 / CTS-SL216A"],
+                    [
+                        "Ana Carolina Lobor Cancelier",
+                        "Ritele Hernandez da Silva",
+                        "Luciana Lacerda Burigo Trindade",
+                        "Marídia Ferrari Estevam"
+                    ]
+                ]
+            ]
+        ],
+        [
+            "DCS8116",
+            "HABILIDADES E HUMANIDADES VI *MEDICINA (CAMPUS ARARANGUA)",
+            "Habilidades e Humanidades VI *MEDICINA (Campus Araranguá)",
+            [
+                [
+                    "06656",
+                    144,
+                    30,
+                    25,
+                    0,
+                    5,
+                    0,
+                    ["4.0820-4 / CTS-SL218A", "5.0820-4 / CTS-SL218A"],
+                    ["Ritele Hernandez da Silva", "Luciano Kurtz Jornada"]
+                ]
+            ]
+        ],
+        [
+            "DCS8117",
+            "HABILIDADES E HUMANIDADES VII *MEDICINA (CAMPUS ARARANGUA)",
+            "Habilidades e Humanidades VII *MEDICINA (Campus Araranguá)",
+            [
+                [
+                    "07656",
+                    144,
+                    35,
+                    35,
+                    0,
+                    0,
+                    0,
+                    ["3.0820-4 / CTS-SL208A", "4.0820-4 / CTS-SL208A"],
+                    ["Professor A Contratar", "Thiago Mamoru Sakae"]
+                ]
+            ]
+        ],
+        [
+            "DCS8118",
+            "HABILIDADES E HUMANIDADES VIII *MEDICINA (CAMPUS ARARANGUA)",
+            "Habilidades e Humanidades VIII *MEDICINA (Campus Araranguá)",
+            [
+                [
+                    "08656",
+                    144,
+                    30,
+                    19,
+                    0,
+                    11,
+                    0,
+                    ["4.1330-4 / CTS-SL218A", "6.1330-4 / CTS-SL218A"],
+                    ["Professor A Contratar", "Gabriel Novais Rocha"]
+                ]
+            ]
+        ],
+        [
+            "DCS8131",
+            "TRABALHO DE CONCLUSAO DE CURSO I *MEDICINA (CAMPUS ARARANGUA)",
+            "Trabalho de Conclusão de Curso I *MEDICINA (Campus Araranguá)",
+            [["06656", 18, 30, 25, 0, 5, 0, [], ["Simone Farias Antunez Reis"]]]
+        ],
+        [
+            "DCS8132",
+            "TRABALHO DE CONCLUSAO DE CURSO II [RESERVADA CURSO] *MEDICINA (CAMPUS ARARANGUA)",
+            "Trabalho de Conclusão de Curso II [Reservada Curso] *MEDICINA (Campus Araranguá)",
+            [["07656", 18, 34, 34, 0, 0, 0, [], ["Simone Farias Antunez Reis"]]]
+        ],
+        [
+            "DCS8133",
+            "TRABALHO DE CONCLUSAO DE CURSO III *MEDICINA (CAMPUS ARARANGUA)",
+            "Trabalho de Conclusão de Curso III *MEDICINA (Campus Araranguá)",
+            [["08656", 18, 30, 22, 0, 8, 0, [], ["Marui Weber Corseuil Giehl"]]]
+        ],
+        [
+            "DCS8145",
+            "INTERNATO MEDICO I *MEDICINA (CAMPUS ARARANGUA)",
+            "Internato Médico I *MEDICINA (Campus Araranguá)",
+            [
+                [
+                    "09656",
+                    828,
+                    35,
+                    34,
+                    0,
+                    1,
+                    0,
+                    [
+                        "2.0730-5 / AUX-LIVRE",
+                        "2.1330-5 / AUX-LIVRE",
+                        "3.0730-5 / AUX-LIVRE",
+                        "3.1330-5 / AUX-LIVRE",
+                        "4.0730-5 / AUX-LIVRE",
+                        "4.1330-5 / AUX-LIVRE",
+                        "5.0730-5 / AUX-LIVRE",
+                        "5.1330-5 / AUX-LIVRE",
+                        "6.0730-5 / AUX-LIVRE",
+                        "6.1330-5 / AUX-LIVRE",
+                        "7.0730-5 / AUX-LIVRE"
+                    ],
+                    [
+                        "Christine Zomer Dal Molin",
+                        "Tayara Faria Ruaro",
+                        "Luciano Kurtz Jornada",
+                        "João Cleriston da Silva Calheiros",
+                        "Flávia Corrêa Guerra",
+                        "Ana Carolina Lobor Cancelier",
+                        "Tamiris Dal Bó Martinello",
+                        "Paulo Henrique Teixeira Martins",
+                        "Cíntia Scherer",
+                        "Leonardo Leonardi Leal",
+                        "Rafaela Elizandre Paganini"
+                    ]
+                ]
+            ]
+        ],
+        [
+            "DCS8147",
+            "INTERNATO MEDICO III *MEDICINA (CAMPUS ARARANGUA)",
+            "Internato Médico III *MEDICINA (Campus Araranguá)",
+            [
+                [
+                    "11656",
+                    828,
+                    48,
+                    48,
+                    0,
+                    0,
+                    0,
+                    [
+                        "2.0730-5 / AUX-ALOCAR",
+                        "2.1330-5 / AUX-ALOCAR",
+                        "3.0730-5 / AUX-ALOCAR",
+                        "3.1330-5 / AUX-ALOCAR",
+                        "4.0730-5 / AUX-ALOCAR",
+                        "4.1330-5 / AUX-ALOCAR",
+                        "5.0730-5 / AUX-ALOCAR",
+                        "5.1330-5 / AUX-ALOCAR",
+                        "6.0730-5 / AUX-ALOCAR",
+                        "6.1330-5 / AUX-ALOCAR",
+                        "7.0730-5 / AUX-ALOCAR"
+                    ],
+                    ["Professor A Contratar", "Ana Carolina Lobor Cancelier", "Marídia Ferrari Estevam"]
+                ]
+            ]
+        ],
+        [
+            "DCS8200",
+            "MODULO SEQUENCIAL I [RESERVADA CURSO] *MEDICINA (CAMPUS ARARANGUA)",
+            "Módulo Sequencial I [Reservada Curso] *MEDICINA (Campus Araranguá)",
+            [
+                [
+                    "01656",
+                    432,
+                    44,
+                    44,
+                    0,
+                    0,
+                    5,
+                    [
+                        "2.0820-4 / AUX-ALOCAR",
+                        "2.1330-4 / AUX-ALOCAR",
+                        "3.1330-3 / AUX-ALOCAR",
+                        "4.1330-3 / AUX-ALOCAR",
+                        "5.0820-4 / AUX-ALOCAR",
+                        "6.0820-4 / AUX-ALOCAR",
+                        "6.1330-2 / AUX-ALOCAR"
+                    ],
+                    [
+                        "Ana Paula da Rocha",
+                        "Francielly Andressa Felipetti",
+                        "Roberta de Paula Martins",
+                        "Josete Mazon",
+                        "Maria Cristine Campos"
+                    ]
+                ]
+            ]
+        ],
+        [
+            "DCS8201",
+            "HABILIDADES E HUMANIDADES I [RESERVADA CURSO] *MEDICINA (CAMPUS ARARANGUA)",
+            "Habilidades e Humanidades I [Reservada Curso] *MEDICINA (Campus Araranguá)",
+            [
+                [
+                    "01656",
+                    144,
+                    40,
+                    38,
+                    0,
+                    2,
+                    1,
+                    ["3.0820-4 / CTS-SL221A", "4.0820-4 / CTS-SL221A"],
+                    ["João Matheus Acosta Dallmann", "Gabriel Novais Rocha"]
+                ]
+            ]
+        ],
+        [
+            "DCS8203",
+            "MODULO SEQUENCIAL II *MEDICINA (CAMPUS ARARANGUA)",
+            "Módulo Sequencial II *MEDICINA (Campus Araranguá)",
+            [
+                [
+                    "02656",
+                    432,
+                    40,
+                    32,
+                    0,
+                    8,
+                    0,
+                    [
+                        "2.0820-4 / AUX-ALOCAR",
+                        "2.1330-3 / AUX-ALOCAR",
+                        "3.0820-4 / AUX-ALOCAR",
+                        "4.0820-4 / AUX-ALOCAR",
+                        "5.1330-4 / AUX-ALOCAR",
+                        "6.0820-4 / AUX-ALOCAR",
+                        "6.1330-1 / AUX-ALOCAR"
+                    ],
+                    ["Juliana Cavalli", "Josete Mazon", "Maria Cristine Campos", "Ana Paula da Rocha"]
+                ]
+            ]
+        ],
+        [
+            "DCS8204",
+            "HABILIDADES E HUMANIDADES II *MEDICINA (CAMPUS ARARANGUA)",
+            "Habilidades e Humanidades II *MEDICINA (Campus Araranguá)",
+            [
+                [
+                    "02656",
+                    144,
+                    34,
+                    31,
+                    0,
+                    3,
+                    0,
+                    ["4.1330-4 / CTS-SL219A", "5.0820-4 / CTS-SL219A"],
+                    ["Carlos Alberto Severo Garcia Junior", "Oscar Cardoso Dimatos"]
+                ]
+            ]
+        ],
+        [
+            "DCS8302",
+            "SAUDE COLETIVA I [RESERVADA CURSO] *MEDICINA (CAMPUS ARARANGUA)",
+            "Saúde Coletiva I [Reservada Curso] *MEDICINA (Campus Araranguá)",
+            [["01656", 72, 40, 38, 0, 2, 1, ["5.1330-4 / CTS-SL221A"], ["Márcia Regina de Oliveira Pedroso"]]]
+        ],
+        [
+            "DCS8305",
+            "SAUDE COLETIVA II *MEDICINA (CAMPUS ARARANGUA)",
+            "Saúde Coletiva II *MEDICINA (Campus Araranguá)",
+            [["02656", 72, 34, 31, 0, 3, 0, ["3.1330-4 / CTS-SL219A"], ["João Matheus Acosta Dallmann"]]]
+        ],
+        [
+            "DCS8323",
+            "SAUDE COLETIVA III *MEDICINA (CAMPUS ARARANGUA)",
+            "Saúde Coletiva III *MEDICINA (Campus Araranguá)",
+            [
+                [
+                    "03656",
+                    144,
+                    38,
+                    31,
+                    0,
+                    7,
+                    0,
+                    ["4.1330-4 / CTS-SL226A", "6.0820-4 / CTS-SL226A"],
+                    ["Marui Weber Corseuil Giehl"]
+                ]
+            ]
+        ],
+        [
+            "DCS8324",
+            "SAUDE COLETIVA IV *MEDICINA (CAMPUS ARARANGUA)",
+            "Saúde Coletiva IV *MEDICINA (Campus Araranguá)",
+            [
+                [
+                    "04656",
+                    144,
+                    34,
+                    23,
+                    0,
+                    11,
+                    0,
+                    ["2.0820-4 / CTS-SL201A", "4.1330-4 / CTS-SL201A"],
+                    ["Ariane Thaise Frello Roque", "Márcia Regina de Oliveira Pedroso", "Anapaula Martins Mendes"]
+                ]
+            ]
+        ],
+        [
+            "DCS8325",
+            "SAUDE COLETIVA V E METODOLOGIA DA PESQUISA I *MEDICINA (CAMPUS ARARANGUA)",
+            "Saúde Coletiva V e Metodologia da Pesquisa I *MEDICINA (Campus Araranguá)",
+            [
+                [
+                    "05656",
+                    144,
+                    33,
+                    31,
+                    0,
+                    2,
+                    0,
+                    ["3.1330-4 / CTS-SL224A", "4.0820-4 / CTS-SL224A"],
+                    [
+                        "Marui Weber Corseuil Giehl",
+                        "Simone Farias Antunez Reis",
+                        "Ariane Thaise Frello Roque",
+                        "Anapaula Martins Mendes"
+                    ]
+                ]
+            ]
+        ],
+        [
+            "DCS8326",
+            "MEDICINA DE FAMILIA E COMUNIDADE I E METODOLOGIA DA PESQUISA II *MEDICINA (CAMPUS ARARANGUA)",
+            "Medicina de Família e Comunidade I e Metodologia da Pesquisa II *MEDICINA (Campus Araranguá)",
+            [
+                [
+                    "06656",
+                    144,
+                    30,
+                    24,
+                    0,
+                    6,
+                    0,
+                    ["4.1330-4 / CTS-SL217A", "5.1330-4 / CTS-SL217A"],
+                    ["Camila Carvalho de Souza Amorim Matos", "Simone Farias Antunez Reis"]
+                ]
+            ]
+        ],
+        [
+            "DCS8328",
+            "MEDICINA DE FAMILIA E COMUNIDADE III *MEDICINA (CAMPUS ARARANGUA)",
+            "Medicina de Família e Comunidade III *MEDICINA (Campus Araranguá)",
+            [
+                [
+                    "08656",
+                    144,
+                    30,
+                    19,
+                    0,
+                    11,
+                    0,
+                    ["3.1330-4 / CTS-SL220A", "5.0820-4 / CTS-SL220A"],
+                    ["Rafaela Elizandre Paganini", "Stefânio Napoli Oliveira"]
+                ]
+            ]
+        ],
+        [
+            "DCS8329",
+            "MEDICINA DE FAMILIA E COMUNIDADE II *MEDICINA (CAMPUS ARARANGUA)",
+            "Medicina de Família e Comunidade II *MEDICINA (Campus Araranguá)",
+            [
+                [
+                    "07656",
+                    72,
+                    33,
+                    30,
+                    0,
+                    3,
+                    0,
+                    ["2.1330-4 / CTS-SL217A"],
+                    ["Stefânio Napoli Oliveira", "Thiago Mamoru Sakae"]
+                ]
+            ]
+        ],
+        [
+            "DEC0002",
+            "LINGUAGENS FORMAIS E AUTOMATOS *ENGENHARIA DE COMPUTACAO [CAMPUS ARARANGUA]",
+            "Linguagens Formais e Autômatos *ENGENHARIA DE COMPUTAÇÃO [Campus Araranguá]",
+            [["08655", 72, 40, 9, 0, 31, 0, ["2.1620-2 / CTS-SL208A", "4.1620-2 / CTS-SL208A"], ["Eugênio Simão"]]]
+        ],
+        [
+            "DEC0004",
+            "COMPILADORES *ENGENHARIA DE COMPUTACAO [CAMPUS ARARANGUA]",
+            "Compiladores *ENGENHARIA DE COMPUTAÇÃO [Campus Araranguá]",
+            [
+                [
+                    "09655",
+                    72,
+                    30,
+                    10,
+                    0,
+                    20,
+                    0,
+                    ["2.1420-2 / CTS-LB109A", "4.1420-2 / CTS-LB109A"],
+                    ["Alison Roberto Panisson"]
+                ]
+            ]
+        ],
+        [
+            "DEC0006",
+            "ESTRUTURA DE DADOS *ENGENHARIA DE COMPUTACAO [CAMPUS ARARANGUA]",
+            "Estrutura de Dados *ENGENHARIA DE COMPUTAÇÃO [Campus Araranguá]",
+            [
+                [
+                    "03655",
+                    108,
+                    20,
+                    20,
+                    0,
+                    0,
+                    6,
+                    ["2.1620-2 / CTS-LB108A", "4.1620-2 / CTS-LB108A", "6.1420-2 / CTS-LB108A"],
+                    ["Martin Augusto Gagliotti Vigil"]
+                ]
+            ]
+        ],
+        [
+            "DEC0007",
+            "PROGRAMACAO PARA WEB *ENGENHARIA DE COMPUTACAO [CAMPUS ARARANGUA]",
+            "Programação para WEB *ENGENHARIA DE COMPUTAÇÃO [Campus Araranguá]",
+            [
+                [
+                    "06655",
+                    72,
+                    20,
+                    18,
+                    0,
+                    2,
+                    1,
+                    ["2.1420-2 / CTS-LB120C", "4.1420-2 / CTS-LB120C"],
+                    ["Fábio Rodrigues de La Rocha"]
+                ]
+            ]
+        ],
+        [
+            "DEC0008",
+            "PLANEJAMENTO E GESTAO DE PROJETOS *ENGENHARIA DE COMPUTACAO [CAMPUS ARARANGUA]",
+            "Planejamento e Gestão de Projetos *ENGENHARIA DE COMPUTAÇÃO [Campus Araranguá]",
+            [["05655", 36, 40, 22, 0, 18, 0, ["6.1620-2 / CTS-SL211A"], ["Olga Yevseyeva"]]]
+        ],
+        [
+            "DEC0009",
+            "ENGENHARIA DE SOFWARE *ENGENHARIA DE COMPUTACAO [CAMPUS ARARANGUA]",
+            "Engenharia de Sofware *ENGENHARIA DE COMPUTAÇÃO [Campus Araranguá]",
+            [
+                [
+                    "04655",
+                    72,
+                    24,
+                    23,
+                    0,
+                    1,
+                    2,
+                    ["2.1620-2 / CTS-LB110A", "4.1620-2 / CTS-LB110A"],
+                    ["Andréa Sabedra Bordin"]
+                ]
+            ]
+        ],
+        [
+            "DEC0010",
+            "PROJETO INTEGRADOR II *ENGENHARIA DE COMPUTACAO [CAMPUS ARARANGUA]",
+            "Projeto Integrador II *ENGENHARIA DE COMPUTAÇÃO [Campus Araranguá]",
+            [["08655", 36, 30, 7, 0, 23, 0, ["3.1830-2 / CTS-LB120C"], ["Analucia Schiaffino Morales"]]]
+        ],
+        [
+            "DEC0011",
+            "PROJETOS DE SISTEMAS UBIQUOS E EMBARCADOS *ENGENHARIA DE COMPUTACAO [CAMPUS ARARANGUA]",
+            "Projetos de Sistemas Ubíquos e Embarcados *ENGENHARIA DE COMPUTAÇÃO [Campus Araranguá]",
+            [["09655", 72, 20, 9, 0, 11, 0, ["3.1620-2 / CTS-LB120C", "5.1620-2 / CTS-LB120C"], ["Jim Lau"]]]
+        ],
+        [
+            "DEC0012",
+            "LINGUAGEM DE PROGRAMACAO I *ENGENHARIA DE COMPUTACAO [CAMPUS ARARANGUA]",
+            "Linguagem de Programação I *ENGENHARIA DE COMPUTAÇÃO [Campus Araranguá]",
+            [
+                [
+                    "01655A",
+                    108,
+                    21,
+                    16,
+                    0,
+                    5,
+                    7,
+                    ["2.1620-2 / CTS-LB118A", "4.1620-2 / CTS-SL207A", "6.1620-2 / CTS-LB110A"],
+                    ["Anderson Luiz Fernandes Perez", "Eugênio Simão"]
+                ],
+                [
+                    "01655B",
+                    108,
+                    22,
+                    22,
+                    0,
+                    0,
+                    4,
+                    ["2.1620-2 / CTS-SL222A", "4.1620-2 / CTS-LB118A", "6.1620-2 / CTS-LB118A"],
+                    ["Marlon de Matos de Oliveira", "Alexandre Leopoldo Gonçalves"]
+                ]
+            ]
+        ],
+        [
+            "DEC0013",
+            "PROJETO INTEGRADOR I *ENGENHARIA DE COMPUTACAO [CAMPUS ARARANGUA]",
+            "Projeto Integrador I *ENGENHARIA DE COMPUTAÇÃO [Campus Araranguá]",
+            [["04655", 36, 40, 18, 0, 22, 0, ["6.1420-2 / CTS-LB118A"], ["Olga Yevseyeva", "Jim Lau"]]]
+        ],
+        [
+            "DEC0014",
+            "INTELIGENCIA ARTIFICIAL E COMPUTACIONAL *ENGENHARIA DE COMPUTACAO [CAMPUS ARARANGUA]",
+            "Inteligência Artificial e Computacional *ENGENHARIA DE COMPUTAÇÃO [Campus Araranguá]",
+            [
+                [
+                    "06655",
+                    72,
+                    40,
+                    18,
+                    0,
+                    22,
+                    0,
+                    ["3.1420-2 / CTS-LB110A", "5.1420-2 / CTS-LB110A"],
+                    ["Eliane Pozzebon", "Anderson Luiz Fernandes Perez"]
+                ]
+            ]
+        ],
+        [
+            "DEC0015",
+            "TOPICOS AVANCADOS EM INTELIGENCIA ARTIFICIAL *ENGENHARIA DE COMPUTACAO [CAMPUS ARARANGUA]",
+            "Tópicos Avançados em Inteligência Artificial *ENGENHARIA DE COMPUTAÇÃO [Campus Araranguá]",
+            [["09655", 36, 20, 12, 0, 8, 0, ["4.1620-2 / CTS-LB120C"], ["Alison Roberto Panisson"]]]
+        ],
+        [
+            "DEC0016",
+            "ESTAGIO CURRICULAR *ENGENHARIA DE COMPUTACAO [CAMPUS ARARANGUA]",
+            "Estágio Curricular *ENGENHARIA DE COMPUTAÇÃO [Campus Araranguá]",
+            [["10655", 216, 45, 14, 0, 31, 0, [], ["Eliane Pozzebon"]]]
+        ],
+        [
+            "DEC0017",
+            "TRABALHO DE CONCLUSAO DE CURSO I *ENGENHARIA DE COMPUTACAO [CAMPUS ARARANGUA]",
+            "Trabalho de Conclusão de Curso I *ENGENHARIA DE COMPUTAÇÃO [Campus Araranguá]",
+            [["09655", 36, 45, 5, 0, 40, 0, ["6.0820-2 / AUX-ALOCAR"], ["Analucia Schiaffino Morales"]]]
+        ],
+        [
+            "DEC0018",
+            "TRABALHO DE CONCLUSAO DE CURSO II *ENGENHARIA DE COMPUTACAO [CAMPUS ARARANGUA]",
+            "Trabalho de Conclusão de Curso II *ENGENHARIA DE COMPUTAÇÃO [Campus Araranguá]",
+            [["10655", 36, 45, 13, 0, 32, 0, [], ["Martin Augusto Gagliotti Vigil"]]]
+        ],
+        [
+            "DEC7001",
+            "PROGRAMA DE INTERCAMBIO I *ENGENHARIA DE COMPUTACAO [CAMPUS ARARANGUA]",
+            "Programa de Intercâmbio I *ENGENHARIA DE COMPUTAÇÃO [Campus Araranguá]",
+            [["09655", 0, 10, 0, 0, 10, 0, [], []]]
+        ],
+        [
+            "DEC7039",
+            "ESTAGIO NAO OBRIGATORIO *ENGENHARIA DE COMPUTACAO [CAMPUS ARARANGUA]",
+            "Estágio Não Obrigatório *ENGENHARIA DE COMPUTAÇÃO [Campus Araranguá]",
+            [["10655", 0, 10, 2, 0, 8, 0, [], []]]
+        ],
+        [
+            "DEC7070",
+            "INTRODUCAO A ENGENHARIA DE COMPUTACAO *ENGENHARIA DE COMPUTACAO [CAMPUS ARARANGUA]",
+            "Introdução à Engenharia de Computação *ENGENHARIA DE COMPUTAÇÃO [Campus Araranguá]",
+            [["01655", 36, 40, 35, 0, 5, 8, ["6.1420-2 / CTS-LB110A"], ["Eliane Pozzebon"]]]
+        ],
+        [
+            "DEC7121",
+            "FUNDAMENTOS MATEMATICOS PARA COMPUTACAO *TECNOLOGIAS DA INFORMACAO E COMUNICACAO (NOTURNO) [CAMPUS ARARANGUA]",
+            "Fundamentos Matemáticos para Computação *TECNOLOGIAS DA INFORMAÇÃO E COMUNICAÇÃO (noturno) [Campus Araranguá]",
+            [
+                [
+                    "01652",
+                    72,
+                    37,
+                    31,
+                    0,
+                    6,
+                    5,
+                    ["2.2020-2 / CTS-SL202A", "4.2020-2 / CTS-SL202A"],
+                    ["Lucas Bertinetti Lopes"]
+                ]
+            ]
+        ],
+        [
+            "DEC7123",
+            "ORGANIZACAO E ARQUITETURA DE COMPUTADORES I *ENGENHARIA DE COMPUTACAO [CAMPUS ARARANGUA]",
+            "Organização e Arquitetura de Computadores I *ENGENHARIA DE COMPUTAÇÃO [Campus Araranguá]",
+            [
+                [
+                    "02655",
+                    72,
+                    42,
+                    23,
+                    0,
+                    19,
+                    0,
+                    ["3.1420-2 / CTS-SL114A", "5.1420-2 / CTS-SL114A"],
+                    ["Marlon de Matos de Oliveira"]
+                ]
+            ]
+        ],
+        [
+            "DEC7124",
+            "ENGENHARIA DE SOFTWARE I *TECNOLOGIAS DA INFORMACAO E COMUNICACAO (NOTURNO) [CAMPUS ARARANGUA]",
+            "Engenharia de Software I *TECNOLOGIAS DA INFORMAÇÃO E COMUNICAÇÃO (noturno) [Campus Araranguá]",
+            [
+                [
+                    "03652",
+                    72,
+                    50,
+                    21,
+                    0,
+                    29,
+                    0,
+                    ["3.1830-2 / CTS-LB110A", "6.1830-2 / CTS-LB110A"],
+                    ["Andréa Sabedra Bordin"]
+                ]
+            ]
+        ],
+        [
+            "DEC7126",
+            "REDES DE COMPUTADORES I *TECNOLOGIAS DA INFORMACAO E COMUNICACAO (NOTURNO) [CAMPUS ARARANGUA]",
+            "Redes de Computadores I *TECNOLOGIAS DA INFORMAÇÃO E COMUNICAÇÃO (noturno) [Campus Araranguá]",
+            [
+                [
+                    "02652",
+                    72,
+                    40,
+                    24,
+                    0,
+                    16,
+                    0,
+                    ["3.2020-2 / CTS-SL114A", "5.2020-2 / CTS-LB120C"],
+                    ["Marlon de Matos de Oliveira"]
+                ]
+            ]
+        ],
+        [
+            "DEC7128",
+            "REDES DE COMPUTADORES II *TECNOLOGIAS DA INFORMACAO E COMUNICACAO (NOTURNO) [CAMPUS ARARANGUA]",
+            "Redes de Computadores II *TECNOLOGIAS DA INFORMAÇÃO E COMUNICAÇÃO (noturno) [Campus Araranguá]",
+            [
+                [
+                    "03652",
+                    72,
+                    50,
+                    25,
+                    0,
+                    25,
+                    0,
+                    ["2.1830-2 / CTS-SL116A", "5.1830-2 / CTS-LB120C"],
+                    ["Roberto Vito Rodrigues Filho"]
+                ]
+            ]
+        ],
+        [
+            "DEC7129",
+            "BANCO DE DADOS I *ENGENHARIA DE COMPUTACAO [CAMPUS ARARANGUA]",
+            "Banco de Dados I *ENGENHARIA DE COMPUTAÇÃO [Campus Araranguá]",
+            [
+                [
+                    "05655",
+                    72,
+                    40,
+                    28,
+                    0,
+                    12,
+                    0,
+                    ["2.1830-2 / CTS-SL210A", "4.1830-2 / CTS-LB118A"],
+                    ["Alexandre Leopoldo Gonçalves"]
+                ]
+            ]
+        ],
+        [
+            "DEC7130",
+            "ENGENHARIA DE SOFTWARE II *TECNOLOGIAS DA INFORMACAO E COMUNICACAO (NOTURNO) [CAMPUS ARARANGUA]",
+            "Engenharia de Software II *TECNOLOGIAS DA INFORMAÇÃO E COMUNICAÇÃO (noturno) [Campus Araranguá]",
+            [
+                [
+                    "04652",
+                    72,
+                    35,
+                    14,
+                    0,
+                    21,
+                    0,
+                    ["3.2020-2 / CTS-SL207A", "6.2020-2 / CTS-SL207A"],
+                    ["Andréa Sabedra Bordin"]
+                ]
+            ]
+        ],
+        [
+            "DEC7131",
+            "SISTEMAS OPERACIONAIS *TECNOLOGIAS DA INFORMACAO E COMUNICACAO (NOTURNO) [CAMPUS ARARANGUA]",
+            "Sistemas Operacionais *TECNOLOGIAS DA INFORMAÇÃO E COMUNICAÇÃO (noturno) [Campus Araranguá]",
+            [
+                [
+                    "04652",
+                    72,
+                    35,
+                    17,
+                    0,
+                    18,
+                    0,
+                    ["2.1830-2 / CTS-SL202A", "5.1830-2 / CTS-LB110A"],
+                    ["Fábio Rodrigues de La Rocha"]
+                ]
+            ]
+        ],
+        [
+            "DEC7133",
+            "INTELIGENCIA ARTIFICIAL *TECNOLOGIAS DA INFORMACAO E COMUNICACAO (NOTURNO) [CAMPUS ARARANGUA]",
+            "Inteligência Artificial *TECNOLOGIAS DA INFORMAÇÃO E COMUNICAÇÃO (noturno) [Campus Araranguá]",
+            [["05652", 72, 40, 13, 0, 27, 0, ["2.1830-2 / CTS-LB110A", "4.1830-2 / CTS-SL303A"], ["Eliane Pozzebon"]]]
+        ],
+        [
+            "DEC7142",
+            "CALCULO NUMERICO EM COMPUTADORES *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Cálculo Numérico em Computadores *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [
+                ["05653", 72, 20, 4, 0, 16, 0, ["2.1830-2 / CTS-LB108A", "4.1830-2 / CTS-SL202A"], ["Olga Yevseyeva"]],
+                [
+                    "06655",
+                    72,
+                    20,
+                    15,
+                    0,
+                    5,
+                    0,
+                    ["2.1830-2 / CTS-LB118A", "4.1830-2 / CTS-LB109A"],
+                    ["Lucas Bertinetti Lopes"]
+                ]
+            ]
+        ],
+        [
+            "DEC7143",
+            "LOGICA DE PROGRAMACAO *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Lógica de Programação *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [["01653", 72, 30, 13, 0, 17, 2, ["6.0820-4 / CTS-LB108A"], ["Marlon de Matos de Oliveira"]]]
+        ],
+        [
+            "DEC7504",
+            "ANALISE DE SINAIS E SISTEMAS LINEARES *ENGENHARIA DE COMPUTACAO [CAMPUS ARARANGUA]",
+            "Análise de Sinais e Sistemas Lineares *ENGENHARIA DE COMPUTAÇÃO [Campus Araranguá]",
+            [
+                [
+                    "06655",
+                    72,
+                    40,
+                    21,
+                    0,
+                    19,
+                    0,
+                    ["3.1620-2 / CTS-SL312A", "5.1620-2 / CTS-SL312A"],
+                    ["Lucas Bertinetti Lopes"]
+                ]
+            ]
+        ],
+        [
+            "DEC7511",
+            "MICROPROCESSADORES E MICROCONTROLADORES *ENGENHARIA DE COMPUTACAO [CAMPUS ARARANGUA]",
+            "Microprocessadores e Microcontroladores *ENGENHARIA DE COMPUTAÇÃO [Campus Araranguá]",
+            [
+                [
+                    "03655",
+                    72,
+                    20,
+                    20,
+                    0,
+                    0,
+                    11,
+                    ["3.1420-2 / CTS-LB122C", "5.1420-2 / CTS-LB122C"],
+                    ["Roderval Marcelino"]
+                ]
+            ]
+        ],
+        [
+            "DEC7523",
+            "MODELAGEM E SIMULACAO *ENGENHARIA DE COMPUTACAO [CAMPUS ARARANGUA]",
+            "Modelagem e Simulação *ENGENHARIA DE COMPUTAÇÃO [Campus Araranguá]",
+            [
+                [
+                    "05655",
+                    72,
+                    20,
+                    17,
+                    0,
+                    3,
+                    0,
+                    ["3.1420-2 / CTS-LB120C", "5.1420-2 / CTS-LB120C"],
+                    ["Analucia Schiaffino Morales"]
+                ]
+            ]
+        ],
+        [
+            "DEC7532",
+            "LINGUAGEM DE PROGRAMACAO II *ENGENHARIA DE COMPUTACAO [CAMPUS ARARANGUA]",
+            "Linguagem de Programação II *ENGENHARIA DE COMPUTAÇÃO [Campus Araranguá]",
+            [
+                [
+                    "02655A",
+                    72,
+                    22,
+                    22,
+                    0,
+                    0,
+                    2,
+                    ["2.1620-2 / CTS-LB119A", "4.1620-2 / CTS-LB119A"],
+                    ["Antonio Carlos Sobieranski"]
+                ],
+                [
+                    "02655B",
+                    72,
+                    22,
+                    19,
+                    0,
+                    3,
+                    0,
+                    ["2.1830-2 / CTS-LB119A", "4.1830-2 / CTS-LB119A"],
+                    ["Antonio Carlos Sobieranski"]
+                ]
+            ]
+        ],
+        [
+            "DEC7545",
+            "CIRCUITOS ELETRICOS PARA COMPUTACAO *ENGENHARIA DE COMPUTACAO [CAMPUS ARARANGUA]",
+            "Circuitos Elétricos para Computação *ENGENHARIA DE COMPUTAÇÃO [Campus Araranguá]",
+            [["07655", 72, 40, 19, 0, 21, 0, ["3.1620-2 / CTS-SL223A", "5.1620-2 / CTS-SL223A"], ["Lenon Schmitz"]]]
+        ],
+        [
+            "DEC7546",
+            "CIRCUITOS DIGITAIS *ENGENHARIA DE COMPUTACAO [CAMPUS ARARANGUA]",
+            "Circuitos Digitais *ENGENHARIA DE COMPUTAÇÃO [Campus Araranguá]",
+            [
+                [
+                    "01655A",
+                    72,
+                    42,
+                    37,
+                    0,
+                    5,
+                    0,
+                    ["3.1420-2 / CTS-SL207A", "5.1420-2 / CTS-SL207A"],
+                    ["Ney Laert Vilar Calazans"]
+                ],
+                [
+                    "01655B",
+                    72,
+                    42,
+                    24,
+                    0,
+                    18,
+                    0,
+                    ["3.1010-2 / CTS-SL201A", "5.1010-2 / CTS-SL201A"],
+                    ["Professor A Contratar"]
+                ]
+            ]
+        ],
+        [
+            "DEC7547",
+            "LABORATORIOS DE CIRCUITOS ELETRICOS *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Laboratórios de Circuitos Elétricos *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [
+                ["08653", 72, 5, 4, 0, 1, 0, ["6.1420-4 / CTS-LB124C"], ["Professor A Contratar"]],
+                ["08655", 72, 15, 7, 0, 8, 0, ["6.1420-4 / CTS-LB124C"], ["Lucas Bertinetti Lopes"]]
+            ]
+        ],
+        [
+            "DEC7549",
+            "LABORATORIO DE CIRCUITOS DIGITAIS *ENGENHARIA DE COMPUTACAO [CAMPUS ARARANGUA]",
+            "Laboratório de Circuitos Digitais *ENGENHARIA DE COMPUTAÇÃO [Campus Araranguá]",
+            [
+                ["02655A", 72, 19, 17, 0, 2, 0, ["6.1420-4 / CTS-LB122C"], ["Roderval Marcelino"]],
+                ["02655B", 72, 19, 12, 0, 7, 0, ["5.0820-4 / CTS-LB122C"], ["Lenon Schmitz"]]
+            ]
+        ],
+        [
+            "DEC7551",
+            "TOPICOS ESPECIAIS I *ENGENHARIA DE COMPUTACAO [CAMPUS ARARANGUA]",
+            "Tópicos Especiais I *ENGENHARIA DE COMPUTAÇÃO [Campus Araranguá]",
+            [
+                [
+                    "09655",
+                    72,
+                    30,
+                    13,
+                    0,
+                    17,
+                    0,
+                    ["3.1420-2 / CTS-LB109A", "5.1420-2 / CTS-LB109A"],
+                    ["Roberto Vito Rodrigues Filho", "Alison Roberto Panisson"]
+                ]
+            ]
+        ],
+        [
+            "DEC7555",
+            "LINGUAGEM DE DESCRICAO DE HARDWARE *ENGENHARIA DE COMPUTACAO [CAMPUS ARARANGUA]",
+            "Linguagem de Descrição de Hardware *ENGENHARIA DE COMPUTAÇÃO [Campus Araranguá]",
+            [
+                ["04655A", 72, 22, 13, 0, 9, 0, ["6.0820-4 / CTS-LB122C"], ["Ney Laert Vilar Calazans"]],
+                [
+                    "04655B",
+                    72,
+                    22,
+                    20,
+                    0,
+                    2,
+                    0,
+                    ["3.1830-2 / CTS-LB122C", "5.1830-2 / CTS-LB122C"],
+                    ["Ney Laert Vilar Calazans"]
+                ]
+            ]
+        ],
+        [
+            "DEC7556",
+            "ARQUITETURA DE SISTEMAS OPERACIONAIS *ENGENHARIA DE COMPUTACAO [CAMPUS ARARANGUA]",
+            "Arquitetura de Sistemas Operacionais *ENGENHARIA DE COMPUTAÇÃO [Campus Araranguá]",
+            [
+                [
+                    "07655",
+                    72,
+                    40,
+                    25,
+                    0,
+                    15,
+                    0,
+                    ["2.1420-2 / CTS-LB108A", "4.1420-2 / CTS-LB108A"],
+                    ["Martin Augusto Gagliotti Vigil"]
+                ]
+            ]
+        ],
+        [
+            "DEC7557",
+            "REDES DE COMPUTADORES *ENGENHARIA DE COMPUTACAO [CAMPUS ARARANGUA]",
+            "Redes de Computadores *ENGENHARIA DE COMPUTAÇÃO [Campus Araranguá]",
+            [
+                [
+                    "05655",
+                    72,
+                    40,
+                    16,
+                    0,
+                    24,
+                    0,
+                    ["3.1620-2 / CTS-LB108A", "5.1620-2 / CTS-LB108A"],
+                    ["Analucia Schiaffino Morales"]
+                ]
+            ]
+        ],
+        [
+            "DEC7558",
+            "SISTEMAS DISTRIBUIDOS *ENGENHARIA DE COMPUTACAO [CAMPUS ARARANGUA]",
+            "Sistemas Distribuídos *ENGENHARIA DE COMPUTAÇÃO [Campus Araranguá]",
+            [["08655", 72, 30, 9, 0, 21, 0, ["3.1420-2 / CTS-LB108A", "5.1420-2 / CTS-LB108A"], ["Jim Lau"]]]
+        ],
+        [
+            "DEC7560",
+            "SISTEMAS DIGITAIS EMBARCADOS *ENGENHARIA DE COMPUTACAO [CAMPUS ARARANGUA]",
+            "Sistemas Digitais Embarcados *ENGENHARIA DE COMPUTAÇÃO [Campus Araranguá]",
+            [
+                [
+                    "06655",
+                    72,
+                    20,
+                    19,
+                    0,
+                    1,
+                    2,
+                    ["2.1620-2 / CTS-LB124C", "4.1620-2 / CTS-LB124C"],
+                    ["Fábio Rodrigues de La Rocha"]
+                ]
+            ]
+        ],
+        [
+            "DEC7562",
+            "SISTEMAS OPERACIONAIS EMBARCADOS *ENGENHARIA DE COMPUTACAO [CAMPUS ARARANGUA]",
+            "Sistemas Operacionais Embarcados *ENGENHARIA DE COMPUTAÇÃO [Campus Araranguá]",
+            [
+                [
+                    "08655",
+                    72,
+                    40,
+                    13,
+                    0,
+                    27,
+                    0,
+                    ["2.1420-2 / CTS-LB110A", "4.1420-2 / CTS-LB110A"],
+                    ["Anderson Luiz Fernandes Perez"]
+                ]
+            ]
+        ],
+        [
+            "DEC7563",
+            "REDES SEM FIOS *ENGENHARIA DE COMPUTACAO [CAMPUS ARARANGUA]",
+            "Redes sem Fios *ENGENHARIA DE COMPUTAÇÃO [Campus Araranguá]",
+            [["07655", 72, 20, 14, 0, 6, 0, ["6.1420-4 / CTS-LB120C"], ["Roberto Vito Rodrigues Filho"]]]
+        ],
+        [
+            "DEC7571",
+            "TRABALHO DE CONCLUSAO DE CURSO I *ENGENHARIA DE COMPUTACAO [CAMPUS ARARANGUA]",
+            "Trabalho de Conclusão de Curso I *ENGENHARIA DE COMPUTAÇÃO [Campus Araranguá]",
+            [["09655", 72, 45, 0, 0, 45, 0, ["7.0820-4 / AUX-ALOCAR"], ["Analucia Schiaffino Morales"]]]
+        ],
+        [
+            "DEC7572",
+            "TRABALHO DE CONCLUSAO DE CURSO II *ENGENHARIA DE COMPUTACAO [CAMPUS ARARANGUA]",
+            "Trabalho de Conclusão de Curso II *ENGENHARIA DE COMPUTAÇÃO [Campus Araranguá]",
+            [["10655", 72, 45, 5, 0, 40, 0, [], ["Martin Augusto Gagliotti Vigil"]]]
+        ],
+        [
+            "DEC7573",
+            "ESTAGIO CURRICULAR *ENGENHARIA DE COMPUTACAO [CAMPUS ARARANGUA]",
+            "Estágio Curricular *ENGENHARIA DE COMPUTAÇÃO [Campus Araranguá]",
+            [["10655", 360, 45, 4, 0, 41, 0, [], ["Eliane Pozzebon"]]]
+        ],
+        [
+            "DEC7588",
+            "BANCO DE DADOS *TECNOLOGIAS DA INFORMACAO E COMUNICACAO (NOTURNO) [CAMPUS ARARANGUA]",
+            "Banco de Dados *TECNOLOGIAS DA INFORMAÇÃO E COMUNICAÇÃO (noturno) [Campus Araranguá]",
+            [
+                [
+                    "04652",
+                    72,
+                    35,
+                    17,
+                    0,
+                    18,
+                    0,
+                    ["2.2020-2 / CTS-SL116A", "4.2020-2 / CTS-LB110A"],
+                    ["Alexandre Leopoldo Gonçalves"]
+                ]
+            ]
+        ],
+        [
+            "EES7037",
+            "ESTAGIO NAO OBRIGATORIO *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Estágio Não Obrigatório *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [["10653", 0, 10, 6, 0, 4, 0, [], ["Leonardo Elizeire Bremermann"]]]
+        ],
+        [
+            "EES7170",
+            "CIRCUITOS ELETRICOS *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Circuitos Elétricos *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [
+                [
+                    "05653",
+                    72,
+                    25,
+                    20,
+                    0,
+                    5,
+                    0,
+                    ["3.1010-2 / CTS-SL207A", "5.1010-2 / CTS-SL207A"],
+                    ["César Cataldo Scharlau"]
+                ]
+            ]
+        ],
+        [
+            "EES7180",
+            "DESENHO TECNICO *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Desenho Técnico *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [
+                [
+                    "02653",
+                    72,
+                    45,
+                    13,
+                    0,
+                    32,
+                    0,
+                    ["5.1420-2 / CTS-SL201A", "6.1420-2 / CTS-SL201A"],
+                    ["Professor A Contratar"]
+                ]
+            ]
+        ],
+        [
+            "EES7304",
+            "ENERGIA SOLAR FOTOVOLTAICA *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Energia Solar Fotovoltaica *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [
+                [
+                    "08653",
+                    72,
+                    45,
+                    5,
+                    0,
+                    40,
+                    0,
+                    ["2.0820-2 / CTS-SL312A", "4.0820-2 / CTS-SL312A"],
+                    ["Giuliano Arns Rampinelli"]
+                ]
+            ]
+        ],
+        [
+            "EES7306",
+            "CONVERSAO TERMICA DOS SOLIDOS *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Conversão Térmica dos Sólidos *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [
+                [
+                    "07653",
+                    72,
+                    45,
+                    6,
+                    0,
+                    39,
+                    0,
+                    ["2.1420-2 / CTS-SL202A", "4.1420-2 / CTS-SL202A"],
+                    ["Elaine Virmond", "Professor A Contratar"]
+                ]
+            ]
+        ],
+        [
+            "EES7330",
+            "FUNDAMENTOS DE BIOTECNOLOGIA *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Fundamentos de Biotecnologia *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [
+                [
+                    "04653",
+                    72,
+                    45,
+                    14,
+                    0,
+                    31,
+                    0,
+                    ["2.1010-2 / CTS-SL304A", "4.1010-2 / CTS-SL304A"],
+                    ["Afonso Henrique da Silva Júnior"]
+                ]
+            ]
+        ],
+        [
+            "EES7340",
+            "PRODUCAO DE BIOCOMBUSTIVEIS E COPRODUTOS *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Produção de Biocombustíveis e Coprodutos *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [["06653", 72, 45, 17, 0, 28, 0, ["2.0820-2 / CTS-SL307A", "4.0820-2 / CTS-SL307A"], ["Elaine Virmond"]]]
+        ],
+        [
+            "EES7350",
+            "TERMODINAMICA I *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Termodinâmica I *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [
+                [
+                    "04653",
+                    72,
+                    30,
+                    22,
+                    0,
+                    8,
+                    0,
+                    ["3.1620-2 / CTS-SL307A", "5.1620-2 / CTS-LB119A"],
+                    ["Rogério Gomes de Oliveira"]
+                ]
+            ]
+        ],
+        [
+            "EES7353",
+            "MECANICA DOS FLUIDOS *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Mecânica dos Fluidos *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [
+                [
+                    "05653",
+                    72,
+                    45,
+                    11,
+                    0,
+                    34,
+                    0,
+                    ["2.1420-2 / CTS-SL308A", "4.1420-2 / CTS-SL308A"],
+                    ["Fernando Henrique Milanese"]
+                ]
+            ]
+        ],
+        [
+            "EES7354",
+            "TRANSFERENCIA DE CALOR E MASSA I *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Transferência de Calor e Massa I *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [
+                [
+                    "06653",
+                    72,
+                    45,
+                    14,
+                    0,
+                    31,
+                    0,
+                    ["2.1620-2 / CTS-SL308A", "4.1620-2 / CTS-SL308A"],
+                    ["Fernando Henrique Milanese"]
+                ]
+            ]
+        ],
+        [
+            "EES7355",
+            "TRANSFERENCIA DE CALOR E MASSA II *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Transferência de Calor e Massa II *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [
+                [
+                    "07653",
+                    72,
+                    45,
+                    18,
+                    0,
+                    27,
+                    0,
+                    ["2.1620-2 / CTS-SL202A", "4.1620-2 / CTS-SL202A"],
+                    ["Elise Sommer Watzko"]
+                ]
+            ]
+        ],
+        [
+            "EES7360",
+            "INTRODUCAO A ENGENHARIA DE ENERGIA *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Introdução à Engenharia de Energia *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [["01653", 36, 45, 13, 0, 32, 0, ["2.1010-2 / CTS-SL307A"], ["Luciano Lopes Pfitscher"]]]
+        ],
+        [
+            "EES7361",
+            "FUNDAMENTOS DE ECOLOGIA *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Fundamentos de Ecologia *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [
+                [
+                    "01653",
+                    72,
+                    45,
+                    14,
+                    0,
+                    31,
+                    0,
+                    ["2.0820-2 / CTS-SL116A", "4.0820-2 / CTS-SL201A"],
+                    ["Professor A Contratar"]
+                ]
+            ]
+        ],
+        [
+            "EES7362",
+            "FUNDAMENTOS DE QUIMICA ORGANICA *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Fundamentos de Química Orgânica *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [
+                [
+                    "02653",
+                    72,
+                    45,
+                    13,
+                    0,
+                    32,
+                    0,
+                    ["3.0820-2 / CTS-SL303A", "5.0820-2 / CTS-SL303A"],
+                    ["Natália Ueda Yamaguchi", "Afonso Henrique da Silva Júnior"]
+                ]
+            ]
+        ],
+        [
+            "EES7363",
+            "FUNDAMENTOS DE BIOQUIMICA *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Fundamentos de Bioquímica *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [
+                [
+                    "03653",
+                    72,
+                    45,
+                    14,
+                    0,
+                    31,
+                    0,
+                    ["3.1010-2 / CTS-SL303A", "5.1010-2 / CTS-SL303A"],
+                    ["Afonso Henrique da Silva Júnior"]
+                ]
+            ]
+        ],
+        [
+            "EES7364",
+            "ENERGIA E SUSTENTABILIDADE *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Energia e Sustentabilidade *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [
+                [
+                    "03653",
+                    72,
+                    45,
+                    10,
+                    0,
+                    35,
+                    0,
+                    ["3.1830-2 / CTS-SL310A", "5.1830-2 / CTS-SL310A"],
+                    ["Natália Ueda Yamaguchi"]
+                ]
+            ]
+        ],
+        [
+            "EES7365",
+            "TOPOGRAFIA E GEOPROCESSAMENTO *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Topografia e Geoprocessamento *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [
+                [
+                    "04653A",
+                    72,
+                    23,
+                    13,
+                    0,
+                    10,
+                    0,
+                    ["4.0820-2 / CTS-SL306A", "5.0820-2 / CTS-SL306A"],
+                    ["Cláudia Weber Corseuil"]
+                ],
+                [
+                    "04653B",
+                    72,
+                    23,
+                    5,
+                    0,
+                    18,
+                    0,
+                    ["4.0820-2 / CTS-SL306A", "5.1010-2 / CTS-SL306A"],
+                    ["Cláudia Weber Corseuil"]
+                ]
+            ]
+        ],
+        [
+            "EES7366",
+            "TERMODINAMICA II *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Termodinâmica II *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [["05653", 36, 45, 45, 0, 0, 3, ["5.0820-2 / CTS-SL206A"], ["Thiago Dutra"]]]
+        ],
+        [
+            "EES7367",
+            "TEORIA ELETROMAGNETICA *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Teoria Eletromagnética *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [["05653", 36, 30, 7, 0, 23, 0, ["3.0820-2 / CTS-SL312A"], ["Giuliano Arns Rampinelli"]]]
+        ],
+        [
+            "EES7368",
+            "ENERGIA OCEANICA *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Energia Oceânica *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [["05653", 36, 45, 7, 0, 38, 0, ["5.1620-2 / CTS-SL309A"], ["Carla de Abreu D'aquino"]]]
+        ],
+        [
+            "EES7369",
+            "GEOLOGIA DE CARVAO E PETROLEO *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Geologia de Carvão e Petróleo *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [["05653", 36, 45, 16, 0, 29, 0, ["4.1010-2 / AUX-ALOCAR"], ["Professor A Contratar"]]]
+        ],
+        [
+            "EES7370",
+            "ENERGIA EOLICA I *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Energia Eólica I *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [
+                [
+                    "06653",
+                    72,
+                    45,
+                    10,
+                    0,
+                    35,
+                    0,
+                    ["3.1010-2 / CTS-SL307A", "5.1010-2 / CTS-SL307A"],
+                    ["Carla de Abreu D'aquino"]
+                ]
+            ]
+        ],
+        [
+            "EES7371",
+            "CONVERSAO ELETROMECANICA DE ENERGIA *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Conversão Eletromecânica de Energia *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [
+                [
+                    "07653",
+                    72,
+                    45,
+                    14,
+                    0,
+                    31,
+                    0,
+                    ["3.1010-2 / CTS-SL210A", "5.1010-2 / CTS-SL210A"],
+                    ["Luciano Lopes Pfitscher"]
+                ]
+            ]
+        ],
+        [
+            "EES7372",
+            "TRANSMISSAO E DISTRIBUICAO DE ENERGIA *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Transmissão e Distribuição de Energia *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [
+                [
+                    "06653",
+                    72,
+                    45,
+                    12,
+                    0,
+                    33,
+                    0,
+                    ["3.1620-2 / CTS-SL211A", "4.1830-2 / CTS-SL211A"],
+                    ["Leonardo Elizeire Bremermann"]
+                ]
+            ]
+        ],
+        [
+            "EES7374",
+            "FUNDAMENTOS DE CONTROLE *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Fundamentos de Controle *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [
+                [
+                    "07653",
+                    72,
+                    22,
+                    17,
+                    0,
+                    5,
+                    0,
+                    ["3.1620-2 / CTS-SL201A", "5.1620-2 / CTS-SL207A"],
+                    ["César Cataldo Scharlau"]
+                ],
+                [
+                    "08655",
+                    72,
+                    20,
+                    8,
+                    0,
+                    12,
+                    0,
+                    ["3.1620-2 / CTS-SL201A", "5.1620-2 / AUX-ALOCAR"],
+                    ["César Cataldo Scharlau"]
+                ]
+            ]
+        ],
+        [
+            "EES7378",
+            "ELETRONICA DE POTENCIA *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Eletrônica de Potência *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [["06653", 36, 45, 10, 0, 35, 0, ["4.1420-2 / CTS-SL307A"], ["Luciano Lopes Pfitscher"]]]
+        ],
+        [
+            "EES7379",
+            "GESTAO DE EFICIENCIA ENERGETICA *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Gestão de Eficiência Energética *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [["06653", 36, 45, 14, 0, 31, 0, ["6.1010-2 / CTS-SL301A"], ["Kátia Cilene Rodrigues Madruga"]]]
+        ],
+        [
+            "EES7380",
+            "PLANEJAMENTO ENERGETICO *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Planejamento Energético *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [["06653", 36, 45, 10, 0, 35, 0, ["3.1420-2 / CTS-SL301A"], ["Kátia Cilene Rodrigues Madruga"]]]
+        ],
+        [
+            "EES7381",
+            "RECURSOS HIDRICOS E APROVEITAMENTOS HIDRELETRICOS *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Recursos Hídricos e Aproveitamentos Hidrelétricos *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [
+                [
+                    "07653",
+                    72,
+                    45,
+                    19,
+                    0,
+                    26,
+                    0,
+                    ["3.0820-2 / CTS-SL304A", "6.0820-2 / CTS-SL304A"],
+                    ["Cláudia Weber Corseuil"]
+                ]
+            ]
+        ],
+        [
+            "EES7382",
+            "REFRIGERACAO E CONDICIONAMENTO DE AR *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Refrigeração e Condicionamento de Ar *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [["08653", 36, 33, 12, 0, 21, 0, ["3.0820-2 / CTS-LB119A"], ["Rogério Gomes de Oliveira"]]]
+        ],
+        [
+            "EES7383",
+            "INSTALACOES ELETRICAS *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Instalações Elétricas *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [
+                [
+                    "08653",
+                    72,
+                    45,
+                    14,
+                    0,
+                    31,
+                    0,
+                    ["3.1620-2 / CTS-SL310A", "5.1620-2 / CTS-SL310A"],
+                    ["Professor A Contratar"]
+                ]
+            ]
+        ],
+        [
+            "EES7384",
+            "TRABALHO DE CONCLUSAO DE CURSO II *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Trabalho de Conclusão de Curso II *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [["09653", 36, 45, 13, 0, 32, 0, ["6.2020-2 / CTS-SL301A"], ["Rogério Gomes de Oliveira"]]]
+        ],
+        [
+            "EES7385",
+            "SISTEMAS TERMICOS *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Sistemas Térmicos *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [["09653", 72, 45, 8, 0, 37, 0, ["2.1010-2 / CTS-SL221A", "4.1010-2 / CTS-SL219A"], ["Thiago Dutra"]]]
+        ],
+        [
+            "EES7386",
+            "EMPREENDEDORISMO EM ENGENHARIA DE ENERGIA *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Empreendedorismo em Engenharia de Energia *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [
+                [
+                    "09653",
+                    72,
+                    45,
+                    8,
+                    0,
+                    37,
+                    0,
+                    ["3.1010-2 / CTS-SL308A", "5.1010-2 / CTS-SL308A"],
+                    ["Kátia Cilene Rodrigues Madruga"]
+                ]
+            ]
+        ],
+        [
+            "EES7387",
+            "ENERGIA TERMICA NA EDIFICACAO *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Energia Térmica na Edificação *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [["09653", 36, 45, 2, 0, 43, 0, ["4.1420-2 / CTS-SL312A"], ["Elise Sommer Watzko"]]]
+        ],
+        [
+            "EES7393",
+            "ESTAGIO PROFISSIONAL *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Estágio Profissional *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [["10653", 432, 40, 5, 0, 35, 0, [], ["Leonardo Elizeire Bremermann"]]]
+        ],
+        [
+            "EES7395",
+            "ANALISE DE SISTEMAS ELETRICOS DE POTENCIA *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Análise de Sistemas Elétricos de Potência *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [
+                [
+                    "07653",
+                    72,
+                    45,
+                    15,
+                    0,
+                    30,
+                    0,
+                    ["3.1830-2 / CTS-SL313A", "4.0820-2 / CTS-SL313A"],
+                    ["Leonardo Elizeire Bremermann"]
+                ]
+            ]
+        ],
+        [
+            "EES7396",
+            "TRABALHO DE CONCLUSAO DE CURSO I *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Trabalho de Conclusão de Curso I *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [["08653", 36, 45, 9, 0, 36, 0, ["6.1830-2 / CTS-SL303A"], ["Rogério Gomes de Oliveira"]]]
+        ],
+        [
+            "EES7397",
+            "ENERGIA E POLUICAO AMBIENTAL *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Energia e Poluição Ambiental *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [
+                [
+                    "08653",
+                    72,
+                    45,
+                    4,
+                    0,
+                    41,
+                    0,
+                    ["2.1830-2 / CTS-SL201A", "4.1830-2 / CTS-SL201A"],
+                    ["Natália Ueda Yamaguchi"]
+                ]
+            ]
+        ],
+        [
+            "EES7527",
+            "FENOMENOS DE TRANSPORTE *ENGENHARIA DE COMPUTACAO [CAMPUS ARARANGUA]",
+            "Fenômenos de Transporte *ENGENHARIA DE COMPUTAÇÃO [Campus Araranguá]",
+            [
+                [
+                    "07655",
+                    72,
+                    40,
+                    18,
+                    0,
+                    22,
+                    0,
+                    ["2.1620-2 / CTS-SL312A", "4.1620-2 / CTS-SL312A"],
+                    ["Thiago Dutra", "Rogério Gomes de Oliveira"]
+                ]
+            ]
+        ],
+        [
+            "EES7603",
+            "HIDROGENIO E CELULAS COMBUSTIVEIS *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Hidrogênio e Células Combustíveis *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [["08653", 36, 45, 13, 0, 32, 0, ["2.1420-2 / CTS-SL307A"], ["Elise Sommer Watzko"]]]
+        ],
+        [
+            "EES7605",
+            "MERCADO DE ENERGIA *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Mercado de Energia *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [["08653", 36, 45, 5, 0, 40, 0, ["5.0820-2 / CTS-SL201A"], ["Giuliano Arns Rampinelli"]]]
+        ],
+        [
+            "FQM7001",
+            "PRE-CALCULO *ENGENHARIA DE COMPUTACAO [CAMPUS ARARANGUA]",
+            "Pré-Cálculo *ENGENHARIA DE COMPUTAÇÃO [Campus Araranguá]",
+            [
+                [
+                    "01655",
+                    72,
+                    50,
+                    44,
+                    0,
+                    6,
+                    7,
+                    ["2.1420-2 / CTS-SL313A", "4.1420-2 / CTS-SL313A"],
+                    ["Bernardo Walmott Borges", "Leandro Batirolla Krott"]
+                ]
+            ]
+        ],
+        [
+            "FQM7002",
+            "QUIMICA GERAL E EXPERIMENTAL *ENGENHARIA DE COMPUTACAO [CAMPUS ARARANGUA]",
+            "Química Geral e Experimental *ENGENHARIA DE COMPUTAÇÃO [Campus Araranguá]",
+            [["02655", 72, 30, 18, 0, 12, 0, ["2.1420-2 / CTS-SL303A", "4.1420-2 / CTS-SL303A"], ["Ismael Raitz"]]]
+        ],
+        [
+            "FQM7101",
+            "CALCULO I *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Cálculo I *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [
+                [
+                    "01653",
+                    72,
+                    45,
+                    20,
+                    0,
+                    25,
+                    0,
+                    ["2.1620-2 / CTS-SL211A", "4.1620-2 / CTS-SL211A"],
+                    ["Luiz Fernando Belchior Ribeiro"]
+                ],
+                [
+                    "02655",
+                    72,
+                    45,
+                    26,
+                    0,
+                    19,
+                    0,
+                    ["3.1620-2 / CTS-SL306A", "5.1620-2 / CTS-SL306A"],
+                    ["Marcelo Zannin da Rosa"]
+                ]
+            ]
+        ],
+        [
+            "FQM7102",
+            "CALCULO II *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Cálculo II *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [
+                [
+                    "02653",
+                    72,
+                    30,
+                    10,
+                    0,
+                    20,
+                    0,
+                    ["2.1620-2 / CTS-SL301A", "4.1620-2 / CTS-SL301A"],
+                    ["Mauricio Girardi"]
+                ],
+                ["03655", 72, 45, 36, 0, 9, 0, ["2.1420-2 / CTS-SL116A", "4.1420-2 / CTS-SL220A"], ["Mauricio Girardi"]]
+            ]
+        ],
+        [
+            "FQM7103",
+            "GEOMETRIA ANALITICA *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Geometria Analítica *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [
+                [
+                    "01653",
+                    72,
+                    45,
+                    29,
+                    0,
+                    16,
+                    0,
+                    ["3.1010-2 / CTS-SL114A", "5.1010-2 / CTS-SL114A"],
+                    ["Marcia Martins Szortyka", "Leandro Batirolla Krott"]
+                ],
+                [
+                    "01655",
+                    72,
+                    48,
+                    42,
+                    0,
+                    6,
+                    6,
+                    ["2.1010-2 / CTS-SL207A", "4.1010-2 / CTS-SL207A"],
+                    ["Leandro Batirolla Krott", "Marcelo Zannin da Rosa", "Bernardo Walmott Borges"]
+                ]
+            ]
+        ],
+        [
+            "FQM7104",
+            "ALGEBRA LINEAR *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Álgebra Linear *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [
+                [
+                    "02653",
+                    72,
+                    30,
+                    14,
+                    0,
+                    16,
+                    0,
+                    ["2.1830-2 / CTS-SL117A", "4.1830-2 / CTS-SL117A"],
+                    ["Agenor Hentz da Silva Junior"]
+                ],
+                [
+                    "03655",
+                    72,
+                    30,
+                    30,
+                    0,
+                    0,
+                    0,
+                    ["2.1830-2 / CTS-SL117A", "4.1830-2 / CTS-SL117A"],
+                    ["Agenor Hentz da Silva Junior"]
+                ]
+            ]
+        ],
+        [
+            "FQM7105",
+            "CALCULO III *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Cálculo III *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [
+                [
+                    "03653",
+                    72,
+                    30,
+                    8,
+                    0,
+                    22,
+                    0,
+                    ["2.1620-2 / CTS-SL106A", "4.1620-2 / CTS-SL106A"],
+                    ["Evy Augusto Salcedo Torres"]
+                ],
+                [
+                    "04655",
+                    72,
+                    45,
+                    42,
+                    0,
+                    3,
+                    0,
+                    ["2.1420-2 / CTS-SL304A", "4.1420-2 / CTS-SL304A"],
+                    ["Evy Augusto Salcedo Torres"]
+                ]
+            ]
+        ],
+        [
+            "FQM7106",
+            "CALCULO IV *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Cálculo IV *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [
+                [
+                    "04653",
+                    72,
+                    30,
+                    16,
+                    0,
+                    14,
+                    0,
+                    ["2.1420-2 / CTS-SL306A", "4.1420-2 / CTS-SL306A"],
+                    ["Marcelo Zannin da Rosa"]
+                ],
+                [
+                    "05655",
+                    72,
+                    30,
+                    12,
+                    0,
+                    18,
+                    0,
+                    ["2.1420-2 / CTS-SL306A", "4.1420-2 / CTS-SL306A"],
+                    ["Marcelo Zannin da Rosa"]
+                ]
+            ]
+        ],
+        [
+            "FQM7107",
+            "PROBABILIDADE E ESTATISTICA *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Probabilidade e Estatística *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [
+                [
+                    "03653",
+                    72,
+                    30,
+                    13,
+                    0,
+                    17,
+                    0,
+                    ["3.1420-2 / CTS-SL306A", "5.1420-2 / CTS-SL306A"],
+                    ["Marcelo Zannin da Rosa"]
+                ],
+                [
+                    "04655",
+                    72,
+                    30,
+                    26,
+                    0,
+                    4,
+                    0,
+                    ["3.1420-2 / CTS-SL306A", "5.1420-2 / CTS-SL306A"],
+                    ["Marcelo Zannin da Rosa"]
+                ]
+            ]
+        ],
+        [
+            "FQM7110",
+            "FISICA A *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Física A *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [
+                [
+                    "02653",
+                    72,
+                    30,
+                    4,
+                    0,
+                    26,
+                    0,
+                    ["3.1010-2 / CTS-SL304A", "5.1010-2 / CTS-SL304A"],
+                    ["Marcelo Freitas de Andrade"]
+                ],
+                [
+                    "03655",
+                    72,
+                    45,
+                    28,
+                    0,
+                    17,
+                    0,
+                    ["3.1620-2 / CTS-SL114A", "5.1620-2 / CTS-SL114A"],
+                    ["Marcia Martins Szortyka"]
+                ]
+            ]
+        ],
+        [
+            "FQM7111",
+            "FISICA B *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Física B *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [
+                [
+                    "03653",
+                    72,
+                    30,
+                    15,
+                    0,
+                    15,
+                    0,
+                    ["3.1620-2 / CTS-SL208A", "5.1620-2 / CTS-SL208A"],
+                    ["Marcelo Freitas de Andrade", "Leandro Batirolla Krott"]
+                ],
+                [
+                    "04655",
+                    72,
+                    30,
+                    30,
+                    0,
+                    0,
+                    0,
+                    ["3.1620-2 / CTS-SL208A", "5.1620-2 / CTS-SL208A"],
+                    ["Leandro Batirolla Krott", "Marcelo Freitas de Andrade", "Bernardo Walmott Borges"]
+                ]
+            ]
+        ],
+        [
+            "FQM7112",
+            "FISICA C *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Física C *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [
+                [
+                    "04653",
+                    72,
+                    30,
+                    20,
+                    0,
+                    10,
+                    0,
+                    ["2.1620-2 / CTS-SL306A", "4.1620-2 / CTS-SL306A"],
+                    ["Agenor Hentz da Silva Junior"]
+                ],
+                [
+                    "05655",
+                    72,
+                    30,
+                    30,
+                    0,
+                    0,
+                    0,
+                    ["2.1620-2 / CTS-SL306A", "4.1620-2 / CTS-SL306A"],
+                    ["Agenor Hentz da Silva Junior"]
+                ]
+            ]
+        ],
+        [
+            "FQM7113",
+            "QUIMICA GERAL *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Química Geral *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [
+                [
+                    "01653",
+                    72,
+                    30,
+                    13,
+                    0,
+                    17,
+                    1,
+                    ["3.1420-2 / CTS-SL307A", "5.1420-2 / CTS-SL307A"],
+                    ["Tiago Elias Allievi Frizon"]
+                ]
+            ]
+        ],
+        [
+            "FQM7114",
+            "FISICA D *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Física D *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [
+                [
+                    "08653",
+                    72,
+                    30,
+                    13,
+                    0,
+                    17,
+                    0,
+                    ["3.1420-2 / CTS-SL309A", "5.1420-2 / CTS-SL309A"],
+                    ["Marcelo Freitas de Andrade"]
+                ]
+            ]
+        ],
+        [
+            "FQM7331",
+            "FUNDAMENTOS DE MATERIAIS *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Fundamentos de Materiais *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [
+                [
+                    "02653",
+                    72,
+                    30,
+                    10,
+                    0,
+                    20,
+                    0,
+                    ["2.1420-2 / CTS-SL211A", "4.1420-2 / CTS-SL211A"],
+                    ["Luiz Fernando Belchior Ribeiro"]
+                ]
+            ]
+        ],
+        [
+            "FQM7334",
+            "LABORATORIO DE QUIMICA *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Laboratório de Química *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [
+                ["03653A", 72, 10, 8, 0, 2, 0, ["6.0820-4 / CTS-LB101C"], ["Ismael Raitz"]],
+                ["03653B", 72, 10, 5, 0, 5, 0, ["6.1420-4 / CTS-LB101C"], ["Ismael Raitz"]]
+            ]
+        ],
+        [
+            "FQM7335",
+            "LABORATORIO DE FISICA *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Laboratório de Física *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [
+                ["05653", 72, 15, 15, 0, 0, 0, ["6.0820-4 / CTS-LB113A"], ["Bernardo Walmott Borges"]],
+                ["05653B", 72, 8, 8, 0, 0, 1, ["6.1420-4 / CTS-LB113A"], ["Bernardo Walmott Borges"]],
+                ["06655", 72, 8, 8, 0, 0, 1, ["6.1420-4 / CTS-LB113A"], ["Bernardo Walmott Borges"]]
+            ]
+        ],
+        [
+            "FQM7336",
+            "ESTATICA E DINAMICA *ENGENHARIA DE ENERGIA [CAMPUS ARARANGUA]",
+            "Estática e Dinâmica *ENGENHARIA DE ENERGIA [Campus Araranguá]",
+            [
+                [
+                    "04653",
+                    72,
+                    30,
+                    15,
+                    0,
+                    15,
+                    0,
+                    ["3.1420-2 / CTS-SL310A", "5.1420-2 / CTS-SL310A"],
+                    ["Marcia Martins Szortyka"]
+                ],
+                [
+                    "07655",
+                    72,
+                    30,
+                    17,
+                    0,
+                    13,
+                    0,
+                    ["3.1420-2 / CTS-SL310A", "5.1420-2 / CTS-SL310A"],
+                    ["Marcia Martins Szortyka"]
+                ]
+            ]
+        ],
+        [
+            "FQM7414",
+            "BIOFISICA *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Biofísica *FISIOTERAPIA [Campus Araranguá]",
+            [
+                [
+                    "01654",
+                    72,
+                    42,
+                    32,
+                    0,
+                    10,
+                    9,
+                    ["2.1010-2 / CTS-SL301A", "3.1010-2 / CTS-SL301A"],
+                    ["Luiz Fernando Belchior Ribeiro"]
+                ]
+            ]
+        ],
+        [
+            "FQM7420",
+            "BIOQUIMICA BASICA *FISIOTERAPIA [CAMPUS ARARANGUA]",
+            "Bioquímica Básica *FISIOTERAPIA [Campus Araranguá]",
+            [["02654", 72, 40, 35, 0, 5, 0, ["3.0820-2 / CTS-SL116A", "5.0730-2 / CTS-SL116A"], ["Ismael Raitz"]]]
+        ]
+    ]
+}
