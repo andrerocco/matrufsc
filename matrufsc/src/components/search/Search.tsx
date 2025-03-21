@@ -9,6 +9,7 @@ export default function Search<T>({
     filter,
     placeholder,
     limit,
+    disabled,
 }: {
     data: T[];
     onSelect: (item: T) => void;
@@ -16,6 +17,7 @@ export default function Search<T>({
     filter?: (search: string) => T[]; // Function to filter the items
     placeholder?: string;
     limit?: number;
+    disabled?: boolean;
 }) {
     const [open, setOpen] = useState(false);
     const [shownAmount, setShownAmount] = useState(limit ?? data.length);
@@ -60,6 +62,10 @@ export default function Search<T>({
             scrollFocusedIntoView();
         }
     }, [focusedIndex, scrollFocusedIntoView]);
+
+    useEffect(() => {
+        handleClose();
+    }, [data]);
 
     const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
         switch (e.key) {
@@ -118,12 +124,14 @@ export default function Search<T>({
         } else {
             setFilteredData(data.filter((item) => getLabel(item).toLowerCase().includes(search.toLowerCase())));
         }
+
+        setFocusedIndex(0);
     };
 
     const scrollToListEnd = () => {
-        if (listEndRef.current) {
-            listEndRef.current.scrollIntoView({ behavior: "smooth" });
-        }
+        // if (listEndRef.current) {
+        //     listEndRef.current.scrollIntoView({ behavior: "smooth" });
+        // }
     };
 
     const handleShowMore = () => {
@@ -159,9 +167,10 @@ export default function Search<T>({
                 <input
                     ref={inputRef}
                     placeholder={placeholder}
+                    disabled={disabled}
                     type="text"
                     className={cn(
-                        "h-9 w-full rounded-md border border-neutral-400 px-3 focus:border-neutral-600 focus:outline-none",
+                        "h-9 w-full rounded-md border border-neutral-400 px-3 focus:border-neutral-600 focus:outline-none disabled:bg-neutral-200",
                         open && "rounded-b-none",
                     )}
                     onKeyDown={handleKeyDown}

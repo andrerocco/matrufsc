@@ -1,4 +1,4 @@
-// Parses the JSON data into objects used by the app.
+/// Parses the JSON data into objects used by the app.
 
 import { HORAS } from "./constants";
 import type { Materia, Turma } from "./store";
@@ -22,13 +22,12 @@ export type JSONDisciplina = [
     JSONTurma[], // Turmas
 ];
 
+export type JSONCampusCode = "FLO" | "JOI" | "CBS" | "ARA" | "BLN";
+
 export interface JSONCampus {
-    DATA: string;
-    ARA: JSONDisciplina[];
-    BLN: JSONDisciplina[];
-    CBS: JSONDisciplina[];
-    FLO: JSONDisciplina[];
-    JOI: JSONDisciplina[];
+    campus: JSONCampusCode;
+    data_extracao: string;
+    disciplinas: JSONDisciplina[];
 }
 
 function getHorarioList(horarioInicio: string, creditos: number): number[] {

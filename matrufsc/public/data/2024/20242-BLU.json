@@ -1,0 +1,3132 @@
+{
+    "campus": "ARA",
+    "data_extracao": "29/08/24 - 17:06",
+    "disciplinas": [
+        [
+            "BLU1403",
+            "ELETROTECNICA *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Eletrotécnica *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [["05755", 72, 40, 6, 0, 34, 0, ["5.0730-3 / BLN-A204"], ["Sheila Santisi Travessa"]]]
+        ],
+        [
+            "BLU2028",
+            "PROJETO DE MATERIAS *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Projeto de Materias *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [["07753", 36, 20, 12, 0, 8, 0, ["3.0820-2 / BLN-A202"], ["Laura Ximena Lovisa Oliveira"]]]
+        ],
+        [
+            "BLU2903",
+            "ETICA, DIREITOS HUMANOS E DIVERSIDADE SOCIOCULTURAL *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Ética, Direitos Humanos e Diversidade Sociocultural *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [["09753", 36, 25, 10, 0, 15, 0, ["6.1330-2 / BLN-A205"], ["Steffan Macali Werner"]]]
+        ],
+        [
+            "BLU3003",
+            "CONTROLE NO ESPACO DE ESTADOS *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Controle no Espaço de Estados *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                [
+                    "08754",
+                    72,
+                    30,
+                    11,
+                    0,
+                    19,
+                    0,
+                    ["5.1510-2 / BLN-A105", "6.1510-2 / BLN-A305"],
+                    ["Luiz Antonio Maccari Junior"]
+                ]
+            ]
+        ],
+        [
+            "BLU3008",
+            "PROCESSOS INDUSTRIAIS *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Processos Industriais *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [["09754", 72, 25, 24, 0, 1, 4, ["2.0730-2 / BLN-A305", "4.1510-2 / BLN-A305"], ["Daniel Martins Lima"]]]
+        ],
+        [
+            "BLU3014",
+            "ELETRONICA DE POTENCIA *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Eletrônica de Potência *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                [
+                    "08754",
+                    108,
+                    26,
+                    23,
+                    0,
+                    3,
+                    0,
+                    ["2.0910-3 / BLN-A305", "3.1510-3 / BLN-B023"],
+                    ["Tiago Davi Curi Busarello"]
+                ]
+            ]
+        ],
+        [
+            "BLU3015",
+            "PROCESSAMENTO DIGITAL DE SINAIS *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Processamento Digital de Sinais *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [["08754", 72, 26, 24, 0, 2, 0, ["5.0820-2 / BLN-A303", "5.1330-2 / BLN-B023"], ["Ciro André Pitz"]]]
+        ],
+        [
+            "BLU3020",
+            "SISTEMAS COMPUTACIONAIS PARA CONTROLE E AUTOMACAO *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Sistemas Computacionais para Controle e Automação *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                [
+                    "08754",
+                    72,
+                    26,
+                    15,
+                    0,
+                    11,
+                    0,
+                    ["2.1330-2 / BLN-A305", "4.1330-2 / BLN-A305"],
+                    ["Carlos Roberto Moratelli"]
+                ]
+            ]
+        ],
+        [
+            "BLU3034",
+            "PROGRAMA DE INTERCAMBIO I *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Programa de Intercâmbio I *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [["06754", 0, 10, 1, 0, 9, 0, [], []]]
+        ],
+        [
+            "BLU3044",
+            "TOPICOS AVANCADOS EM REDES DE TELECOMUNICACOES [CANCELADA] *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Tópicos Avançados em Redes de Telecomunicações [Cancelada] *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [["09754", 72, 0, 0, 0, 0, 0, ["2.1710-2 / AUX-ALOCAR", "3.1710-2 / AUX-ALOCAR"], ["Adão Boava"]]]
+        ],
+        [
+            "BLU3046",
+            "SISTEMAS EMBARCADOS *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Sistemas Embarcados *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                [
+                    "08754",
+                    72,
+                    26,
+                    26,
+                    0,
+                    0,
+                    1,
+                    ["3.1330-2 / BLN-A305", "5.1010-2 / BLN-A305"],
+                    ["Carlos Roberto Moratelli"]
+                ]
+            ]
+        ],
+        [
+            "BLU3048",
+            "TOPICOS ESPECIAIS EM MECATRONICA I [CANCELADA] *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Tópicos Especiais em Mecatrônica I [Cancelada] *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                [
+                    "09754",
+                    72,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    ["5.0730-2 / AUX-ALOCAR", "6.0730-2 / AUX-ALOCAR"],
+                    ["Sheila Santisi Travessa", "Anelize Zomkowski Salvi"]
+                ]
+            ]
+        ],
+        [
+            "BLU3049",
+            "TOPICOS ESPECIAIS EM CONTROLE DE PROCESSOS I *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Tópicos Especiais em Controle de Processos I *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                [
+                    "09754",
+                    72,
+                    26,
+                    15,
+                    0,
+                    11,
+                    0,
+                    ["5.0820-2 / BLN-A202", "6.1510-2 / BLN-B023"],
+                    ["Ebrahim Samer El Youssef"]
+                ]
+            ]
+        ],
+        [
+            "BLU3301",
+            "QUIMICA TECNOLOGICA *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Química Tecnológica *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                ["03754A", 72, 20, 12, 0, 8, 0, ["3.1510-1 / BLN-B011", "5.0730-3 / BLN-A304"], ["Cristiane da Costa"]],
+                [
+                    "03754B",
+                    72,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    ["3.1620-1 / AUX-ALOCAR", "5.0730-3 / AUX-ALOCAR"],
+                    ["Cristiane da Costa"]
+                ]
+            ]
+        ],
+        [
+            "BLU3401",
+            "SINAIS E SISTEMAS LINEARES *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Sinais e Sistemas Lineares *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                [
+                    "04754A",
+                    108,
+                    25,
+                    24,
+                    0,
+                    1,
+                    0,
+                    ["3.1010-2 / BLN-A207", "4.1510-2 / BLN-A202", "5.1330-2 / BLN-A305"],
+                    ["Ebrahim Samer El Youssef"]
+                ],
+                [
+                    "04754B",
+                    108,
+                    25,
+                    5,
+                    0,
+                    20,
+                    0,
+                    ["3.1010-2 / BLN-A207", "4.1510-2 / BLN-A202", "5.1510-2 / BLN-A305"],
+                    ["Ebrahim Samer El Youssef"]
+                ]
+            ]
+        ],
+        [
+            "BLU3402",
+            "CIRCUITOS ELETRICOS P/CONTROLE E AUTOMACAO *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Circuitos Elétricos p/Controle e Automação *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                [
+                    "04754A",
+                    108,
+                    16,
+                    8,
+                    0,
+                    8,
+                    0,
+                    ["2.1010-2 / BLN-A304", "4.1330-2 / BLN-A304", "5.0820-2 / BLN-B021"],
+                    ["Janaina Gonçalves Guimarães", "Adão Boava"]
+                ],
+                [
+                    "04754B",
+                    108,
+                    17,
+                    8,
+                    0,
+                    9,
+                    0,
+                    ["2.1010-2 / BLN-A304", "4.1330-2 / BLN-A304", "5.1010-2 / BLN-B021"],
+                    ["Janaina Gonçalves Guimarães", "Adão Boava"]
+                ],
+                [
+                    "04754C",
+                    108,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    ["2.1010-2 / AUX-ALOCAR", "4.1330-2 / AUX-ALOCAR", "4.1710-2 / AUX-ALOCAR"],
+                    []
+                ]
+            ]
+        ],
+        [
+            "BLU3403",
+            "SISTEMAS DE AUTOMACAO *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Sistemas de Automação *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                [
+                    "04754A",
+                    90,
+                    15,
+                    13,
+                    0,
+                    2,
+                    3,
+                    ["3.1330-2 / BLN-A107", "3.1510-3 / BLN-B016"],
+                    ["Guilherme Brasil Pintarelli"]
+                ],
+                [
+                    "04754B",
+                    90,
+                    15,
+                    5,
+                    0,
+                    10,
+                    0,
+                    ["2.0730-3 / BLN-B016", "3.1330-2 / BLN-A107"],
+                    ["Guilherme Brasil Pintarelli"]
+                ]
+            ]
+        ],
+        [
+            "BLU3501",
+            "MODELAGEM E SIMULACAO DE PROCESSOS *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Modelagem e Simulação de Processos *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                [
+                    "05754A",
+                    108,
+                    27,
+                    12,
+                    0,
+                    15,
+                    0,
+                    ["4.0820-2 / BLN-VV002", "4.1330-2 / BLN-A105", "5.1330-2 / BLN-A207"],
+                    ["Luiz Antonio Maccari Junior"]
+                ],
+                [
+                    "05754B",
+                    108,
+                    28,
+                    16,
+                    0,
+                    12,
+                    0,
+                    ["4.1330-2 / BLN-A105", "5.1010-2 / BLN-VV001", "5.1330-2 / BLN-A207"],
+                    ["Luiz Antonio Maccari Junior"]
+                ]
+            ]
+        ],
+        [
+            "BLU3502",
+            "ELETRICIDADE INDUSTRIAL *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Eletricidade Industrial *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [["05754", 72, 35, 16, 0, 19, 0, ["4.1010-2 / BLN-A301", "6.0820-2 / BLN-A205"], ["Gledson Heidemann"]]]
+        ],
+        [
+            "BLU3503",
+            "ELETRONICA APLICADA *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Eletrônica Aplicada *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                [
+                    "05754A",
+                    108,
+                    15,
+                    15,
+                    0,
+                    0,
+                    0,
+                    ["3.0820-2 / BLN-A304", "3.1010-2 / BLN-B021", "4.1510-2 / BLN-A304"],
+                    ["Janaina Gonçalves Guimarães"]
+                ],
+                [
+                    "05754B",
+                    108,
+                    15,
+                    0,
+                    0,
+                    15,
+                    0,
+                    ["3.0820-2 / BLN-A304", "3.1330-2 / BLN-B021", "4.1510-2 / BLN-A304"],
+                    ["Janaina Gonçalves Guimarães"]
+                ]
+            ]
+        ],
+        [
+            "BLU3505",
+            "REDES INDUSTRIAIS *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Redes Industriais *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                ["05754A", 72, 15, 7, 0, 8, 0, ["2.1330-2 / BLN-A105", "2.1510-2 / BLN-A305"], ["Adão Boava"]],
+                ["05754B", 72, 15, 2, 0, 13, 0, ["2.1330-2 / BLN-A105", "3.1510-2 / BLN-A305"], ["Adão Boava"]]
+            ]
+        ],
+        [
+            "BLU3602",
+            "SISTEMAS DE CONTROLE *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Sistemas de Controle *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                [
+                    "06754A",
+                    108,
+                    25,
+                    11,
+                    0,
+                    14,
+                    0,
+                    ["2.0820-2 / BLN-B023", "3.1510-2 / BLN-A101", "4.1710-2 / BLN-A301"],
+                    ["Gledson Heidemann", "Daniel Martins Lima"]
+                ],
+                [
+                    "06754B",
+                    108,
+                    25,
+                    16,
+                    0,
+                    9,
+                    0,
+                    ["2.1010-2 / BLN-B023", "3.1510-2 / BLN-A101", "4.1710-2 / BLN-A301"],
+                    ["Gledson Heidemann", "Daniel Martins Lima"]
+                ]
+            ]
+        ],
+        [
+            "BLU3603",
+            "ACIONAMENTOS HIDRAULICOS E PNEUMATICOS *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Acionamentos Hidráulicos e Pneumáticos *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                [
+                    "06754A",
+                    72,
+                    18,
+                    5,
+                    0,
+                    13,
+                    0,
+                    ["3.1010-2 / BLN-B016", "4.1010-2 / BLN-A302"],
+                    ["Daniel Alejandro Ponce Saldias"]
+                ],
+                [
+                    "06754B",
+                    72,
+                    18,
+                    12,
+                    0,
+                    6,
+                    0,
+                    ["2.1510-2 / BLN-B016", "4.1010-2 / BLN-A302"],
+                    ["Daniel Alejandro Ponce Saldias"]
+                ],
+                [
+                    "06754C",
+                    72,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    ["3.1330-2 / AUX-ALOCAR", "4.1010-2 / AUX-ALOCAR"],
+                    ["Daniel Alejandro Ponce Saldias"]
+                ]
+            ]
+        ],
+        [
+            "BLU3604",
+            "ACIONAMENTOS ELETRICOS *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Acionamentos Elétricos *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                [
+                    "06754A",
+                    72,
+                    12,
+                    10,
+                    0,
+                    2,
+                    0,
+                    ["5.1510-3 / BLN-A205", "6.0910-1 / BLN-B112"],
+                    ["Sheila Santisi Travessa"]
+                ],
+                [
+                    "06754B",
+                    72,
+                    12,
+                    7,
+                    0,
+                    5,
+                    0,
+                    ["5.1510-3 / BLN-A205", "6.1010-1 / BLN-B112"],
+                    ["Sheila Santisi Travessa"]
+                ],
+                [
+                    "06754C",
+                    72,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    ["5.1510-3 / AUX-ALOCAR", "6.1100-1 / AUX-ALOCAR"],
+                    ["Sheila Santisi Travessa"]
+                ]
+            ]
+        ],
+        [
+            "BLU3700",
+            "METROLOGIA E INSTRUMENTACAO PARA AUTOMACAO *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Metrologia e Instrumentação para Automação *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                ["07754A", 90, 25, 3, 0, 22, 0, ["2.1330-2 / BLN-B023", "3.1510-3 / BLN-A204"], ["Ciro André Pitz"]],
+                ["07754B", 90, 25, 13, 0, 12, 0, ["2.1510-2 / BLN-B023", "3.1510-3 / BLN-A204"], ["Ciro André Pitz"]]
+            ]
+        ],
+        [
+            "BLU3702",
+            "PROJETO INTEGRADOR *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Projeto Integrador *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                [
+                    "07754A",
+                    72,
+                    20,
+                    12,
+                    0,
+                    8,
+                    0,
+                    ["3.0820-2 / BLN-B023", "4.1010-2 / BLN-B023"],
+                    ["Sheila Santisi Travessa", "Fabio Rafael Segundo", "Luiz Antonio Maccari Junior"]
+                ],
+                [
+                    "07754B",
+                    72,
+                    20,
+                    0,
+                    0,
+                    20,
+                    0,
+                    ["3.0820-2 / BLN-A305", "4.1010-2 / BLN-A305"],
+                    ["Guilherme Brasil Pintarelli", "Alex Fabiano Bueno"]
+                ]
+            ]
+        ],
+        [
+            "BLU3704",
+            "INTRODUCAO A ROBOTICA INDUSTRIAL *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Introdução à Robótica Industrial *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                [
+                    "07754A",
+                    72,
+                    15,
+                    8,
+                    0,
+                    7,
+                    0,
+                    ["3.1330-2 / BLN-A208", "5.0820-2 / BLN-B016"],
+                    ["Leonardo Mejia Rincon"]
+                ],
+                [
+                    "07754B",
+                    72,
+                    15,
+                    15,
+                    0,
+                    0,
+                    0,
+                    ["3.1330-2 / BLN-A208", "5.1010-2 / BLN-B016"],
+                    ["Leonardo Mejia Rincon"]
+                ],
+                [
+                    "07754C",
+                    72,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    ["3.1330-2 / AUX-ALOCAR", "6.1010-2 / AUX-ALOCAR"],
+                    ["Leonardo Mejia Rincon"]
+                ]
+            ]
+        ],
+        [
+            "BLU3705",
+            "AUTOMACAO DA MANUFATURA *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Automação da Manufatura *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [["07754", 72, 40, 24, 0, 16, 0, ["3.1010-2 / BLN-A303", "5.1330-2 / BLN-A105"], ["Alex Fabiano Bueno"]]]
+        ],
+        [
+            "BLU3900",
+            "PROJETO ESPECIALIZADO *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Projeto Especializado *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                [
+                    "09754",
+                    108,
+                    25,
+                    23,
+                    0,
+                    2,
+                    0,
+                    ["3.0820-2 / BLN-B016", "4.0820-4 / BLN-B016"],
+                    ["Ebrahim Samer El Youssef", "Leonardo Mejia Rincon"]
+                ],
+                [
+                    "09754B",
+                    108,
+                    25,
+                    11,
+                    0,
+                    14,
+                    0,
+                    ["3.0820-2 / BLN-B024", "4.0820-4 / BLN-B024"],
+                    ["Carlos Roberto Moratelli", "Tiago Davi Curi Busarello"]
+                ]
+            ]
+        ],
+        [
+            "BLU6011",
+            "MECANICA DOS SOLIDOS *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Mecânica dos Sólidos *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                [
+                    "03754",
+                    72,
+                    30,
+                    5,
+                    0,
+                    25,
+                    0,
+                    ["2.1010-2 / BLN-A303", "3.0820-2 / BLN-A205"],
+                    ["Daniel Alejandro Ponce Saldias"]
+                ],
+                [
+                    "04753",
+                    72,
+                    25,
+                    8,
+                    0,
+                    17,
+                    0,
+                    ["4.1010-2 / BLN-A103", "5.1510-2 / BLN-A202"],
+                    ["Fernando Luis Peixoto"]
+                ],
+                [
+                    "04755",
+                    72,
+                    25,
+                    9,
+                    0,
+                    16,
+                    0,
+                    ["4.1010-2 / BLN-A103", "5.1010-2 / BLN-A202"],
+                    ["Fernando Luis Peixoto"]
+                ]
+            ]
+        ],
+        [
+            "BLU6013",
+            "ESTATISTICA *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Estatística *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                [
+                    "04754",
+                    72,
+                    30,
+                    18,
+                    0,
+                    12,
+                    0,
+                    ["2.1330-2 / BLN-A101", "4.0820-2 / BLN-A202"],
+                    ["Hugo Jose Lara Urdaneta"]
+                ]
+            ]
+        ],
+        [
+            "BLU6014",
+            "FENOMENOS DE TRANSPORTE *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Fenômenos de Transporte *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [
+                [
+                    "04753",
+                    72,
+                    20,
+                    13,
+                    0,
+                    7,
+                    0,
+                    ["3.0820-2 / BLN-A103", "6.1010-2 / BLN-A107"],
+                    ["Andrea Cristiane Krause Bierhalz"]
+                ],
+                [
+                    "04754",
+                    72,
+                    20,
+                    5,
+                    0,
+                    15,
+                    0,
+                    ["3.0820-2 / BLN-A103", "6.1010-2 / BLN-A107"],
+                    ["Andrea Cristiane Krause Bierhalz"]
+                ],
+                [
+                    "05753",
+                    72,
+                    20,
+                    3,
+                    0,
+                    17,
+                    0,
+                    ["3.0820-2 / BLN-A103", "6.1010-2 / BLN-A107"],
+                    ["Andrea Cristiane Krause Bierhalz"]
+                ]
+            ]
+        ],
+        [
+            "BLU7000",
+            "CIENCIA-TECNOLOGIA-SOCIEDADE *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Ciência-Tecnologia-Sociedade *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [["07753", 72, 25, 7, 0, 18, 0, ["3.1330-2 / BLN-A304", "5.1010-2 / BLN-A304"], ["Professor A Contratar"]]]
+        ],
+        [
+            "BLU7025",
+            "SEGURANCA DO TRABALHO *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Segurança do Trabalho *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [["09754", 36, 40, 16, 0, 24, 5, ["3.1330-2 / BLN-A104"], ["Franciely Velozo Aragão"]]]
+        ],
+        [
+            "BLU7210",
+            "PROJETO FIM DE CURSO - TCC *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Projeto Fim de Curso - TCC *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [["10754", 72, 50, 42, 0, 8, 0, [], ["Tiago Davi Curi Busarello"]]]
+        ],
+        [
+            "BLU7215",
+            "PROJETO FIM DE CURSO - ESTAGIO CURRICULAR OBRIGATORIO *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Projeto Fim de Curso - Estágio Curricular Obrigatório *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [["10754", 396, 50, 30, 0, 20, 0, [], ["Marcos Vinicius Matsuo"]]]
+        ],
+        [
+            "BLU8002",
+            "INTELIGENCIA ARTIFICIAL *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Inteligência Artificial *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [["10754", 72, 26, 22, 0, 4, 0, ["3.1510-2 / BLN-VV002", "4.1330-2 / BLN-VV002"], ["Mauri Ferrandin"]]]
+        ],
+        [
+            "CAC2505",
+            "METODOLOGIA CIENTIFICA *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Metodologia Científica *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [
+                ["01753", 36, 50, 19, 0, 31, 0, ["4.0820-2 / BLN-A107"], ["Steffan Macali Werner"]],
+                ["03755", 36, 30, 7, 0, 23, 0, ["4.1010-2 / BLN-A207"], ["Steffan Macali Werner"]],
+                ["05753", 36, 25, 8, 0, 17, 0, ["4.0820-2 / BLN-A107"], ["Steffan Macali Werner"]],
+                ["06754", 36, 40, 9, 0, 31, 0, ["4.1510-2 / BLN-A204"], ["Steffan Macali Werner"]]
+            ]
+        ],
+        [
+            "CAC3033",
+            "INTRODUCAO A OTIMIZACAO *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Introdução à Otimização *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                [
+                    "08754",
+                    72,
+                    25,
+                    21,
+                    0,
+                    4,
+                    0,
+                    ["3.0820-2 / BLN-VV001", "6.1010-2 / BLN-A304"],
+                    ["Hugo Jose Lara Urdaneta"]
+                ]
+            ]
+        ],
+        [
+            "CAC3040",
+            "VISAO COMPUTACIONAL EM ROBOTICA *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Visão Computacional em Robótica *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [["08754", 72, 26, 0, 0, 26, 0, ["3.1010-2 / BLN-A305", "4.1510-2 / BLN-B016"], ["Marcos Vinicius Matsuo"]]]
+        ],
+        [
+            "CAC3100",
+            "INTRODUCAO A ENGENHARIA DE CONTROLE E AUTOMACAO (EXT 36H-A) *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Introdução à Engenharia de Controle e Automação (EXT 36h-a) *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                [
+                    "01754A",
+                    72,
+                    35,
+                    8,
+                    0,
+                    27,
+                    0,
+                    ["3.1330-2 / BLN-A205", "3.1510-2 / BLN-B024"],
+                    ["Marcos Vinicius Matsuo", "Alex Fabiano Bueno"]
+                ],
+                [
+                    "01754B",
+                    72,
+                    35,
+                    19,
+                    0,
+                    16,
+                    0,
+                    ["3.1330-2 / BLN-A205", "4.1330-2 / BLN-B024"],
+                    ["Marcos Vinicius Matsuo", "Alex Fabiano Bueno"]
+                ]
+            ]
+        ],
+        [
+            "CAC3101",
+            "INTRODUCAO A INFORMATICA PARA AUTOMACAO *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Introdução à Informática para Automação *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                ["01754A", 72, 35, 8, 0, 27, 2, ["5.1330-4 / BLN-VV001"], ["Fabio Rafael Segundo"]],
+                ["01754B", 72, 35, 19, 0, 16, 5, ["6.1330-4 / BLN-VV001"], ["Gledson Heidemann"]]
+            ]
+        ],
+        [
+            "CAC3201",
+            "SISTEMAS DIGITAIS *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Sistemas Digitais *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                [
+                    "02754A",
+                    72,
+                    25,
+                    14,
+                    0,
+                    11,
+                    0,
+                    ["5.1010-2 / BLN-A205", "6.0730-2 / BLN-B023"],
+                    ["Sheila Santisi Travessa"]
+                ],
+                [
+                    "02754B",
+                    72,
+                    25,
+                    12,
+                    0,
+                    13,
+                    0,
+                    ["5.1010-2 / BLN-A205", "6.1330-2 / BLN-B023"],
+                    ["Sheila Santisi Travessa"]
+                ]
+            ]
+        ],
+        [
+            "CAC3202",
+            "ALGORITMOS E ESTRUTURAS DE DADOS *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Algoritmos e Estruturas de Dados *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                ["02754A", 72, 25, 21, 0, 4, 0, ["3.1330-2 / BLN-A105", "3.1510-2 / BLN-VV001"], ["Maiquel de Brito"]],
+                ["02754B", 72, 25, 10, 0, 15, 0, ["3.1330-2 / BLN-A105", "5.1510-2 / BLN-VV002"], ["Maiquel de Brito"]]
+            ]
+        ],
+        [
+            "CAC3302",
+            "MICROPROCESSADORES *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Microprocessadores *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                [
+                    "03754A",
+                    72,
+                    25,
+                    8,
+                    0,
+                    17,
+                    0,
+                    ["3.1010-2 / BLN-VV001", "4.0820-2 / BLN-A207"],
+                    ["Fabio Rafael Segundo"]
+                ],
+                [
+                    "03754B",
+                    72,
+                    25,
+                    25,
+                    0,
+                    0,
+                    0,
+                    ["3.1330-2 / BLN-VV001", "4.0820-2 / BLN-A207"],
+                    ["Fabio Rafael Segundo"]
+                ]
+            ]
+        ],
+        [
+            "CAC3404",
+            "AUTOMACAO PARA INDUSTRIA TEXTIL *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Automação para Indústria Têxtil *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [["07755", 36, 25, 6, 0, 19, 0, ["2.1010-2 / BLN-A205"], ["Guilherme Brasil Pintarelli"]]]
+        ],
+        [
+            "CAC3504",
+            "SISTEMAS A EVENTOS DISCRETOS *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Sistemas a Eventos Discretos *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                [
+                    "05754A",
+                    90,
+                    25,
+                    9,
+                    0,
+                    16,
+                    0,
+                    ["5.1510-2 / BLN-A107", "6.1010-1 / BLN-A305", "6.1420-2 / BLN-A104"],
+                    ["Anelize Zomkowski Salvi"]
+                ],
+                [
+                    "05754B",
+                    90,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["5.1510-2 / BLN-A107", "6.1100-1 / BLN-A305", "6.1420-2 / BLN-A104"],
+                    ["Anelize Zomkowski Salvi"]
+                ],
+                [
+                    "05754C",
+                    90,
+                    25,
+                    8,
+                    0,
+                    17,
+                    0,
+                    ["5.1510-2 / BLN-A107", "6.1420-2 / BLN-A104"],
+                    ["Anelize Zomkowski Salvi"]
+                ]
+            ]
+        ],
+        [
+            "CAC6000",
+            "INTRODUCAO A CIENCIA DA COMPUTACAO *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Introdução a Ciência da Computação *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [
+                [
+                    "01753A",
+                    72,
+                    25,
+                    11,
+                    0,
+                    14,
+                    1,
+                    ["2.1330-2 / BLN-VV002", "4.1510-2 / BLN-A303"],
+                    ["Gledson Heidemann"]
+                ],
+                ["01753B", 72, 25, 8, 0, 17, 1, ["2.1510-2 / BLN-VV002", "4.1510-2 / BLN-A303"], ["Gledson Heidemann"]],
+                ["01755", 72, 56, 31, 0, 25, 0, ["4.0820-2 / BLN-A302", "5.0730-2 / BLN-VV002"], ["Mauri Ferrandin"]]
+            ]
+        ],
+        [
+            "CAC6002",
+            "DESENHO TECNICO PARA ENGENHARIA *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Desenho Técnico para Engenharia *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [
+                ["01753A", 72, 25, 11, 0, 14, 0, ["3.1330-4 / BLN-B118"], ["Cristina Luz Cardoso"]],
+                ["01753B", 72, 25, 7, 0, 18, 0, ["6.1330-4 / BLN-B118"], ["Fernando Luis Peixoto"]],
+                ["01754A", 72, 35, 8, 0, 27, 0, ["3.0820-4 / BLN-B118"], ["Cristina Luz Cardoso"]],
+                ["01754B", 72, 35, 19, 0, 16, 0, ["6.0820-4 / BLN-B118"], ["Fernando Luis Peixoto"]],
+                ["02755", 72, 25, 9, 0, 16, 0, ["5.0820-4 / BLN-B118"], ["Steffan Macali Werner"]]
+            ]
+        ],
+        [
+            "CAC6013",
+            "ESTATISTICA *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Estatística *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [
+                [
+                    "03753",
+                    72,
+                    25,
+                    24,
+                    0,
+                    1,
+                    1,
+                    ["2.0820-2 / BLN-A301", "6.0820-2 / BLN-A207"],
+                    ["Hugo Jose Lara Urdaneta"]
+                ],
+                [
+                    "03755",
+                    72,
+                    25,
+                    6,
+                    0,
+                    19,
+                    0,
+                    ["2.0820-2 / AUX-ALOCAR", "6.0820-2 / AUX-ALOCAR"],
+                    ["Hugo Jose Lara Urdaneta"]
+                ]
+            ]
+        ],
+        [
+            "CAC7002",
+            "CIENCIA, TECNOLOGIA E SOCIEDADE (EXT 36H-A) *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Ciência, Tecnologia e Sociedade (EXT 36h-a) *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [["04755", 72, 25, 4, 0, 21, 0, ["3.0820-2 / BLN-A104", "6.0820-2 / BLN-A105"], ["Professor A Contratar"]]]
+        ],
+        [
+            "CAC7006",
+            "SOCIEDADE, TECNOLOGIA E HISTORIA (EXT18H-A) *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Sociedade, Tecnologia e História (EXT18h-a) *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [["02755", 54, 25, 12, 0, 13, 0, ["4.0730-3 / BLN-A208"], ["Professor A Contratar"]]]
+        ],
+        [
+            "CAC7008",
+            "CIENCIA, TECNOLOGIA E SOCIEDADE (EXT 36H-A) *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Ciência, Tecnologia e Sociedade (EXT 36h-a) *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [["03754", 72, 30, 17, 0, 13, 0, ["5.1330-2 / BLN-A101", "6.1010-2 / BLN-A103"], ["Professor A Contratar"]]]
+        ],
+        [
+            "CAC7009",
+            "TECNOLOGIA, INOVACAO, DESENVOLVIMENTO E SOCIEDADE (EXT 36H-A) *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Tecnologia, Inovação, Desenvolvimento e Sociedade (EXT 36h-a) *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [["06754", 72, 30, 30, 0, 0, 0, ["4.1330-2 / BLN-A202", "5.1330-2 / BLN-A303"], ["Steffan Macali Werner"]]]
+        ],
+        [
+            "CAC7011",
+            "TECNOLOGIAS PARA O DESENVOLVIMENTO INCLUSIVO (EXT 36H-A) *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Tecnologias para o Desenvolvimento Inclusivo (EXT 36h-a) *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [["07754", 72, 30, 12, 0, 18, 0, ["6.1330-4 / BLN-A103"], ["Professor A Contratar"]]]
+        ],
+        [
+            "CEE1101",
+            "QUIMICA EXPERIMENTAL *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Química Experimental *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [
+                ["01755", 54, 54, 29, 0, 25, 0, ["5.0910-3 / BLN-B010"], ["Silmar José Spinardi Franchi"]],
+                ["02753", 54, 25, 18, 0, 7, 0, ["5.1330-3 / BLN-B011"], ["Silmar José Spinardi Franchi"]]
+            ]
+        ],
+        [
+            "CEE1221",
+            "QUIMICA ORGANICA EXPERIMENTAL [CANCELADA] *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Química Orgânica Experimental [Cancelada] *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [["03755", 36, 0, 0, 0, 0, 0, ["4.1010-2 / AUX-ALOCAR"], ["Lidiane Meier"]]]
+        ],
+        [
+            "CEE2400",
+            "QUIMICA ORGANICA *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Química Orgânica *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [
+                [
+                    "02753",
+                    72,
+                    30,
+                    11,
+                    0,
+                    19,
+                    0,
+                    ["2.1010-2 / BLN-A204", "4.1010-2 / BLN-A105"],
+                    ["Lidiane Meier", "Professor A Contratar"]
+                ],
+                [
+                    "02755",
+                    72,
+                    35,
+                    9,
+                    0,
+                    26,
+                    0,
+                    ["2.1010-2 / BLN-A204", "4.1010-2 / BLN-A105"],
+                    ["Lidiane Meier", "Professor A Contratar"]
+                ]
+            ]
+        ],
+        [
+            "CEE2500",
+            "FISICA IV *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Física IV *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [
+                [
+                    "05753",
+                    72,
+                    30,
+                    12,
+                    0,
+                    18,
+                    0,
+                    ["2.1510-2 / BLN-A208", "4.1510-2 / BLN-A208"],
+                    ["Lara Fernandes dos Santos Lavelli"]
+                ]
+            ]
+        ],
+        [
+            "CEE4001",
+            "INTRODUCAO A EDUCACAO MATEMATICA (PCC 18H-A) *MATEMATICA - LICENCIATURA (NOTURNO) [CAMPUS BLUMENAU]",
+            "Introdução à Educação Matemática (PCC 18h-a) *MATEMÁTICA - Licenciatura (noturno) [Campus Blumenau]",
+            [["01751", 72, 65, 33, 0, 32, 4, ["2.1830-2 / BLN-A207", "5.2020-2 / BLN-A304"], ["Guilherme Wagner"]]]
+        ],
+        [
+            "CEE4002",
+            "METODOLOGIA DO ENSINO DA MATEMATICA (PPC 18H-A) *MATEMATICA - LICENCIATURA [CAMPUS BLUMENAU]",
+            "Metodologia do Ensino da Matemática (PPC 18h-a) *MATEMÁTICA - Licenciatura [Campus Blumenau]",
+            [["05756", 72, 50, 13, 0, 37, 0, ["2.0820-2 / BLN-B124", "4.0820-2 / BLN-A103"], ["Cintia Rosa da Silva"]]]
+        ],
+        [
+            "CEE4499",
+            "TECNOLOGIAS NO ENSINO DE MATEMATICA (PCC 54H-A) *MATEMATICA - LICENCIATURA [CAMPUS BLUMENAU]",
+            "Tecnologias no Ensino de Matemática (PCC 54h-a) *MATEMÁTICA - Licenciatura [Campus Blumenau]",
+            [["04756", 72, 18, 7, 0, 11, 0, ["4.0820-4 / BLN-B124"], ["Jorge Cássio Costa Nóbriga"]]]
+        ],
+        [
+            "CEE4699",
+            "LABORATORIO DE PRATICA DE ENSINO-APRENDIZAGEM DE MATEMATICA I (PCC72H-A) *MATEMATICA - LICENCIATURA [CAMPUS BLUMENAU]",
+            "Laboratório de Prática de Ensino-Aprendizagem de Matemática I (PCC72h-a) *MATEMÁTICA - Licenciatura [Campus Blumenau]",
+            [["06756", 72, 25, 2, 0, 23, 0, ["5.0820-4 / BLN-B124"], ["Cintia Rosa da Silva"]]]
+        ],
+        [
+            "CEE4790",
+            "HISTORIA E FILOSOFIA DA MATEMATICA *MATEMATICA - LICENCIATURA (NOTURNO) [CAMPUS BLUMENAU]",
+            "História e Filosofia da Matemática *MATEMÁTICA - Licenciatura (noturno) [Campus Blumenau]",
+            [["07751", 72, 25, 8, 0, 17, 0, ["2.2020-2 / BLN-A303", "5.1830-2 / BLN-A304"], ["Julio Faria Corrêa"]]]
+        ],
+        [
+            "CEE4799",
+            "LABORATORIO DE PRATICA DE ENSINO-APRENDIZAGEM DE MATEMATICA II (PCC72H-A) *MATEMATICA - LICENCIATURA (NOTURNO) [CAMPUS BLUMENAU]",
+            "Laboratório de Prática de Ensino-Aprendizagem de Matemática II (PCC72h-a) *MATEMÁTICA - Licenciatura (noturno) [Campus Blumenau]",
+            [["07751", 72, 25, 8, 0, 17, 0, ["4.1830-4 / BLN-B124"], ["Guilherme Wagner"]]]
+        ],
+        [
+            "CEE4992",
+            "ESTAGIO SUPERVISIONADO II *MATEMATICA - LICENCIATURA (NOTURNO) [CAMPUS BLUMENAU]",
+            "Estágio Supervisionado II *MATEMÁTICA - Licenciatura (noturno) [Campus Blumenau]",
+            [
+                [
+                    "09751",
+                    252,
+                    25,
+                    3,
+                    0,
+                    22,
+                    0,
+                    ["3.1830-4 / BLN-B124"],
+                    ["Julio Faria Corrêa", "Guilherme Wagner", "Cintia Rosa da Silva"]
+                ]
+            ]
+        ],
+        [
+            "CEE5201",
+            "QUIMICA INORGANICA I (PCC 18 HORAS/AULA) *QUIMICA - LICENCIATURA (NOTURNO) [CAMPUS BLUMENAU]",
+            "Química Inorgânica I (PCC 18 horas/aula) *QUÍMICA - Licenciatura (Noturno) [Campus Blumenau]",
+            [["02752", 72, 50, 6, 0, 44, 0, ["3.1830-2 / BLN-A101", "6.1830-2 / BLN-A101"], ["Alfredo Alberto Muxel"]]]
+        ],
+        [
+            "CEE5401",
+            "QUIMICA ORGANICA I (PCC 18 HORAS/AULA) *QUIMICA - LICENCIATURA (NOTURNO) [CAMPUS BLUMENAU]",
+            "Química Orgânica I (PCC 18 horas/aula) *QUÍMICA - Licenciatura (Noturno) [Campus Blumenau]",
+            [
+                [
+                    "04752",
+                    72,
+                    20,
+                    18,
+                    0,
+                    2,
+                    3,
+                    ["3.1830-2 / BLN-A105", "5.2020-2 / BLN-A105"],
+                    ["Professor A Contratar", "Lidiane Meier"]
+                ]
+            ]
+        ],
+        [
+            "CEE5403",
+            "TERMODINAMICA QUIMICA *QUIMICA BACHARELADO[CAMPUS BLUMENAU]",
+            "Termodinâmica Química *QUÍMICA BACHARELADO[Campus Blumenau]",
+            [
+                [
+                    "05757",
+                    72,
+                    50,
+                    5,
+                    0,
+                    45,
+                    0,
+                    ["2.1830-2 / BLN-A104", "5.2020-2 / BLN-A104"],
+                    ["Glaucio Régis Nagurniak"]
+                ]
+            ]
+        ],
+        [
+            "CEE5404",
+            "QUIMICA ANALITICA EXPERIMENTAL *QUIMICA BACHARELADO[CAMPUS BLUMENAU]",
+            "Química Analítica Experimental *QUÍMICA BACHARELADO[Campus Blumenau]",
+            [
+                ["03757", 72, 13, 7, 0, 6, 0, ["6.1830-4 / BLN-B010"], ["Daniela Brondani", "Eduardo Zapp"]],
+                ["04752", 72, 12, 5, 0, 7, 0, ["6.1830-4 / BLN-B010"], ["Daniela Brondani", "Eduardo Zapp"]]
+            ]
+        ],
+        [
+            "CEE5501",
+            "FUNDAMENTOS DE QUIMICA QUANTICA E ESPECTROSCOPIA *QUIMICA - LICENCIATURA (NOTURNO) [CAMPUS BLUMENAU]",
+            "Fundamentos de Química Quântica e Espectroscopia *QUÍMICA - Licenciatura (Noturno) [Campus Blumenau]",
+            [
+                [
+                    "06752",
+                    72,
+                    20,
+                    15,
+                    0,
+                    5,
+                    0,
+                    ["3.1830-2 / BLN-A301", "5.1830-2 / BLN-A301"],
+                    ["Glaucio Régis Nagurniak"]
+                ]
+            ]
+        ],
+        [
+            "CEE5503",
+            "SOLUCOES E EQUILIBRIO ENTRE FASES (PCC 18 HORAS/AULA) *QUIMICA - LICENCIATURA (NOTURNO) [CAMPUS BLUMENAU]",
+            "Soluções e Equilíbrio entre Fases (PCC 18 horas/aula) *QUÍMICA - Licenciatura (Noturno) [Campus Blumenau]",
+            [
+                [
+                    "08752",
+                    72,
+                    20,
+                    11,
+                    0,
+                    9,
+                    0,
+                    ["2.2020-2 / BLN-A102", "4.1830-2 / BLN-A102"],
+                    ["Glaucio Régis Nagurniak"]
+                ]
+            ]
+        ],
+        [
+            "CEE5507",
+            "QUIMICA ORGANICA EXPERIMENTAL *QUIMICA BACHARELADO[CAMPUS BLUMENAU]",
+            "Química Orgânica Experimental *QUÍMICA BACHARELADO[Campus Blumenau]",
+            [
+                ["05757", 72, 15, 8, 0, 7, 0, ["4.1830-4 / BLN-B011"], ["Lidiane Meier"]],
+                ["06752", 72, 12, 3, 0, 9, 0, ["4.1830-4 / BLN-B011"], ["Lidiane Meier"]]
+            ]
+        ],
+        [
+            "CEE5602",
+            "QUIMICA INORGANICA II *QUIMICA - LICENCIATURA (NOTURNO) [CAMPUS BLUMENAU]",
+            "Química Inorgânica II *QUÍMICA - Licenciatura (Noturno) [Campus Blumenau]",
+            [
+                [
+                    "05752",
+                    72,
+                    15,
+                    2,
+                    0,
+                    13,
+                    0,
+                    ["3.1830-2 / BLN-A104", "5.1830-2 / BLN-A104"],
+                    ["Silmar José Spinardi Franchi"]
+                ]
+            ]
+        ],
+        [
+            "CEE5603",
+            "ANALISE ORGANICA *QUIMICA BACHARELADO[CAMPUS BLUMENAU]",
+            "Análise Orgânica *QUÍMICA BACHARELADO[Campus Blumenau]",
+            [
+                ["05757", 72, 30, 8, 0, 22, 0, ["6.1830-4 / BLN-A104"], ["Lidiane Meier"]],
+                ["06752", 72, 20, 2, 0, 18, 0, ["6.1830-4 / BLN-A104"], ["Lidiane Meier"]]
+            ]
+        ],
+        [
+            "CEE5605",
+            "FISICO-QUIMICA EXPERIMENTAL *QUIMICA BACHARELADO[CAMPUS BLUMENAU]",
+            "Físico-Química Experimental *QUÍMICA BACHARELADO[Campus Blumenau]",
+            [
+                ["08757", 72, 12, 1, 0, 11, 0, ["4.1420-4 / BLN-B010"], ["Ismael Casagrande Bellettini"]],
+                ["09752", 72, 12, 0, 0, 12, 0, ["4.1420-4 / BLN-B010"], ["Ismael Casagrande Bellettini"]]
+            ]
+        ],
+        [
+            "CEE5671",
+            "PESQUISA EM EDUCACAO QUIMICA *QUIMICA - LICENCIATURA (NOTURNO) [CAMPUS BLUMENAU]",
+            "Pesquisa em Educação Química *QUÍMICA - Licenciatura (Noturno) [Campus Blumenau]",
+            [["06752", 36, 25, 4, 0, 21, 0, ["5.2020-2 / BLN-B111"], ["Franciellen Rodrigues da Silva Costa"]]]
+        ],
+        [
+            "CEE5700",
+            "ESTAGIO SUPERVISIONADO I *QUIMICA - LICENCIATURA (NOTURNO) [CAMPUS BLUMENAU]",
+            "Estágio Supervisionado I *QUÍMICA - Licenciatura (Noturno) [Campus Blumenau]",
+            [["07752", 126, 20, 3, 0, 17, 0, ["4.1830-4 / BLN-B120"], ["Franciellen Rodrigues da Silva Costa"]]]
+        ],
+        [
+            "CEE5703",
+            "INTRODUCAO A CIENCIA DOS POLIMEROS *QUIMICA BACHARELADO[CAMPUS BLUMENAU]",
+            "Introdução à Ciência dos Polímeros *QUÍMICA BACHARELADO[Campus Blumenau]",
+            [["07757", 36, 50, 4, 0, 46, 0, ["2.1620-2 / BLN-A101"], ["Ismael Casagrande Bellettini"]]]
+        ],
+        [
+            "CEE5706",
+            "METODOS INTRUMENTAIS DE ANALISE I *QUIMICA BACHARELADO[CAMPUS BLUMENAU]",
+            "Métodos Intrumentais de Análise I *QUÍMICA BACHARELADO[Campus Blumenau]",
+            [
+                ["05757", 36, 30, 8, 0, 22, 0, ["3.2020-2 / BLN-A104"], ["Eduardo Zapp"]],
+                ["06752", 36, 20, 4, 0, 16, 0, ["3.2020-2 / BLN-A104"], ["Eduardo Zapp"]]
+            ]
+        ],
+        [
+            "CEE5800",
+            "ESTAGIO SUPERVISIONADO II *QUIMICA - LICENCIATURA (NOTURNO) [CAMPUS BLUMENAU]",
+            "Estágio Supervisionado II *QUÍMICA - Licenciatura (Noturno) [Campus Blumenau]",
+            [
+                [
+                    "08752",
+                    180,
+                    15,
+                    7,
+                    0,
+                    8,
+                    0,
+                    ["3.1620-2 / BLN-B111", "4.2020-2 / BLN-B111"],
+                    ["Graziela Piccoli Richetti"]
+                ]
+            ]
+        ],
+        [
+            "CEE5804",
+            "TCC 1 *QUIMICA - LICENCIATURA (NOTURNO) [CAMPUS BLUMENAU]",
+            "TCC 1 *QUÍMICA - Licenciatura (Noturno) [Campus Blumenau]",
+            [["08752", 36, 15, 2, 0, 13, 0, [], ["Amarildo Otavio Martins"]]]
+        ],
+        [
+            "CEE5873",
+            "LABORATORIO DE PRATICA DE ENSINO-APRENDIZAGEM EM QUIMICA II (PCC 72 HORAS/AULA) *QUIMICA - LICENCIATURA (NOTURNO) [CAMPUS BLUMENAU]",
+            "Laboratório de Prática de Ensino-Aprendizagem em Química II (PCC 72 horas/aula) *QUÍMICA - Licenciatura (Noturno) [Campus Blumenau]",
+            [["08752", 72, 20, 4, 0, 16, 0, ["6.1830-4 / BLN-B111"], ["Graziela Piccoli Richetti"]]]
+        ],
+        [
+            "CEE5874",
+            "TECNOLOGIAS NO ENSINO DE QUIMICA (PCC 36 HORAS/AULA) *QUIMICA - LICENCIATURA (NOTURNO) [CAMPUS BLUMENAU]",
+            "Tecnologias no Ensino de Química (PCC 36 horas/aula) *QUÍMICA - Licenciatura (Noturno) [Campus Blumenau]",
+            [["08752", 36, 20, 4, 0, 16, 0, ["3.2020-2 / BLN-B111"], ["Franciellen Rodrigues da Silva Costa"]]]
+        ],
+        [
+            "CEE5891",
+            "QUIMICA BIOLOGICA II (PCC 18 HORAS/AULA) *QUIMICA - LICENCIATURA (NOTURNO) [CAMPUS BLUMENAU]",
+            "Química Biológica II (PCC 18 horas/aula) *QUÍMICA - Licenciatura (Noturno) [Campus Blumenau]",
+            [
+                [
+                    "08752",
+                    72,
+                    20,
+                    1,
+                    0,
+                    19,
+                    0,
+                    ["2.1830-2 / BLN-A102", "5.2020-2 / BLN-A102"],
+                    ["Lidiane Meier", "Professor A Contratar"]
+                ]
+            ]
+        ],
+        [
+            "CEE5900",
+            "ESTAGIO SUPERVISIONADO III *QUIMICA - LICENCIATURA (NOTURNO) [CAMPUS BLUMENAU]",
+            "Estágio Supervisionado III *QUÍMICA - Licenciatura (Noturno) [Campus Blumenau]",
+            [
+                [
+                    "09752",
+                    180,
+                    20,
+                    1,
+                    0,
+                    19,
+                    0,
+                    ["2.1830-2 / BLN-B111", "5.2020-2 / BLN-B120"],
+                    ["Keysy Solange Costa Nogueira"]
+                ]
+            ]
+        ],
+        [
+            "CEE5904",
+            "TCC 2 *QUIMICA - LICENCIATURA (NOTURNO) [CAMPUS BLUMENAU]",
+            "TCC 2 *QUÍMICA - Licenciatura (Noturno) [Campus Blumenau]",
+            [["09752", 72, 20, 0, 0, 20, 0, [], ["Amarildo Otavio Martins"]]]
+        ],
+        [
+            "CEE5958",
+            "LABORATORIO DE METODOS ELETROANALITICOS *QUIMICA BACHARELADO[CAMPUS BLUMENAU]",
+            "Laboratório de Métodos Eletroanalíticos *QUÍMICA BACHARELADO[Campus Blumenau]",
+            [["07757", 36, 25, 6, 0, 19, 0, ["3.1830-2 / BLN-B010"], ["Eduardo Zapp"]]]
+        ],
+        [
+            "CEE5990",
+            "MINERALOGIA (PCC 36 HORAS/AULA) *QUIMICA - LICENCIATURA (NOTURNO) [CAMPUS BLUMENAU]",
+            "Mineralogia (PCC 36 horas/aula) *QUÍMICA - Licenciatura (Noturno) [Campus Blumenau]",
+            [
+                [
+                    "09752",
+                    72,
+                    50,
+                    25,
+                    0,
+                    25,
+                    0,
+                    ["3.2020-2 / BLN-A102", "5.1830-2 / BLN-A102"],
+                    ["Jose Wilmo da Cruz Junior"]
+                ]
+            ]
+        ],
+        [
+            "CEE6106",
+            "FISICA I *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Física I *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                ["01754", 72, 69, 5, 0, 64, 2, ["2.1330-2 / BLN-A301", "5.0820-2 / BLN-A105"], ["Daniel Girardi"]],
+                [
+                    "02753",
+                    72,
+                    30,
+                    28,
+                    0,
+                    2,
+                    1,
+                    ["2.0820-2 / BLN-A205", "4.0820-2 / BLN-A205"],
+                    ["Professor A Contratar"]
+                ],
+                ["03755", 72, 50, 17, 0, 33, 0, ["2.1010-2 / BLN-A208", "5.1010-2 / BLN-A103"], ["Daniel Girardi"]]
+            ]
+        ],
+        [
+            "CEE6109",
+            "FISICA II *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Física II *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                [
+                    "02754",
+                    72,
+                    35,
+                    9,
+                    0,
+                    26,
+                    0,
+                    ["4.1010-2 / BLN-A205", "6.1010-2 / BLN-A205"],
+                    ["Rafael Leonardo Novak"]
+                ],
+                [
+                    "03753",
+                    72,
+                    30,
+                    10,
+                    0,
+                    20,
+                    0,
+                    ["3.0820-2 / BLN-A303", "5.0820-2 / BLN-A107"],
+                    ["Lara Fernandes dos Santos Lavelli"]
+                ],
+                [
+                    "04755",
+                    72,
+                    50,
+                    16,
+                    0,
+                    34,
+                    0,
+                    ["3.1010-2 / BLN-A107", "6.1010-2 / BLN-A202"],
+                    ["Fernando Fuzinatto Dall Agnol"]
+                ]
+            ]
+        ],
+        [
+            "CEE6110",
+            "FISICA III *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Física III *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                [
+                    "03754",
+                    72,
+                    25,
+                    12,
+                    0,
+                    13,
+                    0,
+                    ["2.1330-2 / BLN-A207", "4.1330-2 / BLN-A207"],
+                    ["Nara Rubiano da Silva"]
+                ],
+                [
+                    "04753",
+                    72,
+                    30,
+                    3,
+                    0,
+                    27,
+                    0,
+                    ["2.1330-2 / BLN-A207", "4.1330-2 / BLN-A207"],
+                    ["Nara Rubiano da Silva"]
+                ]
+            ]
+        ],
+        [
+            "CEE6206",
+            "FISICA EXPERIMENTAL I [CANCELADA] *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Física Experimental I [Cancelada] *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                ["01754", 36, 0, 0, 0, 0, 0, [], ["Eslley Scatena Gonçales", "Fernando Fuzinatto Dall Agnol"]],
+                ["01754A", 36, 35, 1, 0, 34, 1, ["4.1330-2 / BLN-B103"], ["Eslley Scatena Gonçales"]],
+                ["01754B", 36, 35, 3, 0, 32, 1, ["4.0820-2 / BLN-B103"], ["Fernando Fuzinatto Dall Agnol"]],
+                ["02753", 36, 30, 10, 0, 20, 0, ["6.0820-2 / BLN-B103"], ["Rafael Leonardo Novak"]],
+                ["03755", 36, 25, 25, 0, 0, 0, ["3.0820-2 / BLN-B103"], ["Nara Rubiano da Silva"]]
+            ]
+        ],
+        [
+            "CEE6209",
+            "FISICA EXPERIMENTAL II *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Física Experimental II *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                ["02754A", 36, 25, 8, 0, 17, 0, ["3.1010-2 / BLN-B105"], ["Professor A Contratar"]],
+                ["02754B", 36, 25, 0, 0, 25, 0, ["3.0820-2 / BLN-B105"], ["Professor A Contratar"]],
+                ["03753", 36, 30, 10, 0, 20, 0, ["2.1330-2 / BLN-B105"], ["Professor A Contratar"]]
+            ]
+        ],
+        [
+            "CEE6210",
+            "FISICA EXPERIMENTAL III *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Física Experimental III *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                ["03754A", 36, 25, 16, 0, 9, 0, ["5.1010-2 / BLN-B104"], ["Lucas Natalio Chavero"]],
+                ["03754B", 36, 25, 0, 0, 25, 0, ["5.1510-2 / BLN-B104"], ["Lucas Natalio Chavero"]],
+                ["04753", 36, 20, 6, 0, 14, 0, ["5.1330-2 / BLN-B104"], ["Lucas Natalio Chavero"]]
+            ]
+        ],
+        [
+            "CEE6310",
+            "OTICA *QUIMICA BACHARELADO[CAMPUS BLUMENAU]",
+            "Ótica *QUÍMICA BACHARELADO[Campus Blumenau]",
+            [
+                ["05757", 36, 30, 20, 0, 10, 0, ["2.2020-2 / BLN-A104"], ["Rafael Leonardo Novak"]],
+                ["06752", 36, 30, 5, 0, 25, 0, ["2.2020-2 / BLN-A104"], ["Rafael Leonardo Novak"]],
+                ["06755", 36, 40, 3, 0, 37, 0, ["2.1010-2 / BLN-A207"], ["Eslley Scatena Gonçales"]]
+            ]
+        ],
+        [
+            "CEE7004",
+            "FISICA EXPERIMENTAL II *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Física Experimental II *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [["04755", 36, 25, 3, 0, 22, 0, ["2.1010-2 / BLN-B105"], ["Professor A Contratar"]]]
+        ],
+        [
+            "CEE7005",
+            "FISICA III *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Física III *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [["05755", 72, 40, 4, 0, 36, 0, ["3.1010-2 / BLN-A103", "6.1010-2 / BLN-A101"], ["Lucas Natalio Chavero"]]]
+        ],
+        [
+            "CEE7101",
+            "QUIMICA GERAL I *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Química Geral I *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [
+                [
+                    "01753",
+                    72,
+                    50,
+                    19,
+                    0,
+                    31,
+                    2,
+                    ["3.1010-2 / BLN-A301", "6.1010-2 / BLN-A204"],
+                    ["Amarildo Otavio Martins"]
+                ],
+                [
+                    "01755",
+                    72,
+                    54,
+                    29,
+                    0,
+                    25,
+                    0,
+                    ["3.1010-2 / BLN-A301", "6.1010-2 / BLN-A204"],
+                    ["Amarildo Otavio Martins"]
+                ],
+                [
+                    "01757",
+                    72,
+                    52,
+                    34,
+                    0,
+                    18,
+                    3,
+                    ["3.1830-2 / BLN-A103", "5.2020-2 / BLN-A103"],
+                    ["Jose Wilmo da Cruz Junior"]
+                ]
+            ]
+        ],
+        [
+            "CEE7102",
+            "EDUCACAO AMBIENTAL *QUIMICA BACHARELADO[CAMPUS BLUMENAU]",
+            "Educação Ambiental *QUÍMICA BACHARELADO[Campus Blumenau]",
+            [["01757", 36, 52, 34, 0, 18, 1, ["6.2020-2 / BLN-A103"], ["Amarildo Otavio Martins"]]]
+        ],
+        [
+            "CEE7103",
+            "METODOLOGIA CIENTIFICA *QUIMICA BACHARELADO[CAMPUS BLUMENAU]",
+            "Metodologia Científica *QUÍMICA BACHARELADO[Campus Blumenau]",
+            [["01757", 36, 52, 34, 0, 18, 3, ["4.1830-2 / BLN-A103"], ["Daniela Brondani"]]]
+        ],
+        [
+            "CEE7105",
+            "METODOLOGIA DO ENSINO DE MATEMATICA (PCC 36H-A) *MATEMATICA - LICENCIATURA (NOTURNO) [CAMPUS BLUMENAU]",
+            "Metodologia do Ensino de Matemática (PCC 36h-a) *MATEMÁTICA - Licenciatura (noturno) [Campus Blumenau]",
+            [
+                [
+                    "05751",
+                    108,
+                    25,
+                    5,
+                    0,
+                    20,
+                    0,
+                    ["2.1830-2 / BLN-B124", "4.1830-2 / BLN-A205", "5.1830-2 / BLN-B124"],
+                    ["Jorge Cássio Costa Nóbriga"]
+                ]
+            ]
+        ],
+        [
+            "CEE7106",
+            "DIDATICA (PCC 18H-A) *QUIMICA - LICENCIATURA (NOTURNO) [CAMPUS BLUMENAU]",
+            "Didática (PCC 18h-a) *QUÍMICA - Licenciatura (Noturno) [Campus Blumenau]",
+            [
+                [
+                    "04752",
+                    72,
+                    30,
+                    4,
+                    0,
+                    26,
+                    0,
+                    ["2.1830-2 / BLN-A103", "4.2020-2 / AUX-ALOCAR"],
+                    ["Edilaine Aparecida Vieira"]
+                ]
+            ]
+        ],
+        [
+            "CEE7107",
+            "QUIMICA GERAL EXPERIMENTAL *QUIMICA BACHARELADO[CAMPUS BLUMENAU]",
+            "Química Geral Experimental *QUÍMICA BACHARELADO[Campus Blumenau]",
+            [
+                ["01757A", 72, 26, 20, 0, 6, 1, ["2.1830-4 / BLN-B010"], ["Eduardo Zapp"]],
+                ["01757B", 72, 26, 14, 0, 12, 1, ["2.1830-4 / BLN-B010"], ["Eduardo Zapp"]]
+            ]
+        ],
+        [
+            "CEE7195",
+            "FISICA I *QUIMICA BACHARELADO[CAMPUS BLUMENAU]",
+            "Física I *QUÍMICA BACHARELADO[Campus Blumenau]",
+            [
+                [
+                    "03757",
+                    72,
+                    50,
+                    6,
+                    0,
+                    44,
+                    0,
+                    ["2.2020-2 / BLN-A105", "4.1830-2 / BLN-A105"],
+                    ["Eslley Scatena Gonçales"]
+                ],
+                [
+                    "04752",
+                    72,
+                    30,
+                    0,
+                    0,
+                    30,
+                    0,
+                    ["2.2020-2 / BLN-A105", "4.1830-2 / BLN-A105"],
+                    ["Eslley Scatena Gonçales"]
+                ]
+            ]
+        ],
+        [
+            "CEE7199",
+            "EDUCACAO, DIREITOS HUMANOS E DIVERSIDADE SOCIOCULTURAL (PCC 18H-A) *QUIMICA - LICENCIATURA (NOTURNO) [CAMPUS BLUMENAU]",
+            "Educação, Direitos Humanos e Diversidade Sociocultural (PCC 18h-a) *QUÍMICA - Licenciatura (Noturno) [Campus Blumenau]",
+            [
+                ["06752", 36, 15, 13, 0, 2, 0, ["2.1830-2 / BLN-A105"], ["Renata Orlandi"]],
+                ["06756", 36, 25, 3, 0, 22, 0, ["2.1010-2 / BLN-A107"], ["Renata Orlandi"]]
+            ]
+        ],
+        [
+            "CEE7207",
+            "FUNDAMENTOS HISTORICO-FILOSOFICOS DA EDUCACAO (PCC 18H-A) *QUIMICA - LICENCIATURA (NOTURNO) [CAMPUS BLUMENAU]",
+            "Fundamentos Histórico-Filosóficos da Educação (PCC 18h-a) *QUÍMICA - Licenciatura (Noturno) [Campus Blumenau]",
+            [
+                ["02752", 72, 30, 8, 0, 22, 0, ["4.2020-2 / BLN-A101", "5.1830-2 / BLN-A101"], ["Luciane Schulz"]],
+                ["03751", 72, 25, 11, 0, 14, 0, ["2.1830-2 / BLN-A303", "4.1830-2 / BLN-A107"], ["Luciane Schulz"]]
+            ]
+        ],
+        [
+            "CEE7208",
+            "PSICOLOGIA EDUCACIONAL: DESENVOLVIMENTO E APRENDIZAGEM (PCC 18H-A E EXT 18H-A) *QUIMICA - LICENCIATURA (NOTURNO) [CAMPUS BLUMENAU]",
+            "Psicologia Educacional: Desenvolvimento e Aprendizagem (PCC 18h-a e EXT 18h-a) *QUÍMICA - Licenciatura (Noturno) [Campus Blumenau]",
+            [
+                ["02752", 72, 30, 13, 0, 17, 0, [], ["Renata Orlandi"]],
+                ["03751", 72, 25, 12, 0, 13, 0, ["2.2020-2 / BLN-A101", "5.2020-2 / BLN-A101"], ["Renata Orlandi"]]
+            ]
+        ],
+        [
+            "CEE7295",
+            "FISICA II *MATEMATICA - LICENCIATURA (NOTURNO) [CAMPUS BLUMENAU]",
+            "Física II *MATEMÁTICA - Licenciatura (noturno) [Campus Blumenau]",
+            [
+                [
+                    "09751",
+                    72,
+                    25,
+                    2,
+                    0,
+                    23,
+                    0,
+                    ["2.2020-2 / BLN-A204", "4.2020-2 / BLN-A202"],
+                    ["Daniel Almeida Fagundes"]
+                ]
+            ]
+        ],
+        [
+            "CEE7303",
+            "QUIMICA ORGANICA I (EXT 18H-A) *QUIMICA BACHARELADO[CAMPUS BLUMENAU]",
+            "Química Orgânica I (EXT 18h-a) *QUÍMICA BACHARELADO[Campus Blumenau]",
+            [
+                [
+                    "03757",
+                    72,
+                    50,
+                    22,
+                    0,
+                    28,
+                    0,
+                    ["3.1830-2 / AUX-ALOCAR", "5.2020-2 / AUX-ALOCAR"],
+                    ["Professor A Contratar", "Lidiane Meier"]
+                ]
+            ]
+        ],
+        [
+            "CEE7304",
+            "ESTATISTICA APLICADA A QUIMICA *QUIMICA BACHARELADO[CAMPUS BLUMENAU]",
+            "Estatística Aplicada à Química *QUÍMICA BACHARELADO[Campus Blumenau]",
+            [["03757", 36, 50, 17, 0, 33, 0, ["4.2020-2 / BLN-A105"], ["Daniela Brondani"]]]
+        ],
+        [
+            "CEE7307",
+            "ORGANIZACAO E GESTAO ESCOLAR (PCC 18H-A) *MATEMATICA - LICENCIATURA [CAMPUS BLUMENAU]",
+            "Organização e Gestão Escolar (PCC 18h-a) *MATEMÁTICA - Licenciatura [Campus Blumenau]",
+            [
+                [
+                    "02756",
+                    72,
+                    50,
+                    18,
+                    0,
+                    32,
+                    0,
+                    ["3.0820-2 / BLN-A101", "4.1010-2 / BLN-A208"],
+                    ["Edilaine Aparecida Vieira"]
+                ]
+            ]
+        ],
+        [
+            "CEE7401",
+            "QUIMICA E EXTENSAO NA EDUCACAO BASICA (EXT 72H-A) *QUIMICA - LICENCIATURA (NOTURNO) [CAMPUS BLUMENAU]",
+            "Química e Extensão na Educação Básica (EXT 72h-a) *QUÍMICA - Licenciatura (Noturno) [Campus Blumenau]",
+            [
+                [
+                    "04752",
+                    72,
+                    50,
+                    8,
+                    0,
+                    42,
+                    0,
+                    ["3.2020-2 / AUX-ALOCAR", "5.1830-2 / BLN-A305"],
+                    ["Keysy Solange Costa Nogueira"]
+                ]
+            ]
+        ],
+        [
+            "CEE7501",
+            "QUIMICA DE SUPERFICIE E COLOIDES *QUIMICA BACHARELADO[CAMPUS BLUMENAU]",
+            "Química de Superfície e Colóides *QUÍMICA BACHARELADO[Campus Blumenau]",
+            [["08757", 36, 50, 3, 0, 47, 0, ["3.1620-2 / BLN-A303"], ["Ismael Casagrande Bellettini"]]]
+        ],
+        [
+            "CEE7502",
+            "QUIMICA INORGANICA II *QUIMICA BACHARELADO[CAMPUS BLUMENAU]",
+            "Química Inorgânica II *QUÍMICA BACHARELADO[Campus Blumenau]",
+            [
+                [
+                    "05757",
+                    72,
+                    35,
+                    5,
+                    0,
+                    30,
+                    0,
+                    ["3.1830-2 / AUX-ALOCAR", "5.1830-2 / AUX-ALOCAR"],
+                    ["Silmar José Spinardi Franchi"]
+                ]
+            ]
+        ],
+        [
+            "CEE7506",
+            "EDUCACAO INCLUSIVA (PCC 18H-A/EXT 18H-A) *MATEMATICA - LICENCIATURA [CAMPUS BLUMENAU]",
+            "Educação Inclusiva (PCC 18h-a/EXT 18h-a) *MATEMÁTICA - Licenciatura [Campus Blumenau]",
+            [
+                [
+                    "04756",
+                    72,
+                    25,
+                    10,
+                    0,
+                    15,
+                    2,
+                    ["2.1010-2 / BLN-B124", "5.1010-2 / BLN-A104"],
+                    ["Fabiana Schmitt Corrêa"]
+                ]
+            ]
+        ],
+        [
+            "CEE7701",
+            "SOLUCOES E EQUILIBRIO ENTRE FASES *QUIMICA BACHARELADO[CAMPUS BLUMENAU]",
+            "Soluções e Equilíbrio entre Fases *QUÍMICA BACHARELADO[Campus Blumenau]",
+            [
+                [
+                    "07757",
+                    72,
+                    30,
+                    7,
+                    0,
+                    23,
+                    0,
+                    ["2.2020-2 / AUX-ALOCAR", "4.1830-2 / AUX-ALOCAR"],
+                    ["Glaucio Régis Nagurniak"]
+                ]
+            ]
+        ],
+        [
+            "CEE7702",
+            "QUIMICA BIOLOGICA II *QUIMICA BACHARELADO[CAMPUS BLUMENAU]",
+            "Química Biológica II *QUÍMICA BACHARELADO[Campus Blumenau]",
+            [
+                [
+                    "07757",
+                    72,
+                    30,
+                    0,
+                    0,
+                    30,
+                    0,
+                    ["2.1830-2 / AUX-ALOCAR", "5.2020-2 / AUX-ALOCAR"],
+                    ["Professor A Contratar", "Lidiane Meier"]
+                ]
+            ]
+        ],
+        [
+            "CEE7703",
+            "QUIMICA ORGANICA EXPERIMENTAL II *QUIMICA BACHARELADO[CAMPUS BLUMENAU]",
+            "Química Orgânica Experimental II *QUÍMICA BACHARELADO[Campus Blumenau]",
+            [
+                ["07757", 72, 25, 10, 0, 15, 0, ["6.1830-4 / BLN-B011"], ["Lidiane Meier", "Professor A Contratar"]],
+                ["08757", 72, 25, 3, 0, 22, 0, ["6.1830-4 / BLN-B011"], ["Professor A Contratar"]]
+            ]
+        ],
+        [
+            "CEE7704",
+            "LABORATORIO DE METODOS ESPECTROMETRICOS E DE SEPARACAO *QUIMICA BACHARELADO[CAMPUS BLUMENAU]",
+            "Laboratório de Métodos Espectrométricos e de Separação *QUÍMICA BACHARELADO[Campus Blumenau]",
+            [
+                ["07757", 36, 25, 13, 0, 12, 0, ["4.2020-2 / BLN-B010"], ["Amarildo Otavio Martins"]],
+                ["08757", 36, 25, 6, 0, 19, 0, ["4.2020-2 / BLN-B010"], ["Amarildo Otavio Martins"]]
+            ]
+        ],
+        [
+            "CEE7706",
+            "TCC 1 *QUIMICA BACHARELADO[CAMPUS BLUMENAU]",
+            "TCC 1 *QUÍMICA BACHARELADO[Campus Blumenau]",
+            [["07757", 36, 20, 8, 0, 12, 0, [], ["Amarildo Otavio Martins"]]]
+        ],
+        [
+            "CEE7801",
+            "QUIMICA BIOLOGICA EXPERIMENTAL *QUIMICA BACHARELADO[CAMPUS BLUMENAU]",
+            "Química Biológica Experimental *QUÍMICA BACHARELADO[Campus Blumenau]",
+            [["08757", 72, 25, 0, 0, 25, 0, ["2.1420-4 / BLN-B011"], ["Lidiane Meier"]]]
+        ],
+        [
+            "CEE7802",
+            "TCC 2 *QUIMICA BACHARELADO[CAMPUS BLUMENAU]",
+            "TCC 2 *QUÍMICA BACHARELADO[Campus Blumenau]",
+            [["08757", 360, 20, 1, 0, 19, 0, ["6.1420-2 / BLN-B011"], ["Amarildo Otavio Martins"]]]
+        ],
+        [
+            "CEE7900",
+            "EDUCACAO, DIREITOS HUMANOS E DIVERSIDADE SOCIOCULTURAL (EXT 18H-A) *QUIMICA BACHARELADO[CAMPUS BLUMENAU]",
+            "Educação, Direitos Humanos e Diversidade Sociocultural (EXT 18h-a) *QUÍMICA BACHARELADO[Campus Blumenau]",
+            [["03757", 36, 50, 18, 0, 32, 0, ["2.1830-2 / AUX-ALOCAR"], ["Renata Orlandi"]]]
+        ],
+        [
+            "CEE7921",
+            "LIBRAS I (PCC 18H-A) *MATEMATICA - LICENCIATURA (NOTURNO) [CAMPUS BLUMENAU]",
+            "LIBRAS I (PCC 18h-a) *MATEMÁTICA - Licenciatura (noturno) [Campus Blumenau]",
+            [["05751", 36, 25, 11, 0, 14, 0, ["3.2020-2 / BLN-A202"], ["Fabiana Schmitt Corrêa"]]]
+        ],
+        [
+            "CEE7922",
+            "LIBRAS II (PCC 18H-A) *MATEMATICA - LICENCIATURA [CAMPUS BLUMENAU]",
+            "LIBRAS II (PCC 18h-a) *MATEMÁTICA - Licenciatura [Campus Blumenau]",
+            [["06756", 36, 25, 5, 0, 20, 0, ["4.1010-2 / BLN-A204"], ["Fabiana Schmitt Corrêa"]]]
+        ],
+        [
+            "CEE7924",
+            "LIBRAS (PCC 36H-A) *QUIMICA - LICENCIATURA (NOTURNO) [CAMPUS BLUMENAU]",
+            "Libras (PCC 36h-a) *QUÍMICA - Licenciatura (Noturno) [Campus Blumenau]",
+            [["02752", 72, 30, 29, 0, 1, 4, ["2.1830-2 / BLN-A101", "4.1830-2 / BLN-A101"], ["Fabiana Schmitt Corrêa"]]]
+        ],
+        [
+            "DET1002",
+            "ESTAGIO SUPERVISIONADO *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Estágio Supervisionado *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [["10755", 324, 25, 6, 0, 19, 0, [], ["Catia Rosana Lange de Aguiar"]]]
+        ],
+        [
+            "DET1024",
+            "GESTAO DA INOVACAO *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Gestão da Inovação *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [
+                ["03753", 36, 20, 2, 0, 18, 0, ["5.1010-2 / BLN-A301"], ["Ana Julia Dal Forno"]],
+                ["05755", 36, 20, 2, 0, 18, 0, ["5.1010-2 / BLN-A301"], ["Ana Julia Dal Forno"]]
+            ]
+        ],
+        [
+            "DET1025",
+            "EMPREENDEDORISMO *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Empreendedorismo *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [
+                ["03753", 36, 20, 8, 0, 12, 0, ["4.0820-2 / BLN-A301"], ["Ana Julia Dal Forno"]],
+                ["09755", 36, 20, 1, 0, 19, 0, ["4.0820-2 / BLN-A301"], ["Ana Julia Dal Forno"]]
+            ]
+        ],
+        [
+            "DET1042",
+            "BIOTECNOLOGIA TEXTIL *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Biotecnologia Têxtil *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [["07755", 36, 25, 1, 0, 24, 0, ["4.0730-2 / BLN-A303"], ["Rita de Cássia Siqueira Curto Valle"]]]
+        ],
+        [
+            "DET1043",
+            "TOPICOS ESPECIAIS EM ENGENHARIA TEXTIL I *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Tópicos Especiais em Engenharia Têxtil I *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [["09755", 36, 25, 3, 0, 22, 0, ["3.1010-2 / BLN-A105"], ["Cristiane da Costa"]]]
+        ],
+        [
+            "DET1100",
+            "INTRODUCAO A ENGENHARIA TEXTIL *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Introdução à Engenharia Têxtil *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [["01755", 54, 58, 31, 0, 27, 0, ["2.0730-3 / BLN-A303"], ["Rita de Cássia Siqueira Curto Valle"]]]
+        ],
+        [
+            "DET1202",
+            "CIENCIAS DOS MATERIAIS TEXTEIS *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Ciências dos Materiais Têxteis *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [["02755", 54, 25, 10, 0, 15, 0, ["6.0730-3 / BLN-A104"], ["Cristiane da Costa"]]]
+        ],
+        [
+            "DET1203",
+            "INTRODUCAO A ELEMENTOS DE MAQUINAS *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Introdução a Elementos de Máquinas *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [["02755", 36, 25, 15, 0, 10, 0, ["2.0820-2 / BLN-B024"], ["Maria Elisa Philippsen Missner"]]]
+        ],
+        [
+            "DET1205",
+            "POLIMEROS E FIBRAS I *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Polímeros e Fibras I *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [["02755", 54, 25, 8, 0, 17, 0, ["3.0730-3 / BLN-A105"], ["Rita de Cássia Siqueira Curto Valle"]]]
+        ],
+        [
+            "DET1305",
+            "TECNOLOGIA DE FIACAO I *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Tecnologia de Fiação I *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [["03755", 54, 25, 5, 0, 20, 0, ["5.0730-3 / BLN-A104"], ["Odinei Hess Gonçalves"]]]
+        ],
+        [
+            "DET1306",
+            "POLIMEROS E FIBRAS II *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Polímeros e Fibras II *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [["03755", 72, 25, 5, 0, 20, 0, ["7.0820-4 / BLN-A101"], ["Carlos Rafael Silva de Oliveira"]]]
+        ],
+        [
+            "DET1405",
+            "TECNOLOGIA DE FIACAO II *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Tecnologia de Fiação II *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [["04755", 54, 25, 1, 0, 24, 0, ["5.0730-3 / BLN-B117"], ["Joziel Aparecido da Cruz"]]]
+        ],
+        [
+            "DET1408",
+            "FENOMENOS DE SUPERFICIE *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Fenômenos de Superfície *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [["04755", 36, 25, 0, 0, 25, 0, ["2.0820-2 / BLN-B117"], ["Miguel Angelo Granato"]]]
+        ],
+        [
+            "DET1413",
+            "INTRODUCAO AO DESIGN E MODA (PIDRIS / EXT36H-A) *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Introdução ao Design e Moda (PIDRIS / EXT36h-a) *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [
+                [
+                    "04755",
+                    90,
+                    25,
+                    3,
+                    0,
+                    22,
+                    0,
+                    ["2.0730-1 / BLN-A301", "4.0730-3 / BLN-B117", "6.0730-1 / BLN-A105"],
+                    ["Maria Elisa Philippsen Missner", "Grazyella Cristina Oliveira de Aguiar"]
+                ]
+            ]
+        ],
+        [
+            "DET1501",
+            "MECANICA DOS FLUIDOS *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Mecânica dos Fluidos *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [
+                [
+                    "05755",
+                    72,
+                    40,
+                    0,
+                    0,
+                    40,
+                    0,
+                    ["2.0910-1 / BLN-A307.1", "6.0730-3 / BLN-A103"],
+                    ["Andrea Cristiane Krause Bierhalz"]
+                ]
+            ]
+        ],
+        [
+            "DET1502",
+            "TERMODINAMICA *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Termodinâmica *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [["05755", 72, 25, 1, 0, 24, 0, ["2.1010-2 / BLN-A202", "4.1010-2 / BLN-A304"], ["Miguel Angelo Granato"]]]
+        ],
+        [
+            "DET1506",
+            "PREPARACAO A TECELAGEM *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Preparação à Tecelagem *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [["05755", 54, 25, 4, 0, 21, 0, ["4.0730-3 / BLN-A104"], ["Joziel Aparecido da Cruz"]]]
+        ],
+        [
+            "DET1507",
+            "TECNOLOGIA DE MALHARIA POR TRAMA *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Tecnologia de Malharia por Trama *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [
+                [
+                    "05755",
+                    90,
+                    25,
+                    5,
+                    0,
+                    20,
+                    0,
+                    ["2.0730-2 / BLN-A104", "3.0730-3 / BLN-A208"],
+                    ["Brenno Henrique Silva Felipe"]
+                ]
+            ]
+        ],
+        [
+            "DET1600",
+            "OPERACOES NA INDUSTRIA TEXTIL *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Operações na Indústria Têxtil *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [["06755", 54, 25, 2, 0, 23, 0, ["3.0730-3 / BLN-A204"], ["José Alexandre Borges Valle"]]]
+        ],
+        [
+            "DET1607",
+            "TRANSFERENCIA DE CALOR E MASSA *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Transferência de Calor e Massa *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [
+                [
+                    "06755",
+                    90,
+                    25,
+                    3,
+                    0,
+                    22,
+                    0,
+                    ["3.1010-2 / BLN-A302", "5.0730-3 / BLN-A101"],
+                    ["José Alexandre Borges Valle"]
+                ]
+            ]
+        ],
+        [
+            "DET1608",
+            "TECNOLOGIA DE BENEFICIAMENTO I *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Tecnologia de Beneficiamento I *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [
+                [
+                    "06755",
+                    72,
+                    24,
+                    4,
+                    0,
+                    20,
+                    0,
+                    ["4.0820-2 / BLN-A307.1", "5.1010-2 / BLN-A302"],
+                    ["Catia Rosana Lange de Aguiar"]
+                ]
+            ]
+        ],
+        [
+            "DET1609",
+            "TECNOLOGIA DE TECELAGEM *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Tecnologia de Tecelagem *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [["06755", 90, 25, 3, 0, 22, 0, ["6.0730-5 / BLN-A307.1"], ["Brenno Henrique Silva Felipe"]]]
+        ],
+        [
+            "DET1610",
+            "TECNOLOGIA DE NAOTECIDO *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Tecnologia de Nãotecido *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [["06755", 36, 25, 7, 0, 18, 0, ["4.1010-2 / BLN-A107"], ["Joziel Aparecido da Cruz"]]]
+        ],
+        [
+            "DET1611",
+            "TECNOLOGIA DE MALHARIA POR URDUME *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Tecnologia de Malharia por Urdume *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [["06755", 54, 25, 1, 0, 24, 0, ["2.0730-3 / BLN-A103"], ["Joziel Aparecido da Cruz"]]]
+        ],
+        [
+            "DET1703",
+            "CIENCIA DAS CORES *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Ciência das Cores *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [["07755", 54, 24, 3, 0, 21, 0, ["3.0730-3 / BLN-A302"], ["Miguel Angelo Granato"]]]
+        ],
+        [
+            "DET1704",
+            "CAD/CAM NO VESTUARIO (EXT 18H-A) *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "CAD/CAM no Vestuário (EXT 18h-a) *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [["07755", 54, 25, 5, 0, 20, 0, ["5.0730-3 / BLN-VV001"], ["Grazyella Cristina Oliveira de Aguiar"]]]
+        ],
+        [
+            "DET1705",
+            "TECNOLOGIA DE BENEFICIAMENTO II *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Tecnologia de Beneficiamento II *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [
+                [
+                    "07755",
+                    90,
+                    24,
+                    3,
+                    0,
+                    21,
+                    0,
+                    ["6.0730-3 / BLN-A101", "6.1010-2 / BLN-B004"],
+                    ["Catia Rosana Lange de Aguiar"]
+                ]
+            ]
+        ],
+        [
+            "DET1706",
+            "ENGENHARIA DA QUALIDADE (EXT 18H/A) *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Engenharia da Qualidade (EXT 18h/a) *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [
+                [
+                    "07755",
+                    72,
+                    20,
+                    5,
+                    0,
+                    15,
+                    0,
+                    ["3.1010-2 / BLN-A104", "5.1010-2 / BLN-A303"],
+                    ["Franciely Velozo Aragão"]
+                ]
+            ]
+        ],
+        [
+            "DET1712",
+            "GESTAO AMBIENTAL EM ORGANIZACOES (PIDRIS/EXT 36H-A) *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Gestão Ambiental em Organizações (PIDRIS/EXT 36h-a) *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [["07755", 90, 20, 2, 0, 18, 0, ["2.0820-2 / BLN-B115", "4.0910-3 / AUX-ALOCAR"], ["Fabiana Raupp"]]]
+        ],
+        [
+            "DET1800",
+            "PROJETO DE FINAL DE CURSO I *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Projeto de Final de Curso I *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [
+                [
+                    "08755",
+                    36,
+                    25,
+                    5,
+                    0,
+                    20,
+                    0,
+                    ["3.1100-1 / BLN-B117", "4.0730-1 / BLN-A107"],
+                    ["Carlos Rafael Silva de Oliveira"]
+                ]
+            ]
+        ],
+        [
+            "DET1803",
+            "PLANEJAMENTO E CONTROLE DA PRODUCAO *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Planejamento e Controle da Produção *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                ["09754", 54, 22, 14, 0, 8, 0, ["2.0910-3 / BLN-A302"], ["Franciely Velozo Aragão"]],
+                ["09755", 54, 18, 2, 0, 16, 0, ["2.0910-3 / BLN-A302"], ["Franciely Velozo Aragão"]]
+            ]
+        ],
+        [
+            "DET1804",
+            "MODELAGEM E SIMULACAO DE PROCESSOS *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Modelagem e Simulação de Processos *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [["08755", 36, 25, 5, 0, 20, 0, ["2.1010-2 / BLN-A307.1"], ["Maria Elisa Philippsen Missner"]]]
+        ],
+        [
+            "DET1805",
+            "TEXTEIS TECNICOS E INTERATIVOS *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Têxteis Técnicos e Interativos *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [["08755", 90, 25, 8, 0, 17, 0, ["2.0730-3 / BLN-A204", "3.0910-2 / BLN-B117"], ["Fernanda Steffens"]]]
+        ],
+        [
+            "DET1806",
+            "TECNOLOGIA DE BENEFICIAMENTO III *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Tecnologia de Beneficiamento III *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [
+                [
+                    "08755",
+                    72,
+                    25,
+                    9,
+                    0,
+                    16,
+                    0,
+                    ["3.0730-2 / BLN-A107", "6.0730-2 / BLN-A303"],
+                    ["Joziel Aparecido da Cruz"]
+                ]
+            ]
+        ],
+        [
+            "DET1808",
+            "TRATAMENTO DE AGUA E EFLUENTES *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Tratamento de Água e Efluentes *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [
+                ["08755", 54, 25, 2, 0, 23, 0, ["6.0910-3 / BLN-B024"], ["Odinei Hess Gonçalves"]],
+                ["09755", 54, 25, 5, 0, 20, 0, ["6.0910-3 / BLN-B024"], ["Odinei Hess Gonçalves"]]
+            ]
+        ],
+        [
+            "DET1809",
+            "TECNOLOGIA DE ESTAMPARIA *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Tecnologia de Estamparia *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [
+                ["08755", 54, 25, 6, 0, 19, 0, ["5.0910-3 / BLN-B115"], ["Carlos Rafael Silva de Oliveira"]],
+                ["09755", 54, 25, 3, 0, 22, 0, ["5.0910-3 / BLN-B115"], ["Carlos Rafael Silva de Oliveira"]]
+            ]
+        ],
+        [
+            "DET1810",
+            "TECNOLOGIA DE CONFECCAO (EXT 18H-A) *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Tecnologia de Confecção (EXT 18h-a) *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [["08755", 72, 25, 7, 0, 18, 0, ["4.0820-4 / BLN-B115"], ["Maria Elisa Philippsen Missner"]]]
+        ],
+        [
+            "DET1812",
+            "ADMINISTRACAO *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Administração *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [
+                ["04753", 36, 20, 18, 0, 2, 0, ["6.1510-2 / BLN-A101"], ["Ana Julia Dal Forno"]],
+                ["06754", 36, 20, 19, 0, 1, 0, ["6.1510-2 / BLN-A101"], ["Ana Julia Dal Forno"]],
+                ["09755", 36, 40, 14, 0, 26, 0, ["5.0730-2 / BLN-A207"], ["Ana Julia Dal Forno"]]
+            ]
+        ],
+        [
+            "DET1813",
+            "MICROECONOMIA *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Microeconomia *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                ["06754", 36, 14, 4, 0, 10, 0, ["5.0730-2 / BLN-A103"], ["Selene de Souza Siqueira Soares"]],
+                ["08755", 36, 13, 3, 0, 10, 0, ["5.0730-2 / BLN-A103"], ["Selene de Souza Siqueira Soares"]],
+                ["09753", 36, 14, 4, 0, 10, 0, ["5.0730-2 / BLN-A103"], ["Selene de Souza Siqueira Soares"]]
+            ]
+        ],
+        [
+            "DET1814",
+            "ECONOMIA *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Economia *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [["06754", 36, 55, 40, 0, 15, 2, ["2.1330-2 / BLN-A103"], ["Selene de Souza Siqueira Soares"]]]
+        ],
+        [
+            "DET1900",
+            "PROJETO DE FINAL DE CURSO II *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Projeto de Final de Curso II *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [["09755", 72, 25, 1, 0, 24, 0, ["6.1330-4 / BLN-B117"], ["Carlos Rafael Silva de Oliveira"]]]
+        ],
+        [
+            "DET1906",
+            "CONSERVACAO DE SUBSTRATOS TEXTEIS *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Conservação de Substratos Têxteis *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [["09755", 36, 25, 2, 0, 23, 0, ["4.1010-2 / BLN-A307.1"], ["Rita de Cássia Siqueira Curto Valle"]]]
+        ],
+        [
+            "DET1943",
+            "PROJETOS E DIMENSIONAMENTO DA INDUSTRIA TEXTIL *ENGENHARIA TEXTIL [CAMPUS BLUMENAU]",
+            "Projetos e Dimensionamento da Indústria Têxtil *ENGENHARIA TÊXTIL [Campus Blumenau]",
+            [
+                [
+                    "08755",
+                    72,
+                    25,
+                    4,
+                    0,
+                    21,
+                    0,
+                    ["2.0730-2 / BLN-A208", "3.0820-2 / BLN-A307.1"],
+                    ["Odinei Hess Gonçalves"]
+                ]
+            ]
+        ],
+        [
+            "DET3706",
+            "GESTAO DE PROJETOS *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Gestão de Projetos *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                [
+                    "07754",
+                    72,
+                    40,
+                    24,
+                    0,
+                    16,
+                    0,
+                    ["2.0820-2 / BLN-B118", "4.0820-2 / BLN-A305"],
+                    ["Selene de Souza Siqueira Soares"]
+                ]
+            ]
+        ],
+        [
+            "DET3800",
+            "GESTAO AMBIENTAL *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Gestão Ambiental *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [["08754", 54, 20, 18, 0, 2, 0, ["4.0910-3 / BLN-A303"], ["Fabiana Raupp"]]]
+        ],
+        [
+            "DET7000",
+            "ENGENHARIA DA QUALIDADE *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Engenharia da Qualidade *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                [
+                    "09754",
+                    72,
+                    20,
+                    1,
+                    0,
+                    19,
+                    0,
+                    ["3.1010-2 / AUX-ALOCAR", "5.1010-2 / AUX-ALOCAR"],
+                    ["Franciely Velozo Aragão"]
+                ]
+            ]
+        ],
+        [
+            "EMT2006",
+            "ESTAGIO SUPERVISIONADO I *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Estagio Supervisionado I *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [
+                [
+                    "06753",
+                    234,
+                    15,
+                    7,
+                    0,
+                    8,
+                    0,
+                    [],
+                    ["Kethlinn Ramos", "Leonardo Ulian Lopes", "Cristiano da Silva Teixeira"]
+                ]
+            ]
+        ],
+        [
+            "EMT2007",
+            "ESTAGIO SUPERVISIONADO II *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Estágio Supervisionado II *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [
+                [
+                    "08753",
+                    234,
+                    20,
+                    13,
+                    0,
+                    7,
+                    0,
+                    [],
+                    ["Kethlinn Ramos", "Cristiano da Silva Teixeira", "Leonardo Ulian Lopes"]
+                ]
+            ]
+        ],
+        [
+            "EMT2008",
+            "ESTAGIO SUPERVISIONADO III *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Estágio Supervisionado III *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [
+                [
+                    "10753",
+                    234,
+                    30,
+                    14,
+                    0,
+                    16,
+                    0,
+                    [],
+                    ["Leonardo Ulian Lopes", "Cristiano da Silva Teixeira", "Kethlinn Ramos"]
+                ]
+            ]
+        ],
+        [
+            "EMT2010",
+            "ESTRUTURA E PROPRIEDADES DE POLIMEROS *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Estrutura e Propriedades de Polímeros *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [["04753", 72, 25, 9, 0, 16, 0, ["2.1010-2 / BLN-A301", "6.0820-2 / BLN-A301"], ["Larissa Nardini Carli"]]]
+        ],
+        [
+            "EMT2011",
+            "PROCESSAMENTO DE MATERIAIS POLIMERICOS *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Processamento de Materiais Poliméricos *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [
+                [
+                    "05753",
+                    72,
+                    20,
+                    11,
+                    0,
+                    9,
+                    0,
+                    ["3.1330-2 / BLN-A103", "5.1010-2 / BLN-A208"],
+                    ["Johnny de Nardi Martins"]
+                ]
+            ]
+        ],
+        [
+            "EMT2013",
+            "ADITIVACAO DE POLIMEROS *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Aditivação de Polímeros *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [
+                [
+                    "09753",
+                    72,
+                    20,
+                    3,
+                    0,
+                    17,
+                    0,
+                    ["3.1510-2 / BLN-A104", "6.1010-2 / BLN-A104"],
+                    ["Johnny de Nardi Martins"]
+                ]
+            ]
+        ],
+        [
+            "EMT2014",
+            "MATERIAIS METALICOS E SUAS APLICACOES *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Materiais Metálicos e suas Aplicações *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [
+                [
+                    "04753",
+                    72,
+                    25,
+                    4,
+                    0,
+                    21,
+                    0,
+                    ["3.1510-2 / BLN-A302", "5.1510-2 / BLN-A101"],
+                    ["Marcio Roberto da Rocha"]
+                ],
+                ["04753X", 72, 0, 0, 0, 0, 0, ["2.1510-2 / AUX-ALOCAR"], []]
+            ]
+        ],
+        [
+            "EMT2015",
+            "MATERIAIS CERAMICOS E SUAS APLICACOES *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Materiais Cerâmicos e suas Aplicações *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [["04753", 72, 25, 5, 0, 20, 0, ["3.1010-2 / BLN-B022", "6.1330-2 / BLN-A105"], ["Kethlinn Ramos"]]]
+        ],
+        [
+            "EMT2020",
+            "PROCESSAMENTO DE MATERIAIS METALICOS *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Processamento de Materiais Metálicos *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [
+                [
+                    "05753",
+                    72,
+                    20,
+                    14,
+                    0,
+                    6,
+                    0,
+                    ["3.1010-2 / BLN-A304", "5.0820-2 / BLN-A302"],
+                    ["Marcio Roberto da Rocha"]
+                ]
+            ]
+        ],
+        [
+            "EMT2026",
+            "TOPICOS ESPECIAIS: MATERIAIS ELETRICOS *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Tópicos Especiais: Materiais Elétricos *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [["09753", 36, 15, 3, 0, 12, 0, ["3.1330-2 / BLN-B022"], ["Leonardo Ulian Lopes"]]]
+        ],
+        [
+            "EMT2027",
+            "TOPICOS ESPECIAIS: MATERIAIS MAGNETICOS *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Tópicos Especiais: Materiais Magnéticos *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [["07753", 36, 20, 10, 0, 10, 0, ["3.1010-2 / BLN-A202"], ["Cristiano da Silva Teixeira"]]]
+        ],
+        [
+            "EMT2030",
+            "INTRODUCAO AOS MATERIAIS METALICOS *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Introdução aos Materiais Metálicos *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [["04753", 36, 15, 3, 0, 12, 0, ["2.1510-2 / BLN-A107"], ["Leonardo Ulian Lopes"]]]
+        ],
+        [
+            "EMT2031",
+            "TCC *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "TCC *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [["10753", 234, 30, 28, 0, 2, 0, [], ["Larissa Nardini Carli"]]]
+        ],
+        [
+            "EMT2102",
+            "INTRODUCAO A ENGENHARIA DE MATERIAIS *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Introdução à Engenharia de Materiais *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [["01753", 36, 50, 19, 0, 31, 3, ["2.0820-2 / BLN-A107"], ["Laura Ximena Lovisa Oliveira"]]]
+        ],
+        [
+            "EMT2206",
+            "FUNDAMENTOS DE ENGENHARIA DE MATERIAIS I *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Fundamentos de Engenharia de Materiais I *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [
+                [
+                    "02753",
+                    72,
+                    20,
+                    6,
+                    0,
+                    14,
+                    0,
+                    ["3.1330-2 / BLN-A207", "5.1010-2 / BLN-A101"],
+                    ["Cristiano da Silva Teixeira"]
+                ]
+            ]
+        ],
+        [
+            "EMT2207",
+            "FUNDAMENTOS DE ENGENHARIA DE MATERIAIS II *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Fundamentos de Engenharia de Materiais II *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [["03753", 72, 15, 7, 0, 8, 0, ["2.1510-2 / BLN-A304", "4.1330-2 / BLN-A101"], ["Kethlinn Ramos"]]]
+        ],
+        [
+            "EMT2208",
+            "CARACTERIZACAO DE MATERIAIS I *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Caracterização de Materiais I *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [["03753", 36, 12, 3, 0, 9, 0, ["2.1010-2 / BLN-B005"], ["Cristiano da Silva Teixeira"]]]
+        ],
+        [
+            "EMT2302",
+            "TERMODINAMICA PARA ENGENHARIA DE MATERIAIS *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Termodinâmica para Engenharia de Materiais *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [["04753", 72, 20, 7, 0, 13, 0, ["3.1330-2 / BLN-A202", "4.0820-2 / BLN-A101"], ["Claudio Michel Poffo"]]]
+        ],
+        [
+            "EMT2401",
+            "RECICLAGEM DE MATERIAIS E VALORIZACAO DE RESIDUOS *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Reciclagem de Materiais e Valorização de Resíduos *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [
+                [
+                    "07753",
+                    72,
+                    25,
+                    4,
+                    0,
+                    21,
+                    0,
+                    ["4.1010-2 / BLN-A104", "6.1010-2 / BLN-A208"],
+                    ["Luciana Maccarini Schabbach"]
+                ]
+            ]
+        ],
+        [
+            "EMT2402",
+            "ENSAIOS DE MATERIAIS *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Ensaios de Materiais *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [["05753", 72, 16, 10, 0, 6, 0, ["5.1330-4 / BLN-B022"], ["Leonardo Ulian Lopes"]]]
+        ],
+        [
+            "EMT2405",
+            "RESISTENCIA E FALHA EM MATERIAIS *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Resistência e Falha em Materiais *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [
+                [
+                    "04753",
+                    72,
+                    30,
+                    19,
+                    0,
+                    11,
+                    0,
+                    ["2.1510-2 / BLN-A103", "5.0820-2 / BLN-A208"],
+                    ["Wanderson Santana da Silva"]
+                ]
+            ]
+        ],
+        [
+            "EMT2502",
+            "QUIMICA APLICADA AOS MATERIAIS *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Química Aplicada aos Materiais *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [["03753", 36, 15, 6, 0, 9, 0, ["5.1510-2 / BLN-A104"], ["Johnny de Nardi Martins"]]]
+        ],
+        [
+            "EMT2504",
+            "PROCESSAMENTO DE MATERIAIS CERAMICOS *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Processamento de Materiais Cerâmicos *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [
+                [
+                    "05753",
+                    72,
+                    20,
+                    9,
+                    0,
+                    11,
+                    0,
+                    ["4.1330-2 / BLN-A208", "6.0820-2 / BLN-A208"],
+                    ["Luciana Maccarini Schabbach"]
+                ]
+            ]
+        ],
+        [
+            "EMT2506",
+            "SINTESE E QUIMICA DE POLIMEROS *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Síntese e Química de Polímeros *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [["03753", 72, 30, 11, 0, 19, 0, ["3.1330-2 / BLN-A204", "4.1510-2 / BLN-A104"], ["Larissa Nardini Carli"]]]
+        ],
+        [
+            "EMT2702",
+            "ENGENHARIA DE SUPERFICIES *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Engenharia de Superfícies *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [["09753", 72, 25, 15, 0, 10, 0, ["2.1330-2 / BLN-A302", "4.1330-2 / BLN-A104"], ["Renata Braga Soares"]]]
+        ],
+        [
+            "EMT2704",
+            "MATERIAIS COMPOSITOS *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Materiais Compósitos *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [
+                [
+                    "07753",
+                    108,
+                    20,
+                    6,
+                    0,
+                    14,
+                    0,
+                    ["2.0820-2 / BLN-A304", "3.1510-2 / BLN-A301", "4.0820-2 / BLN-A304"],
+                    ["Claudia Merlini"]
+                ]
+            ]
+        ],
+        [
+            "EMT2901",
+            "TOPICOS AVANCADOS EM MATERIAIS *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Tópicos Avançados em Materiais *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [
+                [
+                    "09753",
+                    72,
+                    20,
+                    2,
+                    0,
+                    18,
+                    0,
+                    ["2.1510-2 / BLN-A104", "5.1010-2 / BLN-A107"],
+                    ["Laura Ximena Lovisa Oliveira"]
+                ]
+            ]
+        ],
+        [
+            "MAT1003",
+            "FUNCOES DE VARIAVEIS COMPLEXAS *MATEMATICA - LICENCIATURA (NOTURNO) [CAMPUS BLUMENAU]",
+            "Funções de Variáveis Complexas *MATEMÁTICA - Licenciatura (noturno) [Campus Blumenau]",
+            [["07751", 72, 25, 6, 0, 19, 0, ["2.1830-2 / BLN-A204", "5.2020-2 / BLN-A204"], ["Márcio de Jesus Soares"]]]
+        ],
+        [
+            "MAT1501",
+            "CALCULO III *MATEMATICA - LICENCIATURA (NOTURNO) [CAMPUS BLUMENAU]",
+            "Cálculo III *MATEMÁTICA - Licenciatura (noturno) [Campus Blumenau]",
+            [
+                [
+                    "05751",
+                    72,
+                    25,
+                    6,
+                    0,
+                    19,
+                    0,
+                    ["3.1830-2 / BLN-A202", "6.2020-2 / BLN-A202"],
+                    ["Darlyn Walter Huamán Vargas"]
+                ]
+            ]
+        ],
+        [
+            "MAT1531",
+            "ALGEBRA LINEAR II *MATEMATICA - LICENCIATURA (NOTURNO) [CAMPUS BLUMENAU]",
+            "Álgebra Linear II *MATEMÁTICA - Licenciatura (noturno) [Campus Blumenau]",
+            [["05751", 72, 25, 5, 0, 20, 0, ["2.2020-2 / BLN-A202", "5.2020-2 / BLN-A205"], ["Luiz Rafael dos Santos"]]]
+        ],
+        [
+            "MAT1601",
+            "CALCULO IV *MATEMATICA - LICENCIATURA [CAMPUS BLUMENAU]",
+            "Cálculo IV *MATEMÁTICA - Licenciatura [Campus Blumenau]",
+            [["06756", 72, 25, 4, 0, 21, 0, ["3.1010-2 / BLN-B124", "6.0820-2 / BLN-A304"], ["Roger Behling"]]]
+        ],
+        [
+            "MAT1602",
+            "SERIES E EQUACOES DIFERENCIAIS ORDINARIAS *MATEMATICA - LICENCIATURA [CAMPUS BLUMENAU]",
+            "Séries e Equações Diferenciais Ordinárias *MATEMÁTICA - Licenciatura [Campus Blumenau]",
+            [["06756", 72, 25, 6, 0, 19, 0, ["3.0820-2 / BLN-B124", "6.1010-2 / BLN-A301"], ["Eleomar Cardoso Junior"]]]
+        ],
+        [
+            "MAT1621",
+            "ALGEBRA I *MATEMATICA - LICENCIATURA [CAMPUS BLUMENAU]",
+            "Álgebra I *MATEMÁTICA - Licenciatura [Campus Blumenau]",
+            [
+                [
+                    "06756",
+                    72,
+                    25,
+                    2,
+                    0,
+                    23,
+                    0,
+                    ["2.0820-2 / BLN-A105", "4.0820-2 / BLN-A105"],
+                    ["Rafael Aleixo de Carvalho"]
+                ]
+            ]
+        ],
+        [
+            "MAT1701",
+            "ANALISE NA RETA I *MATEMATICA - LICENCIATURA (NOTURNO) [CAMPUS BLUMENAU]",
+            "Análise na Reta I *MATEMÁTICA - Licenciatura (noturno) [Campus Blumenau]",
+            [
+                [
+                    "07751",
+                    72,
+                    25,
+                    11,
+                    0,
+                    14,
+                    0,
+                    ["3.2020-2 / BLN-A205", "6.1830-2 / BLN-A105"],
+                    ["Cleison dos Santos Ramthun"]
+                ]
+            ]
+        ],
+        [
+            "MAT1721",
+            "ALGEBRA II *MATEMATICA - LICENCIATURA (NOTURNO) [CAMPUS BLUMENAU]",
+            "Álgebra II *MATEMÁTICA - Licenciatura (noturno) [Campus Blumenau]",
+            [["07751", 72, 25, 11, 0, 14, 0, ["3.1830-2 / BLN-A205", "6.2020-2 / BLN-A105"], ["Felipe Vieira"]]]
+        ],
+        [
+            "MAT1831",
+            "METODOS NUMERICOS *MATEMATICA - LICENCIATURA [CAMPUS BLUMENAU]",
+            "Métodos Numéricos *MATEMÁTICA - Licenciatura [Campus Blumenau]",
+            [["08756", 108, 25, 2, 0, 23, 0, ["4.1830-2 / BLN-A305", "6.1830-4 / BLN-A305"], ["Louise Reips"]]]
+        ],
+        [
+            "MAT1891",
+            "TRABALHO DE CONCLUSAO DE CURSO I *MATEMATICA - LICENCIATURA [CAMPUS BLUMENAU]",
+            "Trabalho de Conclusão de Curso I *MATEMÁTICA - Licenciatura [Campus Blumenau]",
+            [["08756", 72, 25, 0, 0, 25, 0, [], ["Naiara Vergian de Paulo Costa"]]]
+        ],
+        [
+            "MAT1991",
+            "TRABALHO DE CONCLUSAO DE CURSO II *MATEMATICA - LICENCIATURA (NOTURNO) [CAMPUS BLUMENAU]",
+            "Trabalho de Conclusão de Curso II *MATEMÁTICA - Licenciatura (noturno) [Campus Blumenau]",
+            [["09751", 144, 25, 3, 0, 22, 0, [], ["Naiara Vergian de Paulo Costa"]]]
+        ],
+        [
+            "MAT2101",
+            "PRE-CALCULO *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Pré-Cálculo *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [
+                [
+                    "01753",
+                    72,
+                    50,
+                    19,
+                    0,
+                    31,
+                    8,
+                    ["3.0820-2 / BLN-A207", "6.0820-2 / BLN-A302"],
+                    ["Javier Esneider Méndez Alfonso"]
+                ],
+                [
+                    "01754",
+                    72,
+                    69,
+                    26,
+                    0,
+                    43,
+                    4,
+                    ["2.0820-2 / BLN-A202", "5.1010-2 / BLN-A105"],
+                    ["Vanda Maria Luchesi"]
+                ],
+                [
+                    "01755",
+                    72,
+                    58,
+                    33,
+                    0,
+                    25,
+                    0,
+                    ["3.0820-2 / BLN-A207", "6.0820-2 / BLN-A302"],
+                    ["Javier Esneider Méndez Alfonso"]
+                ],
+                [
+                    "01757",
+                    72,
+                    52,
+                    34,
+                    0,
+                    18,
+                    4,
+                    ["3.2020-2 / BLN-A103", "5.1830-2 / BLN-A103"],
+                    ["Darlyn Walter Huamán Vargas"]
+                ]
+            ]
+        ],
+        [
+            "MAT2111",
+            "GEOMETRIA ANALITICA *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Geometria Analítica *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [
+                ["01753", 72, 50, 19, 0, 31, 5, ["2.1010-2 / BLN-A103", "4.1010-2 / BLN-A202"], ["Bruno Tadeu Costa"]],
+                [
+                    "01754",
+                    72,
+                    69,
+                    26,
+                    0,
+                    43,
+                    17,
+                    ["2.1010-2 / BLN-A101", "4.1010-2 / BLN-A101"],
+                    ["Rafael Aleixo de Carvalho"]
+                ],
+                ["01755", 72, 59, 34, 0, 25, 1, ["2.1010-2 / BLN-A103", "4.1010-2 / BLN-A202"], ["Bruno Tadeu Costa"]],
+                [
+                    "01757",
+                    72,
+                    52,
+                    34,
+                    0,
+                    18,
+                    6,
+                    ["4.2020-2 / BLN-A103", "6.1830-2 / BLN-A103"],
+                    ["Darlyn Walter Huamán Vargas"]
+                ]
+            ]
+        ],
+        [
+            "MAT2201",
+            "CALCULO 1 *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Cálculo 1 *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                [
+                    "01754",
+                    72,
+                    69,
+                    5,
+                    0,
+                    64,
+                    0,
+                    ["2.1510-2 / BLN-A207", "4.1510-2 / BLN-A101"],
+                    ["Luiz Rafael dos Santos"]
+                ],
+                [
+                    "02752",
+                    72,
+                    50,
+                    9,
+                    0,
+                    41,
+                    0,
+                    ["3.2020-2 / BLN-A101", "6.2020-2 / BLN-A101"],
+                    ["Javier Esneider Méndez Alfonso"]
+                ],
+                [
+                    "02753",
+                    72,
+                    30,
+                    20,
+                    0,
+                    10,
+                    0,
+                    ["3.1010-2 / BLN-A205", "6.1010-2 / BLN-A105"],
+                    ["Javier Esneider Méndez Alfonso"]
+                ],
+                [
+                    "02755",
+                    72,
+                    50,
+                    7,
+                    0,
+                    43,
+                    0,
+                    ["3.1010-2 / BLN-A205", "6.1010-2 / BLN-A105"],
+                    ["Javier Esneider Méndez Alfonso"]
+                ]
+            ]
+        ],
+        [
+            "MAT2211",
+            "ALGEBRA LINEAR *ENGENHARIA DE MATERIAIS [CAMPUS BLUMENAU]",
+            "Álgebra Linear *ENGENHARIA DE MATERIAIS [Campus Blumenau]",
+            [
+                [
+                    "02753",
+                    72,
+                    30,
+                    20,
+                    0,
+                    10,
+                    0,
+                    ["2.1330-2 / BLN-A205", "4.1330-2 / BLN-A204"],
+                    ["Rafael Aleixo de Carvalho"]
+                ],
+                [
+                    "02754",
+                    72,
+                    40,
+                    5,
+                    0,
+                    35,
+                    0,
+                    ["2.0820-2 / BLN-A207", "5.0820-2 / BLN-A301"],
+                    ["Naiara Vergian de Paulo Costa"]
+                ]
+            ]
+        ],
+        [
+            "MAT2301",
+            "CALCULO 2 *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Cálculo 2 *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                ["02754", 72, 30, 28, 0, 2, 0, ["2.1510-2 / BLN-A303", "4.1510-2 / BLN-A107"], ["Vanda Maria Luchesi"]],
+                [
+                    "03753",
+                    72,
+                    30,
+                    9,
+                    0,
+                    21,
+                    0,
+                    ["3.1010-2 / BLN-A101", "6.1010-2 / BLN-A303"],
+                    ["Naiara Vergian de Paulo Costa"]
+                ],
+                [
+                    "03755",
+                    72,
+                    50,
+                    4,
+                    0,
+                    46,
+                    0,
+                    ["3.1010-2 / BLN-A101", "6.1010-2 / BLN-A303"],
+                    ["Naiara Vergian de Paulo Costa"]
+                ],
+                [
+                    "03757",
+                    72,
+                    50,
+                    14,
+                    0,
+                    36,
+                    0,
+                    ["3.2020-2 / BLN-A105", "5.1830-2 / BLN-A105"],
+                    ["Renan Gambale Romano"]
+                ]
+            ]
+        ],
+        [
+            "MAT2401",
+            "CALCULO 3 *ENGENHARIA DE CONTROLE E AUTOMACAO [CAMPUS BLUMENAU]",
+            "Cálculo 3 *ENGENHARIA DE CONTROLE E AUTOMAÇÃO [Campus Blumenau]",
+            [
+                [
+                    "03754",
+                    72,
+                    30,
+                    10,
+                    0,
+                    20,
+                    0,
+                    ["2.0820-2 / BLN-A101", "4.1510-2 / BLN-A207"],
+                    ["Darlyn Walter Huamán Vargas"]
+                ],
+                [
+                    "04753",
+                    72,
+                    30,
+                    6,
+                    0,
+                    24,
+                    0,
+                    ["2.0820-2 / BLN-A101", "4.1510-2 / BLN-A207"],
+                    ["Darlyn Walter Huamán Vargas"]
+                ]
+            ]
+        ],
+        [
+            "MAT4101",
+            "ELEMENTOS DE ARITMETICA E ALGEBRA (PCC 36H-A) *MATEMATICA - LICENCIATURA (NOTURNO) [CAMPUS BLUMENAU]",
+            "Elementos de Aritmética e Álgebra (PCC 36h-a) *MATEMÁTICA - Licenciatura (noturno) [Campus Blumenau]",
+            [
+                [
+                    "01751",
+                    108,
+                    60,
+                    33,
+                    0,
+                    27,
+                    2,
+                    ["3.1830-2 / BLN-A208", "4.1830-2 / BLN-A204", "6.2020-2 / BLN-A107"],
+                    ["Cleison dos Santos Ramthun"]
+                ]
+            ]
+        ],
+        [
+            "MAT4111",
+            "GEOMETRIA PLANA (PCC 18H-A) *MATEMATICA - LICENCIATURA (NOTURNO) [CAMPUS BLUMENAU]",
+            "Geometria Plana (PCC 18h-a) *MATEMÁTICA - Licenciatura (noturno) [Campus Blumenau]",
+            [
+                [
+                    "01751",
+                    108,
+                    60,
+                    33,
+                    0,
+                    27,
+                    5,
+                    ["2.2020-2 / BLN-A107", "3.2020-2 / BLN-A208", "5.1830-2 / BLN-A204"],
+                    ["Andre Vanderlinde da Silva"]
+                ]
+            ]
+        ],
+        [
+            "MAT4121",
+            "FUNDAMENTOS DE MATEMATICA *MATEMATICA - LICENCIATURA (NOTURNO) [CAMPUS BLUMENAU]",
+            "Fundamentos de Matemática *MATEMÁTICA - Licenciatura (noturno) [Campus Blumenau]",
+            [
+                [
+                    "01751",
+                    72,
+                    60,
+                    33,
+                    0,
+                    27,
+                    1,
+                    ["4.2020-2 / BLN-A102", "6.1830-2 / BLN-A202"],
+                    ["Márcio de Jesus Soares"]
+                ]
+            ]
+        ],
+        [
+            "MAT4201",
+            "INTRODUCAO AO CALCULO (PCC 36H-A) *MATEMATICA - LICENCIATURA [CAMPUS BLUMENAU]",
+            "Introdução ao Cálculo (PCC 36h-a) *MATEMÁTICA - Licenciatura [Campus Blumenau]",
+            [
+                [
+                    "02756",
+                    108,
+                    25,
+                    13,
+                    0,
+                    12,
+                    0,
+                    ["3.1010-2 / BLN-A208", "5.0820-2 / BLN-A205", "6.0820-2 / BLN-A107"],
+                    ["Renan Gambale Romano"]
+                ]
+            ]
+        ],
+        [
+            "MAT4211",
+            "CONSTRUCOES GEOMETRICAS (PCC 36H-A) *MATEMATICA - LICENCIATURA [CAMPUS BLUMENAU]",
+            "Construções Geométricas (PCC 36h-a) *MATEMÁTICA - Licenciatura [Campus Blumenau]",
+            [["02756", 72, 25, 14, 0, 11, 0, ["6.1010-2 / BLN-A207"], ["Rafael dos Reis Abreu"]]]
+        ],
+        [
+            "MAT4231",
+            "ANALISE COMBINATORIA (PCC 18H-A) *MATEMATICA - LICENCIATURA [CAMPUS BLUMENAU]",
+            "Análise Combinatória (PCC 18h-a) *MATEMÁTICA - Licenciatura [Campus Blumenau]",
+            [
+                [
+                    "02756",
+                    72,
+                    25,
+                    17,
+                    0,
+                    8,
+                    0,
+                    ["2.1010-2 / BLN-A104", "5.1010-2 / BLN-A204"],
+                    ["Francis Felix Cordova Puma"]
+                ]
+            ]
+        ],
+        [
+            "MAT4301",
+            "CALCULO I (PCC 18H-A) *MATEMATICA - LICENCIATURA (NOTURNO) [CAMPUS BLUMENAU]",
+            "Cálculo I (PCC 18h-a) *MATEMÁTICA - Licenciatura (noturno) [Campus Blumenau]",
+            [
+                [
+                    "03751",
+                    72,
+                    25,
+                    9,
+                    0,
+                    16,
+                    0,
+                    ["3.1830-2 / BLN-A204", "6.2020-2 / BLN-A207"],
+                    ["Andre Vanderlinde da Silva"]
+                ]
+            ]
+        ],
+        [
+            "MAT4311",
+            "GEOMETRIA ESPACIAL (PCC 18H-A) *MATEMATICA - LICENCIATURA (NOTURNO) [CAMPUS BLUMENAU]",
+            "Geometria Espacial (PCC 18h-a) *MATEMÁTICA - Licenciatura (noturno) [Campus Blumenau]",
+            [["03751", 72, 25, 7, 0, 18, 0, ["3.2020-2 / BLN-A204", "5.1830-2 / BLN-A208"], ["Bruno Tadeu Costa"]]]
+        ],
+        [
+            "MAT4331",
+            "PROBABILIDADE E ESTATISTICA (PCC 18H-A) *MATEMATICA - LICENCIATURA (NOTURNO) [CAMPUS BLUMENAU]",
+            "Probabilidade e Estatística (PCC 18h-a) *MATEMÁTICA - Licenciatura (noturno) [Campus Blumenau]",
+            [
+                [
+                    "03751",
+                    72,
+                    25,
+                    15,
+                    0,
+                    10,
+                    0,
+                    ["4.2020-2 / BLN-A104", "6.1830-2 / BLN-A205"],
+                    ["Javier Esneider Méndez Alfonso"]
+                ]
+            ]
+        ],
+        [
+            "MAT4401",
+            "CALCULO II *MATEMATICA - LICENCIATURA [CAMPUS BLUMENAU]",
+            "Cálculo II *MATEMÁTICA - Licenciatura [Campus Blumenau]",
+            [
+                [
+                    "04756",
+                    108,
+                    25,
+                    7,
+                    0,
+                    18,
+                    0,
+                    ["3.1010-2 / BLN-A204", "5.0820-2 / BLN-A102", "6.0820-2 / BLN-A204"],
+                    ["Eleomar Cardoso Junior"]
+                ]
+            ]
+        ],
+        [
+            "MAT4441",
+            "GEOMATRIA ANALITICA (PCC 36H-A) *MATEMATICA - LICENCIATURA [CAMPUS BLUMENAU]",
+            "Geomatria Analítica (PCC 36h-a) *MATEMÁTICA - Licenciatura [Campus Blumenau]",
+            [
+                [
+                    "04756",
+                    108,
+                    25,
+                    12,
+                    0,
+                    13,
+                    0,
+                    ["2.0820-2 / AUX-ALOCAR", "3.0820-2 / BLN-A301", "6.1010-2 / BLN-A302"],
+                    ["Cleison dos Santos Ramthun"]
+                ]
+            ]
+        ]
+    ]
+}

@@ -1,0 +1,3833 @@
+{
+    "campus": "JOI",
+    "data_extracao": "28/11/23 - 18:14",
+    "disciplinas": [
+        [
+            "EMB5001",
+            "CALCULO DIFERENCIAL E INTEGRAL I *CIENCIA E TECNOLOGIA (CAMPUS DE JOINVILLE]",
+            "Cálculo Diferencial e Integral I *CIÊNCIA E TECNOLOGIA (Campus de Joinville]",
+            [
+                ["01601", 72, 30, 0, 0, 30, 0, ["2.1010-2 / CTJ-U202", "4.0820-2 / CTJ-U107"], ["Alexandre Mikowski"]],
+                [
+                    "01602",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["2.1010-2 / CTJ-U106", "4.0820-2 / CTJ-U104"],
+                    ["Rafael Machado Casali"]
+                ],
+                [
+                    "01603",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["3.1010-2 / CTJ-U107", "5.1010-2 / CTJ-U106"],
+                    ["César Augusto Bortot"]
+                ],
+                ["01604", 72, 20, 0, 0, 20, 0, ["2.1010-2 / CTJ-U202", "4.0820-2 / CTJ-U107"], ["Alexandre Mikowski"]],
+                [
+                    "01605",
+                    72,
+                    13,
+                    0,
+                    0,
+                    13,
+                    0,
+                    ["2.1010-2 / CTJ-U106", "4.0820-2 / CTJ-U104"],
+                    ["Rafael Machado Casali"]
+                ],
+                [
+                    "01606",
+                    72,
+                    29,
+                    0,
+                    0,
+                    29,
+                    0,
+                    ["3.1010-2 / CTJ-U107", "5.1010-2 / CTJ-U106"],
+                    ["César Augusto Bortot"]
+                ],
+                ["01607", 72, 28, 0, 0, 28, 0, ["2.0820-2 / CTJ-U202", "6.1010-2 / CTJ-U109"], ["Alexandre Mikowski"]],
+                ["01608", 72, 38, 0, 0, 38, 0, ["2.0820-2 / CTJ-U202", "6.1010-2 / CTJ-U109"], ["Alexandre Mikowski"]],
+                [
+                    "99601G",
+                    72,
+                    50,
+                    0,
+                    0,
+                    50,
+                    0,
+                    ["2.1510-2 / CTJ-U110", "5.0820-2 / CTJ-U111"],
+                    ["Thales Maier de Souza"]
+                ],
+                [
+                    "99602G",
+                    72,
+                    50,
+                    0,
+                    0,
+                    50,
+                    0,
+                    ["3.1330-2 / CTJ-U101", "5.1330-2 / CTJ-U110"],
+                    ["César Augusto Bortot"]
+                ]
+            ]
+        ],
+        [
+            "EMB5005",
+            "GEOMETRIA ANALITICA *CIENCIA E TECNOLOGIA (CAMPUS DE JOINVILLE]",
+            "Geometria Analítica *CIÊNCIA E TECNOLOGIA (Campus de Joinville]",
+            [
+                ["01601", 72, 34, 0, 0, 34, 0, ["3.0730-2 / CTJ-U102", "6.1330-2 / CTJ-U102"], ["Francieli Triches"]],
+                ["01602", 72, 25, 0, 0, 25, 0, ["4.1010-2 / CTJ-U104", "6.1010-2 / CTJ-U103"], ["Francieli Triches"]],
+                [
+                    "01603",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["4.1330-2 / CTJ-U103", "5.1330-2 / CTJ-U108"],
+                    ["Rafael Machado Casali"]
+                ],
+                ["01604", 72, 20, 0, 0, 20, 0, ["3.0730-2 / CTJ-U102", "6.1330-2 / CTJ-U102"], ["Francieli Triches"]],
+                ["01605", 72, 25, 0, 0, 25, 0, ["4.1010-2 / CTJ-U104", "6.1010-2 / CTJ-U103"], ["Francieli Triches"]],
+                [
+                    "01606",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["4.1330-2 / CTJ-U103", "5.1330-2 / CTJ-U108"],
+                    ["Rafael Machado Casali"]
+                ],
+                ["01607", 72, 28, 0, 0, 28, 0, ["3.1010-2 / CTJ-U206", "6.0820-2 / CTJ-U104"], ["Francieli Triches"]],
+                ["01608", 72, 30, 0, 0, 30, 0, ["3.1010-2 / CTJ-U206", "6.0820-2 / CTJ-U104"], ["Francieli Triches"]],
+                [
+                    "99601G",
+                    72,
+                    50,
+                    0,
+                    0,
+                    50,
+                    0,
+                    ["2.1330-2 / CTJ-U111", "5.1510-2 / CTJ-U104"],
+                    ["Thales Maier de Souza"]
+                ]
+            ]
+        ],
+        [
+            "EMB5006",
+            "QUIMICA TECNOLOGICA *ENGENHARIA AEROESPACIAL [CAMPUS JOINVILLE]",
+            "Química Tecnológica *ENGENHARIA AEROESPACIAL [Campus Joinville]",
+            [
+                [
+                    "01602",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["3.1330-2 / CTJ-U104", "5.1330-2 / CTJ-U104"],
+                    ["Claudimir Antonio Carminatti"]
+                ],
+                [
+                    "02601",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["3.0820-2 / CTJ-U111", "6.0820-2 / CTJ-U107"],
+                    ["Claudimir Antonio Carminatti"]
+                ],
+                [
+                    "02603",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["2.1010-2 / CTJ-U104", "5.1010-2 / CTJ-U103"],
+                    ["Derce de Oliveira Souza Recouvreux"]
+                ],
+                [
+                    "02604",
+                    72,
+                    15,
+                    0,
+                    0,
+                    15,
+                    0,
+                    ["3.0820-2 / CTJ-U111", "6.0820-2 / CTJ-U107"],
+                    ["Claudimir Antonio Carminatti"]
+                ],
+                [
+                    "02605",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["3.1330-2 / CTJ-U104", "5.1330-2 / CTJ-U104"],
+                    ["Claudimir Antonio Carminatti"]
+                ],
+                [
+                    "02606",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["2.1010-2 / CTJ-U104", "5.1010-2 / CTJ-U103"],
+                    ["Derce de Oliveira Souza Recouvreux"]
+                ],
+                [
+                    "02607",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["2.1330-2 / CTJ-U106", "4.1330-2 / CTJ-U105"],
+                    ["Derce de Oliveira Souza Recouvreux"]
+                ],
+                [
+                    "02608",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["2.1330-2 / CTJ-U106", "4.1330-2 / CTJ-U105"],
+                    ["Derce de Oliveira Souza Recouvreux"]
+                ]
+            ]
+        ],
+        [
+            "EMB5007",
+            "ALGEBRA LINEAR *CIENCIA E TECNOLOGIA (CAMPUS DE JOINVILLE]",
+            "Álgebra Linear *CIÊNCIA E TECNOLOGIA (Campus de Joinville]",
+            [
+                [
+                    "02601",
+                    72,
+                    20,
+                    0,
+                    0,
+                    20,
+                    0,
+                    ["3.1330-2 / CTJ-U105", "6.1010-2 / CTJ-U112"],
+                    ["Luiz Gustavo Cordeiro"]
+                ],
+                [
+                    "02602",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["2.1330-2 / CTJ-U107", "5.1010-2 / CTJ-U105"],
+                    ["Susie Cristine Keller"]
+                ],
+                [
+                    "02603",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["3.0820-2 / CTJ-U106", "5.0820-2 / CTJ-U103"],
+                    ["Susie Cristine Keller"]
+                ],
+                [
+                    "02604",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["3.1330-2 / CTJ-U105", "6.1010-2 / CTJ-U112"],
+                    ["Luiz Gustavo Cordeiro"]
+                ],
+                [
+                    "02605",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["2.1330-2 / CTJ-U107", "5.1010-2 / CTJ-U105"],
+                    ["Susie Cristine Keller"]
+                ],
+                [
+                    "02606",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["3.0820-2 / CTJ-U106", "5.0820-2 / CTJ-U103"],
+                    ["Susie Cristine Keller"]
+                ],
+                [
+                    "02607",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["3.0820-2 / CTJ-U101", "6.0820-2 / CTJ-U112"],
+                    ["Rafael Machado Casali"]
+                ],
+                [
+                    "02608",
+                    72,
+                    21,
+                    0,
+                    0,
+                    21,
+                    0,
+                    ["3.0820-2 / CTJ-U101", "6.0820-2 / CTJ-U112"],
+                    ["Rafael Machado Casali"]
+                ]
+            ]
+        ],
+        [
+            "EMB5009",
+            "TERMODINAMICA *ENGENHARIA AEROESPACIAL [CAMPUS JOINVILLE]",
+            "Termodinâmica *ENGENHARIA AEROESPACIAL [Campus Joinville]",
+            [
+                [
+                    "03602",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["3.1510-2 / CTJ-U104", "5.1010-2 / CTJ-U207"],
+                    ["Fabiano Gilberto Wolf"]
+                ],
+                [
+                    "03603",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["3.1510-2 / CTJ-U104", "5.1010-2 / CTJ-U207"],
+                    ["Fabiano Gilberto Wolf"]
+                ],
+                [
+                    "03604",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["2.1510-2 / CTJ-U109", "5.0820-2 / CTJ-U106"],
+                    ["Fabiano Gilberto Wolf"]
+                ],
+                [
+                    "03606",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["2.1510-2 / CTJ-U109", "5.0820-2 / CTJ-U106"],
+                    ["Fabiano Gilberto Wolf"]
+                ]
+            ]
+        ],
+        [
+            "EMB5010",
+            "ESTATISTICA E PROBABILIDADE *CIENCIA E TECNOLOGIA (CAMPUS DE JOINVILLE]",
+            "Estatística e Probabilidade *CIÊNCIA E TECNOLOGIA (Campus de Joinville]",
+            [
+                [
+                    "03601",
+                    72,
+                    10,
+                    0,
+                    0,
+                    10,
+                    0,
+                    ["3.1010-2 / CTJ-U102", "5.1010-2 / CTJ-U102"],
+                    ["James Schipmann Eger"]
+                ],
+                [
+                    "03602",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["3.1010-2 / CTJ-U216", "5.1510-2 / CTJ-U207"],
+                    ["Luis Fernando Peres Calil"]
+                ],
+                [
+                    "03604",
+                    72,
+                    15,
+                    0,
+                    0,
+                    15,
+                    0,
+                    ["2.1330-2 / CTJ-U202", "3.1330-2 / CTJ-U109"],
+                    ["James Schipmann Eger"]
+                ],
+                [
+                    "03605",
+                    72,
+                    20,
+                    0,
+                    0,
+                    20,
+                    0,
+                    ["3.1010-2 / CTJ-U102", "5.1010-2 / CTJ-U102"],
+                    ["James Schipmann Eger"]
+                ],
+                [
+                    "03606",
+                    72,
+                    20,
+                    0,
+                    0,
+                    20,
+                    0,
+                    ["3.1010-2 / CTJ-U102", "5.1010-2 / CTJ-U102"],
+                    ["James Schipmann Eger"]
+                ],
+                [
+                    "03607",
+                    72,
+                    20,
+                    0,
+                    0,
+                    20,
+                    0,
+                    ["3.1010-2 / CTJ-U216", "5.1510-2 / CTJ-U207"],
+                    ["Luis Fernando Peres Calil"]
+                ],
+                [
+                    "03608",
+                    72,
+                    15,
+                    0,
+                    0,
+                    15,
+                    0,
+                    ["3.1010-2 / CTJ-U102", "5.1010-2 / CTJ-U102"],
+                    ["James Schipmann Eger"]
+                ],
+                ["04603", 72, 20, 0, 0, 20, 0, ["2.1330-2 / CTJ-U202", "3.1330-2 / CTJ-U109"], ["James Schipmann Eger"]]
+            ]
+        ],
+        [
+            "EMB5011",
+            "ESTATICA *CIENCIA E TECNOLOGIA (CAMPUS DE JOINVILLE]",
+            "Estática *CIÊNCIA E TECNOLOGIA (Campus de Joinville]",
+            [
+                [
+                    "03601",
+                    72,
+                    5,
+                    0,
+                    0,
+                    5,
+                    0,
+                    ["2.1010-2 / CTJ-U110", "5.0820-2 / CTJ-U107"],
+                    ["Rafael Gallina Delatorre"]
+                ],
+                [
+                    "03602",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["2.1330-2 / CTJ-U216", "4.1330-2 / CTJ-U216"],
+                    ["Luis Orlando Emerich dos Santos"]
+                ],
+                [
+                    "03603",
+                    72,
+                    30,
+                    0,
+                    0,
+                    30,
+                    0,
+                    ["2.1330-2 / CTJ-U216", "4.1330-2 / CTJ-U216"],
+                    ["Luis Orlando Emerich dos Santos"]
+                ],
+                [
+                    "03604",
+                    72,
+                    30,
+                    0,
+                    0,
+                    30,
+                    0,
+                    ["2.1010-2 / CTJ-U107", "4.1010-2 / CTJ-U106"],
+                    ["Luis Orlando Emerich dos Santos"]
+                ],
+                [
+                    "03605",
+                    72,
+                    20,
+                    0,
+                    0,
+                    20,
+                    0,
+                    ["2.1010-2 / CTJ-U110", "5.0820-2 / CTJ-U107"],
+                    ["Rafael Gallina Delatorre"]
+                ],
+                [
+                    "03606",
+                    72,
+                    35,
+                    0,
+                    0,
+                    35,
+                    0,
+                    ["2.1330-2 / CTJ-U216", "4.1330-2 / CTJ-U216"],
+                    ["Luis Orlando Emerich dos Santos"]
+                ],
+                [
+                    "03607",
+                    72,
+                    20,
+                    0,
+                    0,
+                    20,
+                    0,
+                    ["2.1010-2 / CTJ-U107", "4.1010-2 / CTJ-U106"],
+                    ["Luis Orlando Emerich dos Santos"]
+                ],
+                [
+                    "03608",
+                    72,
+                    15,
+                    0,
+                    0,
+                    15,
+                    0,
+                    ["2.1010-2 / CTJ-U110", "5.0820-2 / CTJ-U107"],
+                    ["Rafael Gallina Delatorre"]
+                ]
+            ]
+        ],
+        [
+            "EMB5012",
+            "DESENHO E MODELAGEM GEOMETRICA *ENGENHARIA AEROESPACIAL [CAMPUS JOINVILLE]",
+            "Desenho e Modelagem Geométrica *ENGENHARIA AEROESPACIAL [Campus Joinville]",
+            [
+                ["02602", 54, 20, 0, 0, 20, 0, ["4.1510-3 / CTJ-U201"], ["Professor A Contratar"]],
+                ["02603", 54, 24, 0, 0, 24, 0, ["6.0910-3 / CTJ-U201"], ["Professor A Contratar"]],
+                ["02604", 54, 14, 0, 0, 14, 0, ["4.1510-3 / CTJ-U201"], ["Professor A Contratar"]],
+                ["02606", 54, 20, 0, 0, 20, 0, ["6.0910-3 / CTJ-U201"], ["Professor A Contratar"]],
+                ["05605", 54, 18, 0, 0, 18, 0, ["4.1510-3 / CTJ-U201"], ["Professor A Contratar"]]
+            ]
+        ],
+        [
+            "EMB5014",
+            "SERIES E EQUACOES DIFERENCIAIS *CIENCIA E TECNOLOGIA (CAMPUS DE JOINVILLE]",
+            "Séries e Equações Diferenciais *CIÊNCIA E TECNOLOGIA (Campus de Joinville]",
+            [
+                [
+                    "04601",
+                    72,
+                    10,
+                    0,
+                    0,
+                    10,
+                    0,
+                    ["4.1010-2 / CTJ-U210", "6.0820-2 / CTJ-U101"],
+                    ["Diogo Nardelli Siebert"]
+                ],
+                [
+                    "04602",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["4.1010-2 / CTJ-U210", "6.0820-2 / CTJ-U101"],
+                    ["Diogo Nardelli Siebert"]
+                ],
+                [
+                    "04603",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["2.0820-2 / CTJ-U103", "5.1330-2 / CTJ-U105"],
+                    ["Diogo Londero da Silva"]
+                ],
+                [
+                    "04604",
+                    72,
+                    10,
+                    0,
+                    0,
+                    10,
+                    0,
+                    ["4.1010-2 / CTJ-U210", "6.0820-2 / CTJ-U101"],
+                    ["Diogo Nardelli Siebert"]
+                ],
+                [
+                    "04605",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["2.1010-2 / CTJ-U216", "5.1010-2 / CTJ-U107"],
+                    ["Diogo Londero da Silva"]
+                ],
+                [
+                    "04606",
+                    72,
+                    20,
+                    0,
+                    0,
+                    20,
+                    0,
+                    ["2.0820-2 / CTJ-U103", "5.1330-2 / CTJ-U105"],
+                    ["Diogo Londero da Silva"]
+                ],
+                [
+                    "04607",
+                    72,
+                    15,
+                    0,
+                    0,
+                    15,
+                    0,
+                    ["2.1010-2 / CTJ-U216", "5.1010-2 / CTJ-U107"],
+                    ["Diogo Londero da Silva"]
+                ],
+                [
+                    "04608",
+                    72,
+                    13,
+                    0,
+                    0,
+                    13,
+                    0,
+                    ["2.1010-2 / CTJ-U216", "5.1010-2 / CTJ-U107"],
+                    ["Diogo Londero da Silva"]
+                ]
+            ]
+        ],
+        [
+            "EMB5016",
+            "CALCULO NUMERICO *CIENCIA E TECNOLOGIA (CAMPUS DE JOINVILLE]",
+            "Cálculo Numérico *CIÊNCIA E TECNOLOGIA (Campus de Joinville]",
+            [
+                [
+                    "03601",
+                    72,
+                    10,
+                    0,
+                    0,
+                    10,
+                    0,
+                    ["2.0820-2 / CTJ-U111", "4.0730-2 / CTJ-U201"],
+                    ["Leonardo Moreto Elias"]
+                ],
+                [
+                    "03602",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["2.0820-2 / CTJ-U201", "6.0820-2 / CTJ-U216"],
+                    ["Alexandre Miers Zabot"]
+                ],
+                [
+                    "03603",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["2.1010-2 / CTJ-U201", "6.0820-2 / CTJ-U216"],
+                    ["Alexandre Miers Zabot"]
+                ],
+                [
+                    "03604",
+                    72,
+                    20,
+                    0,
+                    0,
+                    20,
+                    0,
+                    ["2.0820-2 / CTJ-U111", "4.0730-2 / CTJ-U201"],
+                    ["Leonardo Moreto Elias"]
+                ],
+                [
+                    "03605",
+                    72,
+                    20,
+                    0,
+                    0,
+                    20,
+                    0,
+                    ["2.0820-2 / CTJ-U111", "4.0730-2 / CTJ-U201"],
+                    ["Leonardo Moreto Elias"]
+                ],
+                [
+                    "03606",
+                    72,
+                    20,
+                    0,
+                    0,
+                    20,
+                    0,
+                    ["2.1010-2 / CTJ-U201", "6.0820-2 / CTJ-U216"],
+                    ["Alexandre Miers Zabot"]
+                ],
+                [
+                    "03607",
+                    72,
+                    15,
+                    0,
+                    0,
+                    15,
+                    0,
+                    ["2.0820-2 / CTJ-U110", "4.1330-2 / CTJ-U201"],
+                    ["Diogo Nardelli Siebert"]
+                ],
+                [
+                    "03608",
+                    72,
+                    10,
+                    0,
+                    0,
+                    10,
+                    0,
+                    ["2.0820-2 / CTJ-U110", "4.1330-2 / CTJ-U201"],
+                    ["Diogo Nardelli Siebert"]
+                ]
+            ]
+        ],
+        [
+            "EMB5017",
+            "MECANICA DOS FLUIDOS *ENGENHARIA AEROESPACIAL [CAMPUS JOINVILLE]",
+            "Mecânica dos Fluidos *ENGENHARIA AEROESPACIAL [Campus Joinville]",
+            [
+                ["04602", 72, 25, 0, 0, 25, 0, ["3.0820-2 / CTJ-U103", "5.1010-2 / CTJ-U110"], ["Renato Oba"]],
+                [
+                    "04602G",
+                    72,
+                    50,
+                    0,
+                    0,
+                    50,
+                    0,
+                    ["2.0820-2 / CTJ-U108", "5.1330-2 / CTJ-U216"],
+                    ["Talita Sauter Possamai"]
+                ],
+                ["04603", 72, 20, 0, 0, 20, 0, ["3.0820-2 / CTJ-U207", "4.1330-2 / CTJ-U109"], ["Ernane Silva"]],
+                ["04604", 72, 10, 0, 0, 10, 0, ["3.0820-2 / CTJ-U207", "4.1330-2 / CTJ-U109"], ["Ernane Silva"]],
+                ["04606", 72, 25, 0, 0, 25, 0, ["3.0820-2 / CTJ-U103", "5.1010-2 / CTJ-U110"], ["Renato Oba"]]
+            ]
+        ],
+        [
+            "EMB5021",
+            "MECANICA DOS SOLIDOS I *ENGENHARIA AEROESPACIAL [CAMPUS JOINVILLE]",
+            "Mecânica dos Sólidos I *ENGENHARIA AEROESPACIAL [Campus Joinville]",
+            [
+                [
+                    "04602",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["3.1330-2 / CTJ-U216", "5.1330-2 / CTJ-U107"],
+                    ["Sérgio Junichi Idehara"]
+                ],
+                [
+                    "04603",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["4.1010-2 / CTJ-U102", "6.0820-2 / CTJ-U102"],
+                    ["Antonio de Assis Brito Neto"]
+                ],
+                [
+                    "04604",
+                    72,
+                    10,
+                    0,
+                    0,
+                    10,
+                    0,
+                    ["3.1330-2 / CTJ-U216", "5.1330-2 / CTJ-U107"],
+                    ["Sérgio Junichi Idehara"]
+                ],
+                [
+                    "04606",
+                    72,
+                    20,
+                    0,
+                    0,
+                    20,
+                    0,
+                    ["4.1010-2 / CTJ-U102", "6.0820-2 / CTJ-U102"],
+                    ["Antonio de Assis Brito Neto"]
+                ],
+                [
+                    "04607",
+                    72,
+                    15,
+                    0,
+                    0,
+                    15,
+                    0,
+                    ["3.0730-2 / CTJ-U208", "5.1330-2 / CTJ-U103"],
+                    ["Antonio de Assis Brito Neto"]
+                ],
+                [
+                    "04608",
+                    72,
+                    20,
+                    0,
+                    0,
+                    20,
+                    0,
+                    ["3.0730-2 / CTJ-U208", "5.1330-2 / CTJ-U103"],
+                    ["Antonio de Assis Brito Neto"]
+                ],
+                [
+                    "05605",
+                    72,
+                    20,
+                    0,
+                    0,
+                    20,
+                    0,
+                    ["4.1010-2 / CTJ-U102", "6.0820-2 / CTJ-U102"],
+                    ["Antonio de Assis Brito Neto"]
+                ]
+            ]
+        ],
+        [
+            "EMB5022",
+            "CIENCIA DOS MATERIAIS *CIENCIA E TECNOLOGIA (CAMPUS DE JOINVILLE]",
+            "Ciência dos Materiais *CIÊNCIA E TECNOLOGIA (Campus de Joinville]",
+            [
+                [
+                    "03601",
+                    72,
+                    15,
+                    0,
+                    0,
+                    15,
+                    0,
+                    ["4.1330-2 / CTJ-U106", "6.0820-2 / CTJ-U109"],
+                    ["Wagner Maurício Pachekoski"]
+                ],
+                [
+                    "03601G",
+                    72,
+                    20,
+                    0,
+                    0,
+                    20,
+                    0,
+                    ["4.0820-2 / CTJ-U108", "6.0820-2 / CTJ-U106"],
+                    ["Viviane Lilian Soethe Parucker"]
+                ],
+                [
+                    "03602",
+                    72,
+                    21,
+                    0,
+                    0,
+                    21,
+                    0,
+                    ["4.1010-2 / CTJ-U110", "6.1010-2 / CTJ-U104"],
+                    ["Gabriel Benedet Dutra"]
+                ],
+                [
+                    "03603",
+                    72,
+                    16,
+                    0,
+                    0,
+                    16,
+                    0,
+                    ["4.1010-2 / CTJ-U110", "6.1010-2 / CTJ-U104"],
+                    ["Gabriel Benedet Dutra"]
+                ],
+                [
+                    "03604",
+                    72,
+                    20,
+                    0,
+                    0,
+                    20,
+                    0,
+                    ["4.1330-2 / CTJ-U106", "6.0820-2 / CTJ-U109"],
+                    ["Wagner Maurício Pachekoski"]
+                ],
+                [
+                    "03605",
+                    72,
+                    15,
+                    0,
+                    0,
+                    15,
+                    0,
+                    ["4.1330-2 / CTJ-U106", "6.0820-2 / CTJ-U109"],
+                    ["Wagner Maurício Pachekoski"]
+                ],
+                [
+                    "03606",
+                    72,
+                    13,
+                    0,
+                    0,
+                    13,
+                    0,
+                    ["4.1010-2 / CTJ-U110", "6.1010-2 / CTJ-U104"],
+                    ["Gabriel Benedet Dutra"]
+                ],
+                [
+                    "03607",
+                    72,
+                    15,
+                    0,
+                    0,
+                    15,
+                    0,
+                    ["4.0820-2 / CTJ-U108", "6.0820-2 / CTJ-U106"],
+                    ["Viviane Lilian Soethe Parucker"]
+                ],
+                [
+                    "03608",
+                    72,
+                    15,
+                    0,
+                    0,
+                    15,
+                    0,
+                    ["4.0820-2 / CTJ-U108", "6.0820-2 / CTJ-U106"],
+                    ["Viviane Lilian Soethe Parucker"]
+                ]
+            ]
+        ],
+        [
+            "EMB5026",
+            "ERGONOMIA E SEGURANCA *CIENCIA E TECNOLOGIA (CAMPUS DE JOINVILLE]",
+            "Ergonomia e Segurança *CIÊNCIA E TECNOLOGIA (Campus de Joinville]",
+            [
+                ["04601", 36, 20, 0, 0, 20, 0, ["4.1710-2 / CTJ-U109"], ["Andrea Holz Pfutzenreuter"]],
+                ["06603", 36, 25, 0, 0, 25, 0, ["4.1710-2 / CTJ-U109"], ["Andrea Holz Pfutzenreuter"]]
+            ]
+        ],
+        [
+            "EMB5029",
+            "CALCULO DIFERENCIAL E INTEGRAL II *CIENCIA E TECNOLOGIA (CAMPUS DE JOINVILLE]",
+            "Cálculo Diferencial e Integral II *CIÊNCIA E TECNOLOGIA (Campus de Joinville]",
+            [
+                [
+                    "02601",
+                    72,
+                    20,
+                    0,
+                    0,
+                    20,
+                    0,
+                    ["2.1330-2 / CTJ-U213", "4.1330-2 / CTJ-U104"],
+                    ["Leonardo Moreto Elias"]
+                ],
+                [
+                    "02602",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["2.1010-2 / CTJ-U207", "5.1510-2 / CTJ-U103"],
+                    ["Leonardo Moreto Elias"]
+                ],
+                [
+                    "02603",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["2.1330-2 / CTJ-U110", "4.1330-2 / CTJ-U102"],
+                    ["César Augusto Bortot"]
+                ],
+                [
+                    "02604",
+                    72,
+                    15,
+                    0,
+                    0,
+                    15,
+                    0,
+                    ["2.1330-2 / CTJ-U213", "4.1330-2 / CTJ-U104"],
+                    ["Leonardo Moreto Elias"]
+                ],
+                [
+                    "02605",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["2.1010-2 / CTJ-U207", "5.1510-2 / CTJ-U103"],
+                    ["Leonardo Moreto Elias"]
+                ],
+                [
+                    "02606",
+                    72,
+                    27,
+                    0,
+                    0,
+                    27,
+                    0,
+                    ["2.1330-2 / CTJ-U110", "4.1330-2 / CTJ-U102"],
+                    ["César Augusto Bortot"]
+                ],
+                [
+                    "02607",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["5.0820-2 / CTJ-U110", "6.1010-2 / CTJ-U107"],
+                    ["Victor Simoes Barbosa"]
+                ],
+                [
+                    "02608",
+                    72,
+                    20,
+                    0,
+                    0,
+                    20,
+                    0,
+                    ["5.0820-2 / CTJ-U110", "6.1010-2 / CTJ-U107"],
+                    ["Victor Simoes Barbosa"]
+                ]
+            ]
+        ],
+        [
+            "EMB5030",
+            "CALCULO VETORIAL *CIENCIA E TECNOLOGIA (CAMPUS DE JOINVILLE]",
+            "Cálculo Vetorial *CIÊNCIA E TECNOLOGIA (Campus de Joinville]",
+            [
+                ["03601", 72, 10, 0, 0, 10, 0, ["4.1010-2 / CTJ-U101", "6.1010-2 / CTJ-U213"], ["Roberto Simoni"]],
+                [
+                    "03602",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["4.0820-2 / CTJ-U102", "5.1330-2 / CTJ-U102"],
+                    ["Victor Simoes Barbosa"]
+                ],
+                [
+                    "03603",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["4.0820-2 / CTJ-U102", "5.1330-2 / CTJ-U102"],
+                    ["Victor Simoes Barbosa"]
+                ],
+                ["03604", 72, 20, 0, 0, 20, 0, ["3.0820-2 / CTJ-U108", "5.1330-2 / CTJ-U106"], ["Roberto Simoni"]],
+                ["03605", 72, 25, 0, 0, 25, 0, ["4.1010-2 / CTJ-U101", "6.1010-2 / CTJ-U213"], ["Roberto Simoni"]],
+                [
+                    "03606",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["4.0820-2 / CTJ-U102", "5.1330-2 / CTJ-U102"],
+                    ["Victor Simoes Barbosa"]
+                ],
+                ["03607", 72, 15, 0, 0, 15, 0, ["3.0820-2 / CTJ-U108", "5.1330-2 / CTJ-U106"], ["Roberto Simoni"]],
+                ["03608", 72, 10, 0, 0, 10, 0, ["4.1010-2 / CTJ-U101", "6.1010-2 / CTJ-U213"], ["Roberto Simoni"]]
+            ]
+        ],
+        [
+            "EMB5032",
+            "AVALIACAO DE IMPACTOS AMBIENTAIS *CIENCIA E TECNOLOGIA (CAMPUS DE JOINVILLE]",
+            "Avaliação de Impactos Ambientais *CIÊNCIA E TECNOLOGIA (Campus de Joinville]",
+            [
+                ["04601", 36, 10, 0, 0, 10, 0, ["5.0820-2 / CTJ-U209"], ["Cátia Regina Silva de Carvalho Pinto"]],
+                ["05603", 36, 15, 0, 0, 15, 0, ["5.0820-2 / CTJ-U209"], ["Cátia Regina Silva de Carvalho Pinto"]],
+                ["06606", 36, 20, 0, 0, 20, 0, ["5.1010-2 / CTJ-U209"], ["Cátia Regina Silva de Carvalho Pinto"]],
+                ["07605", 36, 15, 0, 0, 15, 0, ["5.0820-2 / CTJ-U209"], ["Cátia Regina Silva de Carvalho Pinto"]],
+                ["09602", 36, 20, 0, 0, 20, 0, ["5.1010-2 / CTJ-U209"], ["Cátia Regina Silva de Carvalho Pinto"]]
+            ]
+        ],
+        [
+            "EMB5033",
+            "METROLOGIA *ENGENHARIA AEROESPACIAL [CAMPUS JOINVILLE]",
+            "Metrologia *ENGENHARIA AEROESPACIAL [Campus Joinville]",
+            [
+                [
+                    "04602",
+                    54,
+                    15,
+                    0,
+                    0,
+                    15,
+                    0,
+                    ["3.1010-2 / CTJ-U108", "5.0820-2 / AUX-ALOCAR"],
+                    ["Sueli Fischer Beckert"]
+                ],
+                [
+                    "05601",
+                    54,
+                    15,
+                    0,
+                    0,
+                    15,
+                    0,
+                    ["3.1010-2 / CTJ-U108", "5.1010-2 / AUX-ALOCAR"],
+                    ["Sueli Fischer Beckert"]
+                ],
+                [
+                    "05603",
+                    54,
+                    15,
+                    0,
+                    0,
+                    15,
+                    0,
+                    ["2.1510-2 / CTJ-U108", "5.1510-2 / AUX-ALOCAR"],
+                    ["James Schipmann Eger"]
+                ],
+                [
+                    "05604",
+                    54,
+                    15,
+                    0,
+                    0,
+                    15,
+                    0,
+                    ["3.1010-2 / CTJ-U108", "5.1330-2 / AUX-ALOCAR"],
+                    ["Sueli Fischer Beckert"]
+                ],
+                [
+                    "05606",
+                    54,
+                    15,
+                    0,
+                    0,
+                    15,
+                    0,
+                    ["2.1510-2 / CTJ-U108", "3.1510-2 / AUX-ALOCAR"],
+                    ["James Schipmann Eger"]
+                ]
+            ]
+        ],
+        [
+            "EMB5034",
+            "FISICA I *CIENCIA E TECNOLOGIA (CAMPUS DE JOINVILLE]",
+            "Física I *CIÊNCIA E TECNOLOGIA (Campus de Joinville]",
+            [
+                ["01601", 72, 30, 0, 0, 30, 0, ["3.1330-2 / CTJ-U102", "5.1010-2 / CTJ-U104"], ["João Carlos Xavier"]],
+                [
+                    "01602",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["2.0820-2 / CTJ-U106", "6.0820-2 / CTJ-U110"],
+                    ["Fatima Araujo Machado"]
+                ],
+                ["01603", 72, 25, 0, 0, 25, 0, ["2.1330-2 / CTJ-U108", "4.1010-2 / CTJ-U108"], ["João Carlos Xavier"]],
+                ["01604", 72, 20, 0, 0, 20, 0, ["3.1330-2 / CTJ-U102", "5.1010-2 / CTJ-U104"], ["João Carlos Xavier"]],
+                [
+                    "01605",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["2.0820-2 / CTJ-U106", "6.0820-2 / CTJ-U110"],
+                    ["Fatima Araujo Machado"]
+                ],
+                ["01606", 72, 29, 0, 0, 29, 0, ["2.1330-2 / CTJ-U108", "4.1010-2 / CTJ-U108"], ["João Carlos Xavier"]],
+                [
+                    "01607",
+                    72,
+                    28,
+                    0,
+                    0,
+                    28,
+                    0,
+                    ["3.0820-2 / CTJ-U104", "5.1330-2 / CTJ-U206"],
+                    ["Fatima Araujo Machado"]
+                ],
+                [
+                    "01608",
+                    72,
+                    30,
+                    0,
+                    0,
+                    30,
+                    0,
+                    ["3.0820-2 / CTJ-U104", "5.1330-2 / CTJ-U206"],
+                    ["Fatima Araujo Machado"]
+                ],
+                [
+                    "99601G",
+                    72,
+                    70,
+                    0,
+                    0,
+                    70,
+                    0,
+                    ["2.1510-2 / CTJ-U102", "5.1010-2 / CTJ-U101"],
+                    ["Maria Simone Kugeratski Souza"]
+                ]
+            ]
+        ],
+        [
+            "EMB5035",
+            "REPRESENTACAO GRAFICA *CIENCIA E TECNOLOGIA (CAMPUS DE JOINVILLE]",
+            "Representação Gráfica *CIÊNCIA E TECNOLOGIA (Campus de Joinville]",
+            [
+                ["01601", 54, 30, 0, 0, 30, 0, ["3.0910-3 / CTJ-U202"], ["Andrea Holz Pfutzenreuter"]],
+                ["01602", 54, 25, 0, 0, 25, 0, ["5.0910-3 / CTJ-U202"], ["Evandro Cardozo da Silva"]],
+                ["01603", 54, 25, 0, 0, 25, 0, ["6.0910-3 / CTJ-U202"], ["Evandro Cardozo da Silva"]],
+                ["01604", 54, 20, 0, 0, 20, 0, ["3.0910-3 / CTJ-U202"], ["Andrea Holz Pfutzenreuter"]],
+                ["01605", 54, 25, 0, 0, 25, 0, ["5.0910-3 / CTJ-U202"], ["Evandro Cardozo da Silva"]],
+                ["01606", 54, 23, 0, 0, 23, 0, ["6.0910-3 / CTJ-U202"], ["Evandro Cardozo da Silva"]],
+                ["01607", 54, 25, 0, 0, 25, 0, ["4.0910-3 / CTJ-U202"], ["Evandro Cardozo da Silva"]],
+                ["01608", 54, 30, 0, 0, 30, 0, ["4.0910-3 / CTJ-U202"], ["Evandro Cardozo da Silva"]]
+            ]
+        ],
+        [
+            "EMB5037",
+            "COMUNICACAO E EXPRESSAO *CIENCIA E TECNOLOGIA (CAMPUS DE JOINVILLE]",
+            "Comunicação e Expressão *CIÊNCIA E TECNOLOGIA (Campus de Joinville]",
+            [
+                ["01601", 36, 30, 0, 0, 30, 0, ["4.1010-2 / CTJ-U107"], ["Dieysa Kanyela Fossile"]],
+                ["01602", 36, 25, 0, 0, 25, 0, ["3.1010-2 / CTJ-U106"], ["Dieysa Kanyela Fossile"]],
+                ["01603", 36, 25, 0, 0, 25, 0, ["3.0820-2 / CTJ-U109"], ["Dieysa Kanyela Fossile"]],
+                ["01604", 36, 20, 0, 0, 20, 0, ["4.1010-2 / CTJ-U107"], ["Dieysa Kanyela Fossile"]],
+                ["01605", 36, 25, 0, 0, 25, 0, ["3.1010-2 / CTJ-U106"], ["Dieysa Kanyela Fossile"]],
+                ["01606", 36, 25, 0, 0, 25, 0, ["3.0820-2 / CTJ-U109"], ["Dieysa Kanyela Fossile"]],
+                ["01607", 36, 25, 0, 0, 25, 0, ["5.1010-2 / CTJ-U109"], ["Dieysa Kanyela Fossile"]],
+                ["01608", 36, 25, 0, 0, 25, 0, ["5.1010-2 / CTJ-U109"], ["Dieysa Kanyela Fossile"]]
+            ]
+        ],
+        [
+            "EMB5038",
+            "CIENCIA, TECNOLOGIA E SOCIEDADE *CIENCIA E TECNOLOGIA (CAMPUS DE JOINVILLE]",
+            "Ciência, Tecnologia e Sociedade *CIÊNCIA E TECNOLOGIA (Campus de Joinville]",
+            [
+                ["01601", 36, 30, 0, 0, 30, 0, ["5.0820-2 / CTJ-U101"], ["Modesto Hurtado Ferrer"]],
+                ["01603", 36, 25, 0, 0, 25, 0, ["5.0820-2 / CTJ-U101"], ["Modesto Hurtado Ferrer"]],
+                ["01604", 36, 20, 0, 0, 20, 0, ["5.0820-2 / CTJ-U101"], ["Modesto Hurtado Ferrer"]],
+                ["01607", 36, 25, 0, 0, 25, 0, ["5.0820-2 / CTJ-U101"], ["Modesto Hurtado Ferrer"]],
+                ["02606", 36, 20, 0, 0, 20, 0, ["3.1010-2 / CTJ-U110"], ["Modesto Hurtado Ferrer"]],
+                ["02608", 36, 10, 0, 0, 10, 0, ["3.1010-2 / CTJ-U110"], ["Modesto Hurtado Ferrer"]],
+                ["09605", 36, 25, 0, 0, 25, 0, ["3.1010-2 / CTJ-U110"], ["Modesto Hurtado Ferrer"]]
+            ]
+        ],
+        [
+            "EMB5039",
+            "FISICA II *CIENCIA E TECNOLOGIA (CAMPUS DE JOINVILLE]",
+            "Física II *CIÊNCIA E TECNOLOGIA (Campus de Joinville]",
+            [
+                [
+                    "02601",
+                    72,
+                    15,
+                    0,
+                    0,
+                    15,
+                    0,
+                    ["2.0820-2 / CTJ-U104", "5.0820-2 / CTJ-U104"],
+                    ["Maria Simone Kugeratski Souza"]
+                ],
+                [
+                    "02602",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["2.0820-2 / CTJ-U104", "5.0820-2 / CTJ-U104"],
+                    ["Maria Simone Kugeratski Souza"]
+                ],
+                [
+                    "02603",
+                    72,
+                    20,
+                    0,
+                    0,
+                    20,
+                    0,
+                    ["2.1510-2 / CTJ-U107", "4.1010-2 / CTJ-U111"],
+                    ["Rafael Gallina Delatorre"]
+                ],
+                [
+                    "02604",
+                    72,
+                    10,
+                    0,
+                    0,
+                    10,
+                    0,
+                    ["2.0820-2 / CTJ-U104", "5.0820-2 / CTJ-U104"],
+                    ["Maria Simone Kugeratski Souza"]
+                ],
+                [
+                    "02605",
+                    72,
+                    20,
+                    0,
+                    0,
+                    20,
+                    0,
+                    ["2.1510-2 / CTJ-U107", "4.1010-2 / CTJ-U111"],
+                    ["Rafael Gallina Delatorre"]
+                ],
+                [
+                    "02606",
+                    72,
+                    20,
+                    0,
+                    0,
+                    20,
+                    0,
+                    ["3.1330-2 / CTJ-U202", "5.1330-2 / CTJ-U202"],
+                    ["Fabiano Gilberto Wolf"]
+                ],
+                [
+                    "02607",
+                    72,
+                    15,
+                    0,
+                    0,
+                    15,
+                    0,
+                    ["3.1330-2 / CTJ-U202", "5.1330-2 / CTJ-U202"],
+                    ["Fabiano Gilberto Wolf"]
+                ],
+                [
+                    "02608",
+                    72,
+                    15,
+                    0,
+                    0,
+                    15,
+                    0,
+                    ["3.1330-2 / CTJ-U202", "5.1330-2 / CTJ-U202"],
+                    ["Fabiano Gilberto Wolf"]
+                ]
+            ]
+        ],
+        [
+            "EMB5040",
+            "FENOMENOS DE TRANSPORTE *ENGENHARIA CIVIL DE INFRAESTRUTURA [CAMPUS JOINVILLE]",
+            "Fenômenos de Transporte *ENGENHARIA CIVIL DE INFRAESTRUTURA [Campus Joinville]",
+            [
+                [
+                    "04607",
+                    72,
+                    15,
+                    0,
+                    0,
+                    15,
+                    0,
+                    ["2.0730-2 / CTJ-U211", "3.1330-2 / CTJ-U211"],
+                    ["Marcus Vinicius Volponi Mortean"]
+                ],
+                [
+                    "05605",
+                    72,
+                    20,
+                    0,
+                    0,
+                    20,
+                    0,
+                    ["2.0730-2 / CTJ-U211", "3.1330-2 / CTJ-U211"],
+                    ["Marcus Vinicius Volponi Mortean"]
+                ],
+                [
+                    "05608",
+                    72,
+                    15,
+                    0,
+                    0,
+                    15,
+                    0,
+                    ["2.0730-2 / CTJ-U211", "3.1330-2 / CTJ-U211"],
+                    ["Marcus Vinicius Volponi Mortean"]
+                ]
+            ]
+        ],
+        [
+            "EMB5041",
+            "DINAMICA *ENGENHARIA AEROESPACIAL [CAMPUS JOINVILLE]",
+            "Dinâmica *ENGENHARIA AEROESPACIAL [Campus Joinville]",
+            [
+                [
+                    "04602",
+                    54,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["2.0910-1 / CTJ-U101", "4.1510-2 / CTJ-U102"],
+                    ["Helton da Silva Gaspar"]
+                ],
+                [
+                    "04603",
+                    54,
+                    20,
+                    0,
+                    0,
+                    20,
+                    0,
+                    ["4.0910-1 / CTJ-U206", "5.1510-2 / CTJ-U101"],
+                    ["Helton da Silva Gaspar"]
+                ],
+                [
+                    "04604",
+                    54,
+                    15,
+                    0,
+                    0,
+                    15,
+                    0,
+                    ["2.0910-1 / CTJ-U101", "4.1510-2 / CTJ-U102"],
+                    ["Helton da Silva Gaspar"]
+                ],
+                [
+                    "04605",
+                    54,
+                    15,
+                    0,
+                    0,
+                    15,
+                    0,
+                    ["4.0910-1 / CTJ-U206", "5.1510-2 / CTJ-U101"],
+                    ["Helton da Silva Gaspar"]
+                ],
+                [
+                    "04606",
+                    54,
+                    15,
+                    0,
+                    0,
+                    15,
+                    0,
+                    ["4.0910-1 / CTJ-U206", "5.1510-2 / CTJ-U101"],
+                    ["Helton da Silva Gaspar"]
+                ],
+                [
+                    "04607",
+                    54,
+                    15,
+                    0,
+                    0,
+                    15,
+                    0,
+                    ["2.0910-1 / CTJ-U101", "4.1510-2 / CTJ-U102"],
+                    ["Helton da Silva Gaspar"]
+                ]
+            ]
+        ],
+        [
+            "EMB5042",
+            "METODOLOGIA DE PROJETO DE PRODUTO *CIENCIA E TECNOLOGIA (CAMPUS DE JOINVILLE]",
+            "Metodologia de Projeto de Produto *CIÊNCIA E TECNOLOGIA (Campus de Joinville]",
+            [
+                ["04601", 54, 10, 0, 0, 10, 0, ["6.1330-3 / CTJ-U216"], ["Régis Kovacs Scalice"]],
+                ["05604", 54, 10, 0, 0, 10, 0, ["6.1330-3 / CTJ-U216"], ["Régis Kovacs Scalice"]],
+                ["06603", 54, 25, 0, 0, 25, 0, ["6.1330-3 / CTJ-U216"], ["Régis Kovacs Scalice"]],
+                ["07608", 54, 15, 0, 0, 15, 0, ["6.1330-3 / CTJ-U216"], ["Régis Kovacs Scalice"]]
+            ]
+        ],
+        [
+            "EMB5043",
+            "FISICA III *ENGENHARIA AUTOMOTIVA [CAMPUS JOINVILLE]",
+            "Física III *ENGENHARIA AUTOMOTIVA [Campus Joinville]",
+            [
+                ["03603", 72, 25, 0, 0, 25, 0, ["2.1510-2 / CTJ-U104", "4.1510-2 / CTJ-U104"], ["João Carlos Xavier"]],
+                [
+                    "04601",
+                    72,
+                    10,
+                    0,
+                    0,
+                    10,
+                    0,
+                    ["2.1010-2 / CTJ-U103", "4.0820-2 / CTJ-U106"],
+                    ["Diego Alexandre Duarte"]
+                ],
+                [
+                    "04602",
+                    72,
+                    20,
+                    0,
+                    0,
+                    20,
+                    0,
+                    ["2.1010-2 / CTJ-U103", "4.0820-2 / CTJ-U106"],
+                    ["Diego Alexandre Duarte"]
+                ],
+                [
+                    "04604",
+                    72,
+                    15,
+                    0,
+                    0,
+                    15,
+                    0,
+                    ["2.1010-2 / CTJ-U103", "4.0820-2 / CTJ-U106"],
+                    ["Diego Alexandre Duarte"]
+                ],
+                [
+                    "04605",
+                    72,
+                    20,
+                    0,
+                    0,
+                    20,
+                    0,
+                    ["4.1010-2 / CTJ-U103", "6.0820-2 / CTJ-U103"],
+                    ["Diego Alexandre Duarte"]
+                ],
+                ["04606", 72, 20, 0, 0, 20, 0, ["2.1510-2 / CTJ-U104", "4.1510-2 / CTJ-U104"], ["João Carlos Xavier"]],
+                [
+                    "04607",
+                    72,
+                    10,
+                    0,
+                    0,
+                    10,
+                    0,
+                    ["4.1010-2 / CTJ-U103", "6.0820-2 / CTJ-U103"],
+                    ["Diego Alexandre Duarte"]
+                ],
+                [
+                    "04608",
+                    72,
+                    15,
+                    0,
+                    0,
+                    15,
+                    0,
+                    ["4.1010-2 / CTJ-U103", "6.0820-2 / CTJ-U103"],
+                    ["Diego Alexandre Duarte"]
+                ]
+            ]
+        ],
+        [
+            "EMB5044",
+            "PLANEJAMENTO DO TRABALHO DE CONCLUSAO DE CURSO *ENGENHARIA AUTOMOTIVA [CAMPUS JOINVILLE]",
+            "Planejamento do Trabalho de Conclusão de Curso *ENGENHARIA AUTOMOTIVA [Campus Joinville]",
+            [
+                ["08603", 36, 20, 0, 0, 20, 0, ["3.1620-2 / CTJ-U103"], ["Vanessa Aparecida Alves de Lima"]],
+                ["08604", 36, 15, 0, 0, 15, 0, ["4.1620-2 / CTJ-U101"], ["Vanessa Aparecida Alves de Lima"]],
+                ["08605", 36, 25, 0, 0, 25, 0, ["4.1620-2 / CTJ-U101"], ["Vanessa Aparecida Alves de Lima"]],
+                ["08606", 36, 20, 0, 0, 20, 0, ["3.1620-2 / CTJ-U103"], ["Vanessa Aparecida Alves de Lima"]],
+                ["08607", 36, 30, 0, 0, 30, 0, ["2.1330-2 / CTJ-U109"], ["Vanessa Aparecida Alves de Lima"]],
+                ["09602", 36, 20, 0, 0, 20, 0, ["4.1620-2 / CTJ-U101"], ["Vanessa Aparecida Alves de Lima"]],
+                ["09608", 36, 20, 0, 0, 20, 0, ["4.1620-2 / CTJ-U101"], ["Vanessa Aparecida Alves de Lima"]]
+            ]
+        ],
+        [
+            "EMB5045",
+            "TRABALHO DE CONCLUSAO DE CURSO *ENGENHARIA AUTOMOTIVA [CAMPUS JOINVILLE]",
+            "Trabalho de Conclusão de Curso *ENGENHARIA AUTOMOTIVA [Campus Joinville]",
+            [
+                ["09603", 72, 40, 0, 0, 40, 0, [], ["Leonardo Moreto Elias"]],
+                ["09604", 72, 20, 0, 0, 20, 0, [], ["Marcus Vinicius Volponi Mortean"]],
+                ["09605", 72, 40, 0, 0, 40, 0, [], ["Aline Durrer Patelli Juliani"]],
+                ["09607", 72, 40, 0, 0, 40, 0, [], ["Julian Asdrubal Buritica Garcia"]],
+                ["10602", 72, 40, 0, 0, 40, 0, [], ["Ernane Silva"]],
+                ["10608", 72, 40, 0, 0, 40, 0, [], ["Janaina Renata Garcia"]]
+            ]
+        ],
+        [
+            "EMB5046",
+            "ESTAGIO CURRICULAR OBRIGATORIO *ENGENHARIA AEROESPACIAL [CAMPUS JOINVILLE]",
+            "Estágio Curricular Obrigatório *ENGENHARIA AEROESPACIAL [Campus Joinville]",
+            [
+                ["10602", 396, 25, 0, 0, 25, 0, [], ["Rafael Gigena Cuenca"]],
+                ["10603", 396, 20, 0, 0, 20, 0, [], ["Antonio de Assis Brito Neto"]],
+                ["10604", 396, 15, 0, 0, 15, 0, [], ["Thales Maier de Souza"]],
+                ["10605", 396, 40, 0, 0, 40, 0, [], ["Milton Evangelista de Oliveira Filho"]],
+                ["10606", 396, 25, 0, 0, 25, 0, [], ["Vitor Takashi Endo"]],
+                ["10607", 396, 30, 0, 0, 30, 0, [], ["Anelize Borges Monteiro"]],
+                ["10608", 396, 20, 0, 0, 20, 0, [], ["Francielly Hedler Staudt"]]
+            ]
+        ],
+        [
+            "EMB5047",
+            "SISTEMAS HIDRAULICOS E PNEUMATICOS *ENGENHARIA AEROESPACIAL [CAMPUS JOINVILLE]",
+            "Sistemas Hidráulicos e Pneumáticos *ENGENHARIA AEROESPACIAL [Campus Joinville]",
+            [
+                [
+                    "05602",
+                    72,
+                    17,
+                    0,
+                    0,
+                    17,
+                    0,
+                    ["2.1010-2 / CTJ-U102", "5.1510-2 / CTJ-U102"],
+                    ["Yesid Ernesto Asaff Mendoza"]
+                ],
+                [
+                    "06603",
+                    72,
+                    13,
+                    0,
+                    0,
+                    13,
+                    0,
+                    ["2.1010-2 / CTJ-U102", "5.1510-2 / CTJ-U102"],
+                    ["Yesid Ernesto Asaff Mendoza"]
+                ],
+                [
+                    "08604",
+                    72,
+                    5,
+                    0,
+                    0,
+                    5,
+                    0,
+                    ["2.1010-2 / CTJ-U102", "5.1510-2 / CTJ-U102"],
+                    ["Yesid Ernesto Asaff Mendoza"]
+                ],
+                [
+                    "08605",
+                    72,
+                    15,
+                    0,
+                    0,
+                    15,
+                    0,
+                    ["2.1010-2 / CTJ-U102", "5.1510-2 / CTJ-U102"],
+                    ["Yesid Ernesto Asaff Mendoza"]
+                ]
+            ]
+        ],
+        [
+            "EMB5054",
+            "RELACOES INTERPESSOAIS NAS ORGANIZACOES *CIENCIA E TECNOLOGIA (CAMPUS DE JOINVILLE]",
+            "Relações Interpessoais nas Organizações *CIÊNCIA E TECNOLOGIA (Campus de Joinville]",
+            [
+                ["06601", 36, 5, 0, 0, 5, 0, ["4.1330-2 / CTJ-U209"], ["Vanessa Aparecida Alves de Lima"]],
+                ["06601G", 36, 20, 0, 0, 20, 0, ["4.1330-2 / CTJ-U209"], ["Vanessa Aparecida Alves de Lima"]]
+            ]
+        ],
+        [
+            "EMB5096",
+            "INTERCAMBIO III *CIENCIA E TECNOLOGIA (CAMPUS DE JOINVILLE]",
+            "Intercâmbio III *CIÊNCIA E TECNOLOGIA (Campus de Joinville]",
+            [["04601", 0, 25, 0, 0, 25, 0, [], []]]
+        ],
+        [
+            "EMB5097",
+            "INTERCAMBIO I *CIENCIA E TECNOLOGIA (CAMPUS DE JOINVILLE]",
+            "Intercâmbio I *CIÊNCIA E TECNOLOGIA (Campus de Joinville]",
+            [
+                ["02601", 0, 25, 0, 0, 25, 0, [], []],
+                ["02602", 0, 25, 0, 0, 25, 0, [], []]
+            ]
+        ],
+        [
+            "EMB5098",
+            "INTERCAMBIO II *CIENCIA E TECNOLOGIA (CAMPUS DE JOINVILLE]",
+            "Intercâmbio II *CIÊNCIA E TECNOLOGIA (Campus de Joinville]",
+            [["03601", 0, 25, 0, 0, 25, 0, [], []]]
+        ],
+        [
+            "EMB5102",
+            "PROCESSO DE FABRICACAO *CIENCIA E TECNOLOGIA (CAMPUS DE JOINVILLE]",
+            "Processo de Fabricação *CIÊNCIA E TECNOLOGIA (Campus de Joinville]",
+            [
+                [
+                    "04601",
+                    72,
+                    5,
+                    0,
+                    0,
+                    5,
+                    0,
+                    ["3.1510-2 / CTJ-U101", "6.1010-2 / CTJ-U101"],
+                    ["Modesto Hurtado Ferrer", "Professor A Contratar"]
+                ],
+                [
+                    "04604",
+                    72,
+                    8,
+                    0,
+                    0,
+                    8,
+                    0,
+                    ["3.1510-2 / CTJ-U101", "6.1010-2 / CTJ-U101"],
+                    ["Modesto Hurtado Ferrer", "Professor A Contratar"]
+                ],
+                [
+                    "04606",
+                    72,
+                    20,
+                    0,
+                    0,
+                    20,
+                    0,
+                    ["3.1510-2 / CTJ-U101", "6.1010-2 / CTJ-U101"],
+                    ["Modesto Hurtado Ferrer", "Professor A Contratar"]
+                ],
+                [
+                    "05603",
+                    72,
+                    20,
+                    0,
+                    0,
+                    20,
+                    0,
+                    ["3.1510-2 / CTJ-U101", "6.1010-2 / CTJ-U101"],
+                    ["Modesto Hurtado Ferrer", "Professor A Contratar"]
+                ],
+                [
+                    "07602",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["3.1510-2 / CTJ-U101", "6.1010-2 / CTJ-U101"],
+                    ["Modesto Hurtado Ferrer", "Professor A Contratar"]
+                ]
+            ]
+        ],
+        [
+            "EMB5103",
+            "TRANSMISSAO DE CALOR I *ENGENHARIA AEROESPACIAL [CAMPUS JOINVILLE]",
+            "Transmissão de Calor I *ENGENHARIA AEROESPACIAL [Campus Joinville]",
+            [
+                [
+                    "05602",
+                    72,
+                    15,
+                    0,
+                    0,
+                    15,
+                    0,
+                    ["2.1330-2 / CTJ-U104", "6.0820-2 / CTJ-U111"],
+                    ["Rafael de Camargo Catapan"]
+                ],
+                [
+                    "05603",
+                    72,
+                    15,
+                    0,
+                    0,
+                    15,
+                    0,
+                    ["2.1330-2 / CTJ-U104", "6.0820-2 / CTJ-U111"],
+                    ["Rafael de Camargo Catapan"]
+                ],
+                [
+                    "05604",
+                    72,
+                    5,
+                    0,
+                    0,
+                    5,
+                    0,
+                    ["2.1330-2 / CTJ-U104", "6.0820-2 / CTJ-U111"],
+                    ["Rafael de Camargo Catapan"]
+                ],
+                [
+                    "05606",
+                    72,
+                    15,
+                    0,
+                    0,
+                    15,
+                    0,
+                    ["2.1330-2 / CTJ-U104", "6.0820-2 / CTJ-U111"],
+                    ["Rafael de Camargo Catapan"]
+                ]
+            ]
+        ],
+        [
+            "EMB5104",
+            "MECANICA DOS SOLIDOS II *ENGENHARIA AEROESPACIAL [CAMPUS JOINVILLE]",
+            "Mecânica dos Sólidos II *ENGENHARIA AEROESPACIAL [Campus Joinville]",
+            [
+                ["05602", 72, 25, 0, 0, 25, 0, ["3.0820-2 / CTJ-U107", "5.1330-2 / CTJ-U207"], ["Marcos Alves Rabelo"]],
+                ["05603", 72, 20, 0, 0, 20, 0, ["3.0820-2 / CTJ-U107", "5.1330-2 / CTJ-U207"], ["Marcos Alves Rabelo"]],
+                [
+                    "05604",
+                    72,
+                    15,
+                    0,
+                    0,
+                    15,
+                    0,
+                    ["4.0820-2 / CTJ-U103", "6.1010-2 / CTJ-U216"],
+                    ["Antonio de Assis Brito Neto"]
+                ],
+                [
+                    "05606",
+                    72,
+                    10,
+                    0,
+                    0,
+                    10,
+                    0,
+                    ["4.0820-2 / CTJ-U103", "6.1010-2 / CTJ-U216"],
+                    ["Antonio de Assis Brito Neto"]
+                ]
+            ]
+        ],
+        [
+            "EMB5105",
+            "MECANISMOS *ENGENHARIA AEROESPACIAL [CAMPUS JOINVILLE]",
+            "Mecanismos *ENGENHARIA AEROESPACIAL [Campus Joinville]",
+            [
+                ["05602", 36, 15, 0, 0, 15, 0, ["4.1620-2 / CTJ-U206"], ["Lucas Weihmann"]],
+                ["05603", 36, 10, 0, 0, 10, 0, ["4.1620-2 / CTJ-U206"], ["Lucas Weihmann"]],
+                ["05604", 36, 5, 0, 0, 5, 0, ["4.1620-2 / CTJ-U206"], ["Lucas Weihmann"]],
+                ["05606", 36, 10, 0, 0, 10, 0, ["4.1620-2 / CTJ-U206"], ["Lucas Weihmann"]],
+                ["06605", 36, 10, 0, 0, 10, 0, ["4.1620-2 / CTJ-U206"], ["Lucas Weihmann"]]
+            ]
+        ],
+        [
+            "EMB5107",
+            "MANUTENCAO E CONFIABILIDADE *ENGENHARIA AEROESPACIAL [CAMPUS JOINVILLE]",
+            "Manutenção e Confiabilidade *ENGENHARIA AEROESPACIAL [Campus Joinville]",
+            [
+                ["04602", 36, 25, 0, 0, 25, 0, ["2.1330-2 / CTJ-U101"], ["Luis Fernando Peres Calil"]],
+                ["04606", 36, 10, 0, 0, 10, 0, ["2.1330-2 / CTJ-U101"], ["Luis Fernando Peres Calil"]],
+                ["06603", 36, 15, 0, 0, 15, 0, ["2.1330-2 / CTJ-U101"], ["Luis Fernando Peres Calil"]]
+            ]
+        ],
+        [
+            "EMB5108",
+            "CIRCUITOS ELETRICOS *ENGENHARIA AUTOMOTIVA [CAMPUS JOINVILLE]",
+            "Circuitos Elétricos *ENGENHARIA AUTOMOTIVA [Campus Joinville]",
+            [
+                [
+                    "04603",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["2.1010-2 / CTJ-U211", "5.0820-2 / CTJ-U112"],
+                    ["Aline Durrer Patelli Juliani"]
+                ],
+                [
+                    "04605",
+                    72,
+                    20,
+                    0,
+                    0,
+                    20,
+                    0,
+                    ["2.0820-2 / CTJ-U204", "5.0820-2 / CTJ-U112"],
+                    ["Aline Durrer Patelli Juliani"]
+                ],
+                [
+                    "05602",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["4.1330-2 / CTJ-U108", "6.1010-2 / CTJ-U113"],
+                    ["Moisés Ferber de Vieira Lessa"]
+                ],
+                [
+                    "05604",
+                    72,
+                    10,
+                    0,
+                    0,
+                    10,
+                    0,
+                    ["4.1330-2 / CTJ-U108", "5.1510-2 / CTJ-U115"],
+                    ["Moisés Ferber de Vieira Lessa"]
+                ]
+            ]
+        ],
+        [
+            "EMB5110",
+            "ELEMENTOS DE MAQUINAS *ENGENHARIA AEROESPACIAL [CAMPUS JOINVILLE]",
+            "Elementos de Máquinas *ENGENHARIA AEROESPACIAL [Campus Joinville]",
+            [
+                ["06602", 72, 25, 0, 0, 25, 0, ["3.1620-2 / CTJ-U102", "6.1010-2 / CTJ-U102"], ["Andrea Piga Carboni"]],
+                ["06604", 72, 10, 0, 0, 10, 0, ["3.1620-2 / CTJ-U102", "6.1010-2 / CTJ-U102"], ["Andrea Piga Carboni"]],
+                ["06606", 72, 20, 0, 0, 20, 0, ["3.1620-2 / CTJ-U102", "6.1010-2 / CTJ-U102"], ["Andrea Piga Carboni"]],
+                ["07603", 72, 25, 0, 0, 25, 0, ["3.1620-2 / CTJ-U102", "6.1010-2 / CTJ-U102"], ["Andrea Piga Carboni"]]
+            ]
+        ],
+        [
+            "EMB5111",
+            "INTRODUCAO AO CONTROLE *ENGENHARIA FERROVIARIA E METROVIARIA [CAMPUS JOINVILLE]",
+            "Introdução ao Controle *ENGENHARIA FERROVIÁRIA E METROVIÁRIA [Campus Joinville]",
+            [["07604", 72, 12, 0, 0, 12, 0, ["4.1010-2 / CTJ-U207", "6.0820-2 / CTJ-U113"], ["Professor A Contratar"]]]
+        ],
+        [
+            "EMB5113",
+            "MODELAGEM DE SISTEMAS *ENGENHARIA MECATRONICA [CAMPUS JOINVILLE]",
+            "Modelagem de Sistemas *ENGENHARIA MECATRÔNICA [Campus Joinville]",
+            [
+                [
+                    "04605",
+                    72,
+                    20,
+                    0,
+                    0,
+                    20,
+                    0,
+                    ["3.1510-2 / CTJ-U108", "4.1330-2 / CTJ-U202"],
+                    ["Benjamin Grando Moreira", "Tatiana Renata Garcia"]
+                ],
+                [
+                    "05601",
+                    72,
+                    10,
+                    0,
+                    0,
+                    10,
+                    0,
+                    ["3.1510-2 / CTJ-U108", "4.1330-2 / CTJ-U202"],
+                    ["Tatiana Renata Garcia", "Benjamin Grando Moreira"]
+                ],
+                [
+                    "05608",
+                    72,
+                    20,
+                    0,
+                    0,
+                    20,
+                    0,
+                    ["3.1510-2 / CTJ-U108", "4.1330-2 / CTJ-U202"],
+                    ["Tatiana Renata Garcia", "Benjamin Grando Moreira"]
+                ]
+            ]
+        ],
+        [
+            "EMB5115",
+            "VIBRACOES *ENGENHARIA AEROESPACIAL [CAMPUS JOINVILLE]",
+            "Vibrações *ENGENHARIA AEROESPACIAL [Campus Joinville]",
+            [
+                [
+                    "06602",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["2.1510-2 / CTJ-U216", "4.1010-2 / CTJ-U216"],
+                    ["Filipe Dutra da Silva"]
+                ],
+                [
+                    "06603",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["2.1510-2 / CTJ-U216", "4.1010-2 / CTJ-U216"],
+                    ["Filipe Dutra da Silva"]
+                ],
+                [
+                    "06604",
+                    72,
+                    10,
+                    0,
+                    0,
+                    10,
+                    0,
+                    ["2.1510-2 / CTJ-U216", "4.1010-2 / CTJ-U216"],
+                    ["Filipe Dutra da Silva"]
+                ],
+                [
+                    "06606",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["2.1510-2 / CTJ-U216", "4.1010-2 / CTJ-U216"],
+                    ["Filipe Dutra da Silva"]
+                ]
+            ]
+        ],
+        [
+            "EMB5116",
+            "ELETRONICA ANALOGICA *ENGENHARIA MECATRONICA [CAMPUS JOINVILLE]",
+            "Eletrônica Analógica *ENGENHARIA MECATRÔNICA [Campus Joinville]",
+            [
+                [
+                    "05605",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["2.1010-2 / CTJ-U113", "6.1010-2 / CTJ-U111"],
+                    ["Professor A Contratar"]
+                ],
+                [
+                    "06602",
+                    72,
+                    20,
+                    0,
+                    0,
+                    20,
+                    0,
+                    ["3.1330-2 / CTJ-U112", "5.1330-2 / CTJ-U111"],
+                    ["Professor A Contratar"]
+                ],
+                ["06604", 72, 9, 0, 0, 9, 0, ["3.1330-2 / CTJ-U112", "5.1330-2 / CTJ-U111"], ["Professor A Contratar"]]
+            ]
+        ],
+        [
+            "EMB5117",
+            "INTRODUCAO AO METODO DE ELEMENTOS FINITOS *ENGENHARIA AUTOMOTIVA [CAMPUS JOINVILLE]",
+            "Introdução ao Método de Elementos Finitos *ENGENHARIA AUTOMOTIVA [Campus Joinville]",
+            [
+                ["07603", 72, 25, 0, 0, 25, 0, ["2.1620-2 / CTJ-U201", "4.1710-2 / CTJ-U211"], ["Vitor Takashi Endo"]],
+                ["08606", 72, 15, 0, 0, 15, 0, ["2.1620-2 / CTJ-U201", "4.1710-2 / CTJ-U211"], ["Vitor Takashi Endo"]]
+            ]
+        ],
+        [
+            "EMB5120",
+            "GESTAO E ORGANIZACAO *ENGENHARIA CIVIL DE INFRAESTRUTURA [CAMPUS JOINVILLE]",
+            "Gestão e Organização *ENGENHARIA CIVIL DE INFRAESTRUTURA [Campus Joinville]",
+            [
+                [
+                    "03607",
+                    72,
+                    15,
+                    0,
+                    0,
+                    15,
+                    0,
+                    ["2.1330-2 / CTJ-U102", "5.0730-2 / CTJ-U102"],
+                    ["Janaina Renata Garcia"]
+                ],
+                [
+                    "05601",
+                    72,
+                    10,
+                    0,
+                    0,
+                    10,
+                    0,
+                    ["2.1330-2 / CTJ-U102", "5.0730-2 / CTJ-U102"],
+                    ["Janaina Renata Garcia"]
+                ],
+                [
+                    "05606",
+                    72,
+                    10,
+                    0,
+                    0,
+                    10,
+                    0,
+                    ["2.0820-2 / CTJ-U102", "4.1330-2 / CTJ-U101"],
+                    ["Janaina Renata Garcia"]
+                ],
+                [
+                    "05608",
+                    72,
+                    10,
+                    0,
+                    0,
+                    10,
+                    0,
+                    ["2.1330-2 / CTJ-U102", "5.0730-2 / CTJ-U102"],
+                    ["Janaina Renata Garcia"]
+                ],
+                [
+                    "07603",
+                    72,
+                    15,
+                    0,
+                    0,
+                    15,
+                    0,
+                    ["2.1330-2 / CTJ-U102", "5.0730-2 / CTJ-U102"],
+                    ["Janaina Renata Garcia"]
+                ],
+                [
+                    "07604",
+                    72,
+                    10,
+                    0,
+                    0,
+                    10,
+                    0,
+                    ["2.0820-2 / CTJ-U102", "4.1330-2 / CTJ-U101"],
+                    ["Janaina Renata Garcia"]
+                ],
+                [
+                    "09602",
+                    72,
+                    15,
+                    0,
+                    0,
+                    15,
+                    0,
+                    ["2.0820-2 / CTJ-U102", "4.1330-2 / CTJ-U101"],
+                    ["Janaina Renata Garcia"]
+                ],
+                [
+                    "09605",
+                    72,
+                    20,
+                    0,
+                    0,
+                    20,
+                    0,
+                    ["2.0820-2 / CTJ-U102", "4.1330-2 / CTJ-U101"],
+                    ["Janaina Renata Garcia"]
+                ]
+            ]
+        ],
+        [
+            "EMB5200",
+            "TRABALHO DE CONCLUSAO DE CURSO *CIENCIA E TECNOLOGIA (CAMPUS DE JOINVILLE]",
+            "Trabalho de Conclusão de Curso *CIÊNCIA E TECNOLOGIA (Campus de Joinville]",
+            [["06601", 108, 20, 0, 0, 20, 0, [], ["César Augusto Bortot"]]]
+        ],
+        [
+            "EMB5204",
+            "SISTEMAS DE TRANSPORTES *ENGENHARIA DE TRANSPORTES E LOGISTICA [CAMPUS JOINVILLE]",
+            "Sistemas de Transportes *ENGENHARIA DE TRANSPORTES E LOGÍSTICA [Campus Joinville]",
+            [
+                [
+                    "04608",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["3.1010-2 / CTJ-U204", "5.0820-2 / CTJ-U211"],
+                    ["Elisete Santos da Silva Zagheni"]
+                ]
+            ]
+        ],
+        [
+            "EMB5215",
+            "LOGISTICA I *CIENCIA E TECNOLOGIA (CAMPUS DE JOINVILLE]",
+            "Logística I *CIÊNCIA E TECNOLOGIA (Campus de Joinville]",
+            [
+                ["06601", 36, 15, 0, 0, 15, 0, ["2.0820-2 / CTJ-U206"], ["Vanina Macowski Durski Silva"]],
+                ["06608", 36, 25, 0, 0, 25, 0, ["2.0820-2 / CTJ-U206"], ["Vanina Macowski Durski Silva"]]
+            ]
+        ],
+        [
+            "EMB5303",
+            "SISTEMAS VEICULARES I: CHASSIS, SUSPENSAO, DIRECAO *ENGENHARIA AUTOMOTIVA [CAMPUS JOINVILLE]",
+            "Sistemas Veiculares I: Chassis, Suspensão, Direção *ENGENHARIA AUTOMOTIVA [Campus Joinville]",
+            [["08603", 72, 20, 0, 0, 20, 0, ["2.1420-2 / CTJ-U207", "3.1010-2 / CTJ-U112"], ["Sérgio Junichi Idehara"]]]
+        ],
+        [
+            "EMB5304",
+            "MOTORES DE COMBUSTAO INTERNA I *ENGENHARIA AUTOMOTIVA [CAMPUS JOINVILLE]",
+            "Motores de Combustão Interna I *ENGENHARIA AUTOMOTIVA [Campus Joinville]",
+            [["07603", 72, 25, 0, 0, 25, 0, ["3.1420-2 / CTJ-U207", "4.1420-2 / CTJ-U207"], ["Leonel Rincon Cancino"]]]
+        ],
+        [
+            "EMB5313",
+            "SISTEMAS VEICULARES II: TRANSMISSAO E FREIO *ENGENHARIA AUTOMOTIVA [CAMPUS JOINVILLE]",
+            "Sistemas Veiculares II: Transmissão e Freio *ENGENHARIA AUTOMOTIVA [Campus Joinville]",
+            [
+                [
+                    "08603",
+                    72,
+                    20,
+                    0,
+                    0,
+                    20,
+                    0,
+                    ["2.1620-2 / CTJ-U207", "4.1620-2 / CTJ-U207"],
+                    ["Andrea Piga Carboni", "Thiago Antonio Fiorentin"]
+                ]
+            ]
+        ],
+        [
+            "EMB5315",
+            "COMPATIBILIDADE ELETROMAGNETICA *ENGENHARIA AUTOMOTIVA [CAMPUS JOINVILLE]",
+            "Compatibilidade Eletromagnética *ENGENHARIA AUTOMOTIVA [Campus Joinville]",
+            [
+                [
+                    "09603",
+                    36,
+                    20,
+                    0,
+                    0,
+                    20,
+                    0,
+                    ["5.1330-2 / CTJ-U213"],
+                    ["Moisés Ferber de Vieira Lessa", "Tamiris Grossl Bade"]
+                ]
+            ]
+        ],
+        [
+            "EMB5316",
+            "DINAMICA VEICULAR *ENGENHARIA AUTOMOTIVA [CAMPUS JOINVILLE]",
+            "Dinâmica Veicular *ENGENHARIA AUTOMOTIVA [Campus Joinville]",
+            [
+                [
+                    "07603",
+                    72,
+                    20,
+                    0,
+                    0,
+                    20,
+                    0,
+                    ["2.1830-2 / CTJ-U207", "5.1710-2 / CTJ-U207"],
+                    ["Thiago Antonio Fiorentin"]
+                ]
+            ]
+        ],
+        [
+            "EMB5317",
+            "AERODINAMICA VEICULAR *ENGENHARIA AUTOMOTIVA [CAMPUS JOINVILLE]",
+            "Aerodinâmica Veicular *ENGENHARIA AUTOMOTIVA [Campus Joinville]",
+            [["09603", 72, 20, 0, 0, 20, 0, ["3.1620-2 / CTJ-U207", "4.1620-2 / CTJ-U213"], ["Leonel Rincon Cancino"]]]
+        ],
+        [
+            "EMB5320",
+            "EMPREENDEDORISMO E INOVACAO *CIENCIA E TECNOLOGIA (CAMPUS DE JOINVILLE]",
+            "Empreendedorismo e Inovação *CIÊNCIA E TECNOLOGIA (Campus de Joinville]",
+            [
+                ["06601", 36, 15, 0, 0, 15, 0, ["2.1330-2 / CTJ-U103"], ["Cristiano Vasconcellos Ferreira"]],
+                ["07608", 36, 15, 0, 0, 15, 0, ["2.1330-2 / CTJ-U103"], ["Cristiano Vasconcellos Ferreira"]],
+                ["09603", 36, 20, 0, 0, 20, 0, ["2.1330-2 / CTJ-U103"], ["Cristiano Vasconcellos Ferreira"]]
+            ]
+        ],
+        [
+            "EMB5324",
+            "PROJETO DE MOLDES E MATRIZES A INDUSTRIA AUTOMOTIVA *ENGENHARIA AUTOMOTIVA [CAMPUS JOINVILLE]",
+            "Projeto de Moldes e Matrizes a Indústria Automotiva *ENGENHARIA AUTOMOTIVA [Campus Joinville]",
+            [
+                [
+                    "08603",
+                    36,
+                    20,
+                    0,
+                    0,
+                    20,
+                    0,
+                    ["2.1830-3 / CTJ-U212", "3.1830-3 / CTJ-U212"],
+                    ["Carlos Mauricio Sacchelli"]
+                ]
+            ]
+        ],
+        [
+            "EMB5325",
+            "PROCESSOS DE SOLDAGEM *ENGENHARIA AUTOMOTIVA [CAMPUS JOINVILLE]",
+            "Processos de Soldagem *ENGENHARIA AUTOMOTIVA [Campus Joinville]",
+            [["08603", 72, 20, 0, 0, 20, 0, ["2.0820-2 / CTJ-U112", "5.1330-2 / CTJ-U115"], ["Tiago Vieira da Cunha"]]]
+        ],
+        [
+            "EMB5326",
+            "DESENVOLVIMENTO DE PRODUTO VEICULAR *ENGENHARIA AUTOMOTIVA [CAMPUS JOINVILLE]",
+            "Desenvolvimento de Produto Veicular *ENGENHARIA AUTOMOTIVA [Campus Joinville]",
+            [["09603", 54, 20, 0, 0, 20, 0, ["5.1510-3 / CTJ-U205"], ["Sérgio Junichi Idehara"]]]
+        ],
+        [
+            "EMB5351",
+            "INTRODUCAO A ENGENHARIA AUTOMOTIVA *ENGENHARIA AUTOMOTIVA [CAMPUS JOINVILLE]",
+            "Introdução à Engenharia Automotiva *ENGENHARIA AUTOMOTIVA [Campus Joinville]",
+            [["01603", 36, 25, 0, 0, 25, 0, ["3.1330-2 / CTJ-U103"], ["Modesto Hurtado Ferrer"]]]
+        ],
+        [
+            "EMB5352",
+            "MECANICA DA FRATURA *ENGENHARIA AUTOMOTIVA [CAMPUS JOINVILLE]",
+            "Mecânica da Fratura *ENGENHARIA AUTOMOTIVA [Campus Joinville]",
+            [["06603", 36, 20, 0, 0, 20, 0, ["3.1010-2 / CTJ-U207"], ["Andrea Piga Carboni"]]]
+        ],
+        [
+            "EMB5353",
+            "MANUFATURA AUXILIADA POR COMPUTADOR *CIENCIA E TECNOLOGIA (CAMPUS DE JOINVILLE]",
+            "Manufatura Auxiliada por Computador *CIÊNCIA E TECNOLOGIA (Campus de Joinville]",
+            [
+                ["06601", 36, 3, 0, 0, 3, 0, ["3.1330-2 / CTJ-U205"], ["Sabrina Bodziak"]],
+                ["06603", 36, 20, 0, 0, 20, 0, ["3.1330-2 / CTJ-U205"], ["Professor A Contratar"]]
+            ]
+        ],
+        [
+            "EMB5355",
+            "MATERIAIS E PROCESSOS DE CONSTRUCAO VEICULAR I *ENGENHARIA AUTOMOTIVA [CAMPUS JOINVILLE]",
+            "Materiais e Processos de Construção Veicular I *ENGENHARIA AUTOMOTIVA [Campus Joinville]",
+            [["07603", 36, 20, 0, 0, 20, 0, ["6.0820-2 / CTJ-U207"], ["Modesto Hurtado Ferrer"]]]
+        ],
+        [
+            "EMB5356",
+            "MATERIAIS E PROCESSOS DE CONSTRUCAO VEICULAR II *ENGENHARIA AUTOMOTIVA [CAMPUS JOINVILLE]",
+            "Materiais e Processos de Construção Veicular II *ENGENHARIA AUTOMOTIVA [Campus Joinville]",
+            [["08603", 36, 25, 0, 0, 25, 0, ["6.1010-2 / CTJ-U207"], ["Wagner Maurício Pachekoski"]]]
+        ],
+        [
+            "EMB5357",
+            "GESTAO DA QUALIDADE AUTOMOTIVA *ENGENHARIA AUTOMOTIVA [CAMPUS JOINVILLE]",
+            "Gestão da qualidade Automotiva *ENGENHARIA AUTOMOTIVA [Campus Joinville]",
+            [["08603", 36, 20, 0, 0, 20, 0, ["3.0820-2 / CTJ-U112"], ["Sueli Fischer Beckert"]]]
+        ],
+        [
+            "EMB5372",
+            "TOPICOS ESPECIAIS EM PROJETO AUTOMOTIVO *ENGENHARIA AUTOMOTIVA [CAMPUS JOINVILLE]",
+            "Tópicos Especiais em Projeto Automotivo *ENGENHARIA AUTOMOTIVA [Campus Joinville]",
+            [["09603", 54, 20, 0, 0, 20, 0, ["4.1830-3 / CTJ-U213"], ["Thiago Antonio Fiorentin"]]]
+        ],
+        [
+            "EMB5385",
+            "CONTROLE ESTATISTICO DA QUALIDADE *ENGENHARIA AUTOMOTIVA [CAMPUS JOINVILLE]",
+            "Controle Estatístico da Qualidade *ENGENHARIA AUTOMOTIVA [Campus Joinville]",
+            [["09603", 54, 20, 0, 0, 20, 0, ["2.1510-3 / CTJ-U212"], ["Sueli Fischer Beckert"]]]
+        ],
+        [
+            "EMB5386",
+            "REFRIGERACAO E CONDICIONAMENTO DE AR *ENGENHARIA AUTOMOTIVA [CAMPUS JOINVILLE]",
+            "Refrigeração e Condicionamento de Ar *ENGENHARIA AUTOMOTIVA [Campus Joinville]",
+            [["09603", 54, 20, 0, 0, 20, 0, ["3.0730-3 / CTJ-U110"], ["Diogo Londero da Silva"]]]
+        ],
+        [
+            "EMB5401",
+            "ESTRUTURAS AEROESPACIAIS *ENGENHARIA AEROESPACIAL [CAMPUS JOINVILLE]",
+            "Estruturas Aeroespaciais *ENGENHARIA AEROESPACIAL [Campus Joinville]",
+            [["07602", 72, 25, 0, 0, 25, 0, ["3.1330-2 / CTJ-U204", "4.1010-2 / CTJ-U206"], ["Marcos Alves Rabelo"]]]
+        ],
+        [
+            "EMB5405",
+            "MECANICA DO VOO *ENGENHARIA AEROESPACIAL [CAMPUS JOINVILLE]",
+            "Mecânica do Vôo *ENGENHARIA AEROESPACIAL [Campus Joinville]",
+            [
+                [
+                    "07602",
+                    72,
+                    40,
+                    0,
+                    0,
+                    40,
+                    0,
+                    ["2.1510-2 / CTJ-U111", "6.0820-2 / CTJ-U204"],
+                    ["Antonio Otaviano Dourado"]
+                ]
+            ]
+        ],
+        [
+            "EMB5406",
+            "INTRODUCAO A ENGENHARIA AEROESPACIAL *ENGENHARIA AEROESPACIAL [CAMPUS JOINVILLE]",
+            "Introdução à Engenharia Aeroespacial *ENGENHARIA AEROESPACIAL [Campus Joinville]",
+            [["01602", 36, 25, 0, 0, 25, 0, ["3.1510-2 / CTJ-U206"], ["Juan Pablo de Lima Costa Salazar"]]]
+        ],
+        [
+            "EMB5407",
+            "AMBIENTE ESPACIAL *ENGENHARIA AEROESPACIAL [CAMPUS JOINVILLE]",
+            "Ambiente Espacial *ENGENHARIA AEROESPACIAL [Campus Joinville]",
+            [["05602", 36, 25, 0, 0, 25, 0, ["5.1010-2 / CTJ-U112"], ["Alexandre Miers Zabot"]]]
+        ],
+        [
+            "EMB5410",
+            "MECANICA DO VOO ESPACIAL *ENGENHARIA AEROESPACIAL [CAMPUS JOINVILLE]",
+            "Mecânica do Vôo Espacial *ENGENHARIA AEROESPACIAL [Campus Joinville]",
+            [["08602", 72, 25, 0, 0, 25, 0, ["4.1330-2 / CTJ-U115", "6.0820-2 / CTJ-U206"], ["Helton da Silva Gaspar"]]]
+        ],
+        [
+            "EMB5411",
+            "MECANICA DOS SOLIDOS COMPUTACIONAL *ENGENHARIA AEROESPACIAL [CAMPUS JOINVILLE]",
+            "Mecânica dos Sólidos Computacional *ENGENHARIA AEROESPACIAL [Campus Joinville]",
+            [["08602", 72, 25, 0, 0, 25, 0, ["2.1620-2 / AUX-ALOCAR", "4.1710-2 / AUX-ALOCAR"], ["Vitor Takashi Endo"]]]
+        ],
+        [
+            "EMB5412",
+            "PROPULSAO AEROESPACIAL I *ENGENHARIA AEROESPACIAL [CAMPUS JOINVILLE]",
+            "Propulsão Aeroespacial I *ENGENHARIA AEROESPACIAL [Campus Joinville]",
+            [["08602", 72, 25, 0, 0, 25, 0, ["2.1010-2 / CTJ-U206", "5.0820-2 / CTJ-U206"], ["Talita Sauter Possamai"]]]
+        ],
+        [
+            "EMB5413",
+            "MECANICA DOS FLUIDOS COMPUTACIONAL *ENGENHARIA AEROESPACIAL [CAMPUS JOINVILLE]",
+            "Mecânica dos Fluidos Computacional *ENGENHARIA AEROESPACIAL [Campus Joinville]",
+            [["08602", 72, 25, 0, 0, 25, 0, ["4.0820-2 / CTJ-U111", "5.1330-2 / CTJ-U212"], ["Ernane Silva"]]]
+        ],
+        [
+            "EMB5414",
+            "PROPULSAO AEROESPACIAL II *ENGENHARIA AEROESPACIAL [CAMPUS JOINVILLE]",
+            "Propulsão Aeroespacial II *ENGENHARIA AEROESPACIAL [Campus Joinville]",
+            [
+                [
+                    "09602",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["2.1510-2 / CTJ-U101", "3.1010-2 / CTJ-U209"],
+                    ["Juan Pablo de Lima Costa Salazar"]
+                ]
+            ]
+        ],
+        [
+            "EMB5415",
+            "PROPULSAO AEROESPACIAL III *ENGENHARIA AEROESPACIAL [CAMPUS JOINVILLE]",
+            "Propulsão Aeroespacial III *ENGENHARIA AEROESPACIAL [Campus Joinville]",
+            [
+                [
+                    "09602",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["2.1010-2 / CTJ-U111", "4.1010-2 / CTJ-U109"],
+                    ["Eduardo de Carli da Silva"]
+                ]
+            ]
+        ],
+        [
+            "EMB5416",
+            "ENGENHARIA DE VEICULOS AEROESPACIAIS *ENGENHARIA AEROESPACIAL [CAMPUS JOINVILLE]",
+            "Engenharia de Veículos Aeroespaciais *ENGENHARIA AEROESPACIAL [Campus Joinville]",
+            [["09602", 72, 25, 0, 0, 25, 0, ["3.1510-2 / CTJ-U209", "5.1330-2 / CTJ-U209"], ["Rafael Gigena Cuenca"]]]
+        ],
+        [
+            "EMB5418",
+            "AEROTERMODINAMICA E HIPERSONICA *ENGENHARIA AEROESPACIAL [CAMPUS JOINVILLE]",
+            "Aerotermodinâmica e Hipersônica *ENGENHARIA AEROESPACIAL [Campus Joinville]",
+            [
+                [
+                    "08602",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["2.0820-2 / CTJ-U213", "3.0820-2 / CTJ-U204"],
+                    ["Juan Pablo de Lima Costa Salazar"]
+                ]
+            ]
+        ],
+        [
+            "EMB5423",
+            "AERODINAMICA *ENGENHARIA AEROESPACIAL [CAMPUS JOINVILLE]",
+            "Aerodinâmica *ENGENHARIA AEROESPACIAL [Campus Joinville]",
+            [["05602", 72, 25, 0, 0, 25, 0, ["3.1330-2 / CTJ-U111", "5.0820-2 / CTJ-U115"], ["Rafael Gigena Cuenca"]]]
+        ],
+        [
+            "EMB5424",
+            "ACUSTICA PARA ENGENHARIA AEROESPACIAL *ENGENHARIA AEROESPACIAL [CAMPUS JOINVILLE]",
+            "Acústica para Engenharia Aeroespacial *ENGENHARIA AEROESPACIAL [Campus Joinville]",
+            [["08602", 72, 25, 0, 0, 25, 0, ["2.1330-2 / CTJ-U206", "5.1010-2 / CTJ-U111"], ["Filipe Dutra da Silva"]]]
+        ],
+        [
+            "EMB5425",
+            "ENGENHARIA DE PLATAFORMAS ORBITAIS *ENGENHARIA AEROESPACIAL [CAMPUS JOINVILLE]",
+            "Engenharia de Plataformas Orbitais *ENGENHARIA AEROESPACIAL [Campus Joinville]",
+            [["09602", 72, 25, 0, 0, 25, 0, ["2.1330-2 / CTJ-U112", "3.1330-2 / CTJ-U115"], ["Kleber Vieira de Paiva"]]]
+        ],
+        [
+            "EMB5431",
+            "FUNDAMENTOS DE COMBUSTAO *ENGENHARIA AUTOMOTIVA [CAMPUS JOINVILLE]",
+            "Fundamentos de Combustão *ENGENHARIA AUTOMOTIVA [Campus Joinville]",
+            [
+                ["06603", 54, 25, 0, 0, 25, 0, ["4.1330-3 / CTJ-U211"], ["Rafael de Camargo Catapan"]],
+                ["07602", 54, 25, 0, 0, 25, 0, ["4.1330-3 / CTJ-U211"], ["Rafael de Camargo Catapan"]]
+            ]
+        ],
+        [
+            "EMB5433",
+            "TRANSFERENCIA DE CALOR II *ENGENHARIA AEROESPACIAL [CAMPUS JOINVILLE]",
+            "Transferência de Calor II *ENGENHARIA AEROESPACIAL [Campus Joinville]",
+            [["06602", 54, 25, 0, 0, 25, 0, ["3.0730-3 / CTJ-U211"], ["Kleber Vieira de Paiva"]]]
+        ],
+        [
+            "EMB5434",
+            "TOPICOS ESPECIAIS EM ENGENHARIA AEROESPACIAL II *ENGENHARIA AEROESPACIAL [CAMPUS JOINVILLE]",
+            "Tópicos Especiais em Engenharia Aeroespacial II *ENGENHARIA AEROESPACIAL [Campus Joinville]",
+            [
+                [
+                    "05602",
+                    72,
+                    14,
+                    0,
+                    0,
+                    14,
+                    0,
+                    ["5.1620-2 / CTJ-U209", "6.1010-2 / CTJ-U209"],
+                    ["Gian Ricardo Berkenbrock"]
+                ]
+            ]
+        ],
+        [
+            "EMB5436",
+            "ESCOAMENTO COMPRESSIVEIS *ENGENHARIA AEROESPACIAL [CAMPUS JOINVILLE]",
+            "Escoamento Compressíveis *ENGENHARIA AEROESPACIAL [Campus Joinville]",
+            [["06602", 72, 25, 0, 0, 25, 0, ["3.1010-2 / CTJ-U111", "4.1330-2 / CTJ-U208"], ["Renato Oba"]]]
+        ],
+        [
+            "EMB5437",
+            "TOPICOS ESPECIAIS EM ENGENHARIA AEROESPACIAL I *ENGENHARIA AEROESPACIAL [CAMPUS JOINVILLE]",
+            "Tópicos Especiais em Engenharia Aeroespacial I *ENGENHARIA AEROESPACIAL [Campus Joinville]",
+            [
+                [
+                    "05602",
+                    72,
+                    30,
+                    0,
+                    0,
+                    30,
+                    0,
+                    ["2.1710-2 / CTJ-U206", "4.1510-2 / CTJ-U115"],
+                    ["Juan Pablo de Lima Costa Salazar"]
+                ]
+            ]
+        ],
+        [
+            "EMB5443",
+            "ESTAGIO CURRICULAR OBRIGATORIO I *ENGENHARIA AEROESPACIAL [CAMPUS JOINVILLE]",
+            "Estágio Curricular Obrigatório I *ENGENHARIA AEROESPACIAL [Campus Joinville]",
+            [["10602", 198, 15, 0, 0, 15, 0, [], ["Rafael Gigena Cuenca"]]]
+        ],
+        [
+            "EMB5444",
+            "ESTAGIO CURRICULAR OBRIGATORIO II *ENGENHARIA AEROESPACIAL [CAMPUS JOINVILLE]",
+            "Estágio Curricular Obrigatório II *ENGENHARIA AEROESPACIAL [Campus Joinville]",
+            [["10602", 198, 15, 0, 0, 15, 0, [], ["Rafael Gigena Cuenca"]]]
+        ],
+        [
+            "EMB5510",
+            "VAGOES FERROVIARIOS E CARROS METROVIARIOS *ENGENHARIA FERROVIARIA E METROVIARIA [CAMPUS JOINVILLE]",
+            "Vagões Ferroviários e Carros Metroviários *ENGENHARIA FERROVIÁRIA E METROVIÁRIA [Campus Joinville]",
+            [["07604", 72, 12, 0, 0, 12, 0, ["3.1010-2 / CTJ-U113", "5.1330-2 / CTJ-U113"], ["Régis Kovacs Scalice"]]]
+        ],
+        [
+            "EMB5512",
+            "MANUTENCAO FERROVIARIA E METROVIARIA I *ENGENHARIA FERROVIARIA E METROVIARIA [CAMPUS JOINVILLE]",
+            "Manutenção Ferroviária e Metroviária I *ENGENHARIA FERROVIÁRIA E METROVIÁRIA [Campus Joinville]",
+            [["08604", 72, 12, 0, 0, 12, 0, ["3.0820-2 / CTJ-U206", "5.1010-2 / CTJ-U115"], ["Régis Kovacs Scalice"]]]
+        ],
+        [
+            "EMB5517",
+            "MANUTENCAO FERROVIARIA E METROVIARIA II *ENGENHARIA FERROVIARIA E METROVIARIA [CAMPUS JOINVILLE]",
+            "Manutenção Ferroviária e Metroviária II *ENGENHARIA FERROVIÁRIA E METROVIÁRIA [Campus Joinville]",
+            [["09604", 72, 10, 0, 0, 10, 0, ["3.1330-2 / CTJ-U209", "5.0820-2 / CTJ-U109"], ["Régis Kovacs Scalice"]]]
+        ],
+        [
+            "EMB5519",
+            "GESTAO DE EMPREENDIMENTOS FERROVIARIOS E METROVIARIOS *ENGENHARIA FERROVIARIA E METROVIARIA [CAMPUS JOINVILLE]",
+            "Gestão de Empreendimentos Ferroviários e Metroviários *ENGENHARIA FERROVIÁRIA E METROVIÁRIA [Campus Joinville]",
+            [["09604", 36, 10, 0, 0, 10, 0, ["2.1330-2 / AUX-ALOCAR"], ["Cristiano Vasconcellos Ferreira"]]]
+        ],
+        [
+            "EMB5526",
+            "INTRODUCAO A ENGENHARIA FERROVIARIA E METROVIARIA *ENGENHARIA FERROVIARIA E METROVIARIA [CAMPUS JOINVILLE]",
+            "Introdução à Engenharia Ferroviária e Metroviária *ENGENHARIA FERROVIÁRIA E METROVIÁRIA [Campus Joinville]",
+            [["01604", 36, 20, 0, 0, 20, 0, ["5.1330-2 / CTJ-U211"], ["Yesid Ernesto Asaff Mendoza"]]]
+        ],
+        [
+            "EMB5528",
+            "TRACAO ELETRICA EM SISTEMAS METROFERROVIARIOS *ENGENHARIA FERROVIARIA E METROVIARIA [CAMPUS JOINVILLE]",
+            "Tração Elétrica em Sistemas Metroferroviários *ENGENHARIA FERROVIÁRIA E METROVIÁRIA [Campus Joinville]",
+            [
+                [
+                    "08604",
+                    72,
+                    12,
+                    0,
+                    0,
+                    12,
+                    0,
+                    ["3.1330-2 / CTJ-U206", "4.1010-2 / CTJ-U213"],
+                    ["Milton Evangelista de Oliveira Filho"]
+                ]
+            ]
+        ],
+        [
+            "EMB5529",
+            "LOCOMOTIVAS *ENGENHARIA FERROVIARIA E METROVIARIA [CAMPUS JOINVILLE]",
+            "Locomotivas *ENGENHARIA FERROVIÁRIA E METROVIÁRIA [Campus Joinville]",
+            [
+                [
+                    "06604",
+                    72,
+                    12,
+                    0,
+                    0,
+                    12,
+                    0,
+                    ["2.1010-2 / CTJ-U112", "4.0820-2 / CTJ-U115"],
+                    ["Marcus Vinicius Volponi Mortean"]
+                ]
+            ]
+        ],
+        [
+            "EMB5532",
+            "COMUNICACAO E SINALIZACAO METROFERROVIARIA *ENGENHARIA FERROVIARIA E METROVIARIA [CAMPUS JOINVILLE]",
+            "Comunicação e Sinalização Metroferroviária *ENGENHARIA FERROVIÁRIA E METROVIÁRIA [Campus Joinville]",
+            [["07604", 72, 12, 0, 0, 12, 0, ["4.1510-2 / CTJ-U103", "6.1010-2 / CTJ-U106"], ["Thiago Martins"]]]
+        ],
+        [
+            "EMB5535",
+            "VIA PERMANENTE *ENGENHARIA FERROVIARIA E METROVIARIA [CAMPUS JOINVILLE]",
+            "Via Permanente *ENGENHARIA FERROVIÁRIA E METROVIÁRIA [Campus Joinville]",
+            [
+                [
+                    "05604",
+                    72,
+                    15,
+                    0,
+                    0,
+                    15,
+                    0,
+                    ["2.1510-2 / CTJ-U204", "5.1010-2 / CTJ-U206"],
+                    ["Yader Alfonso Guerrero Perez"]
+                ]
+            ]
+        ],
+        [
+            "EMB5536",
+            "DINAMICA FERROVIARIA E METROVIARIA *ENGENHARIA FERROVIARIA E METROVIARIA [CAMPUS JOINVILLE]",
+            "Dinâmica Ferroviária e Metroviária *ENGENHARIA FERROVIÁRIA E METROVIÁRIA [Campus Joinville]",
+            [["06604", 72, 15, 0, 0, 15, 0, ["4.1510-2 / CTJ-U209", "6.0820-2 / CTJ-U209"], ["Alexandre Mikowski"]]]
+        ],
+        [
+            "EMB5537",
+            "OPERACAO FERROVIARIA E METROVIARIA *ENGENHARIA FERROVIARIA E METROVIARIA [CAMPUS JOINVILLE]",
+            "Operação Ferroviária e Metroviária *ENGENHARIA FERROVIÁRIA E METROVIÁRIA [Campus Joinville]",
+            [["08604", 36, 20, 0, 0, 20, 0, ["5.1330-2 / CTJ-U112"], ["Elisete Santos da Silva Zagheni"]]]
+        ],
+        [
+            "EMB5538",
+            "PROCESSOS DE SOLDAGEM PARA ENGENHARIA FERROVIARIA E METROVIARIA *ENGENHARIA FERROVIARIA E METROVIARIA [CAMPUS JOINVILLE]",
+            "Processos de Soldagem para Engenharia Ferroviária e Metroviária *ENGENHARIA FERROVIÁRIA E METROVIÁRIA [Campus Joinville]",
+            [
+                [
+                    "06604",
+                    72,
+                    10,
+                    0,
+                    0,
+                    10,
+                    0,
+                    ["2.0820-2 / AUX-ALOCAR", "5.1010-2 / CTJ-U108"],
+                    ["Tiago Vieira da Cunha"]
+                ]
+            ]
+        ],
+        [
+            "EMB5600",
+            "PROGRAMACAO I *CIENCIA E TECNOLOGIA (CAMPUS DE JOINVILLE]",
+            "Programação I *CIÊNCIA E TECNOLOGIA (Campus de Joinville]",
+            [
+                [
+                    "01601",
+                    72,
+                    30,
+                    0,
+                    0,
+                    30,
+                    0,
+                    ["2.1330-2 / CTJ-U201", "5.1330-2 / CTJ-U101"],
+                    ["Tatiana Renata Garcia"]
+                ],
+                [
+                    "01605",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["2.1330-2 / CTJ-U201", "5.1330-2 / CTJ-U101"],
+                    ["Tatiana Renata Garcia"]
+                ],
+                [
+                    "01606",
+                    72,
+                    27,
+                    0,
+                    0,
+                    27,
+                    0,
+                    ["2.1010-2 / CTJ-U101", "5.0820-2 / CTJ-U201"],
+                    ["Tatiana Renata Garcia"]
+                ],
+                [
+                    "01608",
+                    72,
+                    33,
+                    0,
+                    0,
+                    33,
+                    0,
+                    ["2.1010-2 / CTJ-U101", "5.0820-2 / CTJ-U201"],
+                    ["Tatiana Renata Garcia"]
+                ],
+                [
+                    "02602",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["3.1010-2 / CTJ-U101", "5.1330-2 / CTJ-U201"],
+                    ["Luiz Gustavo Cordeiro", "Thiago Martins"]
+                ],
+                [
+                    "02603",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["3.1010-2 / CTJ-U101", "5.1330-2 / CTJ-U201"],
+                    ["Luiz Gustavo Cordeiro", "Thiago Martins"]
+                ],
+                [
+                    "02604",
+                    72,
+                    20,
+                    0,
+                    0,
+                    20,
+                    0,
+                    ["3.1010-2 / CTJ-U101", "5.1010-2 / CTJ-U201"],
+                    ["Thiago Martins", "Luiz Gustavo Cordeiro"]
+                ],
+                [
+                    "02607",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["3.1010-2 / CTJ-U101", "5.1010-2 / CTJ-U201"],
+                    ["Thiago Martins", "Luiz Gustavo Cordeiro"]
+                ],
+                ["99605G", 72, 40, 0, 0, 40, 0, ["2.1510-2 / CTJ-U208", "5.1510-2 / CTJ-U201"], ["Thiago Martins"]]
+            ]
+        ],
+        [
+            "EMB5602",
+            "CONTROLE DIGITAL *ENGENHARIA MECATRONICA [CAMPUS JOINVILLE]",
+            "Controle Digital *ENGENHARIA MECATRÔNICA [Campus Joinville]",
+            [["07605", 54, 30, 0, 0, 30, 0, ["5.1330-3 / CTJ-U204"], ["Alexandro Garro Brito"]]]
+        ],
+        [
+            "EMB5604",
+            "INSTRUMENTACAO *ENGENHARIA MECATRONICA [CAMPUS JOINVILLE]",
+            "Instrumentação *ENGENHARIA MECATRÔNICA [Campus Joinville]",
+            [
+                [
+                    "07605",
+                    72,
+                    30,
+                    0,
+                    0,
+                    30,
+                    0,
+                    ["4.1510-2 / CTJ-U112", "5.1010-2 / CTJ-U208"],
+                    ["Jessika Melo de Andrade"]
+                ]
+            ]
+        ],
+        [
+            "EMB5609",
+            "SISTEMAS DE COMUNICACAO *ENGENHARIA MECATRONICA [CAMPUS JOINVILLE]",
+            "Sistemas de Comunicação *ENGENHARIA MECATRÔNICA [Campus Joinville]",
+            [["06605", 72, 30, 0, 0, 30, 0, ["4.1330-2 / CTJ-U112", "6.1010-2 / CTJ-U208"], ["Ricardo José Pfitscher"]]]
+        ],
+        [
+            "EMB5615",
+            "ROBOTICA E SISTEMAS MECATRONICOS *ENGENHARIA MECATRONICA [CAMPUS JOINVILLE]",
+            "Robótica e Sistemas Mecatrônicos *ENGENHARIA MECATRÔNICA [Campus Joinville]",
+            [
+                [
+                    "09605",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["2.1010-2 / CTJ-U108", "4.1510-2 / CTJ-U208"],
+                    ["Antonio Otaviano Dourado"]
+                ]
+            ]
+        ],
+        [
+            "EMB5617",
+            "SISTEMAS INTELIGENTES *ENGENHARIA MECATRONICA [CAMPUS JOINVILLE]",
+            "Sistemas Inteligentes *ENGENHARIA MECATRÔNICA [Campus Joinville]",
+            [
+                [
+                    "07605",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["4.1330-2 / CTJ-U206", "6.1010-2 / CTJ-U108"],
+                    ["Benjamin Grando Moreira", "Pablo Andretta Jaskowiak"]
+                ]
+            ]
+        ],
+        [
+            "EMB5626",
+            "CIRCUITOS DIGITAIS *CIENCIA E TECNOLOGIA (CAMPUS DE JOINVILLE]",
+            "Circuitos Digitais *CIÊNCIA E TECNOLOGIA (Campus de Joinville]",
+            [
+                [
+                    "02601",
+                    72,
+                    3,
+                    0,
+                    0,
+                    3,
+                    0,
+                    ["4.0820-2 / CTJ-U101", "5.1510-2 / CTJ-U203"],
+                    ["Dalton Luiz Rech Vidor"]
+                ],
+                [
+                    "02605",
+                    72,
+                    30,
+                    0,
+                    0,
+                    30,
+                    0,
+                    ["3.1510-2 / CTJ-U203", "4.0820-2 / CTJ-U101"],
+                    ["Dalton Luiz Rech Vidor"]
+                ],
+                [
+                    "07602",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["4.0820-2 / CTJ-U101", "5.1510-2 / CTJ-U203"],
+                    ["Dalton Luiz Rech Vidor"]
+                ]
+            ]
+        ],
+        [
+            "EMB5627",
+            "SISTEMAS MOTRIZES I *ENGENHARIA MECATRONICA [CAMPUS JOINVILLE]",
+            "Sistemas Motrizes I *ENGENHARIA MECATRÔNICA [Campus Joinville]",
+            [
+                [
+                    "06605",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["3.1510-2 / CTJ-U111", "6.0820-2 / CTJ-U208"],
+                    ["Moisés Ferber de Vieira Lessa", "Tamiris Grossl Bade"]
+                ],
+                [
+                    "09604",
+                    72,
+                    10,
+                    0,
+                    0,
+                    10,
+                    0,
+                    ["3.1510-2 / CTJ-U111", "6.0820-2 / CTJ-U208"],
+                    ["Tamiris Grossl Bade", "Moisés Ferber de Vieira Lessa"]
+                ]
+            ]
+        ],
+        [
+            "EMB5628",
+            "SISTEMAS MOTRIZES II *ENGENHARIA MECATRONICA [CAMPUS JOINVILLE]",
+            "Sistemas Motrizes II *ENGENHARIA MECATRÔNICA [Campus Joinville]",
+            [["07605", 54, 30, 0, 0, 30, 0, ["3.0910-3 / CTJ-U208"], ["Aline Durrer Patelli Juliani"]]]
+        ],
+        [
+            "EMB5630",
+            "PROGRAMACAO II *CIENCIA E TECNOLOGIA (CAMPUS DE JOINVILLE]",
+            "Programação II *CIÊNCIA E TECNOLOGIA (Campus de Joinville]",
+            [
+                ["02601", 54, 20, 0, 0, 20, 0, ["4.0910-3 / CTJ-U201"], ["Pablo Andretta Jaskowiak"]],
+                ["02605", 54, 35, 0, 0, 35, 0, ["3.0910-3 / CTJ-U201"], ["Pablo Andretta Jaskowiak"]],
+                ["02608", 54, 25, 0, 0, 25, 0, ["4.0910-3 / CTJ-U201"], ["Pablo Andretta Jaskowiak"]]
+            ]
+        ],
+        [
+            "EMB5631",
+            "PROGRAMACAO III *CIENCIA E TECNOLOGIA (CAMPUS DE JOINVILLE]",
+            "Programação III *CIÊNCIA E TECNOLOGIA (Campus de Joinville]",
+            [
+                ["03601", 54, 15, 0, 0, 15, 0, ["3.1330-3 / CTJ-U201"], ["José Edemar Palubiack Marinho"]],
+                ["03605", 54, 35, 0, 0, 35, 0, ["6.1330-3 / CTJ-U201"], ["José Edemar Palubiack Marinho"]],
+                ["03608", 54, 20, 0, 0, 20, 0, ["3.1330-3 / CTJ-U201"], ["José Edemar Palubiack Marinho"]]
+            ]
+        ],
+        [
+            "EMB5632",
+            "SISTEMAS OPERACIONAIS *ENGENHARIA MECATRONICA [CAMPUS JOINVILLE]",
+            "Sistemas Operacionais *ENGENHARIA MECATRÔNICA [Campus Joinville]",
+            [["05605", 54, 25, 0, 0, 25, 0, ["5.0910-3 / CTJ-U212"], ["José Edemar Palubiack Marinho"]]]
+        ],
+        [
+            "EMB5633",
+            "SISTEMAS DE TEMPO REAL *ENGENHARIA MECATRONICA [CAMPUS JOINVILLE]",
+            "Sistemas de Tempo Real *ENGENHARIA MECATRÔNICA [Campus Joinville]",
+            [["06605", 54, 25, 0, 0, 25, 0, ["3.0910-3 / CTJ-U203"], ["Gian Ricardo Berkenbrock"]]]
+        ],
+        [
+            "EMB5634",
+            "REDES DE COMUNICACAO DE DADOS *ENGENHARIA MECATRONICA [CAMPUS JOINVILLE]",
+            "Redes de Comunicação de Dados *ENGENHARIA MECATRÔNICA [Campus Joinville]",
+            [["07605", 72, 30, 0, 0, 30, 0, ["3.1330-2 / CTJ-U203", "4.1010-2 / CTJ-U208"], ["Ricardo José Pfitscher"]]]
+        ],
+        [
+            "EMB5635",
+            "INFORMATICA INDUSTRIAL *ENGENHARIA MECATRONICA [CAMPUS JOINVILLE]",
+            "Informática Industrial *ENGENHARIA MECATRÔNICA [Campus Joinville]",
+            [["08605", 54, 25, 0, 0, 25, 0, ["3.1330-3 / CTJ-U212"], ["Gian Ricardo Berkenbrock"]]]
+        ],
+        [
+            "EMB5636",
+            "PROJETO INTEGRADOR I *ENGENHARIA MECATRONICA [CAMPUS JOINVILLE]",
+            "Projeto Integrador I *ENGENHARIA MECATRÔNICA [Campus Joinville]",
+            [["06605", 36, 25, 0, 0, 25, 0, ["4.1010-2 / CTJ-U209"], ["Benjamin Grando Moreira"]]]
+        ],
+        [
+            "EMB5637",
+            "PROJETO INTEGRADOR II *ENGENHARIA MECATRONICA [CAMPUS JOINVILLE]",
+            "Projeto Integrador II *ENGENHARIA MECATRÔNICA [Campus Joinville]",
+            [["08605", 36, 25, 0, 0, 25, 0, ["5.1010-2 / CTJ-LAB413"], ["Gian Ricardo Berkenbrock"]]]
+        ],
+        [
+            "EMB5640",
+            "SINAIS E SISTEMAS *ENGENHARIA AUTOMOTIVA [CAMPUS JOINVILLE]",
+            "Sinais e Sistemas *ENGENHARIA AUTOMOTIVA [Campus Joinville]",
+            [
+                [
+                    "05603",
+                    72,
+                    20,
+                    0,
+                    0,
+                    20,
+                    0,
+                    ["3.1010-2 / CTJ-U104", "4.1330-2 / CTJ-U213"],
+                    ["Milton Evangelista de Oliveira Filho"]
+                ],
+                [
+                    "05605",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["3.1010-2 / CTJ-U104", "4.1330-2 / CTJ-U213"],
+                    ["Milton Evangelista de Oliveira Filho"]
+                ]
+            ]
+        ],
+        [
+            "EMB5641",
+            "SISTEMA DE CONTROLE *ENGENHARIA MECATRONICA [CAMPUS JOINVILLE]",
+            "Sistema de Controle *ENGENHARIA MECATRÔNICA [Campus Joinville]",
+            [["06605", 72, 30, 0, 0, 30, 0, ["2.1330-2 / CTJ-U208", "3.1330-2 / CTJ-U106"], ["Alexandro Garro Brito"]]]
+        ],
+        [
+            "EMB5642",
+            "MICROCONTROLADORES *ENGENHARIA MECATRONICA [CAMPUS JOINVILLE]",
+            "Microcontroladores *ENGENHARIA MECATRÔNICA [Campus Joinville]",
+            [["04605", 54, 30, 0, 0, 30, 0, ["3.0910-3 / CTJ-U212"], ["Anderson Wedderhoff Spengler"]]]
+        ],
+        [
+            "EMB5643",
+            "ELETRICIDADE APLICADA *ENGENHARIA NAVAL [CAMPUS JOINVILLE]",
+            "Eletricidade Aplicada *ENGENHARIA NAVAL [Campus Joinville]",
+            [
+                ["05606", 36, 20, 0, 0, 20, 0, ["3.1010-2 / CTJ-U109"], ["Professor A Contratar"]],
+                ["05608", 36, 20, 0, 0, 20, 0, ["3.1010-2 / CTJ-U109"], ["Professor A Contratar"]]
+            ]
+        ],
+        [
+            "EMB5645",
+            "PROCESSAMENTO DIGITAL DE SINAIS *ENGENHARIA MECATRONICA [CAMPUS JOINVILLE]",
+            "Processamento Digital de Sinais *ENGENHARIA MECATRÔNICA [Campus Joinville]",
+            [["06605", 54, 30, 0, 0, 30, 0, ["2.0910-3 / CTJ-U109"], ["Thiago Martins"]]]
+        ],
+        [
+            "EMB5650",
+            "TRABALHO DE CONCLUSAO DE CURSO *ENGENHARIA MECATRONICA [CAMPUS JOINVILLE]",
+            "Trabalho De Conclusão de Curso *ENGENHARIA MECATRÔNICA [Campus Joinville]",
+            [["09605", 90, 12, 0, 0, 12, 0, [], ["Aline Durrer Patelli Juliani"]]]
+        ],
+        [
+            "EMB5655",
+            "ELETRONICA DE POTENCIA *ENGENHARIA MECATRONICA [CAMPUS JOINVILLE]",
+            "Eletrônica de Potência *ENGENHARIA MECATRÔNICA [Campus Joinville]",
+            [
+                [
+                    "07605",
+                    72,
+                    30,
+                    0,
+                    0,
+                    30,
+                    0,
+                    ["4.0820-2 / CTJ-U113", "6.0820-2 / CTJ-U108"],
+                    ["Jessika Melo de Andrade"]
+                ]
+            ]
+        ],
+        [
+            "EMB5656",
+            "ACIONAMENTOS ELETRICOS *ENGENHARIA MECATRONICA [CAMPUS JOINVILLE]",
+            "Acionamentos Elétricos *ENGENHARIA MECATRÔNICA [Campus Joinville]",
+            [
+                [
+                    "08605",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["3.1010-2 / CTJ-U211", "6.1010-2 / CTJ-U211"],
+                    ["Dalton Luiz Rech Vidor", "Tamiris Grossl Bade"]
+                ]
+            ]
+        ],
+        [
+            "EMB5683",
+            "INTRODUCAO A ENGENHARIA MECATRONICA *ENGENHARIA MECATRONICA [CAMPUS JOINVILLE]",
+            "Introdução à Engenharia Mecatrônica *ENGENHARIA MECATRÔNICA [Campus Joinville]",
+            [["01605", 36, 30, 0, 0, 30, 0, ["3.0820-2 / CTJ-U205"], ["Milton Evangelista de Oliveira Filho"]]]
+        ],
+        [
+            "EMB5695",
+            "DISPOSITIVOS LOGICOS PROGRAMAVEIS *ENGENHARIA MECATRONICA [CAMPUS JOINVILLE]",
+            "Dispositivos Lógicos Programáveis *ENGENHARIA MECATRÔNICA [Campus Joinville]",
+            [["08605", 54, 25, 0, 0, 25, 0, ["2.1330-3 / CTJ-U203"], ["Anderson Wedderhoff Spengler"]]]
+        ],
+        [
+            "EMB5707",
+            "MAQUINAS MARITIMAS *ENGENHARIA NAVAL [CAMPUS JOINVILLE]",
+            "Máquinas Marítimas *ENGENHARIA NAVAL [Campus Joinville]",
+            [
+                [
+                    "07606",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["2.1710-1 / CTJ-U103", "3.1920-3 / CTJ-U204"],
+                    ["Jorge Luiz Goes Oliveira"]
+                ]
+            ]
+        ],
+        [
+            "EMB5710",
+            "HIDRODINAMICA APLICADA I *ENGENHARIA NAVAL [CAMPUS JOINVILLE]",
+            "Hidrodinâmica Aplicada I *ENGENHARIA NAVAL [Campus Joinville]",
+            [["06606", 72, 30, 0, 0, 30, 0, ["4.1330-2 / CTJ-U110", "5.1330-2 / CTJ-U210"], ["Lucas Weihmann"]]]
+        ],
+        [
+            "EMB5714",
+            "PROJETOS DE NAVIO II *ENGENHARIA NAVAL [CAMPUS JOINVILLE]",
+            "Projetos de Navio II *ENGENHARIA NAVAL [Campus Joinville]",
+            [["08606", 72, 20, 0, 0, 20, 0, ["2.1330-2 / CTJ-U204", "4.1010-2 / CTJ-U112"], ["Thiago Pontin Tancredi"]]]
+        ],
+        [
+            "EMB5715",
+            "PROJETO DE EMBARCACOES ESPECIAIS *ENGENHARIA NAVAL [CAMPUS JOINVILLE]",
+            "Projeto de Embarcações Especiais *ENGENHARIA NAVAL [Campus Joinville]",
+            [
+                [
+                    "09606",
+                    72,
+                    20,
+                    0,
+                    0,
+                    20,
+                    0,
+                    ["2.1010-2 / CTJ-U212", "4.1510-2 / CTJ-U204"],
+                    ["Ricardo Aurélio Quinhões Pinto"]
+                ]
+            ]
+        ],
+        [
+            "EMB5716",
+            "HIDRODINAMICA APLICADA II *ENGENHARIA NAVAL [CAMPUS JOINVILLE]",
+            "Hidrodinâmica Aplicada II *ENGENHARIA NAVAL [Campus Joinville]",
+            [
+                [
+                    "07606",
+                    72,
+                    30,
+                    0,
+                    0,
+                    30,
+                    0,
+                    ["3.1710-2 / CTJ-U110", "5.1010-2 / CTJ-U204"],
+                    ["André Luís Condino Fujarra"]
+                ]
+            ]
+        ],
+        [
+            "EMB5717",
+            "PROCESSO DE CONSTRUCAO NAVAL *ENGENHARIA NAVAL [CAMPUS JOINVILLE]",
+            "Processo de Construção Naval *ENGENHARIA NAVAL [Campus Joinville]",
+            [["08606", 54, 20, 0, 0, 20, 0, ["3.1330-3 / CTJ-U107"], ["Ricardo Aurélio Quinhões Pinto"]]]
+        ],
+        [
+            "EMB5724",
+            "PROCESSOS DE SOLDAGEM PARA ENGENHARIA NAVAL *ENGENHARIA NAVAL [CAMPUS JOINVILLE]",
+            "Processos de Soldagem para Engenharia Naval *ENGENHARIA NAVAL [Campus Joinville]",
+            [
+                [
+                    "07606",
+                    72,
+                    26,
+                    0,
+                    0,
+                    26,
+                    0,
+                    ["2.0820-2 / AUX-ALOCAR", "5.0820-2 / CTJ-U207"],
+                    ["Tiago Vieira da Cunha"]
+                ]
+            ]
+        ],
+        [
+            "EMB5731",
+            "INTRODUCAO A ENGENHARIA NAVAL *ENGENHARIA NAVAL [CAMPUS JOINVILLE]",
+            "Introdução à Engenharia Naval *ENGENHARIA NAVAL [Campus Joinville]",
+            [["01606", 36, 25, 0, 0, 25, 0, ["3.1330-2 / CTJ-U110"], ["Luis Fernando Peres Calil"]]]
+        ],
+        [
+            "EMB5732",
+            "LABORATORIO DE ENGENHARIA NAVAL *ENGENHARIA NAVAL [CAMPUS JOINVILLE]",
+            "Laboratório de Engenharia Naval *ENGENHARIA NAVAL [Campus Joinville]",
+            [["02606", 36, 30, 0, 0, 30, 0, ["3.1510-2 / CTJ-U110"], ["André Luís Condino Fujarra"]]]
+        ],
+        [
+            "EMB5733",
+            "ARQUITETURA NAVAL I *ENGENHARIA NAVAL [CAMPUS JOINVILLE]",
+            "Arquitetura Naval I *ENGENHARIA NAVAL [Campus Joinville]",
+            [["05606", 72, 30, 0, 0, 30, 0, ["3.0730-2 / CTJ-U201", "4.1510-2 / CTJ-U202"], ["Vitor Takashi Endo"]]]
+        ],
+        [
+            "EMB5734",
+            "ARQUITETURA NAVAL II *ENGENHARIA NAVAL [CAMPUS JOINVILLE]",
+            "Arquitetura Naval II *ENGENHARIA NAVAL [Campus Joinville]",
+            [["06606", 54, 35, 0, 0, 35, 0, ["5.0730-3 / CTJ-U204"], ["André Luís Condino Fujarra"]]]
+        ],
+        [
+            "EMB5735",
+            "PROJETO DE NAVIO I *ENGENHARIA NAVAL [CAMPUS JOINVILLE]",
+            "Projeto de Navio I *ENGENHARIA NAVAL [Campus Joinville]",
+            [
+                [
+                    "07606",
+                    72,
+                    20,
+                    0,
+                    0,
+                    20,
+                    0,
+                    ["2.1510-2 / CTJ-U205", "4.1010-2 / CTJ-U204"],
+                    ["Ricardo Aurélio Quinhões Pinto"]
+                ]
+            ]
+        ],
+        [
+            "EMB5742",
+            "MATERIAIS METALICOS PARA CONSTRUCAO NAVAL *ENGENHARIA NAVAL [CAMPUS JOINVILLE]",
+            "Materiais Metálicos para Construção Naval *ENGENHARIA NAVAL [Campus Joinville]",
+            [["09606", 36, 25, 0, 0, 25, 0, ["6.1010-2 / CTJ-U206"], ["Viviane Lilian Soethe Parucker"]]]
+        ],
+        [
+            "EMB5763",
+            "SISTEMAS ELETROELETRONICOS A BORDO *ENGENHARIA NAVAL [CAMPUS JOINVILLE]",
+            "Sistemas Eletroeletrônicos a Bordo *ENGENHARIA NAVAL [Campus Joinville]",
+            [["06606", 54, 30, 0, 0, 30, 0, ["3.0730-3 / CTJ-U105"], ["Professor A Contratar"]]]
+        ],
+        [
+            "EMB5764",
+            "ESTRUTURAS NAVAIS II *ENGENHARIA NAVAL [CAMPUS JOINVILLE]",
+            "Estruturas Navais II *ENGENHARIA NAVAL [Campus Joinville]",
+            [
+                [
+                    "08606",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["3.1010-2 / CTJ-U105", "4.1330-2 / CTJ-U205"],
+                    ["Thiago Pontin Tancredi", "Vitor Takashi Endo"]
+                ]
+            ]
+        ],
+        [
+            "EMB5765",
+            "ESTRUTURAS NAVAIS I *ENGENHARIA NAVAL [CAMPUS JOINVILLE]",
+            "Estruturas Navais I *ENGENHARIA NAVAL [Campus Joinville]",
+            [["07606", 72, 30, 0, 0, 30, 0, ["2.1010-2 / CTJ-U209", "4.0820-2 / CTJ-U110"], ["Thiago Pontin Tancredi"]]]
+        ],
+        [
+            "EMB5772",
+            "MATERIAIS DE CONSTRUCAO NAVAL *ENGENHARIA NAVAL [CAMPUS JOINVILLE]",
+            "Materiais de Construção Naval *ENGENHARIA NAVAL [Campus Joinville]",
+            [
+                [
+                    "07606",
+                    72,
+                    40,
+                    0,
+                    0,
+                    40,
+                    0,
+                    ["4.1510-2 / CTJ-U109", "5.1330-2 / CTJ-U109"],
+                    ["Viviane Lilian Soethe Parucker", "Gabriel Benedet Dutra"]
+                ]
+            ]
+        ],
+        [
+            "EMB5791",
+            "TRABALHO DE CONCLUSAO DE CURSO *ENGENHARIA NAVAL [CAMPUS JOINVILLE]",
+            "Trabalho de Conclusão de Curso *ENGENHARIA NAVAL [Campus Joinville]",
+            [["09606", 108, 30, 0, 0, 30, 0, [], ["Luis Fernando Peres Calil"]]]
+        ],
+        [
+            "EMB5825",
+            "TOPOGRAFIA I *ENGENHARIA CIVIL DE INFRAESTRUTURA [CAMPUS JOINVILLE]",
+            "Topografia I *ENGENHARIA CIVIL DE INFRAESTRUTURA [Campus Joinville]",
+            [["03607", 54, 25, 0, 0, 25, 0, ["5.0910-3 / CTJ-U113"], ["Julian Asdrubal Buritica Garcia"]]]
+        ],
+        [
+            "EMB5829",
+            "TOPOGRAFIA II *ENGENHARIA CIVIL DE INFRAESTRUTURA [CAMPUS JOINVILLE]",
+            "Topografia II *ENGENHARIA CIVIL DE INFRAESTRUTURA [Campus Joinville]",
+            [["04607", 54, 25, 0, 0, 25, 0, ["3.0910-3 / CTJ-U115"], ["Yader Alfonso Guerrero Perez"]]]
+        ],
+        [
+            "EMB5832",
+            "INTRODUCAO A ENGENHARIA CIVIL DE INFRAESTRUTURA *ENGENHARIA CIVIL DE INFRAESTRUTURA [CAMPUS JOINVILLE]",
+            "Introdução à Engenharia Civil de Infraestrutura *ENGENHARIA CIVIL DE INFRAESTRUTURA [Campus Joinville]",
+            [
+                [
+                    "01607",
+                    36,
+                    35,
+                    0,
+                    0,
+                    35,
+                    0,
+                    ["2.1010-2 / CTJ-U208"],
+                    ["Helena Paula Nierwinski", "Anelize Borges Monteiro"]
+                ]
+            ]
+        ],
+        [
+            "EMB5833",
+            "DESENHO TECNICO APLICADO A INFRAESTRUTURA *ENGENHARIA CIVIL DE INFRAESTRUTURA [CAMPUS JOINVILLE]",
+            "Desenho Técnico Aplicado à Infraestrutura *ENGENHARIA CIVIL DE INFRAESTRUTURA [Campus Joinville]",
+            [["02607", 54, 26, 0, 0, 26, 0, ["4.0910-3 / CTJ-U212"], ["Andrea Holz Pfutzenreuter"]]]
+        ],
+        [
+            "EMB5834",
+            "GEOLOGIA DE ENGENHARIA *ENGENHARIA CIVIL DE INFRAESTRUTURA [CAMPUS JOINVILLE]",
+            "Geologia de Engenharia *ENGENHARIA CIVIL DE INFRAESTRUTURA [Campus Joinville]",
+            [["05607", 54, 25, 0, 0, 25, 0, ["2.1330-3 / CTJ-U113"], ["Julian Asdrubal Buritica Garcia"]]]
+        ],
+        [
+            "EMB5835",
+            "MATERIAIS DE CONSTRUCAO I *ENGENHARIA CIVIL DE INFRAESTRUTURA [CAMPUS JOINVILLE]",
+            "Materiais de Construção I *ENGENHARIA CIVIL DE INFRAESTRUTURA [Campus Joinville]",
+            [["05607", 54, 25, 0, 0, 25, 0, ["5.0730-3 / CTJ-U210"], ["Luciano Senff"]]]
+        ],
+        [
+            "EMB5836",
+            "ESTUDOS DE IMPACTOS AMBIENTAIS *ENGENHARIA CIVIL DE INFRAESTRUTURA [CAMPUS JOINVILLE]",
+            "Estudos de Impactos Ambientais *ENGENHARIA CIVIL DE INFRAESTRUTURA [Campus Joinville]",
+            [["05607", 36, 20, 0, 0, 20, 0, ["4.1010-2 / CTJ-U115"], ["Cátia Regina Silva de Carvalho Pinto"]]]
+        ],
+        [
+            "EMB5837",
+            "PROJETO ARQUITETONICO *ENGENHARIA CIVIL DE INFRAESTRUTURA [CAMPUS JOINVILLE]",
+            "Projeto Arquitetônico *ENGENHARIA CIVIL DE INFRAESTRUTURA [Campus Joinville]",
+            [["05607", 54, 25, 0, 0, 25, 0, ["4.1330-3 / CTJ-U203"], ["Renata Cavion"]]]
+        ],
+        [
+            "EMB5838",
+            "HIDRAULICA GERAL *ENGENHARIA CIVIL DE INFRAESTRUTURA [CAMPUS JOINVILLE]",
+            "Hidráulica Geral *ENGENHARIA CIVIL DE INFRAESTRUTURA [Campus Joinville]",
+            [["05607", 72, 25, 0, 0, 25, 0, ["2.1620-2 / CTJ-U213", "4.1620-2 / CTJ-U113"], ["Simone Malutta"]]]
+        ],
+        [
+            "EMB5839",
+            "MECANICA DOS SOLIDOS II *ENGENHARIA CIVIL DE INFRAESTRUTURA [CAMPUS JOINVILLE]",
+            "Mecânica dos Sólidos II *ENGENHARIA CIVIL DE INFRAESTRUTURA [Campus Joinville]",
+            [["05607", 72, 25, 0, 0, 25, 0, ["5.1010-2 / CTJ-U210", "6.1010-2 / CTJ-U115"], ["Luciano Senff"]]]
+        ],
+        [
+            "EMB5840",
+            "CUSTOS E ORCAMENTACAO *ENGENHARIA CIVIL DE INFRAESTRUTURA [CAMPUS JOINVILLE]",
+            "Custos e Orçamentação *ENGENHARIA CIVIL DE INFRAESTRUTURA [Campus Joinville]",
+            [["06607", 54, 25, 0, 0, 25, 0, ["4.0730-3 / CTJ-U112"], ["Daniel Hastenpflug"]]]
+        ],
+        [
+            "EMB5841",
+            "PROJETO GEOMETRICO DE VIAS *ENGENHARIA CIVIL DE INFRAESTRUTURA [CAMPUS JOINVILLE]",
+            "Projeto Geométrico de Vias *ENGENHARIA CIVIL DE INFRAESTRUTURA [Campus Joinville]",
+            [["06607", 72, 25, 0, 0, 25, 0, ["2.1010-2 / CTJ-U213", "3.0730-2 / CTJ-U113"], ["Breno Salgado Barra"]]]
+        ],
+        [
+            "EMB5842",
+            "TEORIA DAS ESTRUTURAS *ENGENHARIA CIVIL DE INFRAESTRUTURA [CAMPUS JOINVILLE]",
+            "Teoria das Estruturas *ENGENHARIA CIVIL DE INFRAESTRUTURA [Campus Joinville]",
+            [
+                [
+                    "06607",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["2.0820-2 / CTJ-U113", "6.0820-2 / CTJ-U115"],
+                    ["Luciano Senff", "Anelize Borges Monteiro"]
+                ]
+            ]
+        ],
+        [
+            "EMB5843",
+            "HIDROLOGIA APLICADA *ENGENHARIA CIVIL DE INFRAESTRUTURA [CAMPUS JOINVILLE]",
+            "Hidrologia Aplicada *ENGENHARIA CIVIL DE INFRAESTRUTURA [Campus Joinville]",
+            [["06607", 72, 25, 0, 0, 25, 0, ["5.0730-2 / CTJ-U113", "6.1010-2 / CTJ-U204"], ["Professor A Contratar"]]]
+        ],
+        [
+            "EMB5844",
+            "MECANICA DOS SOLOS I *ENGENHARIA CIVIL DE INFRAESTRUTURA [CAMPUS JOINVILLE]",
+            "Mecânica dos Solos I *ENGENHARIA CIVIL DE INFRAESTRUTURA [Campus Joinville]",
+            [
+                [
+                    "06607",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["4.1010-2 / CTJ-U211", "5.1010-2 / CTJ-U213"],
+                    ["Helena Paula Nierwinski"]
+                ]
+            ]
+        ],
+        [
+            "EMB5845",
+            "MATERIAIS DE CONSTRUCAO II *ENGENHARIA CIVIL DE INFRAESTRUTURA [CAMPUS JOINVILLE]",
+            "Materiais de Construção II *ENGENHARIA CIVIL DE INFRAESTRUTURA [Campus Joinville]",
+            [["06607", 54, 30, 0, 0, 30, 0, ["3.0910-3 / CTJ-U213"], ["Daniel Hastenpflug"]]]
+        ],
+        [
+            "EMB5846",
+            "GERENCIAMENTO DE OBRAS *ENGENHARIA CIVIL DE INFRAESTRUTURA [CAMPUS JOINVILLE]",
+            "Gerenciamento de Obras *ENGENHARIA CIVIL DE INFRAESTRUTURA [Campus Joinville]",
+            [["07607", 72, 25, 0, 0, 25, 0, ["3.1510-2 / CTJ-U112", "4.1330-2 / CTJ-U210"], ["Daniel Hastenpflug"]]]
+        ],
+        [
+            "EMB5847",
+            "ESTRUTURAS DE CONCRETO ARMADO I *ENGENHARIA CIVIL DE INFRAESTRUTURA [CAMPUS JOINVILLE]",
+            "Estruturas de Concreto Armado I *ENGENHARIA CIVIL DE INFRAESTRUTURA [Campus Joinville]",
+            [
+                [
+                    "07607",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["2.1510-2 / CTJ-U112", "6.1010-2 / CTJ-U110"],
+                    ["Anelize Borges Monteiro"]
+                ]
+            ]
+        ],
+        [
+            "EMB5848",
+            "TECNICAS DE CONSTRUCAO CIVIL *ENGENHARIA CIVIL DE INFRAESTRUTURA [CAMPUS JOINVILLE]",
+            "Técnicas de Construção Civil *ENGENHARIA CIVIL DE INFRAESTRUTURA [Campus Joinville]",
+            [["07607", 36, 25, 0, 0, 25, 0, ["2.1710-2 / CTJ-U112"], ["Daniel Hastenpflug"]]]
+        ],
+        [
+            "EMB5849",
+            "INSTALACOES ELETRICAS *ENGENHARIA CIVIL DE INFRAESTRUTURA [CAMPUS JOINVILLE]",
+            "Instalaçoes Elétricas *ENGENHARIA CIVIL DE INFRAESTRUTURA [Campus Joinville]",
+            [["07607", 54, 25, 0, 0, 25, 0, ["6.1330-3 / CTJ-U113"], ["Thiago Martins"]]]
+        ],
+        [
+            "EMB5850",
+            "INSTALACOES HIDRAULICAS PREDIAIS *ENGENHARIA CIVIL DE INFRAESTRUTURA [CAMPUS JOINVILLE]",
+            "Instalações Hidráulicas Prediais *ENGENHARIA CIVIL DE INFRAESTRUTURA [Campus Joinville]",
+            [["07607", 54, 25, 0, 0, 25, 0, ["6.0730-3 / CTJ-U213"], ["Simone Malutta"]]]
+        ],
+        [
+            "EMB5851",
+            "MECANICA DOS SOLOS II *ENGENHARIA CIVIL DE INFRAESTRUTURA [CAMPUS JOINVILLE]",
+            "Mecânica dos Solos II *ENGENHARIA CIVIL DE INFRAESTRUTURA [Campus Joinville]",
+            [["07607", 72, 25, 0, 0, 25, 0, ["2.1330-2 / CTJ-U210", "3.1330-2 / CTJ-U210"], ["Marcelo Heidemann"]]]
+        ],
+        [
+            "EMB5852",
+            "ELEMENTOS E TECNICAS DE INFRAESTRUTURA *ENGENHARIA CIVIL DE INFRAESTRUTURA [CAMPUS JOINVILLE]",
+            "Elementos e Técnicas de Infraestrutura *ENGENHARIA CIVIL DE INFRAESTRUTURA [Campus Joinville]",
+            [
+                [
+                    "07607",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["3.1710-2 / CTJ-U112", "4.1510-2 / CTJ-U110"],
+                    ["Julian Asdrubal Buritica Garcia"]
+                ]
+            ]
+        ],
+        [
+            "EMB5853",
+            "SANEAMENTO *ENGENHARIA CIVIL DE INFRAESTRUTURA [CAMPUS JOINVILLE]",
+            "Saneamento *ENGENHARIA CIVIL DE INFRAESTRUTURA [Campus Joinville]",
+            [["08607", 72, 25, 0, 0, 25, 0, ["3.0820-2 / CTJ-U210", "4.1010-2 / CTJ-U113"], ["Professor A Contratar"]]]
+        ],
+        [
+            "EMB5854",
+            "ESTRUTURA DE CONCRETO ARMADO II *ENGENHARIA CIVIL DE INFRAESTRUTURA [CAMPUS JOINVILLE]",
+            "Estrutura de Concreto Armado II *ENGENHARIA CIVIL DE INFRAESTRUTURA [Campus Joinville]",
+            [["08607", 72, 25, 0, 0, 25, 0, ["2.0820-2 / CTJ-U210", "6.1010-2 / CTJ-U210"], ["Valeria Bennack"]]]
+        ],
+        [
+            "EMB5855",
+            "LEGISLACAO PROFISSIONAL E FUNDAMENTOS DE ENGENHARIA DE SEGURANCA *ENGENHARIA CIVIL DE INFRAESTRUTURA [CAMPUS JOINVILLE]",
+            "Legislação Profissional e Fundamentos de Engenharia de Segurança *ENGENHARIA CIVIL DE INFRAESTRUTURA [Campus Joinville]",
+            [["08607", 36, 25, 0, 0, 25, 0, ["5.1010-2 / CTJ-U211"], ["Professor A Contratar"]]]
+        ],
+        [
+            "EMB5856",
+            "PAVIMENTACAO DE VIAS *ENGENHARIA CIVIL DE INFRAESTRUTURA [CAMPUS JOINVILLE]",
+            "Pavimentação de Vias *ENGENHARIA CIVIL DE INFRAESTRUTURA [Campus Joinville]",
+            [["08607", 72, 25, 0, 0, 25, 0, ["4.0820-2 / CTJ-U210", "6.0820-2 / CTJ-U210"], ["Breno Salgado Barra"]]]
+        ],
+        [
+            "EMB5857",
+            "FUNDACOES *ENGENHARIA CIVIL DE INFRAESTRUTURA [CAMPUS JOINVILLE]",
+            "Fundações *ENGENHARIA CIVIL DE INFRAESTRUTURA [Campus Joinville]",
+            [["08607", 72, 26, 0, 0, 26, 0, ["2.1010-2 / CTJ-U210", "3.1010-2 / CTJ-U210"], ["Marcelo Heidemann"]]]
+        ],
+        [
+            "EMB5858",
+            "TUNEIS E OBRAS DE TERRA *ENGENHARIA CIVIL DE INFRAESTRUTURA [CAMPUS JOINVILLE]",
+            "Túneis e Obras de Terra *ENGENHARIA CIVIL DE INFRAESTRUTURA [Campus Joinville]",
+            [["09607", 54, 25, 0, 0, 25, 0, ["2.1710-3 / CTJ-U210"], ["Marcelo Heidemann"]]]
+        ],
+        [
+            "EMB5859",
+            "PORTOS E VIAS NAVEGAVEIS *ENGENHARIA CIVIL DE INFRAESTRUTURA [CAMPUS JOINVILLE]",
+            "Portos e Vias Navegáveis *ENGENHARIA CIVIL DE INFRAESTRUTURA [Campus Joinville]",
+            [
+                [
+                    "09607",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["3.1510-2 / CTJ-U210", "5.1330-2 / CTJ-U208"],
+                    ["Helena Paula Nierwinski"]
+                ]
+            ]
+        ],
+        [
+            "EMB5860",
+            "PONTES *ENGENHARIA CIVIL DE INFRAESTRUTURA [CAMPUS JOINVILLE]",
+            "Pontes *ENGENHARIA CIVIL DE INFRAESTRUTURA [Campus Joinville]",
+            [["09607", 54, 25, 0, 0, 25, 0, ["4.1510-3 / CTJ-U210"], ["Anelize Borges Monteiro"]]]
+        ],
+        [
+            "EMB5861",
+            "FERROVIAS E METROVIAS *ENGENHARIA CIVIL DE INFRAESTRUTURA [CAMPUS JOINVILLE]",
+            "Ferrovias e Metrovias *ENGENHARIA CIVIL DE INFRAESTRUTURA [Campus Joinville]",
+            [["09607", 54, 25, 0, 0, 25, 0, ["3.1710-3 / CTJ-U210"], ["Yader Alfonso Guerrero Perez"]]]
+        ],
+        [
+            "EMB5862",
+            "ESTRUTURAS METALICAS E DE MADEIRA *ENGENHARIA CIVIL DE INFRAESTRUTURA [CAMPUS JOINVILLE]",
+            "Estruturas Metálicas e de Madeira *ENGENHARIA CIVIL DE INFRAESTRUTURA [Campus Joinville]",
+            [["09607", 72, 25, 0, 0, 25, 0, ["2.1510-2 / CTJ-U210", "4.1830-2 / CTJ-U210"], ["Valeria Bennack"]]]
+        ],
+        [
+            "EMB5864",
+            "PLANEJAMENTO E GESTAO DO ESPACO URBANO *ENGENHARIA CIVIL DE INFRAESTRUTURA [CAMPUS JOINVILLE]",
+            "Planejamento e Gestão do Espaço Urbano *ENGENHARIA CIVIL DE INFRAESTRUTURA [Campus Joinville]",
+            [["05607", 36, 25, 0, 0, 25, 0, ["5.1330-2 / CTJ-U205"], ["Renata Cavion"]]]
+        ],
+        [
+            "EMB5865",
+            "AEROPORTOS *ENGENHARIA CIVIL DE INFRAESTRUTURA [CAMPUS JOINVILLE]",
+            "Aeroportos *ENGENHARIA CIVIL DE INFRAESTRUTURA [Campus Joinville]",
+            [["09607", 36, 25, 0, 0, 25, 0, ["5.1510-2 / CTJ-U210"], ["Yader Alfonso Guerrero Perez"]]]
+        ],
+        [
+            "EMB5908",
+            "ROTEIRIZACAO E PROGRAMACAO EM TRANSPORTES *ENGENHARIA DE TRANSPORTES E LOGISTICA [CAMPUS JOINVILLE]",
+            "Roteirização e Programação em Transportes *ENGENHARIA DE TRANSPORTES E LOGÍSTICA [Campus Joinville]",
+            [
+                [
+                    "09608",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["2.1010-2 / CTJ-U204", "3.1010-2 / CTJ-U103"],
+                    ["Vanina Macowski Durski Silva"]
+                ]
+            ]
+        ],
+        [
+            "EMB5909",
+            "EQUILIBRIO EM REDES DE TRANSPORTE *ENGENHARIA DE TRANSPORTES E LOGISTICA [CAMPUS JOINVILLE]",
+            "Equilíbrio em Redes de Transporte *ENGENHARIA DE TRANSPORTES E LOGÍSTICA [Campus Joinville]",
+            [
+                [
+                    "08608",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["5.0730-2 / CTJ-U205", "6.0820-2 / CTJ-U205"],
+                    ["Romulo Alberto Castillo Cardenas"]
+                ]
+            ]
+        ],
+        [
+            "EMB5911",
+            "DEMANDA DE TRANSPORTES *ENGENHARIA DE TRANSPORTES E LOGISTICA [CAMPUS JOINVILLE]",
+            "Demanda de Transportes *ENGENHARIA DE TRANSPORTES E LOGÍSTICA [Campus Joinville]",
+            [["06608", 72, 25, 0, 0, 25, 0, ["4.1010-2 / CTJ-U203", "6.1010-2 / CTJ-U212"], ["Simone Becker Lopes"]]]
+        ],
+        [
+            "EMB5916",
+            "PLANEJAMENTO DE TRANSPORTES PUBLICOS *ENGENHARIA DE TRANSPORTES E LOGISTICA [CAMPUS JOINVILLE]",
+            "Planejamento de Transportes Públicos *ENGENHARIA DE TRANSPORTES E LOGÍSTICA [Campus Joinville]",
+            [
+                [
+                    "07608",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["3.1010-2 / CTJ-U205", "4.1010-2 / CTJ-U105"],
+                    ["Francielly Hedler Staudt"]
+                ]
+            ]
+        ],
+        [
+            "EMB5917",
+            "ECONOMIA DOS TRANSPORTES *ENGENHARIA DE TRANSPORTES E LOGISTICA [CAMPUS JOINVILLE]",
+            "Economia dos Transportes *ENGENHARIA DE TRANSPORTES E LOGÍSTICA [Campus Joinville]",
+            [
+                [
+                    "08608",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["3.1330-2 / CTJ-U113", "4.1330-2 / CTJ-U113"],
+                    ["Pedro Paulo de Andrade Júnior"]
+                ]
+            ]
+        ],
+        [
+            "EMB5923",
+            "PROJETO E OPERACAO DE TERMINAIS *ENGENHARIA DE TRANSPORTES E LOGISTICA [CAMPUS JOINVILLE]",
+            "Projeto e Operação de Terminais *ENGENHARIA DE TRANSPORTES E LOGÍSTICA [Campus Joinville]",
+            [["06608", 72, 25, 0, 0, 25, 0, ["2.1510-2 / CTJ-U211", "4.0820-2 / CTJ-U211"], ["Renata Cavion"]]]
+        ],
+        [
+            "EMB5924",
+            "INTRODUCAO A ENGENHARIA DE TRANSPORTE E LOGISTICA *ENGENHARIA DE TRANSPORTES E LOGISTICA [CAMPUS JOINVILLE]",
+            "Introdução à Engenharia de Transporte e Logística *ENGENHARIA DE TRANSPORTES E LOGÍSTICA [Campus Joinville]",
+            [["01608", 36, 25, 0, 0, 25, 0, ["2.1330-2 / CTJ-U211"], ["Natan Bissoli"]]]
+        ],
+        [
+            "EMB5927",
+            "ENGENHARIA DE TRAFEGO I *ENGENHARIA CIVIL DE INFRAESTRUTURA [CAMPUS JOINVILLE]",
+            "Engenharia de Tráfego I *ENGENHARIA CIVIL DE INFRAESTRUTURA [Campus Joinville]",
+            [
+                ["05607", 36, 15, 0, 0, 15, 0, ["6.0820-2 / CTJ-U211"], ["Christiane Wenck Nogueira Fernandes"]],
+                ["06608", 36, 25, 0, 0, 25, 0, ["6.0820-2 / CTJ-U211"], ["Christiane Wenck Nogueira Fernandes"]]
+            ]
+        ],
+        [
+            "EMB5931",
+            "GESTAO DE CUSTOS EM TRANSPORTES *ENGENHARIA DE TRANSPORTES E LOGISTICA [CAMPUS JOINVILLE]",
+            "Gestão de Custos em Transportes *ENGENHARIA DE TRANSPORTES E LOGÍSTICA [Campus Joinville]",
+            [["07608", 54, 25, 0, 0, 25, 0, ["3.1510-3 / CTJ-U211"], ["Pedro Paulo de Andrade Júnior"]]]
+        ],
+        [
+            "EMB5932",
+            "LOGISTICA II *ENGENHARIA DE TRANSPORTES E LOGISTICA [CAMPUS JOINVILLE]",
+            "Logística II *ENGENHARIA DE TRANSPORTES E LOGÍSTICA [Campus Joinville]",
+            [
+                [
+                    "07608",
+                    72,
+                    30,
+                    0,
+                    0,
+                    30,
+                    0,
+                    ["3.1330-2 / CTJ-U108", "4.1620-2 / CTJ-U203"],
+                    ["Francielly Hedler Staudt"]
+                ]
+            ]
+        ],
+        [
+            "EMB5933",
+            "SISTEMA DE INFORMACOES GEOGRAFICAS PARA TRANSPORTE *ENGENHARIA DE TRANSPORTES E LOGISTICA [CAMPUS JOINVILLE]",
+            "Sistema de Informaçoes Geográficas para Transporte *ENGENHARIA DE TRANSPORTES E LOGÍSTICA [Campus Joinville]",
+            [["07608", 54, 25, 0, 0, 25, 0, ["4.1330-3 / CTJ-U212"], ["Natan Bissoli"]]]
+        ],
+        [
+            "EMB5935",
+            "SIMULACAO EM TRANSPORTES *ENGENHARIA DE TRANSPORTES E LOGISTICA [CAMPUS JOINVILLE]",
+            "Simulação em Transportes *ENGENHARIA DE TRANSPORTES E LOGÍSTICA [Campus Joinville]",
+            [["09608", 54, 25, 0, 0, 25, 0, ["2.0730-3 / CTJ-U205"], ["Natan Bissoli"]]]
+        ],
+        [
+            "EMB5936",
+            "ENGENHARIA DE TRAFEGO II *ENGENHARIA DE TRANSPORTES E LOGISTICA [CAMPUS JOINVILLE]",
+            "Engenharia de Tráfego II *ENGENHARIA DE TRANSPORTES E LOGÍSTICA [Campus Joinville]",
+            [["07608", 54, 25, 0, 0, 25, 0, ["2.1510-3 / CTJ-U106"], ["Natan Bissoli"]]]
+        ],
+        [
+            "EMB5937",
+            "IMPACTOS AMBIENTAIS DOS TRANSPORTES *ENGENHARIA DE TRANSPORTES E LOGISTICA [CAMPUS JOINVILLE]",
+            "Impactos Ambientais dos Transportes *ENGENHARIA DE TRANSPORTES E LOGÍSTICA [Campus Joinville]",
+            [
+                ["05608", 36, 25, 0, 0, 25, 0, ["4.0820-2 / CTJ-U204"], ["Cátia Regina Silva de Carvalho Pinto"]],
+                ["09604", 36, 15, 0, 0, 15, 0, ["4.0820-2 / CTJ-U204"], ["Cátia Regina Silva de Carvalho Pinto"]]
+            ]
+        ],
+        [
+            "EMB5938",
+            "GRAFOS E REDES *ENGENHARIA DE TRANSPORTES E LOGISTICA [CAMPUS JOINVILLE]",
+            "Grafos e Redes *ENGENHARIA DE TRANSPORTES E LOGÍSTICA [Campus Joinville]",
+            [["05608", 54, 25, 0, 0, 25, 0, ["5.0910-3 / CTJ-U203"], ["Ricardo José Pfitscher"]]]
+        ],
+        [
+            "EMB5940",
+            "PROCESSOS ESTOCASTICOS *ENGENHARIA DE TRANSPORTES E LOGISTICA [CAMPUS JOINVILLE]",
+            "Processos Estocásticos *ENGENHARIA DE TRANSPORTES E LOGÍSTICA [Campus Joinville]",
+            [
+                [
+                    "08608",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["2.1010-2 / CTJ-U205", "4.1010-2 / CTJ-U205"],
+                    ["Christiane Wenck Nogueira Fernandes"]
+                ]
+            ]
+        ],
+        [
+            "EMB5941",
+            "PLANEJAMENTO INTEGRADO DE TRANSPORTES E USO DO SOLO *ENGENHARIA DE TRANSPORTES E LOGISTICA [CAMPUS JOINVILLE]",
+            "Planejamento Integrado de Transportes e Uso do Solo *ENGENHARIA DE TRANSPORTES E LOGÍSTICA [Campus Joinville]",
+            [["08608", 72, 25, 0, 0, 25, 0, ["2.1330-2 / CTJ-U212", "5.1330-2 / CTJ-U203"], ["Simone Becker Lopes"]]]
+        ],
+        [
+            "EMB5950",
+            "PESQUISA OPERACIONAL I *ENGENHARIA DE TRANSPORTES E LOGISTICA [CAMPUS JOINVILLE]",
+            "Pesquisa Operacional I *ENGENHARIA DE TRANSPORTES E LOGÍSTICA [Campus Joinville]",
+            [
+                [
+                    "04608",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["4.0820-2 / CTJ-U205", "6.1010-2 / CTJ-U205"],
+                    ["Romulo Alberto Castillo Cardenas"]
+                ]
+            ]
+        ],
+        [
+            "EMB5951",
+            "PESQUISA OPERACIONAL II *ENGENHARIA DE TRANSPORTES E LOGISTICA [CAMPUS JOINVILLE]",
+            "Pesquisa Operacional II *ENGENHARIA DE TRANSPORTES E LOGÍSTICA [Campus Joinville]",
+            [
+                [
+                    "05608",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["2.1010-2 / CTJ-U203", "6.0820-2 / CTJ-U212"],
+                    ["Silvia Lopes de Sena Taglialenha"]
+                ]
+            ]
+        ],
+        [
+            "EMB5952",
+            "PESQUISA OPERACIONAL III *ENGENHARIA DE TRANSPORTES E LOGISTICA [CAMPUS JOINVILLE]",
+            "Pesquisa Operacional III *ENGENHARIA DE TRANSPORTES E LOGÍSTICA [Campus Joinville]",
+            [
+                [
+                    "06608",
+                    72,
+                    25,
+                    0,
+                    0,
+                    25,
+                    0,
+                    ["2.1330-2 / CTJ-U205", "5.1010-2 / CTJ-U205"],
+                    ["Silvia Lopes de Sena Taglialenha"]
+                ]
+            ]
+        ],
+        [
+            "EMB5961",
+            "ENGENHARIA ECONOMICA *CIENCIA E TECNOLOGIA (CAMPUS DE JOINVILLE]",
+            "Engenharia Econômica *CIÊNCIA E TECNOLOGIA (Campus de Joinville]",
+            [
+                ["05601", 54, 5, 0, 0, 5, 0, ["4.1510-3 / CTJ-U111"], ["Francieli Triches"]],
+                ["06608", 54, 20, 0, 0, 20, 0, ["4.1510-3 / CTJ-U111"], ["Francieli Triches"]],
+                ["08603", 54, 15, 0, 0, 15, 0, ["4.1330-3 / CTJ-U107"], ["Cristiano Vasconcellos Ferreira"]],
+                ["08604", 54, 15, 0, 0, 15, 0, ["4.1330-3 / CTJ-U107"], ["Cristiano Vasconcellos Ferreira"]],
+                ["08605", 54, 15, 0, 0, 15, 0, ["4.1330-3 / CTJ-U107"], ["Cristiano Vasconcellos Ferreira"]],
+                ["08607", 54, 15, 0, 0, 15, 0, ["5.0730-3 / CTJ-U108"], ["Francieli Triches"]],
+                ["09602", 54, 20, 0, 0, 20, 0, ["5.0730-3 / CTJ-U108"], ["Francieli Triches"]],
+                ["09606", 54, 15, 0, 0, 15, 0, ["5.0730-3 / CTJ-U108"], ["Francieli Triches"]]
+            ]
+        ],
+        [
+            "EMB5962",
+            "PLANEJAMENTO ESTRATEGICO *ENGENHARIA DE TRANSPORTES E LOGISTICA [CAMPUS JOINVILLE]",
+            "Planejamento Estratégico *ENGENHARIA DE TRANSPORTES E LOGÍSTICA [Campus Joinville]",
+            [["09608", 54, 30, 0, 0, 30, 0, ["4.0730-3 / CTJ-U207"], ["Janaina Renata Garcia"]]]
+        ]
+    ]
+}
