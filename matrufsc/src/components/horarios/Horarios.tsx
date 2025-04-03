@@ -252,10 +252,63 @@ function HorariosGrid({
     );
 }
 
+function Popover({ onClose }: { onClose: () => void }) {
+    const [titulo, setTitulo] = useState(""); // Add state for titulo
+
+    return (
+        <div className="absolute left-full top-0 ml-4 w-80">
+            <div className="rounded-lg border border-neutral-300 bg-white p-4 shadow-lg">
+                <div className="mb-4 flex items-center justify-between">
+                    <h2 className="text-lg font-bold">Adicionar Compromisso</h2>
+                    <button
+                        onClick={onClose}
+                        className="text-lg text-neutral-500 hover:text-neutral-800"
+                    >
+                        ×
+                    </button>
+                </div>
+                <div className="space-y-4">
+                    <div>
+                        <label className="block text-sm font-medium text-neutral-600">
+                            Título
+                        </label>
+                        <input
+                            type="text"
+                            className="mt-1 block w-full rounded-md border border-neutral-300 px-3 py-2 focus:border-neutral-500 focus:outline-none"
+                            value={titulo}
+                            maxLength={10}
+                            onChange={(e) => setTitulo(e.target.value)}
+                        />
+                    </div>
+                </div>
+                <div className="flex justify-between mt-4">
+                    <button
+                        className="bg-gray-300 text-black py-2 rounded w-5/12"
+                        onClick={onClose}
+                    >
+                        Cancelar
+                    </button>
+                    <button
+                        className="bg-blue-500 text-white py-2 rounded w-5/12"
+                    >
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 export default function Horarios() {
+    const isPopoverOpen = usePlanoStore((state) => state.isPopoverOpen);
+    const closePopover = usePlanoStore((state) => state.closePopover);
+
     return (
         <div className="my-8 flex w-full flex-col items-center">
-            <HorariosGrid dias={DIAS} horas={HORAS} />
+            <div className="relative">
+                <HorariosGrid dias={DIAS} horas={HORAS} />
+                {isPopoverOpen && <Popover onClose={closePopover} />}
+            </div>
             <div className="mt-2 flex w-full justify-center">
                 <CombinacaoSpinner />
             </div>

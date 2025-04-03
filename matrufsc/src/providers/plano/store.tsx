@@ -52,6 +52,7 @@ interface PlanoState {
     materias: Materia[];
     currentPlano: Plano | null;
     currentPlanoIndex: number;
+    isPopoverOpen: boolean; // State to track Popover visibility
 
     // Actions
     addMateria: (materia: Materia) => MateriaExistsError | null;
@@ -60,6 +61,8 @@ interface PlanoState {
     nextPlano: () => void;
     previousPlano: () => void;
     setPlanoIndex: (index: number) => void;
+    openPopover: () => void; // Action to open the Popover
+    closePopover: () => void; // Action to close the Popover
 }
 
 export const usePlanoStore = create<PlanoState>((set, get) => {
@@ -83,6 +86,7 @@ export const usePlanoStore = create<PlanoState>((set, get) => {
         currentPlanoIndex: 0,
         currentPlano: null,
         totalPlanos: 0,
+        isPopoverOpen: false,
 
         // Actions
         addMateria: (materia) => {
@@ -212,5 +216,8 @@ export const usePlanoStore = create<PlanoState>((set, get) => {
                 currentPlano: planos[validIndex],
             });
         },
+
+        openPopover: () => set({ isPopoverOpen: true }),
+        closePopover: () => set({ isPopoverOpen: false }),
     };
 });

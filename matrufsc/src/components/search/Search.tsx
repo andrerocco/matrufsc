@@ -1,6 +1,7 @@
 import { useState, KeyboardEvent, ChangeEvent, useMemo, memo, useCallback, useEffect, useRef } from "react";
 import { cn } from "~/lib/utils";
 import { useClickOutside } from "~/components/search/useClickOutside";
+import { usePlanoStore } from "~/providers/plano/store"; // Import the store
 
 export default function Search<T>({
     data,
@@ -265,14 +266,25 @@ const MemoizedSearchShowMore = memo(function SearchShowMore({
     onMouseEnter?: () => void;
     dataIndex: number;
 }) {
+    const openPopover = usePlanoStore((state) => state.openPopover); // Access the openPopover action
+
     return (
-        <button
-            className={`h-8 w-full cursor-pointer px-3 text-center text-blue-600 hover:underline ${isSelected ? "bg-neutral-200" : ""}`}
-            onClick={onClick}
-            onMouseEnter={onMouseEnter}
-            data-index={dataIndex}
-        >
-            Carregar mais... {isSelected ? "👇" : ""}
-        </button>
+        <>
+            <button
+                className={`h-8 w-full cursor-pointer px-3 text-center text-blue-600 hover:underline ${isSelected ? "bg-neutral-200" : ""}`}
+                onClick={onClick}
+                onMouseEnter={onMouseEnter}
+                data-index={dataIndex}
+            >
+                Carregar mais... {isSelected ? "👇" : ""}
+            </button>
+            <button
+                className={`h-8 w-full cursor-pointer px-3 text-center text-blue-600 hover:underline ${isSelected ? "bg-neutral-200" : ""}`}
+                onClick={openPopover} // Open the Popover when clicked
+                onMouseEnter={onMouseEnter}
+            >
+                Adicionar compromisso
+            </button>
+        </>
     );
 });
