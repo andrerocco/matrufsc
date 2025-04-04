@@ -149,8 +149,37 @@ export const horariosApi = {
 // Changes to other cells do not trigger updates in this component.
 const CellContainer = ({ dia, hora, base }: { dia: number; hora: string; base?: HorarioCellBase }) => {
     const cellOverlay = useHorariosStore((state) => state.horarios[dia]?.[hora]);
+    const isPopoverOpen = usePlanoStore((state) => state.isPopoverOpen);
+    const [isSelected, setIsSelected] = useState(false);
 
-    return <HorarioCell base={base ?? undefined} overlay={cellOverlay ?? undefined} />;
+    const handleClick = () => {
+        if (!isPopoverOpen) return;
+        setIsSelected((prev) => !prev);
+    };
+
+    // Criar o overlay temporário quando a célula for selecionada
+    const tempOverlay: HorarioCellOverlay | undefined = isSelected
+        ? {
+              id: "temp", // ID temporário
+              sala: "Compromiss", // Texto temporário
+              color: "lightblue", // Cor temporária
+          }
+        : undefined;
+
+    return (
+        <td
+            onClick={handleClick}
+            className={cn(
+                "cursor-pointer",
+                isPopoverOpen && "hover:bg-neutral-100"
+            )}
+        >
+            <HorarioCell 
+                base={base ?? undefined} 
+                overlay={isSelected ? tempOverlay : cellOverlay ?? undefined} 
+            />
+        </td>
+    );
 };
 
 function planoToHorariosDescriptor(plano: Plano | null): HorariosDescriptor<HorarioCellBase> {
@@ -180,13 +209,11 @@ function planoToHorariosDescriptor(plano: Plano | null): HorariosDescriptor<Hora
 function HorariosGrid({
     dias,
     horas,
-    // base,
+// base,
     // overlay,
 }: {
     dias: { number: number; name: string }[];
     horas: string[];
-    // base: HorariosDescriptor<HorarioCellBase>;
-    // overlay: HorariosDescriptor<HorarioCellOverlay>;
 }) {
     const plano = usePlanoStore((state) => state.currentPlano);
     const horarios = planoToHorariosDescriptor(plano);

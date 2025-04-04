@@ -8,6 +8,8 @@ export interface HorarioCellBase {
 
 export interface HorarioCellOverlay {
     id: string;
+    sala?: string; // Adicionado para exibir o texto do compromisso
+    color?: string; // Adicionado para permitir cores personalizadas
 }
 
 export default function HorarioCell({ base, overlay }: { base?: HorarioCellBase; overlay?: HorarioCellOverlay }) {
@@ -21,9 +23,12 @@ export default function HorarioCell({ base, overlay }: { base?: HorarioCellBase;
                     "horario-item w-[80px] h-[30px] rounded border border-neutral-500/80 px-1 py-[5px]",
                     conflict ? "bg-red-600" : "bg-black text-white",
                 )}
+                style={{ backgroundColor: overlay.color || (conflict ? "red" : "black") }}
                 align="center"
             >
-                <p className="block w-full truncate text-center leading-none">{overlay.id}</p>
+                <p className="block w-full truncate text-center leading-none">
+                    {overlay.sala || overlay.id}
+                </p>
             </td>
         );
     }
