@@ -18,7 +18,7 @@ export default function HorarioCell({ base, overlay }: { base?: HorarioCellBase;
             <td
                 data-materia-id={overlay.id}
                 className={cn(
-                    "horario-item h-[30px] w-[80px] rounded border border-neutral-500/80 px-1 py-[5px]",
+                    "horario-item h-[30px] w-[80px] rounded-sm border border-neutral-500/80 px-1 py-[5px]",
                     conflict ? "bg-red-600" : "bg-black text-white",
                 )}
                 align="center"
@@ -30,14 +30,14 @@ export default function HorarioCell({ base, overlay }: { base?: HorarioCellBase;
 
     if (!base) {
         return (
-            <td className="horario-item h-[30px] w-[80px] rounded border border-neutral-500/80 bg-white px-1 py-[5px]" />
+            <td className="horario-item h-[30px] w-[80px] rounded-sm border border-neutral-500/80 bg-white px-1 py-[5px]" />
         );
     }
 
     return (
         <td
             data-materia-id={base.id}
-            className="horario-item h-[30px] w-[80px] rounded border border-neutral-500/80 bg-white px-1 py-[5px]"
+            className="horario-item h-[30px] w-[80px] rounded-sm border border-neutral-500/80 bg-white px-1 py-[5px]"
             style={{ backgroundColor: base.color }}
             align="center"
         >

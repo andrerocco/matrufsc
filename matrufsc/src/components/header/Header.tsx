@@ -20,7 +20,7 @@ export default function Header({
                 <select
                     name="campus"
                     id="campus"
-                    className="bg-transparent focus:border-transparent focus:outline-none"
+                    className="bg-transparent focus:border-transparent focus:outline-hidden"
                     value={campusValue}
                     onChange={(e) => onCampusChange(e.target.value)}
                 >
@@ -33,7 +33,7 @@ export default function Header({
                 <select
                     name="semester"
                     id="semester"
-                    className="bg-transparent focus:border-transparent focus:outline-none"
+                    className="bg-transparent focus:border-transparent focus:outline-hidden"
                     value={semesterValue}
                     onChange={(e) => onSemesterChange(e.target.value)}
                 >

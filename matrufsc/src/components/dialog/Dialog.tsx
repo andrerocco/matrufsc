@@ -63,7 +63,7 @@ function Content({ children }: DialogContentProps) {
                 {/* Close Button */}
                 <button
                     onClick={close}
-                    className="absolute right-2 top-2 text-neutral-600 hover:text-neutral-800 focus:outline-none"
+                    className="absolute right-2 top-2 text-neutral-600 hover:text-neutral-800 focus:outline-hidden"
                     aria-label="Close dialog"
                 >
                     &times;

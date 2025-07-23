@@ -55,7 +55,7 @@ export default function CombinacaoSpinner() {
     return (
         <div className="flex gap-2">
             <button
-                className="flex size-6 items-center justify-center rounded-md border border-neutral-400 bg-white pb-[1px] disabled:opacity-50"
+                className="flex size-6 items-center justify-center rounded-md border border-neutral-400 bg-white pb-px disabled:opacity-50"
                 onClick={handlePrevious}
                 disabled={planosEmpty}
             >
@@ -74,7 +74,7 @@ export default function CombinacaoSpinner() {
             />
             <span>/ {totalPlanos}</span>
             <button
-                className="flex size-6 items-center justify-center rounded-md border border-neutral-400 bg-white pb-[1px] disabled:opacity-50"
+                className="flex size-6 items-center justify-center rounded-md border border-neutral-400 bg-white pb-px disabled:opacity-50"
                 onClick={handleNext}
                 disabled={planosEmpty}
             >

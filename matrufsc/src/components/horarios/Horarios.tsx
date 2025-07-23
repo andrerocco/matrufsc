@@ -166,7 +166,7 @@ function HorariosGrid({ dias, horas }: { dias: { number: number; name: string }[
                     {dias.map((dia) => (
                         <th
                             key={dia.number}
-                            className="w-[80px] rounded border border-neutral-400 bg-neutral-100 px-1 py-[5px] uppercase text-neutral-500 shadow-sm"
+                            className="w-[80px] rounded-sm border border-neutral-400 bg-neutral-100 px-1 py-[5px] uppercase text-neutral-500 shadow-xs"
                         >
                             {dia.name}
                         </th>

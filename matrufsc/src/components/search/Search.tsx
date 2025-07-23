@@ -170,7 +170,7 @@ export default function Search<T>({
                     disabled={disabled}
                     type="text"
                     className={cn(
-                        "h-9 w-full rounded-md border border-neutral-400 px-3 focus:border-neutral-600 focus:outline-none disabled:bg-neutral-200",
+                        "h-9 w-full rounded-md border border-neutral-400 bg-white px-3 text-black placeholder:text-neutral-400 focus:border-neutral-600 focus:outline-hidden disabled:bg-neutral-200",
                         open && "rounded-b-none",
                     )}
                     onKeyDown={handleKeyDown}
@@ -180,7 +180,7 @@ export default function Search<T>({
                 {open && (
                     <button
                         onClick={handleClose}
-                        className="absolute right-0 top-0 h-9 -translate-y-0.5 px-3 text-lg text-neutral-700 hover:text-black hover:underline"
+                        className="absolute top-0 right-0 h-9 -translate-y-0.5 px-3 text-lg text-neutral-700 hover:text-black hover:underline"
                     >
                         x
                     </button>

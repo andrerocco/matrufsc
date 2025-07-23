@@ -1,19 +1,37 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+    --animate-fade-in-left: fade-in-left 100ms ease-out;
+    --animate-fade-out-left: fade-out-left 100ms ease-out;
+
+    @keyframes fade-in-left {
+        0% {
+            opacity: 0;
+            transform: translateX(-3px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+    @keyframes fade-out-left {
+        0% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        100% {
+            opacity: 0;
+            transform: translateX(-3px);
+        }
+    }
+}
 
 :root {
     font-family: monospace;
-
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-    margin: 0;
-    padding: 0;
 }
 
 body {
@@ -46,13 +64,6 @@ h6 {
 
 a {
     @apply text-blue-600 underline transition-colors duration-75 hover:text-blue-900;
-}
-
-.materia-item.hovering,
-.horario-item.hovering {
-    /* TODO: Remove important */
-    background-color: black !important;
-    color: white !important;
 }
 
 .hide-spin-button::-webkit-inner-spin-button,

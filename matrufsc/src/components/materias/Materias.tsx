@@ -9,10 +9,9 @@ export default function Materias() {
     return (
         <div className="not-prose relative my-6 flex overflow-hidden rounded-md border border-neutral-400">
             <div className="relative flex-1 overflow-x-auto overflow-y-hidden">
-                <table className="min-w-full table-fixed divide-y divide-neutral-400">
+                <table className="min-w-full table-fixed">
                     <MateriasTableHead creditos={0} />
-
-                    <tbody className="divide-y divide-neutral-400">
+                    <tbody className="divide-y divide-neutral-400 border-t border-neutral-400">
                         {materias.map((materia, index) => (
                             <MateriaRow key={index} materia={materia} />
                         ))}
@@ -27,18 +26,18 @@ function MateriasTableHead({ creditos }: { creditos: number }) {
     return (
         <thead className="relative bg-neutral-100">
             <tr className="divide-x divide-neutral-300">
-                <th className="h-7 w-10 px-3 py-1.5 text-left font-semibold uppercase text-neutral-900">
+                <th className="h-7 w-10 px-3 py-1.5 text-left font-semibold text-neutral-900 uppercase">
                     <input
                         type="checkbox"
                         defaultChecked
                         className="pointer-events-none mr-0 translate-y-[3px] cursor-pointer opacity-0"
                     />
                 </th>
-                <th className="h-7 w-24 px-3 py-1.5 text-left font-semibold uppercase text-neutral-900">Código</th>
-                <th className="h-7 px-3 py-1.5 text-left font-semibold uppercase text-neutral-900">
+                <th className="h-7 w-24 px-3 py-1.5 text-left font-semibold text-neutral-900 uppercase">Código</th>
+                <th className="h-7 px-3 py-1.5 text-left font-semibold text-neutral-900 uppercase">
                     <div className="flex justify-between">
                         <span>Matéria</span>
-                        <span className="font-normal normal-case text-neutral-400">Créditos: {creditos}</span>
+                        <span className="font-normal text-neutral-400 normal-case">Créditos: {creditos}</span>
                     </div>
                 </th>
             </tr>
@@ -114,7 +113,7 @@ function MateriaRow({ materia }: { materia: Materia }) {
                 <div className="flex items-center justify-between">
                     <p>{materia.nome}</p>
                     <button
-                        className="absolute right-0 mr-3 opacity-0 hover:underline group-hover:opacity-100"
+                        className="absolute right-0 mr-3 opacity-0 group-hover:opacity-100 hover:underline"
                         onClick={(event) => {
                             event.stopPropagation();
                             handleClickRemove();
