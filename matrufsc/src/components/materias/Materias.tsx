@@ -1,24 +1,10 @@
+import { Materia } from "~/lib/combinacoes";
 import { usePlanoStore } from "~/providers/plano/store";
+import { useHorariosStore } from "../horarios/Horarios";
+import { useTurmasList } from "../turmas/Turmas";
 
 export default function Materias() {
     const materias = usePlanoStore((state) => state.materias);
-    const removeMateria = usePlanoStore((state) => state.removeMateria);
-    const updateSelected = usePlanoStore((state) => state.updateSelected);
-
-    const handleRemove = (id: string) => {
-        document
-            .querySelectorAll(`.horario-item[data-materia-id="${id}"]`)
-            .forEach((el) => el.classList.remove("hovering")); // TODO: Organize
-        removeMateria(id);
-    };
-
-    const handleToggleSelection = (id: string, currentSelected: boolean) => {
-        // remove hover effect from horario-item
-        document
-            .querySelectorAll(`.horario-item[data-materia-id="${id}"]`)
-            .forEach((el) => el.classList.remove("hovering")); // TODO: Organize
-        updateSelected(id, !currentSelected);
-    };
 
     return (
         <div className="not-prose relative my-6 flex overflow-hidden rounded-md border border-neutral-400">
@@ -27,57 +13,9 @@ export default function Materias() {
                     <MateriasTableHead creditos={0} />
 
                     <tbody className="divide-y divide-neutral-400">
-                        {/* {materias.length === 0 && (
-                            <tr className="min-h-7 divide-x divide-neutral-300">
-                                <td className="px-3 py-1.5 text-center" colSpan={3}>
-                                    <p className="text-neutral-500">Nenhuma matéria selecionada</p>
-                                </td>
-                            </tr>
-                        )} */}
-
-                        {materias.map((materia, index) => {
-                            return (
-                                <tr
-                                    key={index}
-                                    data-materia-id={materia.id}
-                                    style={{ backgroundColor: materia.cor }}
-                                    className="materia-item group min-h-7 cursor-pointer divide-x divide-neutral-400"
-                                    onMouseEnter={() =>
-                                        document
-                                            .querySelectorAll(`.horario-item[data-materia-id="${materia.id}"]`)
-                                            ?.forEach((el) => el.classList.add("hovering"))
-                                    }
-                                    onMouseLeave={() =>
-                                        document
-                                            .querySelectorAll(`.horario-item[data-materia-id="${materia.id}"]`)
-                                            ?.forEach((el) => el.classList.remove("hovering"))
-                                    }
-                                >
-                                    <td className="px-3 py-1.5">
-                                        <input
-                                            type="checkbox"
-                                            checked={materia.selected}
-                                            disabled={materia.blocked}
-                                            title={materia.blocked ? "Conflito com matéria(s) acima na lista" : ""}
-                                            onChange={() => handleToggleSelection(materia.id, materia.selected)}
-                                            className="mr-0 translate-y-[2px] cursor-pointer"
-                                        />
-                                    </td>
-                                    <td className="px-3 py-1.5">{materia.id}</td>
-                                    <td className="px-3 py-1.5">
-                                        <div className="flex items-center justify-between">
-                                            <p>{materia.nome}</p>
-                                            <button
-                                                className="absolute right-0 mr-3 opacity-0 hover:underline group-hover:opacity-100"
-                                                onClick={() => handleRemove(materia.id)}
-                                            >
-                                                Remover
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            );
-                        })}
+                        {materias.map((materia, index) => (
+                            <MateriaRow key={index} materia={materia} />
+                        ))}
                     </tbody>
                 </table>
             </div>
@@ -105,5 +43,87 @@ function MateriasTableHead({ creditos }: { creditos: number }) {
                 </th>
             </tr>
         </thead>
+    );
+}
+
+function MateriaRow({ materia }: { materia: Materia }) {
+    const removeMateria = usePlanoStore((state) => state.removeMateria);
+    const updateMateriaSelection = usePlanoStore((state) => state.updateMateriaSelection);
+
+    // Get the update and clear functions from the horarios store
+    const setOverlay = useHorariosStore((state) => state.setOverlay);
+    const clearOverlay = useHorariosStore((state) => state.clear);
+
+    const { open: openTurmasList } = useTurmasList();
+
+    // TODO: This is bad, having to subscribe to this currentPlano just to get the overlay
+    const currentPlano = usePlanoStore((state) => state.currentPlano);
+    const handleHighlightMateria = () => {
+        if (materia.selected && !materia.blocked) {
+            // Use the aulas that are already in the currentPlano
+            const aulasInPlano = currentPlano?.find((planoItem) => planoItem.materia.id === materia.id)?.turma?.aulas;
+            if (aulasInPlano) {
+                setOverlay(materia.id, aulasInPlano);
+                return;
+            }
+        } else {
+            // Use the first set of aulas that is not unselected
+            const selectedAulas = materia.turmas.filter((turma) => turma.selected)[0]?.aulas;
+            if (selectedAulas) {
+                setOverlay(materia.id, selectedAulas);
+                return;
+            }
+        }
+    };
+
+    const handleClickRow = () => {
+        openTurmasList(materia);
+    };
+
+    const handleChangeInputSelection = () => {
+        updateMateriaSelection(materia.id, !materia.selected);
+    };
+
+    const handleClickRemove = () => {
+        removeMateria(materia.id);
+        clearOverlay();
+    };
+
+    return (
+        <tr
+            data-materia-id={materia.id}
+            style={{ backgroundColor: materia.cor }}
+            className="materia-item group min-h-7 cursor-pointer divide-x divide-neutral-400"
+            onMouseEnter={handleHighlightMateria}
+            onMouseLeave={clearOverlay}
+            onClick={handleClickRow}
+        >
+            <td className="px-3 py-1.5">
+                <input
+                    className="mr-0 translate-y-[2px] cursor-pointer"
+                    type="checkbox"
+                    checked={materia.selected}
+                    disabled={materia.blocked}
+                    title={materia.blocked ? "Bloqueada por conflito com matéria(s) acima na lista8" : ""}
+                    onClick={(event) => event.stopPropagation()}
+                    onChange={handleChangeInputSelection}
+                />
+            </td>
+            <td className="px-3 py-1.5">{materia.id}</td>
+            <td className="px-3 py-1.5">
+                <div className="flex items-center justify-between">
+                    <p>{materia.nome}</p>
+                    <button
+                        className="absolute right-0 mr-3 opacity-0 hover:underline group-hover:opacity-100"
+                        onClick={(event) => {
+                            event.stopPropagation();
+                            handleClickRemove();
+                        }}
+                    >
+                        Remover
+                    </button>
+                </div>
+            </td>
+        </tr>
     );
 }

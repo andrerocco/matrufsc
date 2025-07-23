@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
 import useLocalStorageState from "use-local-storage-state";
-import {
-    getDisciplinaFromJSON,
-    type JSONCampusCode,
-    type JSONCampus,
-    type JSONDisciplina,
-} from "./providers/plano/parser";
-import { usePlanoStore } from "./providers/plano/store";
-import Materias from "./components/materias/Materias";
-import Search from "./components/search/Search";
 import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header";
 import Horarios from "./components/horarios/Horarios";
+import Materias from "./components/materias/Materias";
+import Search from "./components/search/Search";
+import Turmas from "./components/turmas/Turmas";
+import {
+    getDisciplinaFromJSON,
+    type JSONCampus,
+    type JSONCampusCode,
+    type JSONDisciplina,
+} from "./providers/plano/parser";
+import { usePlanoStore } from "./providers/plano/store";
 
 const CAMPUS: { title: string; value: JSONCampusCode }[] = [
     { title: "Florianópolis", value: "FLO" },
@@ -70,16 +71,16 @@ function App() {
     };
 
     return (
-        <div className="mx-auto w-full max-w-[1000px] px-6 py-8">
-            <Header
-                campusOptions={CAMPUS}
-                campusValue={campus}
-                onCampusChange={setCampus as (value: string) => void}
-                semesterOptions={SEMESTER_OPTIONS}
-                semesterValue={semester}
-                onSemesterChange={setSemester}
-            />
-            <main>
+        <>
+            <div className="mx-auto w-full max-w-[1000px] px-6 pt-8">
+                <Header
+                    campusOptions={CAMPUS}
+                    campusValue={campus}
+                    onCampusChange={setCampus as (value: string) => void}
+                    semesterOptions={SEMESTER_OPTIONS}
+                    semesterValue={semester}
+                    onSemesterChange={setSemester}
+                />
                 <Search
                     placeholder={loading ? "Carregando..." : "Pesquisar disciplina"} // TODO: Melhorar loading
                     disabled={loading}
@@ -89,10 +90,15 @@ function App() {
                     getLabel={(disciplina) => `${disciplina[0]} - ${disciplina[2]}`}
                 />
                 <Materias />
+            </div>
+            <div className="flex flex-row items-center justify-center gap-12 overflow-x-auto">
                 <Horarios />
-            </main>
-            <Footer />
-        </div>
+                <Turmas />
+            </div>
+            <div className="mx-auto w-full max-w-[1000px] px-6 pb-8">
+                <Footer />
+            </div>
+        </>
     );
 }
 export default App;

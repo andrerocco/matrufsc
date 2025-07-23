@@ -2,11 +2,11 @@ import { Fragment, useState } from "react";
 import { create } from "zustand";
 import { cn } from "~/lib/utils";
 // Providers
+import { Aula, type Plano } from "~/lib/combinacoes";
 import { usePlanoStore } from "~/providers/plano/store";
-import { type Plano } from "~/lib/combinacoes";
 // Components
-import HorarioCell, { type HorarioCellBase, type HorarioCellOverlay } from "./HorarioCell";
 import CombinacaoSpinner from "~/components/horarios/CombinacaoSpinner";
+import HorarioCell, { type HorarioCellBase, type HorarioCellOverlay } from "./HorarioCell";
 
 // TODO: Move constants to a separate file?
 const HORAS = [
@@ -79,78 +79,40 @@ interface HorariosDescriptor<T> {
 
 // Zustand store for managing the grid data
 interface HorariosStore {
-    horarios: HorariosDescriptor<HorarioCellOverlay>;
-    updateCell: (dia: number, hora: string, cell: HorarioCellOverlay | null) => void;
-    bulkUpdate: (newData: Partial<HorariosDescriptor<HorarioCellOverlay>>) => void;
+    horarios: HorariosDescriptor<HorarioCellBase>;
+    overlay: HorariosDescriptor<HorarioCellOverlay>;
+    currentOverlay: string | null;
+    setOverlay: (materiaId: string, aulas: Aula[]) => void;
     clear: () => void;
 }
 
-const useHorariosStore = create<HorariosStore>((set) => ({
+export const useHorariosStore = create<HorariosStore>((set) => ({
     horarios: {},
-    updateCell: (dia, hora, cell) =>
-        set((state) => {
-            const newHorarios = { ...state.horarios };
-
-            if (!newHorarios[dia]) {
-                newHorarios[dia] = {};
-            }
-
-            newHorarios[dia] = { ...newHorarios[dia], [hora]: cell };
-            return { horarios: newHorarios };
-        }),
-    bulkUpdate: (newData) =>
-        set((state) => {
-            const newHorarios = { ...state.horarios };
-
-            // Merge new data with existing data
-            Object.entries(newData).forEach(([diaStr, horasData]) => {
-                const dia = Number(diaStr);
-                if (!newHorarios[dia]) {
-                    newHorarios[dia] = {};
+    overlay: {},
+    currentOverlay: null,
+    setOverlay: (materiaId: string, aulas: Aula[]) => {
+        const newOverlay = aulas.reduce<HorariosDescriptor<HorarioCellOverlay>>((acc, aula) => {
+            aula.horarios.forEach((hora) => {
+                if (!acc[aula.dia_semana]) {
+                    acc[aula.dia_semana] = {};
                 }
-
-                newHorarios[dia] = { ...newHorarios[dia], ...horasData };
+                acc[aula.dia_semana]![HORAS[hora]] = { id: materiaId };
             });
-
-            return { horarios: newHorarios };
-        }),
-    clear: () => set({ horarios: {} }),
+            return acc;
+        }, {});
+        set({
+            overlay: newOverlay,
+            currentOverlay: materiaId,
+        });
+    },
+    clear: () => set({ overlay: {}, currentOverlay: null }),
 }));
 
-// API for external components to interact with the store
-export const horariosApi = {
-    updateCell: (dia: number, hora: string, cell: HorarioCellOverlay | null) => {
-        useHorariosStore.getState().updateCell(dia, hora, cell);
-    },
-    bulkUpdate: (newData: Partial<HorariosDescriptor<HorarioCellOverlay>>) => {
-        useHorariosStore.getState().bulkUpdate(newData);
-    },
-    clear: () => {
-        useHorariosStore.getState().clear();
-    },
-};
-
-// Memoize for fine grained updates (only re-renders the cell where the data has changed).
-// TODO: Remove, React compiler should handle this automatically
-// const Cell = memo(HorarioCell, (prevProps, nextProps) => {
-//     // Custom comparison function for memoization
-//     if (!prevProps.base && !nextProps.base) return true;
-//     if (!prevProps.base || !nextProps.base) return false;
-
-//     return (
-//         prevProps.base.id === nextProps.base.id &&
-//         prevProps.base.sala === nextProps.base.sala &&
-//         prevProps.base.color === nextProps.base.color
-//     );
-// });
-
-// CellContainer wraps over the Cell component and provides it the data from the store.
-// By referencing a specific cell in the zustand store, re-renders only happen when that cell's data changes.
-// Changes to other cells do not trigger updates in this component.
 const CellContainer = ({ dia, hora, base }: { dia: number; hora: string; base?: HorarioCellBase }) => {
-    const cellOverlay = useHorariosStore((state) => state.horarios[dia]?.[hora]);
+    const cellOverlay = useHorariosStore((state) => state.overlay[dia]?.[hora]);
+    const hideBase = useHorariosStore((state) => state.currentOverlay === base?.id);
 
-    return <HorarioCell base={base ?? undefined} overlay={cellOverlay ?? undefined} />;
+    return <HorarioCell base={hideBase ? undefined : base} overlay={cellOverlay ?? undefined} />;
 };
 
 function planoToHorariosDescriptor(plano: Plano | null): HorariosDescriptor<HorarioCellBase> {
@@ -177,17 +139,7 @@ function planoToHorariosDescriptor(plano: Plano | null): HorariosDescriptor<Hora
     return horarios;
 }
 
-function HorariosGrid({
-    dias,
-    horas,
-    // base,
-    // overlay,
-}: {
-    dias: { number: number; name: string }[];
-    horas: string[];
-    // base: HorariosDescriptor<HorarioCellBase>;
-    // overlay: HorariosDescriptor<HorarioCellOverlay>;
-}) {
+function HorariosGrid({ dias, horas }: { dias: { number: number; name: string }[]; horas: string[] }) {
     const plano = usePlanoStore((state) => state.currentPlano);
     const horarios = planoToHorariosDescriptor(plano);
 
@@ -254,7 +206,7 @@ function HorariosGrid({
 
 export default function Horarios() {
     return (
-        <div className="my-8 flex w-full flex-col items-center">
+        <div className="my-8 flex flex-col items-center">
             <HorariosGrid dias={DIAS} horas={HORAS} />
             <div className="mt-2 flex w-full justify-center">
                 <CombinacaoSpinner />
