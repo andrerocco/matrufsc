@@ -1,4 +1,4 @@
-import { HORAS } from "~/providers/plano/constants";
+import { HORAS } from "../providers/plano/constants";
 
 export interface Aula {
     dia_semana: number; // 1 = domingo, 2 = segunda, ..., 7 = sábado
@@ -26,11 +26,11 @@ export interface Materia {
 export type Plano = { materia: Materia; turma: Turma }[];
 
 export function combinacoes(materias: Materia[]): Plano[] {
-    console.log("Materias: ", materias);
+    // Step 0: Reset the blocked flag for all materias before starting
+    materias.forEach((materia) => (materia.blocked = false));
 
     // Step 1: Filter out unselected materias
     const selectedMaterias = materias.filter((materia) => materia.selected);
-    console.log("Selected materias: ", selectedMaterias); // Fixed this line to show selectedMaterias, not materias
 
     // Step 2: Merge equivalent turmas
     const materiaWithRepresentingTurma = selectedMaterias.map((materia) => {
@@ -38,13 +38,9 @@ export function combinacoes(materias: Materia[]): Plano[] {
         const mergedTurmas = mergeEquivalentTurmas(selectedTurmas);
         return { turmas: mergedTurmas, materia };
     });
-    console.log("Materia with representing turma: ", materiaWithRepresentingTurma);
 
     // Step 3: Process each materia incrementally
     let combinacoes: Plano[] = [];
-
-    // Reset the blocked flag for all materias before starting
-    selectedMaterias.forEach((materia) => (materia.blocked = false));
 
     for (const { turmas, materia } of materiaWithRepresentingTurma) {
         if (combinacoes.length === 0) {
@@ -55,7 +51,6 @@ export function combinacoes(materias: Materia[]): Plano[] {
             let updatedCombinacoes: Plano[] = [];
             let couldAddMateria = false;
 
-            console.log("Combinacoes: ", combinacoes);
             for (const combinacao of combinacoes) {
                 // For each equivalent turma group, try to add one representative turma
                 for (const turmaGroup of Object.values(turmas)) {
@@ -68,8 +63,8 @@ export function combinacoes(materias: Materia[]): Plano[] {
             }
 
             if (!couldAddMateria) {
+                // Could not add it so it is "blocked"
                 materia.blocked = true;
-                // If this materia is blocked, keep the previous combinations and set as blocked
             } else {
                 combinacoes = updatedCombinacoes;
             }
@@ -184,13 +179,18 @@ function hasConflict(turma: Turma, combinacao: Plano): boolean {
  * // Returns: { sortPeso: number, sortDias: number, sortJanelas: number }
  */
 function calculateCombinationWeight(combination: Turma[]): { sortPeso: number; sortDias: number; sortJanelas: number } {
+    // Schedule array for Monday (2) to Saturday (7) -> indices 0 to 5
     const schedule: Array<Array<Aula | null>> = Array.from({ length: 6 }, () => Array(14).fill(null));
 
     // Populate schedule with classes
     combination.forEach((turma) => {
         turma.aulas.forEach((aula) => {
             aula.horarios.forEach((horarioIndex) => {
-                schedule[aula.dia_semana - 1][horarioIndex] = aula;
+                // Map dia_semana 2-7 (segunda-sábado) to indices 0-5
+                const dayIndex = aula.dia_semana - 2;
+                if (dayIndex >= 0 && dayIndex < 6) {
+                    schedule[dayIndex][horarioIndex] = aula;
+                }
             });
         });
     });
@@ -200,6 +200,7 @@ function calculateCombinationWeight(combination: Turma[]): { sortPeso: number; s
     let dias = 0;
     let janelas = 0;
 
+    // Process Monday (index 0) to Saturday (index 5)
     for (let dia = 0; dia < 6; dia++) {
         const diayClasses = schedule[dia].filter((aula) => aula !== null);
 
@@ -207,8 +208,8 @@ function calculateCombinationWeight(combination: Turma[]): { sortPeso: number; s
             // Calculate windows (janelas)
             const firstClassIndex = schedule[dia].findIndex((aula) => aula !== null);
             const lastClassIndex = schedule[dia].lastIndexOf(diayClasses[diayClasses.length - 1]);
-            janelas += Math.max(0, lastClassIndex - firstClassIndex + 1 - diayClasses.length);
 
+            janelas += Math.max(0, lastClassIndex - firstClassIndex + 1 - diayClasses.length);
             dias++;
 
             // Calculate weight based on class hours

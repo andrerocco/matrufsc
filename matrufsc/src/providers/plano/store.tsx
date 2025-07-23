@@ -1,13 +1,12 @@
 import { create } from "zustand";
 import { MateriaExistsError, MateriaNotFoundError } from "./errors";
 // import { combinacoes, Plano, findClosestCombination } from "~/lib/combinacoes";
-import { combinacoes, Plano, findClosestCombination } from "~/lib/combinacoes";
+import { combinacoes, findClosestCombination, Plano } from "~/lib/combinacoes";
 
 export interface Aula {
     dia_semana: number; // 1 = domingo, 2 = segunda, ..., 7 = sábado
     horarios: number[]; // Indexes of HORAS array
     sala: string;
-    fixed?: boolean; // New property to indicate fixed classes
 }
 
 export interface Turma {
@@ -24,7 +23,7 @@ export interface Materia {
     turmas: Turma[];
     cor?: string;
     selected: boolean;
-    blocked?: boolean; // New property to indicate clash status
+    blocked?: boolean;
 }
 
 const COLORS = [
@@ -39,7 +38,6 @@ const COLORS = [
     "lightseagreen",
     "lightskyblue",
     "lightslategray",
-    "lightslategrey",
     "lightsteelblue",
     "lightyellow",
 ];
@@ -56,7 +54,8 @@ interface PlanoState {
     // Actions
     addMateria: (materia: Materia) => MateriaExistsError | null;
     removeMateria: (id: string) => MateriaNotFoundError | null;
-    updateSelected: (id: string, selected: boolean) => void;
+    updateMateriaSelection: (id: string, selected: boolean) => void;
+    updateTurmaSelection: (materiaId: string, turmaId: string, selected: boolean) => void;
     nextPlano: () => void;
     previousPlano: () => void;
     setPlanoIndex: (index: number) => void;
@@ -84,9 +83,8 @@ export const usePlanoStore = create<PlanoState>((set, get) => {
         currentPlano: null,
         totalPlanos: 0,
 
-        // Actions
         addMateria: (materia) => {
-            const { materias } = get();
+            const { currentPlano, materias } = get();
             colorIndex = (colorIndex + 1) % COLORS.length;
 
             // Check if materia already exists
@@ -118,12 +116,16 @@ export const usePlanoStore = create<PlanoState>((set, get) => {
                 planos = combinacoes(updatedMaterias);
             }
 
+            // Com o objetivo de evitar shifts de layout, calcula uma combinação que seja a mais próxima da antiga.
+            // TODO: É um extra (não essencial), vale avaliar a performance/otimizações
+            const closestIndex = findClosestCombination(currentPlano, planos);
+
             // Update state
             set({
                 materias: updatedMaterias,
                 planos,
-                currentPlanoIndex: 0,
-                currentPlano: planos.length > 0 ? planos[0] : null,
+                currentPlanoIndex: closestIndex,
+                currentPlano: planos.length > 0 ? planos[closestIndex] : null,
             });
 
             return null;
@@ -165,14 +167,43 @@ export const usePlanoStore = create<PlanoState>((set, get) => {
 
             return null;
         },
-
-        updateSelected: (id, selected) => {
+        updateMateriaSelection: (id, selected) => {
             const { materias } = get();
 
             // Update selected state for the specific materia
             const updatedMaterias = materias.map((m) => (m.id === id ? { ...m, selected } : m));
 
+            // If selecting a materia and none of its turmas are selected, select all turmas
+            if (selected === true) {
+                const materia = materias.find((m) => m.id === id);
+                const noTurmasSelected = materia?.turmas.every((t) => !t.selected);
+                console.log("No turmas selected:", noTurmasSelected);
+                if (noTurmasSelected) {
+                    console.log("No turmas selected, selecting all turmas");
+                    const materiaToUpdate = updatedMaterias.find((m) => m.id === id);
+                    if (materiaToUpdate) {
+                        materiaToUpdate.turmas.forEach((t) => (t.selected = true));
+                    }
+                }
+            }
+
             // Recalculate plans and update state
+            set(recalculatePlanos(updatedMaterias));
+        },
+
+        updateTurmaSelection: (materiaId, turmaId, selected) => {
+            const { materias } = get();
+
+            const updatedMaterias = materias.map((materia) => {
+                if (materia.id === materiaId) {
+                    const updatedTurmas = materia.turmas.map((turma) =>
+                        turma.id === turmaId ? { ...turma, selected } : turma,
+                    );
+                    return { ...materia, turmas: updatedTurmas };
+                }
+                return materia;
+            });
+
             set(recalculatePlanos(updatedMaterias));
         },
 

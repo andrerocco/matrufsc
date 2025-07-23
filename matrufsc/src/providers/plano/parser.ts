@@ -71,5 +71,5 @@ export function getDisciplinaFromJSON(json: JSONDisciplina): Materia {
 
     const turmas = rawTurmas.map(getTurmaFromJSON);
 
-    return { id, nome, turmas, selected: true }; // TODO: Make cor optional
+    return { id, nome, turmas, selected: true };
 }
