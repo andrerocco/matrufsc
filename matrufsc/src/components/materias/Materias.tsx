@@ -1,8 +1,9 @@
+import clsx from "clsx";
 import { For, Show } from "solid-js";
 import { usePlano } from "~/context/plano/Plano.store";
 import type { Materia } from "~/lib/combinacoes";
 
-export default function Materias() {
+export default function Materias(props: { class?: string }) {
     const { materias, removeMateria, updateMateriaSelected } = usePlano();
 
     const handleRemove = (id: string) => {
@@ -20,7 +21,7 @@ export default function Materias() {
     };
 
     return (
-        <div class="not-prose relative my-6 flex overflow-hidden rounded-md border border-neutral-400">
+        <div class={clsx("not-prose relative flex overflow-hidden rounded-md border border-neutral-400", props.class)}>
             <div class="relative flex-1 overflow-x-auto overflow-y-hidden">
                 <table class="min-w-full table-fixed divide-y divide-neutral-400">
                     <MateriasTableHead creditos={0} />
@@ -36,6 +37,13 @@ export default function Materias() {
                                     />
                                 )}
                             </For>
+                            {/* <Show when={materias.length === 0}>
+                                <tr class="min-h-7 bg-neutral-100">
+                                    <td colSpan={3} class="px-3 py-1.5 text-center text-neutral-400">
+                                        Nenhuma matéria adicionada.
+                                    </td>
+                                </tr>
+                            </Show> */}
                         </tbody>
                     </Show>
                 </table>

@@ -71,8 +71,9 @@ export default function App() {
     };
 
     return (
-        <div class="mx-auto w-full max-w-[1000px] px-6 py-8">
+        <div class="mx-auto w-full max-w-[1000px] py-8">
             <Header
+                class="mx-6 mb-8"
                 campusOptions={CAMPUS}
                 campusValue={campus()}
                 onCampusChange={setCampus}
@@ -82,6 +83,7 @@ export default function App() {
             />
             <main>
                 <Search
+                    class="mx-6"
                     placeholder={loading() ? "Carregando..." : "Pesquisar disciplina"} // TODO: Melhorar loading
                     disabled={loading()}
                     limit={10}
@@ -89,8 +91,10 @@ export default function App() {
                     onSelect={handleSelectMateria}
                     getLabel={(disciplina) => `${disciplina[0]} - ${disciplina[2]}`}
                 />
-                <Materias />
-                <Horarios />
+                <Materias class="mx-6 mt-6" />
+                <div class="w-full overflow-x-auto">
+                    <Horarios class="my-8 px-6" />
+                </div>
             </main>
             <Footer />
         </div>

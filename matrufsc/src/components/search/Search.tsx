@@ -10,6 +10,7 @@ export default function Search<T>(props: {
     placeholder?: string;
     limit?: number;
     disabled?: boolean;
+    class?: string;
 }) {
     const [open, setOpen] = createSignal(false);
     const [shownAmount, setShownAmount] = createSignal(props.limit ?? props.data.length);
@@ -115,7 +116,7 @@ export default function Search<T>(props: {
     };
 
     return (
-        <div ref={componentRef}>
+        <div ref={componentRef} class={clsx(props.class)}>
             <div class="relative w-full">
                 <input
                     type="text"

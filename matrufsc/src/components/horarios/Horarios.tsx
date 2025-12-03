@@ -1,11 +1,10 @@
-import { createSignal, For, Show } from "solid-js";
+import { createMemo, createSignal, For, Show } from "solid-js";
+import { clsx } from "clsx";
+import type { Plano } from "~/lib/combinacoes";
 // Context
 import { usePlano } from "~/context/plano/Plano.store";
 // Components
 import CombinacaoSpinner from "./CombinacaoSpinner";
-import HorarioCell, { type HorarioCellBase } from "./HorarioCell";
-import { clsx } from "clsx";
-import type { Plano } from "~/lib/combinacoes";
 
 const DIAS = [
     { number: 2, name: "Segunda" },
@@ -56,79 +55,6 @@ interface HorariosDescriptor<T> {
     };
 }
 
-export default function Horarios() {
-    return (
-        <div class="my-8 flex w-full flex-col items-center">
-            <HorariosGrid />
-            <div class="mt-2 flex w-full justify-center">
-                <CombinacaoSpinner />
-            </div>
-        </div>
-    );
-}
-
-function HorariosGrid() {
-    const { currentPlano } = usePlano();
-
-    const [showDetails, setShowDetails] = createSignal(false);
-
-    const horarios = () => planoToHorariosDescriptor(currentPlano());
-
-    return (
-        <table class="min-w-[520px] table-fixed border-separate">
-            <thead>
-                <tr>
-                    <th class="px-1 py-[5px] whitespace-nowrap">
-                        <input
-                            title="Mostrar salas..."
-                            type="checkbox"
-                            onClick={() => setShowDetails(!showDetails)}
-                            class="mx-auto w-4 cursor-pointer align-middle"
-                        />
-                    </th>
-                    <For each={DIAS}>
-                        {(dia) => (
-                            <th class="w-[80px] rounded border border-neutral-400 bg-neutral-100 px-1 py-[5px] text-neutral-500 uppercase shadow-sm">
-                                {dia.name}
-                            </th>
-                        )}
-                    </For>
-                </tr>
-            </thead>
-
-            <tbody>
-                <For each={HORAS}>
-                    {(hora, index) => (
-                        <>
-                            <Show when={index() % 5 === 0 && index() !== 0}>
-                                <tr class="h-[4px]">
-                                    <td colSpan={DIAS.length + 1} />
-                                </tr>
-                            </Show>
-                            <tr>
-                                <td
-                                    class={clsx(
-                                        "px-2 tracking-tight whitespace-nowrap",
-                                        showDetails() ? "py-0.5" : "py-1.5",
-                                    )}
-                                >
-                                    <p>{hora}</p>
-                                    <Show when={showDetails()}>
-                                        <p class="block text-sm text-neutral-500">{HORAS_FIM[index()]}</p>
-                                    </Show>
-                                </td>
-                                <For each={DIAS}>
-                                    {(dia) => <HorarioCell base={horarios()[dia.number]?.[hora] ?? undefined} />}
-                                </For>
-                            </tr>
-                        </>
-                    )}
-                </For>
-            </tbody>
-        </table>
-    );
-}
-
 function planoToHorariosDescriptor(plano: Plano | null): HorariosDescriptor<HorarioCellBase> {
     if (!plano) return {};
 
@@ -151,4 +77,149 @@ function planoToHorariosDescriptor(plano: Plano | null): HorariosDescriptor<Hora
     }
 
     return horarios;
+}
+
+export default function Horarios(props: { class?: string }) {
+    const [showDetails, setShowDetails] = createSignal(false);
+
+    return (
+        <div class={clsx("w-full min-w-fit", props.class)}>
+            <div class="flex flex-col items-center">
+                <table class="min-w-[520px] table-fixed border-separate">
+                    <HorariosTableHead showDetails={showDetails()} onChangeShowDetails={setShowDetails} />
+                    <HorariosTableBody showDetails={showDetails()} />
+                </table>
+                <div class="mt-2 flex w-full justify-center pl-2">
+                    <CombinacaoSpinner />
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function HorariosTableHead(props: { showDetails: boolean; onChangeShowDetails: (show: boolean) => void }) {
+    return (
+        <thead>
+            <tr>
+                <th class="px-1 py-[5px] whitespace-nowrap">
+                    <input
+                        title="Mostrar salas..."
+                        type="checkbox"
+                        checked={props.showDetails}
+                        onChange={(e) => props.onChangeShowDetails(e.currentTarget.checked)}
+                        class="mx-auto w-4 cursor-pointer align-middle"
+                    />
+                </th>
+                <For each={DIAS}>
+                    {(dia) => (
+                        <th class="w-20 rounded border border-neutral-400 bg-neutral-100 px-1 py-[5px] text-neutral-500 uppercase shadow-sm">
+                            {dia.name}
+                        </th>
+                    )}
+                </For>
+            </tr>
+        </thead>
+    );
+}
+
+function HorariosTableBody(props: { showDetails: boolean }) {
+    const { currentPlano } = usePlano();
+
+    const horarios = () => planoToHorariosDescriptor(currentPlano());
+
+    return (
+        <tbody>
+            <For each={HORAS}>
+                {(hora, index) => (
+                    <>
+                        <Show when={index() % 5 === 0 && index() !== 0}>
+                            <tr class="h-1">
+                                <td colSpan={DIAS.length + 1} />
+                            </tr>
+                        </Show>
+                        <tr>
+                            <td
+                                class={clsx(
+                                    "px-2 tracking-tight whitespace-nowrap",
+                                    props.showDetails ? "py-0.5" : "py-1.5",
+                                )}
+                            >
+                                <p>{hora}</p>
+                                <Show when={props.showDetails}>
+                                    <p class="block text-sm text-neutral-500">{HORAS_FIM[index()]}</p>
+                                </Show>
+                            </td>
+                            <For each={DIAS}>
+                                {(dia) => (
+                                    <HorarioCell
+                                        base={horarios()[dia.number]?.[hora] ?? undefined}
+                                        showDetails={props.showDetails}
+                                    />
+                                )}
+                            </For>
+                        </tr>
+                    </>
+                )}
+            </For>
+        </tbody>
+    );
+}
+
+interface HorarioCellBase {
+    id: string;
+    sala: string;
+    color: string;
+}
+
+interface HorarioCellOverlay {
+    id: string;
+}
+
+function HorarioCell(props: { base?: HorarioCellBase; overlay?: HorarioCellOverlay; showDetails?: boolean }) {
+    const conflict = () => props.base && props.overlay;
+
+    const base = createMemo(() => props.base, undefined, {
+        equals: (prev) => {
+            if (prev === props.base) return true;
+            if (!prev || !props.base) return false;
+            return prev.id === props.base.id && prev.sala === props.base.sala && prev.color === props.base.color;
+        },
+    });
+
+    return (
+        <Show
+            when={!props.overlay}
+            fallback={
+                <td
+                    data-materia-id={props.overlay!.id}
+                    class={clsx(
+                        "horario-item h-[30px] w-[80px] rounded border border-neutral-500/80 px-1 py-[5px] text-center",
+                        conflict() ? "bg-red-600" : "bg-black text-white",
+                    )}
+                >
+                    <p class="block w-full truncate text-center leading-none">{props.overlay!.id}</p>
+                </td>
+            }
+        >
+            <Show
+                when={base()}
+                fallback={
+                    <td class="horario-item h-[30px] w-[80px] rounded border border-neutral-500/80 bg-white px-1 py-[5px]" />
+                }
+            >
+                <td
+                    data-materia-id={base()!.id}
+                    class="horario-item h-[30px] w-[80px] rounded border border-neutral-500/80 bg-white px-1 py-[5px] text-center"
+                    style={{ "background-color": base()!.color }}
+                >
+                    <p class="block w-full truncate text-center leading-none">{base()!.id}</p>
+                    <Show when={props.showDetails}>
+                        <p class="mt-0.5 block w-full truncate text-center text-sm leading-none tracking-tight">
+                            {base()!.sala}
+                        </p>
+                    </Show>
+                </td>
+            </Show>
+        </Show>
+    );
 }
