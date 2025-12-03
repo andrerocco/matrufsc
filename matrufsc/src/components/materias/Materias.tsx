@@ -2,21 +2,19 @@ import clsx from "clsx";
 import { For, Show } from "solid-js";
 import { usePlano } from "~/context/plano/Plano.store";
 import type { Materia } from "~/lib/combinacoes";
+import { useHorariosOverlay } from "../horarios/useHorariosOverlay";
 
 export default function Materias(props: { class?: string }) {
     const { materias, removeMateria, updateMateriaSelected } = usePlano();
+    const { overlayMateria, clearOverlay } = useHorariosOverlay();
 
     const handleRemove = (id: string) => {
-        document
-            .querySelectorAll(`.horario-item[data-materia-id="${id}"]`)
-            .forEach((el) => el.classList.remove("hovering"));
+        clearOverlay();
         removeMateria(id);
     };
 
     const handleToggleSelection = (id: string, currentSelected: boolean) => {
-        document
-            .querySelectorAll(`.horario-item[data-materia-id="${id}"]`)
-            .forEach((el) => el.classList.remove("hovering"));
+        clearOverlay();
         updateMateriaSelected(id, !currentSelected);
     };
 
@@ -34,6 +32,8 @@ export default function Materias(props: { class?: string }) {
                                         materia={materia}
                                         onClickRemove={handleRemove}
                                         onToggleSelection={handleToggleSelection}
+                                        onMouseEnter={() => overlayMateria(materia)}
+                                        onMouseLeave={clearOverlay}
                                     />
                                 )}
                             </For>
@@ -77,9 +77,10 @@ function MateriasTableHead(props: { creditos: number }) {
 
 function MateriaRow(props: {
     materia: Materia;
-
     onToggleSelection: (id: string, currentSelected: boolean) => void;
     onClickRemove: (id: string) => void;
+    onMouseEnter?: () => void;
+    onMouseLeave?: () => void;
 }) {
     console.log("Rendering MateriaRow for ", props.materia.id);
 
@@ -88,16 +89,8 @@ function MateriaRow(props: {
             data-materia-id={props.materia.id}
             style={{ "background-color": props.materia.cor }}
             class="materia-item group min-h-7 cursor-pointer divide-x divide-neutral-400"
-            onMouseEnter={() =>
-                document
-                    .querySelectorAll(`.horario-item[data-materia-id="${props.materia.id}"]`)
-                    ?.forEach((el) => el.classList.add("hovering"))
-            }
-            onMouseLeave={() =>
-                document
-                    .querySelectorAll(`.horario-item[data-materia-id="${props.materia.id}"]`)
-                    ?.forEach((el) => el.classList.remove("hovering"))
-            }
+            onMouseEnter={props.onMouseEnter}
+            onMouseLeave={props.onMouseLeave}
         >
             <td class="px-3 py-1.5">
                 <input
