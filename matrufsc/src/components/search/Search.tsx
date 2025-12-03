@@ -11,10 +11,6 @@ export default function Search<T>(props: {
     limit?: number;
     disabled?: boolean;
 }) {
-    createEffect(() => {
-        console.log("Search rendered");
-    });
-
     const [open, setOpen] = createSignal(false);
     const [shownAmount, setShownAmount] = createSignal(props.limit ?? props.data.length);
     const [focusedIndex, setFocusedIndex] = createSignal(0);
@@ -195,10 +191,6 @@ function SearchItem(props: {
     onClick?: () => void;
     dataIndex: number;
 }) {
-    createEffect(() => {
-        console.log("Rendering SearchItem:", props.label);
-    });
-
     return (
         <div
             class={clsx("flex h-8 cursor-pointer items-center px-3", props.isSelected && "bg-neutral-200")}
@@ -212,10 +204,6 @@ function SearchItem(props: {
 }
 
 function SearchEmptyItem() {
-    createEffect(() => {
-        console.log("Rendering SearchEmptyItem");
-    });
-
     return (
         <div class="flex h-8 cursor-pointer items-center px-3 data-[selected='true']:bg-neutral-200">
             <p class="text-center text-neutral-400">Sem resultados</p>
@@ -229,10 +217,6 @@ function SearchShowMore(props: {
     onMouseEnter?: () => void;
     dataIndex: number;
 }) {
-    createEffect(() => {
-        console.log("Rendering SearchShowMore");
-    });
-
     return (
         <button
             class={`h-8 w-full cursor-pointer px-3 text-center text-blue-600 hover:underline ${props.isSelected ? "bg-neutral-200" : ""}`}
