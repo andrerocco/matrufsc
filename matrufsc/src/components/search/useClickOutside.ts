@@ -1,37 +1,34 @@
-import { RefObject, useEffect } from "react";
+import { onCleanup, onMount, type Accessor } from "solid-js";
 
 /**
  * Hook for detecting clicks outside of a specified element
- * @param ref - Reference to the element to check clicks against
+ * @param ref - Accessor to the element to check clicks against
  * @param handler - Callback function to execute when a click outside occurs
- * @param enabled - Whether the hook should be active (defaults to true)
+ * @param enabled - Accessor or boolean for whether the hook should be active
  */
-export function useClickOutside<T extends HTMLElement = HTMLElement>(
-    ref: RefObject<T | null>,
+export function useClickOutside(
+    ref: Accessor<HTMLElement | undefined>,
     handler: () => void,
-    enabled: boolean = true,
+    enabled: Accessor<boolean> | boolean = true,
 ): void {
-    useEffect(() => {
-        if (!enabled) return;
+    const handleClickOutside = (event: MouseEvent | TouchEvent) => {
+        const isEnabled = typeof enabled === "function" ? enabled() : enabled;
+        if (!isEnabled) return;
 
-        const handleClickOutside = (event: MouseEvent | TouchEvent) => {
-            if (ref.current && !ref.current.contains(event.target as Node)) {
-                // Use setTimeout to ensure the original click event completes first
-                setTimeout(() => {
-                    handler();
-                }, 0);
-            }
-        };
+        const element = ref();
+        if (element && !element.contains(event.target as Node)) {
+            // Use setTimeout to ensure the original click event completes first
+            setTimeout(() => {
+                handler();
+            }, 0);
+        }
+    };
 
-        // Use mouseup and touchend instead of mousedown and touchstart
-        // Ensures the original click events are processed first
-        document.addEventListener("mouseup", handleClickOutside);
-        document.addEventListener("touchend", handleClickOutside);
+    onMount(() => {
+        document.addEventListener("click", handleClickOutside);
+    });
 
-        // Clean up the event listeners
-        return () => {
-            document.removeEventListener("mouseup", handleClickOutside);
-            document.removeEventListener("touchend", handleClickOutside);
-        };
-    }, [ref, handler, enabled]);
+    onCleanup(() => {
+        document.removeEventListener("click", handleClickOutside);
+    });
 }

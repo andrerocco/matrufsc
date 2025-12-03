@@ -1,7 +1,7 @@
 /// Parses the JSON data into objects used by the app.
 
 import { HORAS } from "./constants";
-import type { Materia, Turma } from "./store";
+import type { Materia, Turma } from "./Plano.store";
 
 export type JSONTurma = [
     string, // Código da turma
@@ -22,7 +22,7 @@ export type JSONDisciplina = [
     JSONTurma[], // Turmas
 ];
 
-export type JSONCampusCode = "FLO" | "JOI" | "CBS" | "ARA" | "BLN";
+export type JSONCampusCode = "FLO" | "JOI" | "CBS" | "ARA" | "BLU";
 
 export interface JSONCampus {
     campus: JSONCampusCode;

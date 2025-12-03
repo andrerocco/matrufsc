@@ -1,4 +1,5 @@
-import { cn } from "~/lib/utils";
+import { cn } from "~/lib/classnames";
+import { Show } from "solid-js";
 
 export interface HorarioCellBase {
     id: string;
@@ -10,36 +11,38 @@ export interface HorarioCellOverlay {
     id: string;
 }
 
-export default function HorarioCell({ base, overlay }: { base?: HorarioCellBase; overlay?: HorarioCellOverlay }) {
-    const conflict = base && overlay;
-
-    if (overlay) {
-        return (
-            <td
-                data-materia-id={overlay.id}
-                className={cn(
-                    "horario-item w-[80px] h-[30px] rounded border border-neutral-500/80 px-1 py-[5px]",
-                    conflict ? "bg-red-600" : "bg-black text-white",
-                )}
-                align="center"
-            >
-                <p className="block w-full truncate text-center leading-none">{overlay.id}</p>
-            </td>
-        );
-    }
-
-    if (!base) {
-        return <td className="horario-item w-[80px] h-[30px] rounded border border-neutral-500/80 bg-white px-1 py-[5px]" />;
-    }
-
+export default function HorarioCell(props: { base?: HorarioCellBase; overlay?: HorarioCellOverlay }) {
     return (
-        <td
-            data-materia-id={base.id}
-            className="horario-item w-[80px] h-[30px] rounded border border-neutral-500/80 bg-white px-1 py-[5px]"
-            style={{ backgroundColor: base.color }}
-            align="center"
+        <Show
+            when={!props.overlay}
+            fallback={
+                <td
+                    data-materia-id={props.overlay!.id}
+                    class={cn(
+                        "horario-item h-[30px] w-[80px] rounded border border-neutral-500/80 px-1 py-[5px]",
+                        props.base && props.overlay ? "bg-red-600" : "bg-black text-white",
+                    )}
+                    align="center"
+                >
+                    <p class="block w-full truncate text-center leading-none">{props.overlay!.id}</p>
+                </td>
+            }
         >
-            <p className="block w-full truncate text-center leading-none">{base.id}</p>
-        </td>
+            <Show
+                when={props.base}
+                fallback={
+                    <td class="horario-item h-[30px] w-[80px] rounded border border-neutral-500/80 bg-white px-1 py-[5px]" />
+                }
+            >
+                <td
+                    data-materia-id={props.base!.id}
+                    class="horario-item h-[30px] w-[80px] rounded border border-neutral-500/80 bg-white px-1 py-[5px]"
+                    style={{ "background-color": props.base!.color }}
+                    align="center"
+                >
+                    <p class="block w-full truncate text-center leading-none">{props.base!.id}</p>
+                </td>
+            </Show>
+        </Show>
     );
 }
