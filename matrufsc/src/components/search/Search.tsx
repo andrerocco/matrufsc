@@ -1,5 +1,5 @@
 import { createSignal, createEffect, createMemo, For, Show, on } from "solid-js";
-import { cn } from "~/lib/classnames";
+import { clsx } from "clsx";
 import { useClickOutside } from "./useClickOutside";
 
 export default function Search<T>(props: {
@@ -132,9 +132,9 @@ export default function Search<T>(props: {
                     onInput={handleInput}
                     onFocus={() => setOpen(true)}
                     value={searchValue()}
-                    class={cn(
-                        "h-9 w-full rounded-md border border-neutral-400 bg-white px-3 focus:border-neutral-600 focus:outline-none disabled:bg-neutral-200",
-                        open() && "rounded-b-none",
+                    class={clsx(
+                        "h-9 w-full border border-neutral-400 bg-white px-3 focus:border-neutral-600 focus:outline-none disabled:bg-neutral-200",
+                        open() ? "rounded-t-md" : "rounded-md",
                     )}
                 />
                 <Show when={open()}>
@@ -201,7 +201,7 @@ function SearchItem(props: {
 
     return (
         <div
-            class={cn("flex h-8 cursor-pointer items-center px-3", props.isSelected && "bg-neutral-200")}
+            class={clsx("flex h-8 cursor-pointer items-center px-3", props.isSelected && "bg-neutral-200")}
             onMouseEnter={props.onMouseEnter}
             onClick={props.onClick}
             data-index={props.dataIndex}

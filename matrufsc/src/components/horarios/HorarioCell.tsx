@@ -1,4 +1,4 @@
-import { cn } from "~/lib/classnames";
+import { clsx } from "clsx";
 import { Show } from "solid-js";
 
 export interface HorarioCellBase {
@@ -18,7 +18,7 @@ export default function HorarioCell(props: { base?: HorarioCellBase; overlay?: H
             fallback={
                 <td
                     data-materia-id={props.overlay!.id}
-                    class={cn(
+                    class={clsx(
                         "horario-item h-[30px] w-[80px] rounded border border-neutral-500/80 px-1 py-[5px]",
                         props.base && props.overlay ? "bg-red-600" : "bg-black text-white",
                     )}

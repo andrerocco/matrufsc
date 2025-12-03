@@ -4,7 +4,7 @@ import { usePlano } from "~/context/plano/Plano.store";
 // Components
 import CombinacaoSpinner from "./CombinacaoSpinner";
 import HorarioCell, { type HorarioCellBase } from "./HorarioCell";
-import { cn } from "~/lib/classnames";
+import { clsx } from "clsx";
 import type { Plano } from "~/lib/combinacoes";
 
 const DIAS = [
@@ -107,7 +107,7 @@ function HorariosGrid() {
                             </Show>
                             <tr>
                                 <td
-                                    class={cn(
+                                    class={clsx(
                                         "px-2 tracking-tight whitespace-nowrap",
                                         showDetails() ? "py-0.5" : "py-1.5",
                                     )}
