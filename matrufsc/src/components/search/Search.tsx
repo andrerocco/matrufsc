@@ -1,4 +1,4 @@
-import { createSignal, createEffect, createMemo, For, Show, on } from "solid-js";
+import { createSignal, createEffect, For, Show, on } from "solid-js";
 import { clsx } from "clsx";
 import { useClickOutside } from "./useClickOutside";
 
@@ -12,20 +12,20 @@ export default function Search<T>(props: {
     disabled?: boolean;
     class?: string;
 }) {
-    const [open, setOpen] = createSignal(false);
-    const [shownAmount, setShownAmount] = createSignal(props.limit ?? props.data.length);
-    const [focusedIndex, setFocusedIndex] = createSignal(0);
-    const [filteredData, setFilteredData] = createSignal(props.data);
-    const [searchValue, setSearchValue] = createSignal("");
-
     let inputRef: HTMLInputElement | undefined;
     let listRef: HTMLDivElement | undefined;
     let componentRef: HTMLDivElement | undefined;
     let navigationSource = "keyboard";
 
-    const displayShowMore = createMemo(() => filteredData().length > shownAmount());
-    const getShowingAmount = () =>
-        Math.min(shownAmount() ?? filteredData().length, filteredData().length) + (displayShowMore() ? 1 : 0);
+    const [open, setOpen] = createSignal(false);
+    const [focusedIndex, setFocusedIndex] = createSignal(0);
+    const [searchValue, setSearchValue] = createSignal("");
+
+    const [dataShownAmount, setDataShownAmount] = createSignal(props.limit ?? props.data.length);
+    const [filteredData, setFilteredData] = createSignal(props.data);
+    const filteredDataShown = () => filteredData().slice(0, dataShownAmount());
+    const displayShowMore = () => filteredData().length > dataShownAmount();
+    const totalShownAmount = () => filteredDataShown().length + (displayShowMore() ? 1 : 0);
 
     useClickOutside(
         () => componentRef,
@@ -39,51 +39,29 @@ export default function Search<T>(props: {
             setSearchValue("");
         }
         setOpen(false);
-        setShownAmount(props.limit ?? props.data.length);
+        setDataShownAmount(props.limit ?? props.data.length);
         setFocusedIndex(0);
         setFilteredData(props.data);
     };
 
-    createEffect(
-        // Scroll focused element into view when navigating with keyboard
-        on(focusedIndex, () => {
-            if (navigationSource === "keyboard") {
-                if (!listRef) return;
-                const focusedElement = listRef.querySelector(`[data-index="${focusedIndex()}"]`) as HTMLElement;
-                if (focusedElement) focusedElement.scrollIntoView({ block: "nearest" });
-            }
-        }),
-    );
-
-    createEffect(() => {
-        handleClose(); // Reset when data changes
-    });
-
     const handleKeyDown = (e: KeyboardEvent) => {
-        switch (e.key) {
-            case "ArrowUp":
-                navigationSource = "keyboard";
-                setFocusedIndex((prev) => (prev - 1 + getShowingAmount()) % getShowingAmount());
-                e.preventDefault();
-                break;
-            case "ArrowDown":
-                navigationSource = "keyboard";
-                setFocusedIndex((prev) => (prev + 1) % getShowingAmount());
-                e.preventDefault();
-                break;
-            case "Enter":
-                if (focusedIndex() === shownAmount()) {
-                    handleShowMore();
-                    break;
-                }
-                const item = filteredData()[focusedIndex()];
-                if (item) props.onSelect(item);
-                break;
-            case "Escape":
-                handleClose();
-                break;
-            default:
-                break;
+        if (e.key == "ArrowUp") {
+            navigationSource = "keyboard";
+            setFocusedIndex((prev) => (prev - 1 + totalShownAmount()) % totalShownAmount());
+            e.preventDefault();
+        } else if (e.key == "ArrowDown") {
+            navigationSource = "keyboard";
+            setFocusedIndex((prev) => (prev + 1) % totalShownAmount());
+            e.preventDefault();
+        } else if (e.key == "Enter") {
+            if (focusedIndex() === dataShownAmount()) {
+                handleShowMore();
+                return;
+            }
+            const item = filteredData()[focusedIndex()];
+            if (item) props.onSelect(item);
+        } else if (e.key == "Escape") {
+            handleClose();
         }
     };
 
@@ -93,14 +71,14 @@ export default function Search<T>(props: {
         setSearchValue(search);
 
         if (props.limit) {
-            setShownAmount(props.limit);
+            setDataShownAmount(props.limit);
         }
 
         if (props.filter) {
             setFilteredData(props.filter(search));
         } else {
             setFilteredData(
-                props.data.filter((item) => props.getLabel(item).toLowerCase().includes(search.toLowerCase())),
+                props.data.filter((item) => props.getLabel(item).toLowerCase().includes(search.toLowerCase())), // TODO: Improve search algorithm
             );
         }
 
@@ -109,11 +87,24 @@ export default function Search<T>(props: {
 
     const handleShowMore = () => {
         if (!props.limit) return;
-        const newShownAmount = Math.min(shownAmount() + props.limit, filteredData().length);
-        setShownAmount(newShownAmount);
-        setFocusedIndex(newShownAmount);
+        const newShownAmount = Math.min(dataShownAmount() + props.limit, filteredData().length);
+        setDataShownAmount(newShownAmount);
+        setFocusedIndex(totalShownAmount() - 1);
         // setTimeout(scrollToListEnd, 0);
     };
+
+    createEffect(on(() => props.data, handleClose)); // Reset when props.data changes
+
+    createEffect(
+        on(focusedIndex, () => {
+            // Scroll focused element into view when navigating with keyboard
+            if (navigationSource === "keyboard") {
+                if (!listRef) return;
+                const focusedElement = listRef.querySelector(`[data-index="${focusedIndex()}"]`) as HTMLElement;
+                if (focusedElement) focusedElement.scrollIntoView({ block: "nearest" });
+            }
+        }),
+    );
 
     return (
         <div ref={componentRef} class={clsx(props.class)}>
@@ -149,7 +140,7 @@ export default function Search<T>(props: {
                     ref={listRef}
                     class="max-h-96 w-full overflow-y-auto rounded-b-md border border-t-0 border-neutral-400 bg-white"
                 >
-                    <For each={filteredData().slice(0, shownAmount())}>
+                    <For each={filteredDataShown()}>
                         {(item, index) => (
                             <SearchItem
                                 label={props.getLabel(item)}
@@ -170,13 +161,13 @@ export default function Search<T>(props: {
 
                     <Show when={displayShowMore()}>
                         <SearchShowMore
-                            isSelected={focusedIndex() === shownAmount()}
+                            isSelected={focusedIndex() === dataShownAmount()}
                             onClick={handleShowMore}
                             onMouseEnter={() => {
                                 navigationSource = "mouse";
-                                setFocusedIndex(shownAmount());
+                                setFocusedIndex(dataShownAmount());
                             }}
-                            dataIndex={shownAmount()}
+                            dataIndex={dataShownAmount()}
                         />
                     </Show>
                 </div>
