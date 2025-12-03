@@ -1,6 +1,8 @@
-export default function Footer() {
+import clsx from "clsx";
+
+export default function Footer(props: { class?: string }) {
     return (
-        <footer class="mt-8 flex items-center justify-between">
+        <footer class={clsx("flex items-center justify-between", props.class)}>
             <p>
                 Não se esqueça de fazer sua matrícula no{" "}
                 <a class="text-nowrap" target="_blank" href="http://cagr.ufsc.br/" rel="noreferrer">

@@ -96,7 +96,7 @@ export default function App() {
                     <Horarios class="my-8 px-6" />
                 </div>
             </main>
-            <Footer />
+            <Footer class="mt-2" />
         </div>
     );
 }
