@@ -1,11 +1,6 @@
-export default function Header({
-    campusOptions,
-    campusValue,
-    onCampusChange,
-    semesterOptions,
-    semesterValue,
-    onSemesterChange,
-}: {
+import { For } from "solid-js";
+
+export default function Header(props: {
     campusOptions: { title: string; value: string }[];
     campusValue: string;
     onCampusChange: (value: string) => void;
@@ -14,34 +9,38 @@ export default function Header({
     onSemesterChange: (value: string) => void;
 }) {
     return (
-        <header className="mb-8 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-                <h1 className="mr-3">MatrUFSC</h1>
+        <header class="mb-8 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <h1 class="mr-3">MatrUFSC</h1>
                 <select
                     name="campus"
                     id="campus"
-                    className="bg-transparent focus:border-transparent focus:outline-none"
-                    value={campusValue}
-                    onChange={(e) => onCampusChange(e.target.value)}
+                    class="bg-transparent focus:border-transparent focus:outline-none"
+                    value={props.campusValue}
+                    onChange={(e) => props.onCampusChange(e.currentTarget.value)}
                 >
-                    {campusOptions.map((campus) => (
-                        <option key={campus.value} value={campus.value}>
-                            {campus.title}
-                        </option>
-                    ))}
+                    <For each={props.campusOptions}>
+                        {(campus) => (
+                            <option value={campus.value}>
+                                {campus.title}
+                            </option>
+                        )}
+                    </For>
                 </select>
                 <select
                     name="semester"
                     id="semester"
-                    className="bg-transparent focus:border-transparent focus:outline-none"
-                    value={semesterValue}
-                    onChange={(e) => onSemesterChange(e.target.value)}
+                    class="bg-transparent focus:border-transparent focus:outline-none"
+                    value={props.semesterValue}
+                    onChange={(e) => props.onSemesterChange(e.currentTarget.value)}
                 >
-                    {semesterOptions.map((semester) => (
-                        <option key={semester.value} value={semester.value}>
-                            {semester.title}
-                        </option>
-                    ))}
+                    <For each={props.semesterOptions}>
+                        {(semester) => (
+                            <option value={semester.value}>
+                                {semester.title}
+                            </option>
+                        )}
+                    </For>
                 </select>
             </div>
         </header>

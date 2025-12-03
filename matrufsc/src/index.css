@@ -1,19 +1,12 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 :root {
-    font-family: monospace;
-
+    /* TODO: Move this out of here, it changes font-size and affects rem values */
+    font-family: monospace; 
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-    margin: 0;
-    padding: 0;
 }
 
 body {
@@ -62,4 +55,5 @@ a {
 }
 .hide-spin-button {
     -moz-appearance: textfield;
+    appearance: textfield;
 }

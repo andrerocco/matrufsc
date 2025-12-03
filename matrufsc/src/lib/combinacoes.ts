@@ -1,4 +1,4 @@
-import { HORAS } from "~/providers/plano/constants";
+import { HORAS } from "~/context/plano/constants";
 
 export interface Aula {
     dia_semana: number; // 1 = domingo, 2 = segunda, ..., 7 = sábado
@@ -25,12 +25,15 @@ export interface Materia {
 
 export type Plano = { materia: Materia; turma: Turma }[];
 
-export function combinacoes(materias: Materia[]): Plano[] {
-    console.log("Materias: ", materias);
+export function combinacoes(materias: Materia[]): {
+    planos: Plano[];
+    blockedMaterias: Set<string>;
+} {
+    // console.log("Materias: ", materias);
 
     // Step 1: Filter out unselected materias
     const selectedMaterias = materias.filter((materia) => materia.selected);
-    console.log("Selected materias: ", selectedMaterias); // Fixed this line to show selectedMaterias, not materias
+    // console.log("Selected materias: ", selectedMaterias); // Fixed this line to show selectedMaterias, not materias
 
     // Step 2: Merge equivalent turmas
     const materiaWithRepresentingTurma = selectedMaterias.map((materia) => {
@@ -38,13 +41,11 @@ export function combinacoes(materias: Materia[]): Plano[] {
         const mergedTurmas = mergeEquivalentTurmas(selectedTurmas);
         return { turmas: mergedTurmas, materia };
     });
-    console.log("Materia with representing turma: ", materiaWithRepresentingTurma);
+    // console.log("Materia with representing turma: ", materiaWithRepresentingTurma);
 
     // Step 3: Process each materia incrementally
     let combinacoes: Plano[] = [];
-
-    // Reset the blocked flag for all materias before starting
-    selectedMaterias.forEach((materia) => (materia.blocked = false));
+    const blockedMaterias = new Set<string>();
 
     for (const { turmas, materia } of materiaWithRepresentingTurma) {
         if (combinacoes.length === 0) {
@@ -55,7 +56,7 @@ export function combinacoes(materias: Materia[]): Plano[] {
             let updatedCombinacoes: Plano[] = [];
             let couldAddMateria = false;
 
-            console.log("Combinacoes: ", combinacoes);
+            // console.log("Combinacoes: ", combinacoes);
             for (const combinacao of combinacoes) {
                 // For each equivalent turma group, try to add one representative turma
                 for (const turmaGroup of Object.values(turmas)) {
@@ -68,7 +69,7 @@ export function combinacoes(materias: Materia[]): Plano[] {
             }
 
             if (!couldAddMateria) {
-                materia.blocked = true;
+                blockedMaterias.add(materia.id);
                 // If this materia is blocked, keep the previous combinations and set as blocked
             } else {
                 combinacoes = updatedCombinacoes;
@@ -77,7 +78,7 @@ export function combinacoes(materias: Materia[]): Plano[] {
     }
 
     if (combinacoes.length === 0) {
-        return [];
+        return { planos: [], blockedMaterias: blockedMaterias };
     }
 
     // Sort combinations by calculated weights
@@ -99,7 +100,10 @@ export function combinacoes(materias: Materia[]): Plano[] {
         return a.sortPeso - b.sortPeso;
     });
 
-    return weightedCombinations.map((weightedCombo) => weightedCombo.combination);
+    return {
+        planos: weightedCombinations.map((weightedCombo) => weightedCombo.combination),
+        blockedMaterias,
+    };
 }
 
 function mergeEquivalentTurmas(turmas: Turma[]) {
