@@ -22,27 +22,24 @@ export default function CombinacaoSpinner() {
         setPlanoIndex((current) => (current - 1 + totalPlanos()) % totalPlanos());
     }
 
+    function updatePlano(input: string) {
+        const value = Number(input);
+        const newIndex = Math.max(0, Math.min(value - 1, totalPlanos() - 1));
+        setPlanoIndex(newIndex);
+        setInputValue(String(newIndex + 1));
+    }
+
     function handleKeyDown(event: KeyboardEvent) {
         if (planosEmpty()) return;
 
-        switch (event.key) {
-            case "ArrowUp": {
-                event.preventDefault();
-                handleIncrement();
-                break;
-            }
-            case "ArrowDown": {
-                event.preventDefault();
-                handleDecrement();
-                break;
-            }
-            case "Enter": {
-                const input = event.target as HTMLInputElement;
-                const value = Number(input.value);
-                const newIndex = Math.max(0, Math.min(value - 1, totalPlanos() - 1));
-                setPlanoIndex(newIndex);
-                break;
-            }
+        if (event.key === "ArrowUp") {
+            event.preventDefault();
+            handleIncrement();
+        } else if (event.key === "ArrowDown") {
+            event.preventDefault();
+            handleDecrement();
+        } else if (event.key === "Enter") {
+            updatePlano((event.target as HTMLInputElement).value);
         }
     }
 
@@ -56,14 +53,15 @@ export default function CombinacaoSpinner() {
                 {"<"}
             </button>
             <input
-                value={inputValue()}
-                onInput={(e) => setInputValue(e.currentTarget.value)}
-                onKeyDown={handleKeyDown}
-                type="number"
                 class="hide-spin-button h-6 w-12 rounded-md border border-neutral-400 bg-white px-1 text-right disabled:opacity-50"
+                type="number"
                 min={1}
                 max={totalPlanos()}
                 disabled={planosEmpty()}
+                value={inputValue()}
+                onInput={(e) => setInputValue(e.currentTarget.value)}
+                onBlur={() => updatePlano(inputValue())}
+                onKeyDown={handleKeyDown}
             />
             <span>/ {totalPlanos()}</span>
             <button
