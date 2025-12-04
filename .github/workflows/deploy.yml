@@ -1,33 +1,54 @@
-name: Build and deploy front-end to GitHub Pages
+# .github/workflows/deploy.yml
+name: Deploy static content to Pages
 
 on:
   push:
-    branches:
-      - master
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
   deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - name: Set up Node
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: lts/*
+          cache: "npm"
+          cache-dependency-path: matrufsc/package-lock.json
 
       - name: Install dependencies
-        run: npm install
         working-directory: ./matrufsc
+        run: npm ci
 
-      - name: Build project
-        run: npm run build
+      - name: Build
         working-directory: ./matrufsc
+        run: npm run build
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./matrufsc/dist
 
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: deploy
-          folder: ./matrufsc/dist
+        id: deployment
+        uses: actions/deploy-pages@v4
