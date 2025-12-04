@@ -1,6 +1,6 @@
 import { createSignal } from "solid-js";
 import { createStore, produce } from "solid-js/store";
-import { combinacoes, findClosestCombination, type Plano } from "~/lib/combinacoes";
+import { combinacoes, findClosestCombination } from "~/context/plano/combinacoes";
 import { MateriaExistsError, MateriaNotFoundError } from "./errors";
 import { COLORS } from "./constants";
 
@@ -27,6 +27,8 @@ export interface Materia {
     selected: boolean;
     blocked?: boolean; // New property to indicate clash status
 }
+
+export type Plano = { materia: Materia; turma: Turma }[];
 
 const [materias, setMaterias] = createStore<Materia[]>([]);
 const [planos, setPlanos] = createStore<Plano[]>([]); // Signal this? No granular updates anyway

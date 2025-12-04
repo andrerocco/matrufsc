@@ -1,29 +1,5 @@
 import { HORAS } from "~/context/plano/constants";
-
-export interface Aula {
-    dia_semana: number; // 1 = domingo, 2 = segunda, ..., 7 = sábado
-    horarios: number[]; // Indexes of HORAS array (e.g. [0, 1, 2] = 07:30, 08:20, 09:10)
-    sala: string;
-}
-
-export interface Turma {
-    id: string;
-    carga_horaria: number;
-    aulas: Aula[];
-    professores: string[];
-    selected: boolean;
-}
-
-export interface Materia {
-    id: string;
-    nome: string;
-    turmas: Turma[];
-    cor?: string;
-    selected: boolean; // User selected
-    blocked?: boolean; // Can't fit in the Plano (this is set by the algorithm)
-}
-
-export type Plano = { materia: Materia; turma: Turma }[];
+import type { Materia, Plano, Turma } from "./Plano.store";
 
 export function combinacoes(materias: Materia[]): {
     planos: Plano[];
@@ -170,59 +146,81 @@ function hasConflict(turma: Turma, combinacao: Plano): boolean {
 
 // TODO: Conferir
 /**
- * Calculates weight metrics for a combination of classes (turmas).
- * The function evaluates the schedule distribution and returns three metrics:
- * - Weight (sortPeso): Sum of hour indices where classes are scheduled
- * - Days (sortDias): Number of days with scheduled classes
- * - Windows (sortJanelas): Number of empty slots between first and last class of each day
- *
- * @param combination - Array of Turma objects representing a possible schedule combination
- * @returns An object containing:
- *   - sortPeso: Numerical weight based on class hour distribution
- *   - sortDias: Number of days containing classes
- *   - sortJanelas: Total number of empty slots between classes
- *
- * @example
- * const turmas = [turma1, turma2]; // Array of Turma objects
- * const metrics = calculateCombinationWeight(turmas);
- * // Returns: { sortPeso: number, sortDias: number, sortJanelas: number }
+ * Calculates heuristic metrics for a combination of turmas.
+ * Returns:
+ * - sortDias: Number of days with classes (lower is better).
+ * - sortJanelas: Total empty slots between first and last class per day (lower is better).
+ * - sortPeso: Tie-breaker, sum of timeline indices (diaIndex * HORAS.length + slotIndex) for occupied slots; smaller is better (earlier classes).
+ * Assumptions:
+ * - dia_semana in [1,7] (1=Sunday, 7=Saturday).
+ * - horarios are valid indices into HORAS.
+ * - Combinations are conflict-free.
  */
 function calculateCombinationWeight(combination: Turma[]): { sortPeso: number; sortDias: number; sortJanelas: number } {
-    const schedule: Array<Array<Aula | null>> = Array.from({ length: 6 }, () => Array(14).fill(null));
+    const NUM_DIAS = 7; // 1 = domingo, ..., 7 = sábado
+    const NUM_SLOTS = HORAS.length; // number of possible horários in a day
 
-    // Populate schedule with classes
-    combination.forEach((turma) => {
-        turma.aulas.forEach((aula) => {
-            aula.horarios.forEach((horarioIndex) => {
-                schedule[aula.dia_semana - 1][horarioIndex] = aula;
-            });
-        });
-    });
+    // Matriz booleana: occupied[dia][slot] indica se há aula naquele horário
+    const occupied: boolean[][] = Array.from({ length: NUM_DIAS }, () => Array<boolean>(NUM_SLOTS).fill(false));
 
-    // Calculate weights similar to original algorithm
-    let peso = 0;
-    let dias = 0;
-    let janelas = 0;
+    // Preenche a matriz de ocupação com as aulas da combinação
+    for (const turma of combination) {
+        for (const aula of turma.aulas) {
+            const diaIndex = aula.dia_semana - 1; // 1..7 -> 0..6
 
-    for (let dia = 0; dia < 6; dia++) {
-        const diayClasses = schedule[dia].filter((aula) => aula !== null);
+            // Segurança extra: evita quebrar se vier dia_semana inválido
+            if (diaIndex < 0 || diaIndex >= NUM_DIAS) {
+                console.warn("calculateCombinationWeight: dia_semana out of range (1..7) for turma=", turma);
+                continue;
+            }
 
-        if (diayClasses.length > 0) {
-            // Calculate windows (janelas)
-            const firstClassIndex = schedule[dia].findIndex((aula) => aula !== null);
-            const lastClassIndex = schedule[dia].lastIndexOf(diayClasses[diayClasses.length - 1]);
-            janelas += Math.max(0, lastClassIndex - firstClassIndex + 1 - diayClasses.length);
+            for (const horarioIndex of aula.horarios) {
+                if (horarioIndex < 0 || horarioIndex >= NUM_SLOTS) {
+                    console.warn("calculateCombinationWeight: horarioIndex out of range for turma=", turma);
+                    continue;
+                }
 
-            dias++;
-
-            // Calculate weight based on class hours
-            diayClasses.forEach((_, hora) => {
-                peso += hora;
-            });
+                occupied[diaIndex][horarioIndex] = true;
+            }
         }
     }
 
-    return { sortPeso: peso, sortDias: dias, sortJanelas: janelas };
+    let sortDias = 0; // número de dias com pelo menos uma aula
+    let sortJanelas = 0; // total de janelas na semana
+    let sortPeso = 0; // menor é melhor (menos / mais cedo)
+
+    // TODO: Conferir
+    // Percorre cada dia para calcular dias, janelas e peso
+    for (let dia = 0; dia < NUM_DIAS; dia++) {
+        const daySlots = occupied[dia];
+
+        let firstSlot = -1;
+        let lastSlot = -1;
+        let dayOccupiedCount = 0;
+
+        for (let slot = 0; slot < NUM_SLOTS; slot++) {
+            if (!daySlots[slot]) continue;
+            dayOccupiedCount++;
+
+            if (firstSlot === -1) firstSlot = slot;
+            lastSlot = slot;
+
+            // Índice de linha do tempo: mais cedo na semana/dia = menor valor
+            const timelineIndex = dia * NUM_SLOTS + slot;
+            sortPeso += timelineIndex;
+        }
+
+        if (dayOccupiedCount === 0) continue; // Nenhuma aula neste dia
+
+        sortDias++;
+
+        // Janelas = slots vazios entre a primeira e a última aula do dia
+        const faixaTotal = lastSlot - firstSlot + 1; // slots entre primeira e última (inclusive)
+        const janelasNoDia = faixaTotal - dayOccupiedCount;
+        sortJanelas += Math.max(0, janelasNoDia);
+    }
+
+    return { sortPeso, sortDias, sortJanelas };
 }
 
 export function findClosestCombination(currentCombo: Plano | null, allCombos: Plano[]): number {

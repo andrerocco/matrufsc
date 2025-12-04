@@ -62,6 +62,7 @@ export default function Search<T>(props: {
             if (item) props.onSelect(item);
         } else if (e.key == "Escape") {
             handleClose();
+            inputRef?.blur();
         }
     };
 

@@ -1,7 +1,6 @@
 import clsx from "clsx";
 import { For, Show } from "solid-js";
-import { usePlano } from "~/context/plano/Plano.store";
-import type { Materia } from "~/lib/combinacoes";
+import { usePlano, type Materia } from "~/context/plano/Plano.store";
 import { useHorariosOverlay } from "../horarios/useHorariosOverlay";
 
 export default function Materias(props: { class?: string }) {

@@ -1,8 +1,7 @@
-import { createMemo, createSignal, For, Show } from "solid-js";
+import { createMemo, createSignal, For, Match, Show, Switch, type JSX } from "solid-js";
 import { clsx } from "clsx";
-import type { Plano } from "~/lib/combinacoes";
 // Context
-import { usePlano } from "~/context/plano/Plano.store";
+import { usePlano, type Plano } from "~/context/plano/Plano.store";
 import { useHorariosOverlay } from "./useHorariosOverlay";
 // Components
 import CombinacaoSpinner from "./CombinacaoSpinner";
@@ -50,36 +49,6 @@ const HORAS_FIM = [
     "22:00",
 ];
 
-export interface HorariosDescriptor<T> {
-    [dia: number]: {
-        [hora: string]: T | null;
-    };
-}
-
-function planoToHorariosDescriptor(plano: Plano | null): HorariosDescriptor<HorarioCellBase> {
-    if (!plano) return {};
-
-    const horarios: HorariosDescriptor<HorarioCellBase> = {};
-
-    for (const { materia, turma } of plano) {
-        for (const aula of turma.aulas) {
-            for (const hora of aula.horarios) {
-                if (!horarios[aula.dia_semana]) {
-                    horarios[aula.dia_semana] = {};
-                }
-
-                horarios[aula.dia_semana]![HORAS[hora]] = {
-                    id: materia.id,
-                    sala: aula.sala,
-                    color: materia.cor ?? "lightblue",
-                };
-            }
-        }
-    }
-
-    return horarios;
-}
-
 export default function Horarios(props: { class?: string }) {
     const [showDetails, setShowDetails] = createSignal(false);
 
@@ -123,11 +92,42 @@ function HorariosTableHead(props: { showDetails: boolean; onChangeShowDetails: (
     );
 }
 
+export interface HorariosDescriptor<T> {
+    [dia: number]: {
+        [hora: string]: T | null;
+    };
+}
+
+function planoToHorariosDescriptor(plano: Plano | null): HorariosDescriptor<HorarioCellBase> {
+    console.log("Generating horarios descriptor from plano");
+
+    if (!plano) return {};
+
+    const horarios: HorariosDescriptor<HorarioCellBase> = {};
+
+    for (const { materia, turma } of plano) {
+        for (const aula of turma.aulas) {
+            for (const hora of aula.horarios) {
+                if (!horarios[aula.dia_semana]) {
+                    horarios[aula.dia_semana] = {};
+                }
+
+                horarios[aula.dia_semana]![HORAS[hora]] = {
+                    id: materia.id,
+                    sala: aula.sala,
+                    color: materia.cor ?? "lightblue",
+                };
+            }
+        }
+    }
+
+    return horarios;
+}
+
 function HorariosTableBody(props: { showDetails: boolean }) {
     const { currentPlano } = usePlano();
     const { overlay } = useHorariosOverlay();
-
-    const horarios = () => planoToHorariosDescriptor(currentPlano());
+    const horarios = createMemo(() => planoToHorariosDescriptor(currentPlano()));
 
     return (
         <tbody>
@@ -201,40 +201,52 @@ function HorarioCell(props: {
 
     const conflict = () => base() && overlay() && base()!.id !== overlay()!.id;
 
+    // createEffect(() => {
+    //     console.log("Overlay updated for position", props.position, ":", overlay());
+    // });
+
+    // createEffect(() => {
+    //     console.log("Base updated for position", props.position, ":", base());
+    // });
+
     return (
-        <Show
-            when={!overlay()}
-            fallback={
-                <td
-                    data-materia-id={overlay()!.id}
-                    class={clsx(
-                        "horario-item h-[30px] w-[80px] rounded border border-neutral-500/80 px-1 py-[5px] text-center",
-                        conflict() ? "bg-red-600" : "bg-black text-white",
-                    )}
-                >
-                    <p class="block w-full truncate text-center leading-none">{overlay()!.id}</p>
-                </td>
-            }
+        <Switch fallback={<EmptyHorarioCell />}>
+            <Match when={conflict()}>
+                <FilledHorarioCell title={overlay()!.id} class="bg-red-500" />
+            </Match>
+            <Match when={overlay()}>
+                <FilledHorarioCell title={overlay()!.id} class="bg-black text-white" />
+            </Match>
+            <Match when={base()}>
+                <FilledHorarioCell
+                    title={base()!.id}
+                    subtitle={props.showDetails ? base()!.sala : undefined}
+                    style={base()?.color ? { "background-color": base()!.color } : undefined}
+                />
+            </Match>
+        </Switch>
+    );
+}
+
+function EmptyHorarioCell() {
+    return <td class="horario-item h-[30px] w-[80px] rounded border border-neutral-500/80 bg-white px-1 py-[5px]" />;
+}
+
+function FilledHorarioCell(props: { title: string; subtitle?: string; style?: JSX.CSSProperties; class?: string }) {
+    return (
+        <td
+            class={clsx(
+                "horario-item h-[30px] w-[80px] rounded border border-neutral-500/80 px-1 py-[5px] text-center",
+                props.class,
+            )}
+            style={props.style}
         >
-            <Show
-                when={base()}
-                fallback={
-                    <td class="horario-item h-[30px] w-[80px] rounded border border-neutral-500/80 bg-white px-1 py-[5px]" />
-                }
-            >
-                <td
-                    data-materia-id={base()!.id}
-                    class="horario-item h-[30px] w-[80px] rounded border border-neutral-500/80 bg-white px-1 py-[5px] text-center"
-                    style={{ "background-color": base()!.color }}
-                >
-                    <p class="block w-full truncate text-center leading-none">{base()!.id}</p>
-                    <Show when={props.showDetails}>
-                        <p class="mt-0.5 block w-full truncate text-center text-sm leading-none tracking-tight">
-                            {base()!.sala}
-                        </p>
-                    </Show>
-                </td>
+            <p class="block w-full truncate text-center leading-none">{props.title}</p>
+            <Show when={props.subtitle}>
+                <p class="mt-0.5 block w-full truncate text-center text-sm leading-none tracking-tight">
+                    {props.subtitle}
+                </p>
             </Show>
-        </Show>
+        </td>
     );
 }
