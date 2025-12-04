@@ -6,6 +6,7 @@ import path from "path";
 
 export default defineConfig({
     plugins: [solid(), tailwindcss(), visualizer()],
+    base: "/matrufsc/",
     resolve: {
         alias: {
             "~": path.resolve(__dirname, "src"),
