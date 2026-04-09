@@ -15,6 +15,7 @@ export default function Search<T>(props: {
     let inputRef: HTMLInputElement | undefined;
     let listRef: HTMLDivElement | undefined;
     let componentRef: HTMLDivElement | undefined;
+    // @ts-ignore // Unused for now but good keep if behavior changes
     let navigationSource = "keyboard";
 
     const [open, setOpen] = createSignal(false);
@@ -98,12 +99,10 @@ export default function Search<T>(props: {
 
     createEffect(
         on(focusedIndex, () => {
-            // Scroll focused element into view when navigating with keyboard
-            if (navigationSource === "keyboard") {
-                if (!listRef) return;
-                const focusedElement = listRef.querySelector(`[data-index="${focusedIndex()}"]`) as HTMLElement;
-                if (focusedElement) focusedElement.scrollIntoView({ block: "nearest" });
-            }
+            // Scroll focused element into view
+            if (!listRef) return;
+            const focusedElement = listRef.querySelector(`[data-index="${focusedIndex()}"]`) as HTMLElement;
+            if (focusedElement) focusedElement.scrollIntoView({ block: "nearest" });
         }),
     );
 
@@ -139,7 +138,7 @@ export default function Search<T>(props: {
             <Show when={open()}>
                 <div
                     ref={listRef}
-                    class="max-h-96 w-full overflow-y-auto rounded-b-md border border-t-0 border-neutral-400 bg-white"
+                    class="max-h-[calc(22rem+1px)] w-full overflow-y-auto rounded-b-md border border-t-0 border-neutral-400 bg-white"
                 >
                     <For each={filteredDataShown()}>
                         {(item, index) => (
