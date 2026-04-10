@@ -1,4 +1,4 @@
-import { createEffect, createSignal } from "solid-js";
+import { createEffect, createSignal, createResource } from "solid-js";
 import { makePersisted } from "@solid-primitives/storage";
 import {
     getDisciplinaFromJSON,
@@ -22,43 +22,42 @@ const CAMPUS: { title: string; value: JSONCampusCode }[] = [
     { title: "Blumenau", value: "BLU" },
 ];
 
-const SEMESTER_OPTIONS = [
-    {
-        title: "2024.2",
-        value: "20242",
-    },
-    {
-        title: "2024.1",
-        value: "20241",
-    },
-];
+type SemesterOption = { title: string; value: string };
+
+const fetchSemesterIndex = async (): Promise<SemesterOption[]> => {
+    const resp = await fetch(`${import.meta.env.BASE_URL}data/index.json`);
+    const json = await resp.json();
+    return json.semesters;
+};
 
 export default function App() {
     const { addMateria } = usePlano();
 
+    const [semesterOptions] = createResource(fetchSemesterIndex);
     const [campus, setCampus] = makePersisted(createSignal<JSONCampusCode>(CAMPUS[0].value));
-    const [semester, setSemester] = createSignal(SEMESTER_OPTIONS[0].value);
-
-    const [data, setData] = createSignal<JSONCampus>(); // TODO: Melhorar nome
-    const [loading, setLoading] = createSignal(true);
-    const disciplinas = () => (loading() ? [] : (data()?.disciplinas ?? [])); // TODO: Melhorar nome
+    const [semester, setSemester] = createSignal("");
 
     createEffect(() => {
+        const opts = semesterOptions();
+        if (opts && opts.length > 0 && semester() === "") {
+            setSemester(opts[0].value);
+        }
+    });
+
+    const [data, setData] = createSignal<JSONCampus>();
+    const [loading, setLoading] = createSignal(true);
+    const disciplinas = () => (loading() ? [] : (data()?.disciplinas ?? []));
+
+    createEffect(() => {
+        const sem = semester();
+        if (!sem) return;
+        const ano = sem.slice(0, 4);
         setLoading(true);
-        fetch(`${import.meta.env.BASE_URL}data/2024/${semester()}-${campus()}.json`) // TODO: Cache this JSON? But has to handle updates...
-            .then((response) => {
-                return response.json();
-            })
-            .then((data) => {
-                console.log("Fetched data:", data);
-                setData(data ?? []);
-            })
-            .catch((error) => {
-                console.error(error);
-            })
-            .finally(() => {
-                setLoading(false);
-            });
+        fetch(`${import.meta.env.BASE_URL}data/${ano}/${sem}-${campus()}.json`)
+            .then((response) => response.json())
+            .then((data) => setData(data ?? []))
+            .catch((error) => console.error(error))
+            .finally(() => setLoading(false));
     });
 
     const handleSelectMateria = (disciplina: JSONDisciplina) => {
@@ -77,7 +76,7 @@ export default function App() {
                 campusOptions={CAMPUS}
                 campusValue={campus()}
                 onCampusChange={setCampus}
-                semesterOptions={SEMESTER_OPTIONS}
+                semesterOptions={semesterOptions() ?? []}
                 semesterValue={semester()}
                 onSemesterChange={setSemester}
             />
