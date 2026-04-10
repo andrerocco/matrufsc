@@ -1,27 +1,27 @@
-#!/usr/bin/env python2
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python3
 
 from bs4 import BeautifulSoup
 from xml.etree import ElementTree as ET
-from StringIO import StringIO
-import cookielib
-import urllib2
-import urllib
+from io import BytesIO
+import http.cookiejar
+import urllib.request
+import urllib.parse
 import gzip
 import sys
 
-if len(sys.argv) < 1:
-    print("usage: %s [semestre]" % sys.argv[0])
+if len(sys.argv) < 2:
+    print("usage: %s <semestre>" % sys.argv[0])
     sys.exit(1)
 
 try:
     semestre = sys.argv[1]
 except IndexError:
     print("Provide a valid semester as argument")
+    sys.exit(1)
 
-jar = cookielib.CookieJar()
-opener = urllib2.build_opener(
-    urllib2.HTTPCookieProcessor(jar), urllib2.HTTPSHandler(debuglevel=0)
+jar = http.cookiejar.CookieJar()
+opener = urllib.request.build_opener(
+    urllib.request.HTTPCookieProcessor(jar), urllib.request.HTTPSHandler(debuglevel=0)
 )
 
 print("Semestre: %s" % semestre)
@@ -30,7 +30,7 @@ resp = opener.open("https://cagr.sistemas.ufsc.br/modules/comunidade/cadastroTur
 soup = BeautifulSoup(resp, features="html.parser")
 viewState = soup.find("input", {"name": "javax.faces.ViewState"})["value"]
 
-request = urllib2.Request(
+request = urllib.request.Request(
     "https://cagr.sistemas.ufsc.br/modules/comunidade/cadastroTurmas/index.xhtml"
 )
 request.add_header("Accept-encoding", "gzip")
@@ -86,15 +86,15 @@ for campus in range(1, len(campus_str)):
     outfile = open(semestre + "_" + campus_str[campus] + ".xml", "w")
     page_form["formBusca:selectCampus"] = campus
     pagina = 1
-    while 1:
+    while True:
         page_form["formBusca:dataScroller1"] = pagina
-        resp = opener.open(request, urllib.urlencode(page_form))
+        resp = opener.open(request, urllib.parse.urlencode(page_form).encode())
         if resp.info().get("Content-Encoding") == "gzip":
-            buf = StringIO(resp.read())
+            buf = BytesIO(resp.read())
             f = gzip.GzipFile(fileobj=buf)
-            data = f.read()
+            data = f.read().decode()
         else:
-            data = resp.read()
+            data = resp.read().decode()
         outfile.write(data)
         parser = ET.XMLParser()
         parser.entity.update(
