@@ -17,6 +17,7 @@ export default function Search<T>(props: {
     let componentRef: HTMLDivElement | undefined;
     // @ts-ignore // Unused for now but good keep if behavior changes
     let navigationSource = "keyboard";
+    let enterHeld = false;
 
     const [open, setOpen] = createSignal(false);
     const [focusedIndex, setFocusedIndex] = createSignal(0);
@@ -43,6 +44,7 @@ export default function Search<T>(props: {
         setDataShownAmount(props.limit ?? props.data.length);
         setFocusedIndex(0);
         setFilteredData(props.data);
+        enterHeld = false;
     };
 
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -55,6 +57,12 @@ export default function Search<T>(props: {
             setFocusedIndex((prev) => (prev + 1) % totalShownAmount());
             e.preventDefault();
         } else if (e.key == "Enter") {
+            if (e.repeat || enterHeld) {
+                e.preventDefault();
+                return;
+            }
+            enterHeld = true;
+            e.preventDefault();
             if (focusedIndex() === dataShownAmount()) {
                 handleShowMore();
                 return;
@@ -64,6 +72,12 @@ export default function Search<T>(props: {
         } else if (e.key == "Escape") {
             handleClose();
             inputRef?.blur();
+        }
+    };
+
+    const handleKeyUp = (e: KeyboardEvent) => {
+        if (e.key == "Enter") {
+            enterHeld = false;
         }
     };
 
@@ -117,8 +131,12 @@ export default function Search<T>(props: {
                     disabled={props.disabled}
                     placeholder={props.placeholder}
                     onKeyDown={handleKeyDown}
+                    onKeyUp={handleKeyUp}
                     onInput={handleInput}
                     onFocus={() => setOpen(true)}
+                    onBlur={() => {
+                        enterHeld = false;
+                    }}
                     value={searchValue()}
                     class={clsx(
                         "h-9 w-full border border-neutral-400 bg-white px-3 focus:border-neutral-600 focus:outline-none disabled:bg-neutral-200",
