@@ -12,7 +12,9 @@ import Header from "~/components/header/Header";
 import Footer from "~/components/footer/Footer";
 import Search from "~/components/search/Search";
 import Materias from "~/components/materias/Materias";
+import Turmas from "~/components/turmas/Turmas";
 import Horarios from "~/components/horarios/Horarios";
+import CombinacaoSpinner from "./components/horarios/CombinacaoSpinner";
 
 const CAMPUS: { title: string; value: JSONCampusCode }[] = [
     { title: "Florianópolis", value: "FLO" },
@@ -71,32 +73,42 @@ export default function App() {
     };
 
     return (
-        <div class="mx-auto w-full max-w-[1000px] py-8">
-            <Header
-                class="mx-6 mb-8"
-                campusOptions={CAMPUS}
-                campusValue={campus()}
-                onCampusChange={setCampus}
-                semesterOptions={SEMESTER_OPTIONS}
-                semesterValue={semester()}
-                onSemesterChange={setSemester}
-            />
-            <main>
-                <Search
-                    class="mx-6"
-                    placeholder={loading() ? "Carregando..." : "Pesquisar disciplina"} // TODO: Melhorar loading
-                    disabled={loading()}
-                    limit={10}
-                    data={disciplinas()}
-                    onSelect={handleSelectMateria}
-                    getLabel={(disciplina) => `${disciplina[0]} - ${disciplina[2]}`}
+        <div class="w-full py-8">
+            <div class="mx-auto max-w-[1000px] px-6">
+                <Header
+                    class="mx-6 mb-8"
+                    campusOptions={CAMPUS}
+                    campusValue={campus()}
+                    onCampusChange={setCampus}
+                    semesterOptions={SEMESTER_OPTIONS}
+                    semesterValue={semester()}
+                    onSemesterChange={setSemester}
                 />
-                <Materias class="mx-6 mt-6" />
-                <div class="w-full overflow-x-auto">
-                    <Horarios class="my-8 px-6" />
+            </div>
+            <main>
+                <div class="mx-auto max-w-[1000px] px-6">
+                    <Search
+                        class="mx-6"
+                        placeholder={loading() ? "Carregando..." : "Pesquisar disciplina"} // TODO: Melhorar loading
+                        disabled={loading()}
+                        limit={10}
+                        data={disciplinas()}
+                        onSelect={handleSelectMateria}
+                        getLabel={(disciplina) => `${disciplina[0]} - ${disciplina[2]}`}
+                    />
+                    <Materias class="mx-6 mt-6" />
+                </div>
+                <div class="my-8 flex flex-col items-center gap-3 px-6">
+                    <div class="flex w-full justify-center gap-5 overflow-x-auto">
+                        <Horarios />
+                        <Turmas />
+                    </div>
+                    <CombinacaoSpinner />
                 </div>
             </main>
-            <Footer class="mt-2" />
+            <div class="mx-auto max-w-[1000px] px-6">
+                <Footer class="mt-2" />
+            </div>
         </div>
     );
 }

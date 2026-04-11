@@ -4,7 +4,7 @@ import { usePlano, type Materia } from "~/context/plano/Plano.store";
 import { useHorariosOverlay } from "../horarios/useHorariosOverlay";
 
 export default function Materias(props: { class?: string }) {
-    const { materias, removeMateria, updateMateriaSelected } = usePlano();
+    const { materias, removeMateria, updateMateriaSelected, selectedMateriaId, setSelectedMateriaId } = usePlano();
     const { overlayMateria, clearOverlay } = useHorariosOverlay();
 
     const handleRemove = (id: string) => {
@@ -15,6 +15,10 @@ export default function Materias(props: { class?: string }) {
     const handleToggleSelection = (id: string, currentSelected: boolean) => {
         clearOverlay();
         updateMateriaSelected(id, !currentSelected);
+    };
+
+    const handleSelectMateria = (id: string) => {
+        setSelectedMateriaId((current) => (current === id ? null : id));
     };
 
     return (
@@ -31,8 +35,10 @@ export default function Materias(props: { class?: string }) {
                                         materia={materia}
                                         onClickRemove={handleRemove}
                                         onToggleSelection={handleToggleSelection}
+                                        onClickSelect={handleSelectMateria}
                                         onMouseEnter={() => overlayMateria(materia)}
                                         onMouseLeave={clearOverlay}
+                                        isSelected={selectedMateriaId() === materia.id}
                                     />
                                 )}
                             </For>
@@ -78,18 +84,22 @@ function MateriaRow(props: {
     materia: Materia;
     onToggleSelection: (id: string, currentSelected: boolean) => void;
     onClickRemove: (id: string) => void;
+    onClickSelect: (id: string) => void;
     onMouseEnter?: () => void;
     onMouseLeave?: () => void;
+    isSelected?: boolean;
 }) {
     console.log("Rendering MateriaRow for ", props.materia.id);
 
     return (
         <tr
             data-materia-id={props.materia.id}
+            data-selected={props.isSelected}
             style={{ "background-color": props.materia.cor }}
             class="materia-item group min-h-7 cursor-pointer divide-x divide-neutral-400"
             onMouseEnter={props.onMouseEnter}
             onMouseLeave={props.onMouseLeave}
+            onClick={() => props.onClickSelect(props.materia.id)}
         >
             <td class="px-3 py-1.5">
                 <input
@@ -98,7 +108,8 @@ function MateriaRow(props: {
                     disabled={props.materia.blocked}
                     title={props.materia.blocked ? "Conflito com matéria(s) acima na lista" : ""}
                     onChange={() => props.onToggleSelection(props.materia.id, props.materia.selected)}
-                    class="mr-0 translate-y-0.5 cursor-pointer"
+                    onClick={(event) => event.stopPropagation()}
+                    class="mr-0 cursor-pointer"
                 />
             </td>
             <td class="px-3 py-1.5">{props.materia.id}</td>
@@ -107,7 +118,10 @@ function MateriaRow(props: {
                     <p>{props.materia.nome}</p>
                     <button
                         class="absolute right-0 mr-3 cursor-pointer opacity-0 group-hover:opacity-100 hover:underline"
-                        onClick={() => props.onClickRemove(props.materia.id)}
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            props.onClickRemove(props.materia.id);
+                        }}
                     >
                         Remover
                     </button>

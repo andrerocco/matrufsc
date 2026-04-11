@@ -3,8 +3,6 @@ import { clsx } from "clsx";
 // Context
 import { usePlano, type Plano } from "~/context/plano/Plano.store";
 import { useHorariosOverlay } from "./useHorariosOverlay";
-// Components
-import CombinacaoSpinner from "./CombinacaoSpinner";
 
 const DIAS = [
     { number: 2, name: "Segunda" },
@@ -53,15 +51,12 @@ export default function Horarios(props: { class?: string }) {
     const [showDetails, setShowDetails] = createSignal(false);
 
     return (
-        <div class={clsx("w-full min-w-fit", props.class)}>
+        <div class={clsx("min-w-fit", props.class)}>
             <div class="flex flex-col items-center">
                 <table class="min-w-[520px] table-fixed border-separate">
                     <HorariosTableHead showDetails={showDetails()} onChangeShowDetails={setShowDetails} />
                     <HorariosTableBody showDetails={showDetails()} />
                 </table>
-                <div class="mt-2 flex w-full justify-center pl-2">
-                    <CombinacaoSpinner />
-                </div>
             </div>
         </div>
     );
@@ -99,8 +94,6 @@ export interface HorariosDescriptor<T> {
 }
 
 function planoToHorariosDescriptor(plano: Plano | null): HorariosDescriptor<HorarioCellBase> {
-    console.log("Generating horarios descriptor from plano");
-
     if (!plano) return {};
 
     const horarios: HorariosDescriptor<HorarioCellBase> = {};
