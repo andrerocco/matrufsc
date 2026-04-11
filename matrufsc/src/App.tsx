@@ -12,6 +12,7 @@ import { MateriaExistsError } from "~/context/plano/errors";
 import Header from "~/components/header/Header";
 import Footer from "~/components/footer/Footer";
 import Search from "~/components/search/Search";
+import { searchDisciplinas } from "~/components/search/searchDisciplinas";
 import Materias from "~/components/materias/Materias";
 import Turmas from "~/components/turmas/Turmas";
 import Horarios from "~/components/horarios/Horarios";
@@ -80,6 +81,7 @@ export default function App() {
                         disabled={isLoading()}
                         limit={10}
                         data={disciplinas()}
+                        filter={(search) => searchDisciplinas(search, disciplinas())}
                         onSelect={handleSelectMateria}
                         getLabel={(disciplina) => `${disciplina[0]} - ${disciplina[2]}`}
                     />
