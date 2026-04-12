@@ -82,7 +82,7 @@ export function combinacoes(materias: Materia[]): {
     };
 }
 
-function mergeEquivalentTurmas(turmas: Turma[]) {
+export function mergeEquivalentTurmas(turmas: Turma[]) {
     let mergedTurmas: Record<string, Turma[]> = {};
 
     for (const turma of turmas) {

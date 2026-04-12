@@ -44,7 +44,7 @@ export default function CombinacaoSpinner() {
     }
 
     return (
-        <div class="flex gap-2">
+        <div class="flex w-fit gap-2">
             <button
                 class="flex size-6 cursor-pointer items-center justify-center rounded-md border border-neutral-400 bg-white pb-px disabled:opacity-50"
                 onClick={handleDecrement}

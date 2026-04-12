@@ -4,7 +4,7 @@ import { usePlano, type Materia } from "~/context/plano/Plano.store";
 import { useHorariosOverlay } from "../horarios/useHorariosOverlay";
 
 export default function Materias(props: { class?: string }) {
-    const { materias, removeMateria, updateMateriaSelected } = usePlano();
+    const { materias, removeMateria, updateMateriaSelected, selectedMateriaId, setSelectedMateriaId } = usePlano();
     const { overlayMateria, clearOverlay } = useHorariosOverlay();
 
     const handleRemove = (id: string) => {
@@ -17,13 +17,22 @@ export default function Materias(props: { class?: string }) {
         updateMateriaSelected(id, !currentSelected);
     };
 
-    return (
-        <div class={clsx("not-prose relative flex overflow-hidden rounded-md border border-neutral-400", props.class)}>
-            <div class="relative flex-1 overflow-x-auto overflow-y-hidden">
-                <table class="min-w-full table-fixed divide-y divide-neutral-400">
-                    <MateriasTableHead creditos={0} />
+    const handleSelectMateria = (id: string) => {
+        setSelectedMateriaId((current) => (current === id ? null : id));
+    };
 
-                    <Show when={materias.length > 0}>
+    return (
+        <Show when={materias.length > 0}>
+            <div
+                class={clsx(
+                    "not-prose relative flex overflow-hidden rounded-md border border-neutral-400",
+                    props.class,
+                )}
+            >
+                <div class="relative flex-1 overflow-x-auto overflow-y-hidden">
+                    <table class="min-w-full table-fixed divide-y divide-neutral-400">
+                        <MateriasTableHead creditos={0} />
+
                         <tbody class="divide-y divide-neutral-400">
                             <For each={materias}>
                                 {(materia) => (
@@ -31,8 +40,10 @@ export default function Materias(props: { class?: string }) {
                                         materia={materia}
                                         onClickRemove={handleRemove}
                                         onToggleSelection={handleToggleSelection}
+                                        onClickSelect={handleSelectMateria}
                                         onMouseEnter={() => overlayMateria(materia)}
                                         onMouseLeave={clearOverlay}
+                                        isSelected={selectedMateriaId() === materia.id}
                                     />
                                 )}
                             </For>
@@ -44,17 +55,17 @@ export default function Materias(props: { class?: string }) {
                                 </tr>
                             </Show> */}
                         </tbody>
-                    </Show>
-                </table>
+                    </table>
+                </div>
             </div>
-        </div>
+        </Show>
     );
 }
 
 function MateriasTableHead(props: { creditos: number }) {
     return (
         <thead class="relative bg-neutral-100">
-            <tr class="divide-x divide-neutral-300">
+            <tr class="divide-x divide-neutral-400">
                 <th class="h-7 w-10 px-3 py-1.5 text-left font-semibold text-neutral-900 uppercase">
                     <input
                         type="checkbox"
@@ -62,7 +73,9 @@ function MateriasTableHead(props: { creditos: number }) {
                         class="pointer-events-none mr-0 translate-y-[3px] cursor-pointer opacity-0"
                     />
                 </th>
-                <th class="h-7 w-24 px-3 py-1.5 text-left font-semibold text-neutral-900 uppercase">Código</th>
+                <th class="col-span-2 h-7 w-24 px-3 py-1.5 text-left font-semibold text-neutral-900 uppercase">
+                    Código
+                </th>
                 <th class="h-7 px-3 py-1.5 text-left font-semibold text-neutral-900 uppercase">
                     <div class="flex justify-between">
                         <span>Matéria</span>
@@ -78,18 +91,22 @@ function MateriaRow(props: {
     materia: Materia;
     onToggleSelection: (id: string, currentSelected: boolean) => void;
     onClickRemove: (id: string) => void;
+    onClickSelect: (id: string) => void;
     onMouseEnter?: () => void;
     onMouseLeave?: () => void;
+    isSelected?: boolean;
 }) {
     console.log("Rendering MateriaRow for ", props.materia.id);
 
     return (
         <tr
             data-materia-id={props.materia.id}
+            data-selected={props.isSelected}
             style={{ "background-color": props.materia.cor }}
             class="materia-item group min-h-7 cursor-pointer divide-x divide-neutral-400"
             onMouseEnter={props.onMouseEnter}
             onMouseLeave={props.onMouseLeave}
+            onClick={() => props.onClickSelect(props.materia.id)}
         >
             <td class="px-3 py-1.5">
                 <input
@@ -98,7 +115,8 @@ function MateriaRow(props: {
                     disabled={props.materia.blocked}
                     title={props.materia.blocked ? "Conflito com matéria(s) acima na lista" : ""}
                     onChange={() => props.onToggleSelection(props.materia.id, props.materia.selected)}
-                    class="mr-0 translate-y-0.5 cursor-pointer"
+                    onClick={(event) => event.stopPropagation()}
+                    class="mr-0 cursor-pointer"
                 />
             </td>
             <td class="px-3 py-1.5">{props.materia.id}</td>
@@ -107,7 +125,10 @@ function MateriaRow(props: {
                     <p>{props.materia.nome}</p>
                     <button
                         class="absolute right-0 mr-3 cursor-pointer opacity-0 group-hover:opacity-100 hover:underline"
-                        onClick={() => props.onClickRemove(props.materia.id)}
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            props.onClickRemove(props.materia.id);
+                        }}
                     >
                         Remover
                     </button>
