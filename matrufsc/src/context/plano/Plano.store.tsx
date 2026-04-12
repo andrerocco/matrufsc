@@ -14,6 +14,8 @@ export interface Aula {
 export interface Turma {
     id: string;
     carga_horaria: number;
+    vagas_ofertadas: number;
+    vagas_ocupadas: number;
     aulas: Aula[];
     professores: string[];
     selected: boolean;
@@ -34,12 +36,13 @@ const [materias, setMaterias] = createStore<Materia[]>([]);
 const [planos, setPlanos] = createStore<Plano[]>([]); // Signal this? No granular updates anyway
 const [currentPlanoIndex, setCurrentPlanoIndex] = createSignal(0);
 const currentPlano = () => planos[currentPlanoIndex()] ?? null;
+const [selectedMateriaId, setSelectedMateriaId] = createSignal<string | null>(null);
 
 let colorIndex = 0;
 
-function addMateria(materia: Materia): MateriaExistsError | null {
+function addMateria(materia: Materia) {
     const exists = materias.find((m) => m.id === materia.id); // Check if materia already exists
-    if (exists) return new MateriaExistsError(`${materia.id} já adicionada ao plano`);
+    if (exists) throw new MateriaExistsError(`${materia.id} já adicionada ao plano`);
 
     colorIndex = (colorIndex + 1) % COLORS.length;
 
@@ -52,6 +55,8 @@ function addMateria(materia: Materia): MateriaExistsError | null {
     };
 
     setMaterias((prev) => [...prev, newMateria]);
+    setSelectedMateriaId(newMateria.id);
+
     const { planos, blockedMaterias } = combinacoes(materias);
     const closestIndex = findClosestCombination(currentPlano(), planos); // Find the closest combination to the current one (to avoid layout shifts)
     setMaterias(
@@ -63,14 +68,13 @@ function addMateria(materia: Materia): MateriaExistsError | null {
     );
     setPlanos(planos);
     setCurrentPlanoIndex(closestIndex); // Reset to first plano
-
-    return null;
 }
 
-function removeMateria(id: string): MateriaNotFoundError | null {
+function removeMateria(id: string) {
     const materiaIndex = materias.findIndex((m) => m.id === id);
-    if (materiaIndex === -1) return new MateriaNotFoundError(`Matéria ${id} não encontrada`);
+    if (materiaIndex === -1) throw new MateriaNotFoundError(`Matéria ${id} não encontrada`);
 
+    if (selectedMateriaId() === id) setSelectedMateriaId(null);
     setMaterias((prev) => prev.filter((m) => m.id !== id));
 
     if (materias.length === 0) {
@@ -78,8 +82,24 @@ function removeMateria(id: string): MateriaNotFoundError | null {
         setMaterias([]);
         setPlanos([]);
         setCurrentPlanoIndex(0);
-        return null;
+        setSelectedMateriaId(null);
+    } else {
+        const { planos, blockedMaterias } = combinacoes(materias);
+        const closestIndex = findClosestCombination(currentPlano(), planos); // Find the closest combination to the current one (to avoid layout shifts)
+        setMaterias(
+            produce((list) => {
+                for (const materia of list) {
+                    materia.blocked = blockedMaterias.has(materia.id);
+                }
+            }),
+        );
+        setPlanos(planos);
+        setCurrentPlanoIndex(closestIndex); // Reset to closest plano
     }
+}
+
+function updateMateriaSelected(id: string, selected: boolean) {
+    setMaterias((materia) => materia.id === id, "selected", selected);
 
     const { planos, blockedMaterias } = combinacoes(materias);
     const closestIndex = findClosestCombination(currentPlano(), planos); // Find the closest combination to the current one (to avoid layout shifts)
@@ -91,13 +111,17 @@ function removeMateria(id: string): MateriaNotFoundError | null {
         }),
     );
     setPlanos(planos);
-    setCurrentPlanoIndex(closestIndex); // Reset to closest plano
-
-    return null;
+    setCurrentPlanoIndex(closestIndex);
 }
 
-function updateMateriaSelected(id: string, selected: boolean) {
-    setMaterias((materia) => materia.id === id, "selected", selected);
+function updateTurmaSelected(materiaId: string, turmaId: string, selected: boolean) {
+    setMaterias(
+        (materia) => materia.id === materiaId,
+        "turmas",
+        (turma) => turma.id === turmaId,
+        "selected",
+        selected,
+    );
 
     const { planos, blockedMaterias } = combinacoes(materias);
     const closestIndex = findClosestCombination(currentPlano(), planos); // Find the closest combination to the current one (to avoid layout shifts)
@@ -127,8 +151,11 @@ export const usePlano = () => ({
     planos,
     currentPlano,
     currentPlanoIndex,
+    selectedMateriaId,
+    setSelectedMateriaId,
     addMateria,
     removeMateria,
     updateMateriaSelected,
+    updateTurmaSelected,
     setPlanoIndex: setPlanoIndexClamped,
 });
