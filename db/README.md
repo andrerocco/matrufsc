@@ -2,18 +2,34 @@ Este repositório contém os bancos de dados extraídos do CAGR para serem
 utilizados no MatrUFSC, disponível no seguinte repositório:
 https://github.com/ramiropolla/matrufsc_dbs.git
 
-O banco de dados é gerado usando os script py/get_turmas.py e
-py/parse_turmas.py. Estes scripts são específicos para o sistema de
+O banco de dados é gerado usando os script src/get_turmas.py e
+src/parse_turmas.py. Estes scripts são específicos para o sistema de
 cadastro de disciplinas da UFSC.
 
 get_turmas.py pega os dados do CAGR e os grava separados por semestre e campus.
-O modo de usar é: ./py/get_turmas.py <username> <password> [semestre]
+O modo de usar é: ./src/get_turmas.py <semestre>
+
 parse_turmas.py gera arquivos .json dos arquivos xml criados por get_turmas.
-O modo de usar é: ./py/parse_turmas.py <arquivos de entrada> <arquivo de saída>
+O modo de usar é: ./src/parse_turmas.py <diretório de saída> <arquivos XML de entrada...>
 
-Os arquivos finais .json seguem a seguinte estrutura:
+Exemplo:
+  ./src/parse_turmas.py ../matrufsc/public/data 20251_FLO.xml 20251_JOI.xml 20251_CBS.xml
 
-{ "DATA": "<data e hora da captura>", "<código do campus>" : [lista de disciplinas] }
+Estrutura de saída:
+  <output_dir>/<ano>/<semestre>-<campus>.json
+
+  Exemplo:
+    ../matrufsc/public/data/2025/20251-FLO.json
+    ../matrufsc/public/data/2025/20251-JOI.json
+    ../matrufsc/public/data/2025/20251-CBS.json
+
+Cada JSON segue a seguinte estrutura:
+
+{
+  "campus": "<código do campus>",
+  "data_extracao": "<data e hora da captura>",
+  "disciplinas": [lista de disciplinas]
+}
 
 Cada disciplina é uma lista com a seguinte estrutura:
 [ "código da disciplina", "nome da disciplina em ascii e caixa alta", "nome da disciplina", [lista de turmas] ]
@@ -31,8 +47,3 @@ Os horários são no formato disponibilizado pela UFSC:
  \-------------------- dia da semana
 
 Os professores são dispostos numa lista de strings.
-
-
-Para instalar os bancos de dados, basta copiar os arquivos, ou rodar:
-make DESTDIR="/<pasta_do_site>/matrufsc-<versao>" install
-
