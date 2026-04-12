@@ -1,11 +1,18 @@
 import clsx from "clsx";
 import { For, Show } from "solid-js";
-import { usePlano, type Materia } from "~/context/plano/Plano.store";
+import { usePlano, type Materia, type Turma } from "~/context/plano/Plano.store";
 import { useHorariosOverlay } from "../horarios/useHorariosOverlay";
 
 export default function Materias(props: { class?: string }) {
-    const { materias, removeMateria, updateMateriaSelected, selectedMateriaId, setSelectedMateriaId } = usePlano();
+    const { materias, removeMateria, updateMateriaSelected, selectedMateriaId, setSelectedMateriaId, currentPlano } =
+        usePlano();
     const { overlayMateria, clearOverlay } = useHorariosOverlay();
+
+    const creditos = () => {
+        const plano = currentPlano();
+        if (!plano) return 0;
+        return getPlanoCreditos(plano);
+    };
 
     const handleRemove = (id: string) => {
         clearOverlay();
@@ -31,7 +38,7 @@ export default function Materias(props: { class?: string }) {
             >
                 <div class="relative flex-1 overflow-x-auto overflow-y-hidden">
                     <table class="min-w-full table-fixed divide-y divide-neutral-400">
-                        <MateriasTableHead creditos={0} />
+                        <MateriasTableHead creditos={creditos()} />
 
                         <tbody class="divide-y divide-neutral-400">
                             <For each={materias}>
@@ -79,12 +86,20 @@ function MateriasTableHead(props: { creditos: number }) {
                 <th class="h-7 px-3 py-1.5 text-left font-semibold text-neutral-900 uppercase">
                     <div class="flex justify-between">
                         <span>Matéria</span>
-                        <span class="font-normal text-neutral-400 normal-case">Créditos: {props.creditos}</span>
+                        <span class="font-normal text-neutral-500 normal-case">Créditos: {props.creditos}</span>
                     </div>
                 </th>
             </tr>
         </thead>
     );
+}
+
+function getPlanoCreditos(plano: { turma: Turma }[]): number {
+    return plano.reduce((total, { turma }) => total + getTurmaCreditos(turma), 0);
+}
+
+function getTurmaCreditos(turma: Turma): number {
+    return turma.aulas.reduce((total, aula) => total + aula.horarios.length, 0);
 }
 
 function MateriaRow(props: {
