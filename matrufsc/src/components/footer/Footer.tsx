@@ -8,18 +8,13 @@ export default function Footer(props: { class?: string }) {
                 <a class="text-nowrap" target="_blank" href="http://cagr.ufsc.br/" rel="noreferrer">
                     CAGR
                 </a>
-                ! Este aplicativo não tem nenhum vínculo com a UFSC.
+                !
                 <br />
-                <a class="text-nowrap" href="https://github.com/caravelahc/capim">
-                    https://github.com/caravelahc/capim
-                </a>
+                Este aplicativo não tem nenhum vínculo com a UFSC.
             </p>
 
             <div class="flex gap-4">
-                <a class="text-nowrap" target="_blank" href="https://github.com/caravelahc/capim/wiki" rel="noreferrer">
-                    Como usar
-                </a>
-                <a target="_blank" href="https://github.com/caravelahc/capim#readme" rel="noreferrer">
+                <a target="_blank" href="#" rel="noreferrer">
                     Sobre
                 </a>
             </div>

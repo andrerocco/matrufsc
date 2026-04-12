@@ -49,7 +49,7 @@ function getHorarioList(horarioInicio: string, creditos: number): number[] {
 // TODO: Tests
 
 export function getTurmaFromJSON(json: JSONTurma): Turma {
-    const [id, carga_horaria, _, __, ___, ____, _____, rawAulas, professores] = json;
+    const [id, carga_horaria, vagas_ofertadas, vagas_ocupadas, _, __, ___, rawAulas, professores] = json;
 
     // Converts "3.1620-3 / CTS-SL114A" to dia_semana: 3, horarios: [12, 13, 14], sala: "CTS-SL114A"
     const aulas = rawAulas.map((rawAula) => {
@@ -63,7 +63,15 @@ export function getTurmaFromJSON(json: JSONTurma): Turma {
             sala: sala,
         };
     });
-    return { id, carga_horaria, aulas, professores, selected: true };
+    return {
+        id,
+        carga_horaria,
+        vagas_ofertadas,
+        vagas_ocupadas,
+        aulas,
+        professores,
+        selected: true,
+    };
 }
 
 export function getDisciplinaFromJSON(json: JSONDisciplina): Materia {
