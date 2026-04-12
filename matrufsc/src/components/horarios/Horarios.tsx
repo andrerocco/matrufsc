@@ -208,7 +208,11 @@ function HorarioCell(props: {
                 <FilledHorarioCell title={overlay()!.id} class="bg-red-500" />
             </Match>
             <Match when={overlay()}>
-                <FilledHorarioCell title={overlay()!.id} class="bg-black text-white" />
+                <FilledHorarioCell
+                    title={overlay()!.id}
+                    subtitle={props.showDetails ? base()?.sala : undefined}
+                    class="bg-black text-white"
+                />
             </Match>
             <Match when={base()}>
                 <FilledHorarioCell
@@ -236,7 +240,7 @@ function FilledHorarioCell(props: { title: string; subtitle?: string; style?: JS
         >
             <p class="block w-full truncate text-center leading-none">{props.title}</p>
             <Show when={props.subtitle}>
-                <p class="mt-0.5 block w-full truncate text-center text-sm leading-none tracking-tight">
+                <p class="mt-1 block w-full truncate text-center text-sm leading-none tracking-tight">
                     {props.subtitle}
                 </p>
             </Show>

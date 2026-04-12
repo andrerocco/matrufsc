@@ -74,7 +74,7 @@ export default function App() {
                     onSemesterChange={setSemester}
                 />
             </div>
-            <main class="flex-1">
+            <main>
                 <div class="mx-auto max-w-[1000px] px-6">
                     <Search
                         placeholder={isLoading() ? "Carregando..." : "Pesquisar disciplina"} // TODO: Melhorar loading
@@ -88,9 +88,9 @@ export default function App() {
                     <Materias class="mt-6" />
                 </div>
                 <div class="my-8 flex flex-col items-center gap-3">
-                    <div class="flex w-full justify-center gap-6 overflow-x-auto px-6 lg:container">
+                    <div class="flex w-full justify-center gap-6 overflow-x-auto px-6">
                         <Horarios />
-                        <Turmas />
+                        <Turmas class="max-w-[520px]" />
                     </div>
                     <CombinacaoSpinner />
                 </div>

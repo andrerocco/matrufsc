@@ -19,7 +19,7 @@ export const HORAS = [
 
 export const COLORS = [
     "lightblue",
-    "lightcoral",
+    // "lightcoral",
     "lightcyan",
     "lightgoldenrodyellow",
     "lightgray",
@@ -28,8 +28,7 @@ export const COLORS = [
     "lightsalmon",
     "lightseagreen",
     "lightskyblue",
-    "lightslategray",
-    "lightslategrey",
+    // "lightslategray",
     "lightsteelblue",
     "lightyellow",
 ];
