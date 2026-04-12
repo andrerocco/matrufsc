@@ -7,6 +7,7 @@ import {
     type JSONDisciplina,
 } from "~/context/plano/parser";
 import { usePlano } from "~/context/plano/Plano.store";
+import { MateriaExistsError } from "~/context/plano/errors";
 // Components
 import Header from "~/components/header/Header";
 import Footer from "~/components/footer/Footer";
@@ -65,18 +66,22 @@ export default function App() {
 
     const handleSelectMateria = (disciplina: JSONDisciplina) => {
         const parsedMateria = getDisciplinaFromJSON(disciplina);
-        const error = addMateria(parsedMateria);
-        if (error) {
-            alert(error.message); // TODO: Lidar visualmente
-            return;
+        try {
+            addMateria(parsedMateria);
+        } catch (error) {
+            if (error instanceof MateriaExistsError) {
+                alert(error.message); // TODO: Lidar visualmente
+                return;
+            }
+            throw error;
         }
     };
 
     return (
-        <div class="w-full py-8">
-            <div class="mx-auto max-w-[1000px] px-6">
+        <div class="flex min-h-dvh w-full flex-col py-8">
+            <div class="mx-auto w-full max-w-[1000px] shrink-0 px-6">
                 <Header
-                    class="mx-6 mb-8"
+                    class="mb-8"
                     campusOptions={CAMPUS}
                     campusValue={campus()}
                     onCampusChange={setCampus}
@@ -85,10 +90,9 @@ export default function App() {
                     onSemesterChange={setSemester}
                 />
             </div>
-            <main>
+            <main class="flex-1">
                 <div class="mx-auto max-w-[1000px] px-6">
                     <Search
-                        class="mx-6"
                         placeholder={loading() ? "Carregando..." : "Pesquisar disciplina"} // TODO: Melhorar loading
                         disabled={loading()}
                         limit={10}
@@ -96,17 +100,17 @@ export default function App() {
                         onSelect={handleSelectMateria}
                         getLabel={(disciplina) => `${disciplina[0]} - ${disciplina[2]}`}
                     />
-                    <Materias class="mx-6 mt-6" />
+                    <Materias class="mt-6" />
                 </div>
-                <div class="my-8 flex flex-col items-center gap-3 px-6">
-                    <div class="flex w-full justify-center gap-5 overflow-x-auto">
+                <div class="my-8 flex flex-col items-center gap-3">
+                    <div class="flex w-full justify-center gap-6 overflow-x-auto px-6 lg:container">
                         <Horarios />
                         <Turmas />
                     </div>
                     <CombinacaoSpinner />
                 </div>
             </main>
-            <div class="mx-auto max-w-[1000px] px-6">
+            <div class="mx-auto w-full max-w-[1000px] shrink-0 px-6">
                 <Footer class="mt-2" />
             </div>
         </div>

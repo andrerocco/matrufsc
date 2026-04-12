@@ -22,12 +22,17 @@ export default function Materias(props: { class?: string }) {
     };
 
     return (
-        <div class={clsx("not-prose relative flex overflow-hidden rounded-md border border-neutral-400", props.class)}>
-            <div class="relative flex-1 overflow-x-auto overflow-y-hidden">
-                <table class="min-w-full table-fixed divide-y divide-neutral-400">
-                    <MateriasTableHead creditos={0} />
+        <Show when={materias.length > 0}>
+            <div
+                class={clsx(
+                    "not-prose relative flex overflow-hidden rounded-md border border-neutral-400",
+                    props.class,
+                )}
+            >
+                <div class="relative flex-1 overflow-x-auto overflow-y-hidden">
+                    <table class="min-w-full table-fixed divide-y divide-neutral-400">
+                        <MateriasTableHead creditos={0} />
 
-                    <Show when={materias.length > 0}>
                         <tbody class="divide-y divide-neutral-400">
                             <For each={materias}>
                                 {(materia) => (
@@ -50,17 +55,17 @@ export default function Materias(props: { class?: string }) {
                                 </tr>
                             </Show> */}
                         </tbody>
-                    </Show>
-                </table>
+                    </table>
+                </div>
             </div>
-        </div>
+        </Show>
     );
 }
 
 function MateriasTableHead(props: { creditos: number }) {
     return (
         <thead class="relative bg-neutral-100">
-            <tr class="divide-x divide-neutral-300">
+            <tr class="divide-x divide-neutral-400">
                 <th class="h-7 w-10 px-3 py-1.5 text-left font-semibold text-neutral-900 uppercase">
                     <input
                         type="checkbox"
@@ -68,7 +73,9 @@ function MateriasTableHead(props: { creditos: number }) {
                         class="pointer-events-none mr-0 translate-y-[3px] cursor-pointer opacity-0"
                     />
                 </th>
-                <th class="h-7 w-24 px-3 py-1.5 text-left font-semibold text-neutral-900 uppercase">Código</th>
+                <th class="col-span-2 h-7 w-24 px-3 py-1.5 text-left font-semibold text-neutral-900 uppercase">
+                    Código
+                </th>
                 <th class="h-7 px-3 py-1.5 text-left font-semibold text-neutral-900 uppercase">
                     <div class="flex justify-between">
                         <span>Matéria</span>
