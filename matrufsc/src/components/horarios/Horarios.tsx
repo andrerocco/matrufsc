@@ -78,7 +78,7 @@ function HorariosTableHead(props: { showDetails: boolean; onChangeShowDetails: (
                         <th
                             class={clsx(
                                 WEEKDAY_COL_CLASS,
-                                "rounded border border-neutral-400 bg-neutral-100 px-1 py-1.5 font-normal text-neutral-700 shadow-sm",
+                                "rounded-sm border border-neutral-400 bg-neutral-100 px-1 py-1.5 font-normal text-neutral-700 shadow-xs",
                             )}
                         >
                             {dia.name}
@@ -232,7 +232,7 @@ function EmptyHorarioCell() {
     return (
         <td
             class={clsx(
-                "horario-item h-[30px] rounded border border-neutral-500/80 bg-white px-1 py-[5px]",
+                "horario-item h-[30px] rounded-sm border border-neutral-500/80 bg-white px-1 py-[5px]",
                 WEEKDAY_COL_CLASS,
             )}
         />
@@ -243,7 +243,7 @@ function FilledHorarioCell(props: { title: string; subtitle?: string; style?: JS
     return (
         <td
             class={clsx(
-                "horario-item h-[30px] rounded border border-neutral-500/80 px-1 py-[5px] text-center",
+                "horario-item h-[30px] rounded-sm border border-neutral-500/80 px-1 py-[5px] text-center",
                 WEEKDAY_COL_CLASS,
                 props.class,
             )}
