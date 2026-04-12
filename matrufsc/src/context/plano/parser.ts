@@ -22,7 +22,7 @@ export type JSONDisciplina = [
     JSONTurma[], // Turmas
 ];
 
-export type JSONCampusCode = "FLO" | "JOI" | "CBS" | "ARA" | "BLU";
+export type JSONCampusCode = "FLO" | "JOI" | "CBS" | "ARA" | "BLN";
 
 export interface JSONCampus {
     campus: JSONCampusCode;

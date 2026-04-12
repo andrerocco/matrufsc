@@ -1,4 +1,4 @@
-import { createEffect, createSignal, createResource } from "solid-js";
+import { createEffect, createResource, createSignal } from "solid-js";
 import { makePersisted } from "@solid-primitives/storage";
 import {
     getDisciplinaFromJSON,
@@ -22,46 +22,30 @@ const CAMPUS: { title: string; value: JSONCampusCode }[] = [
     { title: "Joinville", value: "JOI" },
     { title: "Curitibanos", value: "CBS" },
     { title: "Araranguá", value: "ARA" },
-    { title: "Blumenau", value: "BLU" },
+    { title: "Blumenau", value: "BLN" },
 ];
-
-type SemesterOption = { title: string; value: string };
-
-const fetchSemesterIndex = async (): Promise<SemesterOption[]> => {
-    const resp = await fetch(`${import.meta.env.BASE_URL}data/index.json`);
-    const json = await resp.json();
-    return json.semesters;
-};
 
 export default function App() {
     const { addMateria } = usePlano();
 
-    const [semesterOptions] = createResource(fetchSemesterIndex);
+    const [semesterOptions] = createResource(fetchAvailableSemesters);
     const [campus, setCampus] = makePersisted(createSignal<JSONCampusCode>(CAMPUS[0].value));
     const [semester, setSemester] = createSignal("");
 
     createEffect(() => {
         const opts = semesterOptions();
-        if (opts && opts.length > 0 && semester() === "") {
-            setSemester(opts[0].value);
-        }
+        if (!opts?.length) return;
+        setSemester((current) => current || opts[0].value);
     });
 
-    const [data, setData] = createSignal<JSONCampus>();
-    const [loading, setLoading] = createSignal(true);
-    const disciplinas = () => (loading() ? [] : (data()?.disciplinas ?? []));
-
-    createEffect(() => {
+    const [campusData] = createResource(() => {
         const sem = semester();
-        if (!sem) return;
-        const ano = sem.slice(0, 4);
-        setLoading(true);
-        fetch(`${import.meta.env.BASE_URL}data/${ano}/${sem}-${campus()}.json`)
-            .then((response) => response.json())
-            .then((data) => setData(data ?? []))
-            .catch((error) => console.error(error))
-            .finally(() => setLoading(false));
-    });
+        if (!sem) return null;
+        return { semester: sem, campus: campus() };
+    }, fetchCampusData);
+
+    const isLoading = () => semesterOptions.loading || campusData.loading;
+    const disciplinas = () => campusData()?.disciplinas ?? [];
 
     const handleSelectMateria = (disciplina: JSONDisciplina) => {
         const parsedMateria = getDisciplinaFromJSON(disciplina);
@@ -92,8 +76,8 @@ export default function App() {
             <main class="flex-1">
                 <div class="mx-auto max-w-[1000px] px-6">
                     <Search
-                        placeholder={loading() ? "Carregando..." : "Pesquisar disciplina"} // TODO: Melhorar loading
-                        disabled={loading()}
+                        placeholder={isLoading() ? "Carregando..." : "Pesquisar disciplina"} // TODO: Melhorar loading
+                        disabled={isLoading()}
                         limit={10}
                         data={disciplinas()}
                         onSelect={handleSelectMateria}
@@ -114,4 +98,30 @@ export default function App() {
             </div>
         </div>
     );
+}
+
+async function fetchAvailableSemesters(): Promise<{ title: string; value: string }[]> {
+    try {
+        const resp = await fetch(`${import.meta.env.BASE_URL}data/index.json`);
+        if (!resp.ok) throw new Error(`Failed to load semesters: ${resp.status} ${resp.statusText}`);
+        const json = await resp.json();
+        return json.semesters ?? [];
+    } catch (error) {
+        console.error("Error fetching semesters:", error);
+        throw error;
+    }
+}
+
+async function fetchCampusData(source: { semester: string; campus: JSONCampusCode }): Promise<JSONCampus> {
+    const { semester, campus } = source;
+    const ano = semester.slice(0, 4);
+
+    try {
+        const resp = await fetch(`${import.meta.env.BASE_URL}data/${ano}/${semester}-${campus}.json`);
+        if (!resp.ok) throw new Error(`Failed to load campus data: ${resp.status} ${resp.statusText}`);
+        return await resp.json();
+    } catch (error) {
+        console.error("Error fetching campus data:", error);
+        throw error;
+    }
 }
