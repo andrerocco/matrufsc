@@ -234,7 +234,7 @@ function SearchShowMore(props: {
             onMouseEnter={props.onMouseEnter}
             data-index={props.dataIndex}
         >
-            Carregar mais... {props.isSelected ? "👇" : ""}
+            Carregar mais...
         </button>
     );
 }
