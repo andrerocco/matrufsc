@@ -8,6 +8,7 @@ import {
 } from "~/context/plano/parser";
 import { usePlano } from "~/context/plano/Plano.store";
 import { MateriaExistsError } from "~/context/plano/errors";
+import { persistedSignal } from "./lib/persistedSignal";
 // Components
 import Header from "~/components/header/Header";
 import Footer from "~/components/footer/Footer";
@@ -29,24 +30,32 @@ const CAMPUS: { title: string; value: JSONCampusCode }[] = [
 export default function App() {
     const { addMateria } = usePlano();
 
-    const [semesterOptions] = createResource(fetchAvailableSemesters);
-    const [campus, setCampus] = makePersisted(createSignal<JSONCampusCode>(CAMPUS[0].value));
-    const [semester, setSemester] = createSignal("");
-
-    createEffect(() => {
-        const opts = semesterOptions();
-        if (!opts?.length) return;
-        setSemester((current) => current || opts[0].value);
+    const [campus, setCampus] = makePersisted(createSignal<JSONCampusCode>(CAMPUS[0].value), {
+        name: "matrufsc:campus",
     });
+    const [semester, setSemester] = makePersisted(createSignal(""), { name: "matrufsc:semester" });
 
-    const [campusData] = createResource(() => {
-        const sem = semester();
-        if (!sem) return null;
-        return { semester: sem, campus: campus() };
-    }, fetchCampusData);
+    const [semesterOptions] = createResource(fetchAvailableSemesters, {
+        storage: persistedSignal("matrufsc:semesterOptions"),
+    });
+    const [campusData] = createResource(
+        () => {
+            const sem = semester();
+            if (!sem) return null;
+            return { semester: sem, campus: campus() };
+        },
+        fetchCampusData,
+        { storage: persistedSignal("matrufsc:semesterOptions") },
+    );
 
     const isLoading = () => semesterOptions.loading || campusData.loading;
     const disciplinas = () => campusData()?.disciplinas ?? [];
+
+    createEffect(() => {
+        const remoteSemesterOptions = semesterOptions();
+        if (!remoteSemesterOptions?.length) return;
+        setSemester((current) => current || remoteSemesterOptions[0].value);
+    });
 
     const handleSelectMateria = (disciplina: JSONDisciplina) => {
         const parsedMateria = getDisciplinaFromJSON(disciplina);
