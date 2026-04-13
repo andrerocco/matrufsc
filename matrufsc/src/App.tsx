@@ -9,6 +9,7 @@ import {
 import { usePlano } from "~/context/plano/Plano.store";
 import { MateriaExistsError } from "~/context/plano/errors";
 import { persistedSignal } from "./lib/persistedSignal";
+import { useHorariosOverlay } from "~/components/horarios/useHorariosOverlay";
 // Components
 import Header from "~/components/header/Header";
 import Footer from "~/components/footer/Footer";
@@ -29,6 +30,7 @@ const CAMPUS: { title: string; value: JSONCampusCode }[] = [
 
 export default function App() {
     const { addMateria } = usePlano();
+    const { setSearchOverlay, clearSearchOverlay } = useHorariosOverlay();
 
     const [campus, setCampus] = makePersisted(createSignal<JSONCampusCode>(CAMPUS[0].value), {
         name: "matrufsc:campus",
@@ -99,6 +101,7 @@ export default function App() {
                         data={disciplinas()}
                         filter={(search) => searchDisciplinas(search, disciplinas())}
                         onSelect={handleSelectMateria}
+                        onFocusItem={(disciplina) => (disciplina ? setSearchOverlay(disciplina) : clearSearchOverlay())}
                         getLabel={(disciplina) => `${disciplina[0]} - ${disciplina[2]}`}
                     />
                     <Materias class="mt-6" />

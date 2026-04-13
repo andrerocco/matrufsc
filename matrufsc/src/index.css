@@ -43,7 +43,8 @@ a {
 }
 
 .materia-item.hovering,
-.horario-item.hovering {
+.horario-item.hovering,
+.turma-item.hovering {
     /* TODO: Remove important */
     background-color: black !important;
     color: white !important;

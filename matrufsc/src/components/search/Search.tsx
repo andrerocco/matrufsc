@@ -5,6 +5,7 @@ import { useClickOutside } from "./useClickOutside";
 export default function Search<T>(props: {
     data: T[];
     onSelect: (item: T) => void;
+    onFocusItem?: (item: T | null) => void;
     getLabel: (item: T) => string;
     filter?: (search: string) => T[];
     placeholder?: string;
@@ -45,6 +46,7 @@ export default function Search<T>(props: {
         setFocusedIndex(0);
         setFilteredData(props.data);
         enterHeld = false;
+        props.onFocusItem?.(null);
     };
 
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -117,6 +119,24 @@ export default function Search<T>(props: {
             if (!listRef) return;
             const focusedElement = listRef.querySelector(`[data-index="${focusedIndex()}"]`) as HTMLElement;
             if (focusedElement) focusedElement.scrollIntoView({ block: "nearest" });
+        }),
+    );
+
+    createEffect(
+        on([open, focusedIndex, filteredData, dataShownAmount], () => {
+            if (!props.onFocusItem) return;
+            if (!open()) {
+                props.onFocusItem(null);
+                return;
+            }
+            const index = focusedIndex();
+            const hasShowMore = !!props.limit && filteredData().length > dataShownAmount();
+            if (hasShowMore && index === dataShownAmount()) {
+                props.onFocusItem(null);
+                return;
+            }
+            const item = filteredData()[index];
+            props.onFocusItem(item ?? null);
         }),
     );
 

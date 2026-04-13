@@ -6,7 +6,7 @@ import { useHorariosOverlay } from "../horarios/useHorariosOverlay";
 export default function Materias(props: { class?: string }) {
     const { materias, removeMateria, updateMateriaSelected, selectedMateriaId, setSelectedMateriaId, currentPlano } =
         usePlano();
-    const { overlayMateria, clearOverlay } = useHorariosOverlay();
+    const { overlayMateria, clearOverlay, hoveredMateriaId } = useHorariosOverlay();
 
     const creditos = () => {
         const plano = currentPlano();
@@ -51,6 +51,7 @@ export default function Materias(props: { class?: string }) {
                                         onMouseEnter={() => overlayMateria(materia)}
                                         onMouseLeave={clearOverlay}
                                         isSelected={selectedMateriaId() === materia.id}
+                                        isHovered={hoveredMateriaId() === materia.id}
                                     />
                                 )}
                             </For>
@@ -102,6 +103,7 @@ function MateriaRow(props: {
     onMouseEnter?: () => void;
     onMouseLeave?: () => void;
     isSelected?: boolean;
+    isHovered?: boolean;
 }) {
     console.log("Rendering MateriaRow for ", props.materia.id);
 
@@ -110,7 +112,10 @@ function MateriaRow(props: {
             data-materia-id={props.materia.id}
             data-selected={props.isSelected}
             style={{ "background-color": props.materia.cor }}
-            class="materia-item group min-h-7 cursor-pointer divide-x divide-neutral-400"
+            class={clsx(
+                "materia-item group min-h-7 cursor-pointer divide-x divide-neutral-400",
+                props.isHovered && "hovering",
+            )}
             onMouseEnter={props.onMouseEnter}
             onMouseLeave={props.onMouseLeave}
             onClick={() => props.onClickSelect(props.materia.id)}

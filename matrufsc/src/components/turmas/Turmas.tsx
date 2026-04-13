@@ -2,9 +2,11 @@ import clsx from "clsx";
 import { createMemo, For, Show, type Accessor } from "solid-js";
 import { mergeEquivalentTurmas } from "~/context/plano/combinacoes";
 import { usePlano, type Materia, type Turma } from "~/context/plano/Plano.store";
+import { useHorariosOverlay } from "../horarios/useHorariosOverlay";
 
 export default function Turmas(props: { class?: string }) {
     const { materias, selectedMateriaId, updateTurmaSelected } = usePlano();
+    const { overlayTurma, clearOverlay, hoveredTurmaId } = useHorariosOverlay();
 
     const selectedMateria = () => {
         const selectedId = selectedMateriaId();
@@ -27,7 +29,13 @@ export default function Turmas(props: { class?: string }) {
                                 class="divide-y divide-neutral-400"
                                 style={{ "background-color": selectedMateria()?.cor ?? "white" }}
                             >
-                                <TurmasTableRows materia={materia} onToggleTurma={updateTurmaSelected} />
+                                <TurmasTableRows
+                                    materia={materia}
+                                    onToggleTurma={updateTurmaSelected}
+                                    onHoverTurma={(turma) => overlayTurma(materia(), turma)}
+                                    onClearHover={clearOverlay}
+                                    hoveredTurmaId={hoveredTurmaId}
+                                />
                             </tbody>
                         </table>
                     </div>
@@ -59,6 +67,9 @@ function TurmasTableHead() {
 function TurmasTableRows(props: {
     materia: Accessor<Materia>;
     onToggleTurma?: (materiaId: string, turmaId: string, value: boolean) => void;
+    onHoverTurma?: (turma: Turma) => void;
+    onClearHover?: () => void;
+    hoveredTurmaId?: () => string | null;
 }) {
     const materia = props.materia;
 
@@ -82,6 +93,16 @@ function TurmasTableRows(props: {
                     professores={groupedTurma.professores}
                     turmas={groupedTurma.turmas}
                     onToggleTurma={(turmaId, value) => props.onToggleTurma?.(materia().id, turmaId, value)}
+                    onMouseEnter={() => {
+                        const previewTurma =
+                            groupedTurma.turmas.find((turma) => turma.selected) ?? groupedTurma.turmas[0];
+                        if (previewTurma) props.onHoverTurma?.(previewTurma);
+                    }}
+                    onMouseLeave={() => props.onClearHover?.()}
+                    isHovered={() => {
+                        const hoveredId = props.hoveredTurmaId?.();
+                        return hoveredId ? groupedTurma.turmas.some((turma) => turma.id === hoveredId) : false;
+                    }}
                 />
             )}
         </For>
@@ -105,6 +126,7 @@ function TurmaRow(props: {
     onToggleTurma: (turmaId: string, value: boolean) => void;
     onMouseEnter?: () => void;
     onMouseLeave?: () => void;
+    isHovered?: () => boolean;
 }) {
     const twochars = (n: number) => `${n < 10 ? "\u00A0" : ""}${n}`;
 
@@ -115,7 +137,7 @@ function TurmaRow(props: {
 
     return (
         <tr
-            class="turma-item group divide-x divide-neutral-400"
+            class={clsx("turma-item group divide-x divide-neutral-400", props.isHovered?.() && "hovering")}
             onMouseEnter={props.onMouseEnter}
             onMouseLeave={props.onMouseLeave}
         >

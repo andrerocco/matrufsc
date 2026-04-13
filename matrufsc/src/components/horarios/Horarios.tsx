@@ -3,6 +3,8 @@ import { clsx } from "clsx";
 // Context
 import { usePlano, type Plano } from "~/context/plano/Plano.store";
 import { useHorariosOverlay } from "./useHorariosOverlay";
+import { HORAS, HORAS_FIM } from "./constants";
+import type { HorariosDescriptor, HorarioCellBase, HorarioCellOverlay } from "./types";
 
 const DIAS = [
     { number: 2, name: "Segunda" },
@@ -11,40 +13,6 @@ const DIAS = [
     { number: 5, name: "Quinta" },
     { number: 6, name: "Sexta" },
     { number: 7, name: "Sábado" },
-];
-
-export const HORAS = [
-    "07:30",
-    "08:20",
-    "09:10",
-    "10:10",
-    "11:00",
-    "13:30",
-    "14:20",
-    "15:10",
-    "16:20",
-    "17:10",
-    "18:30",
-    "19:20",
-    "20:20",
-    "21:10",
-];
-
-const HORAS_FIM = [
-    "08:20",
-    "09:10",
-    "10:00",
-    "11:00",
-    "11:50",
-    "14:20",
-    "15:10",
-    "16:00",
-    "17:10",
-    "18:00",
-    "19:20",
-    "20:10",
-    "21:10",
-    "22:00",
 ];
 
 export default function Horarios(props: { class?: string }) {
@@ -90,12 +58,6 @@ function HorariosTableHead(props: { showDetails: boolean; onChangeShowDetails: (
     );
 }
 
-export interface HorariosDescriptor<T> {
-    [dia: number]: {
-        [hora: string]: T | null;
-    };
-}
-
 function planoToHorariosDescriptor(plano: Plano | null): HorariosDescriptor<HorarioCellBase> {
     if (!plano) return {};
 
@@ -110,6 +72,7 @@ function planoToHorariosDescriptor(plano: Plano | null): HorariosDescriptor<Hora
 
                 horarios[aula.dia_semana]![HORAS[hora]] = {
                     id: materia.id,
+                    turmaId: turma.id,
                     sala: aula.sala,
                     color: materia.cor ?? "lightblue",
                 };
@@ -122,7 +85,7 @@ function planoToHorariosDescriptor(plano: Plano | null): HorariosDescriptor<Hora
 
 function HorariosTableBody(props: { showDetails: boolean }) {
     const { currentPlano } = usePlano();
-    const { overlay } = useHorariosOverlay();
+    const { overlay, overlayMateriaId } = useHorariosOverlay();
     const horarios = createMemo(() => planoToHorariosDescriptor(currentPlano()));
 
     return (
@@ -150,7 +113,12 @@ function HorariosTableBody(props: { showDetails: boolean }) {
                             <For each={DIAS}>
                                 {(dia) => (
                                     <HorarioCell
-                                        base={() => horarios()[dia.number]?.[hora] ?? undefined}
+                                        base={() => {
+                                            const base = horarios()[dia.number]?.[hora] ?? undefined;
+                                            const hiddenId = overlayMateriaId();
+                                            if (base && hiddenId && base.id === hiddenId) return undefined;
+                                            return base;
+                                        }}
                                         overlay={() => overlay()[dia.number]?.[hora] ?? undefined}
                                         showDetails={props.showDetails}
                                     />
@@ -164,26 +132,23 @@ function HorariosTableBody(props: { showDetails: boolean }) {
     );
 }
 
-interface HorarioCellBase {
-    id: string;
-    sala: string;
-    color: string;
-}
-
-export interface HorarioCellOverlay {
-    id: string;
-}
-
 function HorarioCell(props: {
     base: () => HorarioCellBase | undefined;
     overlay: () => HorarioCellOverlay | undefined;
     showDetails?: boolean;
 }) {
+    const { hoverHorarioCell, clearHorarioHover } = useHorariosOverlay();
+
     const base = createMemo(props.base, undefined, {
         equals: (prev, next) => {
             if (prev === next) return true;
             if (!prev || !next) return false;
-            return prev.id === next.id && prev.sala === next.sala && prev.color === next.color;
+            return (
+                prev.id === next.id &&
+                prev.turmaId === next.turmaId &&
+                prev.sala === next.sala &&
+                prev.color === next.color
+            );
         },
     });
 
@@ -191,11 +156,12 @@ function HorarioCell(props: {
         equals: (prev, next) => {
             if (prev === next) return true;
             if (!prev || !next) return false;
-            return prev.id === next.id;
+            return prev.id === next.id && prev.turmaId === next.turmaId && prev.sala === next.sala;
         },
     });
 
     const conflict = () => base() && overlay() && base()!.id !== overlay()!.id;
+    const hoverTarget = () => overlay() ?? base();
 
     // createEffect(() => {
     //     console.log("Overlay updated for position", props.position, ":", overlay());
@@ -208,13 +174,26 @@ function HorarioCell(props: {
     return (
         <Switch fallback={<EmptyHorarioCell />}>
             <Match when={conflict()}>
-                <FilledHorarioCell title={overlay()!.id} class="bg-red-500" />
+                <FilledHorarioCell
+                    title={overlay()!.id}
+                    class="bg-red-500"
+                    onMouseEnter={() => {
+                        const target = hoverTarget();
+                        if (target) hoverHorarioCell(target.id, target.turmaId);
+                    }}
+                    onMouseLeave={clearHorarioHover}
+                />
             </Match>
             <Match when={overlay()}>
                 <FilledHorarioCell
                     title={overlay()!.id}
-                    subtitle={props.showDetails ? base()?.sala : undefined}
+                    subtitle={props.showDetails ? overlay()!.sala : undefined}
                     class="bg-black text-white"
+                    onMouseEnter={() => {
+                        const target = hoverTarget();
+                        if (target) hoverHorarioCell(target.id, target.turmaId);
+                    }}
+                    onMouseLeave={clearHorarioHover}
                 />
             </Match>
             <Match when={base()}>
@@ -222,6 +201,11 @@ function HorarioCell(props: {
                     title={base()!.id}
                     subtitle={props.showDetails ? base()!.sala : undefined}
                     style={base()?.color ? { "background-color": base()!.color } : undefined}
+                    onMouseEnter={() => {
+                        const target = hoverTarget();
+                        if (target) hoverHorarioCell(target.id, target.turmaId);
+                    }}
+                    onMouseLeave={clearHorarioHover}
                 />
             </Match>
         </Switch>
@@ -239,7 +223,14 @@ function EmptyHorarioCell() {
     );
 }
 
-function FilledHorarioCell(props: { title: string; subtitle?: string; style?: JSX.CSSProperties; class?: string }) {
+function FilledHorarioCell(props: {
+    title: string;
+    subtitle?: string;
+    style?: JSX.CSSProperties;
+    class?: string;
+    onMouseEnter?: () => void;
+    onMouseLeave?: () => void;
+}) {
     return (
         <td
             class={clsx(
@@ -248,6 +239,8 @@ function FilledHorarioCell(props: { title: string; subtitle?: string; style?: JS
                 props.class,
             )}
             style={props.style}
+            onMouseEnter={props.onMouseEnter}
+            onMouseLeave={props.onMouseLeave}
         >
             <p class="block w-full truncate text-center leading-none">{props.title}</p>
             <Show when={props.subtitle}>
