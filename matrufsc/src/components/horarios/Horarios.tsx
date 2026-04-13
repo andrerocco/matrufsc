@@ -70,7 +70,7 @@ function HorariosTableHead(props: { showDetails: boolean; onChangeShowDetails: (
                         type="checkbox"
                         checked={props.showDetails}
                         onChange={(e) => props.onChangeShowDetails(e.currentTarget.checked)}
-                        class="mx-auto w-4 cursor-pointer align-middle"
+                        class="hit-area-3.5 mx-auto w-4 cursor-pointer align-middle"
                     />
                 </th>
                 <For each={DIAS}>

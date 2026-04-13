@@ -128,7 +128,7 @@ function TurmaRow(props: {
                                     type="checkbox"
                                     checked={turma.selected}
                                     onChange={(event) => props.onToggleTurma(turma.id, event.currentTarget.checked)}
-                                    class="mr-0 cursor-pointer"
+                                    class="hit-area-2.75 mr-0 cursor-pointer"
                                 />
                             </div>
                         )}

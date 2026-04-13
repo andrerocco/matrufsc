@@ -1,8 +1,9 @@
 @import "tailwindcss";
+@import "./lib/hit-area.css";
 
 :root {
     /* TODO: Move this out of here, it changes font-size and affects rem values */
-    font-family: monospace; 
+    font-family: monospace;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;

@@ -124,7 +124,7 @@ function MateriaRow(props: {
                         title={props.materia.blocked ? "Conflito com matéria(s) acima na lista" : ""}
                         onChange={() => props.onToggleSelection(props.materia.id, props.materia.selected)}
                         onClick={(event) => event.stopPropagation()}
-                        class="mr-0 cursor-pointer"
+                        class="hit-area-2.75 mr-0 cursor-pointer"
                     />
                 </div>
             </td>
