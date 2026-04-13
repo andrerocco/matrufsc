@@ -45,16 +45,17 @@ export default function App() {
             return { semester: sem, campus: campus() };
         },
         fetchCampusData,
-        { storage: persistedSignal("matrufsc:semesterOptions") },
+        { storage: persistedSignal("matrufsc:campusData") },
     );
 
-    const isLoading = () => semesterOptions.loading || campusData.loading;
     const disciplinas = () => campusData()?.disciplinas ?? [];
 
     createEffect(() => {
-        const remoteSemesterOptions = semesterOptions();
-        if (!remoteSemesterOptions?.length) return;
-        setSemester((current) => current || remoteSemesterOptions[0].value);
+        const options = semesterOptions();
+        if (!options) return;
+        const current = semester();
+        if (current && options.some((option) => option.value === current)) return;
+        setSemester(options[0]?.value ?? "");
     });
 
     const handleSelectMateria = (disciplina: JSONDisciplina) => {
@@ -86,8 +87,14 @@ export default function App() {
             <main>
                 <div class="mx-auto max-w-[1000px] px-6">
                     <Search
-                        placeholder={isLoading() ? "Carregando..." : "Pesquisar disciplina"} // TODO: Melhorar loading
-                        disabled={isLoading()}
+                        placeholder={
+                            semesterOptions.loading || campusData.loading
+                                ? campusData()
+                                    ? "Pesquisar disciplina (atualizando...)"
+                                    : "Carregando disciplinas..."
+                                : "Pesquisar disciplina"
+                        }
+                        disabled={(semesterOptions.loading || campusData.loading) && !campusData()}
                         limit={10}
                         data={disciplinas()}
                         filter={(search) => searchDisciplinas(search, disciplinas())}
