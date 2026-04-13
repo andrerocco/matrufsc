@@ -87,10 +87,12 @@ export default function App() {
                     />
                     <Materias class="mt-6" />
                 </div>
-                <div class="my-8 flex flex-col items-center gap-3">
-                    <div class="flex w-full justify-center gap-6 overflow-x-auto px-6">
-                        <Horarios />
-                        <Turmas class="max-w-[520px]" />
+                <div class="my-4 flex flex-col items-center gap-3 lg:my-8">
+                    <div class="w-full overflow-x-auto px-6">
+                        <div class="mx-auto flex w-max gap-6">
+                            <Horarios />
+                            <Turmas class="min-w-[520px]" />
+                        </div>
                     </div>
                     <CombinacaoSpinner />
                 </div>

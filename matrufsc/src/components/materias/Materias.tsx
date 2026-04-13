@@ -73,20 +73,12 @@ function MateriasTableHead(props: { creditos: number }) {
     return (
         <thead class="relative bg-neutral-100">
             <tr class="divide-x divide-neutral-400">
-                <th class="h-7 w-10 px-3 py-1.5 text-left font-semibold text-neutral-900 uppercase">
-                    <input
-                        type="checkbox"
-                        checked
-                        class="pointer-events-none mr-0 translate-y-[3px] cursor-pointer opacity-0"
-                    />
-                </th>
-                <th class="col-span-2 h-7 w-24 px-3 py-1.5 text-left font-semibold text-neutral-900 uppercase">
-                    Código
-                </th>
-                <th class="h-7 px-3 py-1.5 text-left font-semibold text-neutral-900 uppercase">
-                    <div class="flex justify-between">
+                <th class="h-7 w-10 px-3 py-1.5 text-left font-normal text-neutral-700"></th>
+                <th class="col-span-2 h-7 w-24 px-3 py-1.5 text-left font-normal text-neutral-700">Código</th>
+                <th class="h-7 px-3 py-1.5 text-left font-normal text-neutral-700">
+                    <div class="flex items-center justify-between">
                         <span>Matéria</span>
-                        <span class="font-normal text-neutral-500 normal-case">Créditos: {props.creditos}</span>
+                        <span class="text-sm font-normal text-neutral-400 normal-case">Créditos: {props.creditos}</span>
                     </div>
                 </th>
             </tr>
@@ -123,16 +115,18 @@ function MateriaRow(props: {
             onMouseLeave={props.onMouseLeave}
             onClick={() => props.onClickSelect(props.materia.id)}
         >
-            <td class="px-3 py-1.5">
-                <input
-                    type="checkbox"
-                    checked={props.materia.selected}
-                    disabled={props.materia.blocked}
-                    title={props.materia.blocked ? "Conflito com matéria(s) acima na lista" : ""}
-                    onChange={() => props.onToggleSelection(props.materia.id, props.materia.selected)}
-                    onClick={(event) => event.stopPropagation()}
-                    class="mr-0 cursor-pointer"
-                />
+            <td class="px-3">
+                <div class="flex h-full flex-col">
+                    <input
+                        type="checkbox"
+                        checked={props.materia.selected}
+                        disabled={props.materia.blocked}
+                        title={props.materia.blocked ? "Conflito com matéria(s) acima na lista" : ""}
+                        onChange={() => props.onToggleSelection(props.materia.id, props.materia.selected)}
+                        onClick={(event) => event.stopPropagation()}
+                        class="mr-0 cursor-pointer"
+                    />
+                </div>
             </td>
             <td class="px-3 py-1.5">{props.materia.id}</td>
             <td class="px-3 py-1.5">

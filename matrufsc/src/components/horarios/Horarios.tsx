@@ -51,13 +51,11 @@ export default function Horarios(props: { class?: string }) {
     const [showDetails, setShowDetails] = createSignal(false);
 
     return (
-        <div class={clsx("min-w-fit", props.class)}>
-            <div class="flex flex-col items-center">
-                <table class="min-w-[520px] table-fixed border-separate">
-                    <HorariosTableHead showDetails={showDetails()} onChangeShowDetails={setShowDetails} />
-                    <HorariosTableBody showDetails={showDetails()} />
-                </table>
-            </div>
+        <div class={clsx(props.class)}>
+            <table class="table-fixed border-separate">
+                <HorariosTableHead showDetails={showDetails()} onChangeShowDetails={setShowDetails} />
+                <HorariosTableBody showDetails={showDetails()} />
+            </table>
         </div>
     );
 }
@@ -77,7 +75,12 @@ function HorariosTableHead(props: { showDetails: boolean; onChangeShowDetails: (
                 </th>
                 <For each={DIAS}>
                     {(dia) => (
-                        <th class="w-20 rounded border border-neutral-400 bg-neutral-100 px-1 py-[5px] text-neutral-500 uppercase shadow-sm">
+                        <th
+                            class={clsx(
+                                WEEKDAY_COL_CLASS,
+                                "rounded border border-neutral-400 bg-neutral-100 px-1 py-1.5 font-normal text-neutral-700 shadow-sm",
+                            )}
+                        >
                             {dia.name}
                         </th>
                     )}
@@ -226,14 +229,22 @@ function HorarioCell(props: {
 }
 
 function EmptyHorarioCell() {
-    return <td class="horario-item h-[30px] w-[80px] rounded border border-neutral-500/80 bg-white px-1 py-[5px]" />;
+    return (
+        <td
+            class={clsx(
+                "horario-item h-[30px] rounded border border-neutral-500/80 bg-white px-1 py-[5px]",
+                WEEKDAY_COL_CLASS,
+            )}
+        />
+    );
 }
 
 function FilledHorarioCell(props: { title: string; subtitle?: string; style?: JSX.CSSProperties; class?: string }) {
     return (
         <td
             class={clsx(
-                "horario-item h-[30px] w-[80px] rounded border border-neutral-500/80 px-1 py-[5px] text-center",
+                "horario-item h-[30px] rounded border border-neutral-500/80 px-1 py-[5px] text-center",
+                WEEKDAY_COL_CLASS,
                 props.class,
             )}
             style={props.style}
@@ -247,3 +258,5 @@ function FilledHorarioCell(props: { title: string; subtitle?: string; style?: JS
         </td>
     );
 }
+
+const WEEKDAY_COL_CLASS = "w-[80px] min-w-[80px] max-w-[80px]";

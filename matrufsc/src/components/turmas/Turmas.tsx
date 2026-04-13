@@ -41,18 +41,16 @@ function TurmasTableHead() {
     return (
         <thead class="relative bg-neutral-100">
             <tr class="h-9 divide-x divide-neutral-400">
-                <th class="w-10 px-3 text-left font-semibold text-neutral-900 uppercase">
-                    <input
+                <th>
+                    {/* <input
                         type="checkbox"
                         checked
                         class="pointer-events-none mr-0 translate-y-[3px] cursor-pointer opacity-0"
-                    />
+                    /> */}
                 </th>
-                <th class="w-24 px-3 text-left font-semibold text-neutral-900 uppercase">Turma</th>
-                <th class="w-[1%] px-3 text-left font-semibold whitespace-nowrap text-neutral-900 uppercase">Vagas</th>
-                <th class="px-3 text-left font-semibold text-neutral-900">
-                    <span class="uppercase">Professores</span>
-                </th>
+                <th class="w-24 px-3 py-[5px] text-left font-normal text-neutral-700">Turma</th>
+                <th class="w-[1%] px-3 py-[5px] text-left font-normal text-neutral-700">Vagas</th>
+                <th class="px-3 py-[5px] text-left font-normal text-neutral-700">Professores</th>
             </tr>
         </thead>
     );
@@ -121,7 +119,7 @@ function TurmaRow(props: {
             onMouseEnter={props.onMouseEnter}
             onMouseLeave={props.onMouseLeave}
         >
-            <td>
+            <td class="px-2.5">
                 <div class="flex h-full flex-col">
                     <For each={props.turmas}>
                         {(turma) => (
