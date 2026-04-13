@@ -34,37 +34,27 @@ jobs:
         working-directory: ./db
         run: uv sync
 
-      - name: Determine next semester and check CAGR
-        id: semester
-        working-directory: ./db/src
-        run: |
-          NEXT=$(uv run python next_semestre.py) && echo "skip=false" >> "$GITHUB_OUTPUT" || echo "skip=true" >> "$GITHUB_OUTPUT"
-          echo "next=$NEXT" >> "$GITHUB_OUTPUT"
-
       - name: Scrape next semester
-        if: steps.semester.outputs.skip != 'true'
         id: scrape
         working-directory: ./db/src
         run: |
-          SEMESTER=${{ steps.semester.outputs.next }}
-          echo "Scraping semester ${SEMESTER}..."
-
-          uv run python get_turmas.py "$SEMESTER"
-          uv run python parse_turmas.py ../../matrufsc/public/data ${SEMESTER}_*.xml
-          rm -f ${SEMESTER}_*.xml
-          uv run python gen_index.py ../../matrufsc/public/data
-
-          echo "has_data=true" >> "$GITHUB_OUTPUT"
+          uv run python main.py; EXIT_CODE=$?
+          if [ $EXIT_CODE -eq 0 ]; then
+            echo "has_data=true" >> "$GITHUB_OUTPUT"
+          elif [ $EXIT_CODE -eq 2 ]; then
+            echo "No new semester available"
+          else
+            exit $EXIT_CODE
+          fi
 
       - name: Commit and push
         id: commit
         if: steps.scrape.outputs.has_data == 'true'
         run: |
-          SEMESTER=${{ steps.semester.outputs.next }}
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add matrufsc/public/data/
-          git commit -m "feat: add semester ${SEMESTER} data"
+          git commit -m "feat: add new semester data"
           git push
           echo "committed=true" >> "$GITHUB_OUTPUT"
 

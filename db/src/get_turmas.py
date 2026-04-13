@@ -9,52 +9,6 @@ import urllib.parse
 import gzip
 import sys
 
-if len(sys.argv) < 2:
-    print("usage: %s <semestre>" % sys.argv[0])
-    sys.exit(1)
-
-try:
-    semestre = sys.argv[1]
-except IndexError:
-    print("Provide a valid semester as argument")
-    sys.exit(1)
-
-jar = http.cookiejar.CookieJar()
-opener = urllib.request.build_opener(
-    urllib.request.HTTPCookieProcessor(jar), urllib.request.HTTPSHandler(debuglevel=0)
-)
-
-print("Semestre: %s" % semestre)
-
-resp = opener.open("https://cagr.sistemas.ufsc.br/modules/comunidade/cadastroTurmas/")
-soup = BeautifulSoup(resp, features="html.parser")
-viewState = soup.find("input", {"name": "javax.faces.ViewState"})["value"]
-
-request = urllib.request.Request(
-    "https://cagr.sistemas.ufsc.br/modules/comunidade/cadastroTurmas/index.xhtml"
-)
-request.add_header("Accept-encoding", "gzip")
-page_form = {
-    "AJAXREQUEST": "_viewRoot",
-    "formBusca:selectSemestre": semestre,
-    "formBusca:selectDepartamento": "",
-    "formBusca:selectCampus": "1",
-    "formBusca:selectCursosGraduacao": "0",
-    "formBusca:codigoDisciplina": "",
-    "formBusca:j_id135_selection": "",
-    "formBusca:filterDisciplina": "",
-    "formBusca:j_id139": "",
-    "formBusca:j_id143_selection": "",
-    "formBusca:filterProfessor": "",
-    "formBusca:selectDiaSemana": "0",
-    "formBusca:selectHorarioSemana": "",
-    "formBusca": "formBusca",
-    "autoScroll": "",
-    "javax.faces.ViewState": viewState,
-    "formBusca:dataScroller1": "1",
-    "AJAX:EVENTS_COUNT": "1",
-}
-
 
 def find_id(xml, id):
     for x in xml:
@@ -78,41 +32,95 @@ def go_on(xml):
     return False
 
 
-campus_str = ["EaD", "FLO", "JOI", "CBS", "ARA"]
-if semestre >= "20141":
-    campus_str.append("BLN")
-for campus in range(1, len(campus_str)):
-    print("campus " + campus_str[campus])
-    outfile = open(semestre + "_" + campus_str[campus] + ".xml", "w")
-    page_form["formBusca:selectCampus"] = campus
-    pagina = 1
-    while True:
-        page_form["formBusca:dataScroller1"] = pagina
-        resp = opener.open(request, urllib.parse.urlencode(page_form).encode())
-        if resp.info().get("Content-Encoding") == "gzip":
-            buf = BytesIO(resp.read())
-            f = gzip.GzipFile(fileobj=buf)
-            data = f.read().decode()
-        else:
-            data = resp.read().decode()
-        outfile.write(data)
-        parser = ET.XMLParser()
-        parser.entity.update(
-            {
-                "aacute": "á",
-                "atilde": "ã",
-                "ccedil": "ç",
-                "eacute": "é",
-                "ecirc": "ê",
-                "Aacute": "Á",
-                "Atilde": "Ã",
-                "Ccedil": "Ç",
-                "Eacute": "É",
-                "Ecirc": "Ê",
-            }
-        )
-        xml = ET.XML(data, parser=parser)
-        if not go_on(xml):
-            break
-        pagina = pagina + 1
-    outfile.close()
+def scrape(semestre):
+    """Faz o scrape do semestre e retorna a lista de XMLs gerados."""
+    jar = http.cookiejar.CookieJar()
+    opener = urllib.request.build_opener(
+        urllib.request.HTTPCookieProcessor(jar),
+        urllib.request.HTTPSHandler(debuglevel=0),
+    )
+
+    print("Semestre: %s" % semestre)
+
+    resp = opener.open(
+        "https://cagr.sistemas.ufsc.br/modules/comunidade/cadastroTurmas/"
+    )
+    soup = BeautifulSoup(resp, features="html.parser")
+    viewState = soup.find("input", {"name": "javax.faces.ViewState"})["value"]
+
+    request = urllib.request.Request(
+        "https://cagr.sistemas.ufsc.br/modules/comunidade/cadastroTurmas/index.xhtml"
+    )
+    request.add_header("Accept-encoding", "gzip")
+    page_form = {
+        "AJAXREQUEST": "_viewRoot",
+        "formBusca:selectSemestre": semestre,
+        "formBusca:selectDepartamento": "",
+        "formBusca:selectCampus": "1",
+        "formBusca:selectCursosGraduacao": "0",
+        "formBusca:codigoDisciplina": "",
+        "formBusca:j_id135_selection": "",
+        "formBusca:filterDisciplina": "",
+        "formBusca:j_id139": "",
+        "formBusca:j_id143_selection": "",
+        "formBusca:filterProfessor": "",
+        "formBusca:selectDiaSemana": "0",
+        "formBusca:selectHorarioSemana": "",
+        "formBusca": "formBusca",
+        "autoScroll": "",
+        "javax.faces.ViewState": viewState,
+        "formBusca:dataScroller1": "1",
+        "AJAX:EVENTS_COUNT": "1",
+    }
+
+    campus_str = ["EaD", "FLO", "JOI", "CBS", "ARA"]
+    if semestre >= "20141":
+        campus_str.append("BLN")
+
+    xml_files = []
+    for campus in range(1, len(campus_str)):
+        print("campus " + campus_str[campus])
+        outfile = open(semestre + "_" + campus_str[campus] + ".xml", "w")
+        page_form["formBusca:selectCampus"] = campus
+        pagina = 1
+        while True:
+            page_form["formBusca:dataScroller1"] = pagina
+            resp = opener.open(request, urllib.parse.urlencode(page_form).encode())
+            if resp.info().get("Content-Encoding") == "gzip":
+                buf = BytesIO(resp.read())
+                f = gzip.GzipFile(fileobj=buf)
+                data = f.read().decode()
+            else:
+                data = resp.read().decode()
+            outfile.write(data)
+            parser = ET.XMLParser()
+            parser.entity.update(
+                {
+                    "aacute": "á",
+                    "atilde": "ã",
+                    "ccedil": "ç",
+                    "eacute": "é",
+                    "ecirc": "ê",
+                    "Aacute": "Á",
+                    "Atilde": "Ã",
+                    "Ccedil": "Ç",
+                    "Eacute": "É",
+                    "Ecirc": "Ê",
+                }
+            )
+            xml = ET.XML(data, parser=parser)
+            if not go_on(xml):
+                break
+            pagina = pagina + 1
+        outfile.close()
+        xml_files.append(semestre + "_" + campus_str[campus] + ".xml")
+
+    return xml_files
+
+
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print("usage: %s <semestre>" % sys.argv[0])
+        sys.exit(1)
+
+    scrape(sys.argv[1])
