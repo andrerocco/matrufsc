@@ -2,7 +2,7 @@ name: Scrape next semester
 
 on:
   schedule:
-    - cron: "0 3 * * *" # meia-noite BRT (UTC-3)
+    - cron: "0 6 * * *" # 3h BRT (UTC-3)
   workflow_dispatch:
 
 permissions:
@@ -38,44 +38,7 @@ jobs:
         id: semester
         working-directory: ./db/src
         run: |
-          # Read the latest semester from index.json
-          LATEST=$(python3 -c "
-          import json
-          with open('../../matrufsc/public/data/index.json') as f:
-              data = json.load(f)
-          print(data['semesters'][0]['value'])
-          ")
-          echo "Latest semester in repo: $LATEST"
-
-          # Calculate next semester (2 per year: 1 and 2)
-          YEAR=${LATEST:0:4}
-          HALF=${LATEST:4:1}
-          if [ "$HALF" = "1" ]; then
-            NEXT="${YEAR}2"
-          else
-            NEXT="$((YEAR + 1))1"
-          fi
-          echo "Next semester to try: $NEXT"
-
-          # Check if data already exists locally
-          NEXT_YEAR=${NEXT:0:4}
-          DATA_DIR="../../matrufsc/public/data/${NEXT_YEAR}"
-          if ls "${DATA_DIR}/${NEXT}-"*.json 1>/dev/null 2>&1; then
-            echo "Data for ${NEXT} already exists, skipping."
-            echo "skip=true" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-
-          # Check if semester is available on CAGR
-          if uv run python check_semestre.py "$NEXT"; then
-            echo "available=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "Semester ${NEXT} not available on CAGR yet."
-            echo "skip=true" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-
-          echo "skip=false" >> "$GITHUB_OUTPUT"
+          NEXT=$(uv run python next_semestre.py) && echo "skip=false" >> "$GITHUB_OUTPUT" || echo "skip=true" >> "$GITHUB_OUTPUT"
           echo "next=$NEXT" >> "$GITHUB_OUTPUT"
 
       - name: Scrape next semester
