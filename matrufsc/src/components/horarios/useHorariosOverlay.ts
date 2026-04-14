@@ -90,7 +90,7 @@ const overlayStore = createRoot(() => {
         setSearchCycleIndex(0);
         const timer = setInterval(() => {
             setSearchCycleIndex((current) => (current + 1) % total);
-        }, 1500);
+        }, 1000);
 
         onCleanup(() => clearInterval(timer));
     });

@@ -45,9 +45,9 @@ a {
 .materia-item.hovering,
 .horario-item.hovering,
 .turma-item.hovering {
-    /* TODO: Remove important */
-    background-color: black !important;
-    color: white !important;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-thickness: 1px;
 }
 
 .hide-spin-button::-webkit-inner-spin-button,

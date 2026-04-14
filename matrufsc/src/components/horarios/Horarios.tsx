@@ -234,7 +234,7 @@ function FilledHorarioCell(props: {
     return (
         <td
             class={clsx(
-                "horario-item h-[30px] rounded-sm border border-neutral-500/80 px-1 py-[5px] text-center",
+                "horario-item hit-area-1 h-[30px] rounded-sm border border-neutral-500/80 px-1 py-[5px] text-center",
                 WEEKDAY_COL_CLASS,
                 props.class,
             )}
