@@ -74,7 +74,7 @@ export default function App() {
     };
 
     return (
-        <div class="flex min-h-dvh w-full flex-col py-8">
+        <div class="flex min-h-dvh w-full flex-col py-8 selection:bg-sky-600 selection:text-white">
             <div class="mx-auto w-full max-w-[1000px] shrink-0 px-6">
                 <Header
                     class="mb-8"
