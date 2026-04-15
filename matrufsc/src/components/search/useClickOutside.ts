@@ -16,7 +16,12 @@ export function useClickOutside(
         if (!isEnabled) return;
 
         const element = ref();
-        if (element && !element.contains(event.target as Node)) {
+        if (!element) return;
+
+        const composedPath = typeof event.composedPath === "function" ? event.composedPath() : [];
+        const clickedInside = composedPath.includes(element) || element.contains(event.target as Node | null);
+
+        if (!clickedInside) {
             // Use setTimeout to ensure the original click event completes first
             setTimeout(() => {
                 handler();
