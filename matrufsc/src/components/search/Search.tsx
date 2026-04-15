@@ -6,7 +6,7 @@ export default function Search<T>(props: {
     data: T[];
     onSelect: (item: T) => void;
     getLabel: (item: T) => string;
-    filter?: (search: string) => T[];
+    filter: (search: string) => T[];
     placeholder?: string;
     limit?: number;
     disabled?: boolean;
@@ -35,7 +35,7 @@ export default function Search<T>(props: {
         open,
     );
 
-    const handleClose = () => {
+    const close = () => {
         if (inputRef) {
             inputRef.value = "";
             setSearchValue("");
@@ -43,7 +43,7 @@ export default function Search<T>(props: {
         setOpen(false);
         setDataShownAmount(props.limit ?? props.data.length);
         setFocusedIndex(0);
-        setFilteredData(props.data);
+        setFilteredData(props.filter(searchValue()));
         enterHeld = false;
     };
 
@@ -70,7 +70,7 @@ export default function Search<T>(props: {
             const item = filteredData()[focusedIndex()];
             if (item) props.onSelect(item);
         } else if (e.key == "Escape") {
-            handleClose();
+            close();
             inputRef?.blur();
         }
     };
@@ -90,14 +90,7 @@ export default function Search<T>(props: {
             setDataShownAmount(props.limit);
         }
 
-        if (props.filter) {
-            setFilteredData(props.filter(search));
-        } else {
-            setFilteredData(
-                props.data.filter((item) => props.getLabel(item).toLowerCase().includes(search.toLowerCase())), // TODO: Improve search algorithm
-            );
-        }
-
+        setFilteredData(props.filter(search));
         setFocusedIndex(0);
     };
 
@@ -109,7 +102,17 @@ export default function Search<T>(props: {
         // setTimeout(scrollToListEnd, 0);
     };
 
-    createEffect(on(() => props.data, handleClose)); // Reset when props.data changes
+    createEffect(
+        on(
+            () => props.data,
+            () => {
+                setDataShownAmount(props.limit ?? props.data.length);
+                setFocusedIndex(0);
+                setFilteredData(props.filter(searchValue()));
+                enterHeld = false;
+            },
+        ),
+    ); // Update filtered data if original data changes
 
     createEffect(
         on(focusedIndex, () => {
@@ -145,7 +148,7 @@ export default function Search<T>(props: {
                 />
                 <Show when={open()}>
                     <button
-                        onClick={handleClose}
+                        onClick={close}
                         class="absolute top-0 right-0 h-9 -translate-y-0.5 cursor-pointer px-3 text-lg text-neutral-700 hover:text-black hover:underline"
                     >
                         x
@@ -215,8 +218,8 @@ function SearchItem(props: {
 
 function SearchEmptyItem() {
     return (
-        <div class="flex h-8 cursor-pointer items-center px-3 data-[selected='true']:bg-neutral-200">
-            <p class="text-center text-neutral-400">Sem resultados</p>
+        <div class="flex min-h-8 items-center justify-center px-3 py-1.5 data-[selected='true']:bg-neutral-200">
+            <p class="text-neutral-400">Nenhuma disciplina ou professor foi encontrado.</p>
         </div>
     );
 }
