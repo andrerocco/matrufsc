@@ -28,7 +28,7 @@ const CAMPUS: { title: string; value: JSONCampusCode }[] = [
 ];
 
 export default function App() {
-    const { addMateria } = usePlano();
+    const { addMateria, materias } = usePlano();
 
     const [campus, setCampus] = makePersisted(createSignal<JSONCampusCode>(CAMPUS[0].value), {
         name: "matrufsc:campus",
@@ -87,6 +87,7 @@ export default function App() {
             <main>
                 <div class="mx-auto max-w-[1000px] px-6">
                     <Search
+                        autoFocus={materias.length === 0}
                         placeholder={
                             semesterOptions.loading || campusData.loading
                                 ? campusData()
