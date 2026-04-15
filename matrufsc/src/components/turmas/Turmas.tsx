@@ -26,8 +26,10 @@ export default function Turmas(props: { class?: string }) {
                         <table class="min-w-full table-fixed divide-y divide-neutral-400">
                             <TurmasTableHead />
                             <tbody
-                                class="divide-y divide-neutral-400"
-                                style={{ "background-color": selectedMateria()?.cor ?? "white" }}
+                                class={clsx(
+                                    "divide-y divide-neutral-400",
+                                    selectedMateria()?.cor ?? "bg-white",
+                                )}
                             >
                                 <TurmasTableRows
                                     materia={materia}

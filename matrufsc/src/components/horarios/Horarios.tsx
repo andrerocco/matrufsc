@@ -1,4 +1,4 @@
-import { createMemo, createSignal, For, Match, Show, Switch, type JSX } from "solid-js";
+import { createMemo, createSignal, For, Match, Show, Switch } from "solid-js";
 import { clsx } from "clsx";
 // Context
 import { usePlano, type Plano } from "~/context/plano/Plano.store";
@@ -74,7 +74,7 @@ function planoToHorariosDescriptor(plano: Plano | null): HorariosDescriptor<Hora
                     id: materia.id,
                     turmaId: turma.id,
                     sala: aula.sala,
-                    color: materia.cor ?? "lightblue",
+                    color: materia.cor ?? "bg-sky-200",
                 };
             }
         }
@@ -200,7 +200,7 @@ function HorarioCell(props: {
                 <FilledHorarioCell
                     title={base()!.id}
                     subtitle={props.showDetails ? base()!.sala : undefined}
-                    style={base()?.color ? { "background-color": base()!.color } : undefined}
+                    class={base()?.color}
                     onMouseEnter={() => {
                         const target = hoverTarget();
                         if (target) hoverHorarioCell(target.id, target.turmaId);
@@ -226,7 +226,6 @@ function EmptyHorarioCell() {
 function FilledHorarioCell(props: {
     title: string;
     subtitle?: string;
-    style?: JSX.CSSProperties;
     class?: string;
     onMouseEnter?: () => void;
     onMouseLeave?: () => void;
@@ -238,7 +237,6 @@ function FilledHorarioCell(props: {
                 WEEKDAY_COL_CLASS,
                 props.class,
             )}
-            style={props.style}
             onMouseEnter={props.onMouseEnter}
             onMouseLeave={props.onMouseLeave}
         >

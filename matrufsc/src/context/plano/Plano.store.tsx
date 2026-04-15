@@ -38,18 +38,22 @@ const [currentPlanoIndex, setCurrentPlanoIndex] = createSignal(0);
 const currentPlano = () => planos[currentPlanoIndex()] ?? null;
 const [selectedMateriaId, setSelectedMateriaId] = createSignal<string | null>(null);
 
-let colorIndex = 0;
+let colorIndex = Math.floor(Math.random() * COLORS.length);
+
+function nextColor() {
+    const color = COLORS[colorIndex];
+    colorIndex = (colorIndex + 1) % COLORS.length;
+    return color;
+}
 
 function addMateria(materia: Materia) {
     const exists = materias.find((m) => m.id === materia.id); // Check if materia already exists
     if (exists) throw new MateriaExistsError(`${materia.id} já adicionada ao plano`);
 
-    colorIndex = (colorIndex + 1) % COLORS.length;
-
     // Add metadata to the new materia
     const newMateria: Materia = {
         ...materia,
-        cor: COLORS[colorIndex],
+        cor: nextColor(),
         blocked: false,
         selected: materia.selected ?? true,
     };

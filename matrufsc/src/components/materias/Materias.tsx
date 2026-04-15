@@ -111,9 +111,9 @@ function MateriaRow(props: {
         <tr
             data-materia-id={props.materia.id}
             data-selected={props.isSelected}
-            style={{ "background-color": props.materia.cor }}
             class={clsx(
                 "materia-item group min-h-7 cursor-pointer divide-x divide-neutral-400",
+                props.materia.cor ?? "bg-sky-200",
                 props.isHovered && "hovering",
             )}
             onMouseEnter={props.onMouseEnter}
