@@ -8,7 +8,7 @@ export default function Search<T>(props: {
     getLabel: (item: T) => string;
     filter: (search: string) => T[];
     placeholder?: string;
-    limit?: number;
+    limit: number;
     disabled?: boolean;
     class?: string;
 }) {
@@ -23,7 +23,7 @@ export default function Search<T>(props: {
     const [focusedIndex, setFocusedIndex] = createSignal(0);
     const [searchValue, setSearchValue] = createSignal("");
 
-    const [dataShownAmount, setDataShownAmount] = createSignal(props.limit ?? props.data.length);
+    const [dataShownAmount, setDataShownAmount] = createSignal(props.limit);
     const [filteredData, setFilteredData] = createSignal(props.data);
     const filteredDataShown = () => filteredData().slice(0, dataShownAmount());
     const displayShowMore = () => filteredData().length > dataShownAmount();
@@ -41,7 +41,7 @@ export default function Search<T>(props: {
             setSearchValue("");
         }
         setOpen(false);
-        setDataShownAmount(props.limit ?? props.data.length);
+        setDataShownAmount(props.limit);
         setFocusedIndex(0);
         setFilteredData(props.filter(searchValue()));
         enterHeld = false;
@@ -85,38 +85,33 @@ export default function Search<T>(props: {
         const target = e.target as HTMLInputElement;
         const search = target.value;
         setSearchValue(search);
-
-        if (props.limit) {
-            setDataShownAmount(props.limit);
-        }
-
+        setDataShownAmount(props.limit);
         setFilteredData(props.filter(search));
         setFocusedIndex(0);
     };
 
     const handleShowMore = () => {
-        if (!props.limit) return;
-        const newShownAmount = Math.min(dataShownAmount() + props.limit, filteredData().length);
-        setDataShownAmount(newShownAmount);
+        setDataShownAmount(dataShownAmount() + props.limit);
         setFocusedIndex(totalShownAmount() - 1);
-        // setTimeout(scrollToListEnd, 0);
     };
 
+    // Update filtered data if original data changes, trying to preserve the focused index
     createEffect(
         on(
             () => props.data,
             () => {
-                setDataShownAmount(props.limit ?? props.data.length);
-                setFocusedIndex(0);
                 setFilteredData(props.filter(searchValue()));
+                setFocusedIndex((prev) =>
+                    prev >= filteredData().length ? Math.max(0, filteredData().length - 1) : prev,
+                );
                 enterHeld = false;
             },
         ),
-    ); // Update filtered data if original data changes
+    );
 
+    // Scroll focused element into view
     createEffect(
         on(focusedIndex, () => {
-            // Scroll focused element into view
             if (!listRef) return;
             const focusedElement = listRef.querySelector(`[data-index="${focusedIndex()}"]`) as HTMLElement;
             if (focusedElement) focusedElement.scrollIntoView({ block: "nearest" });
