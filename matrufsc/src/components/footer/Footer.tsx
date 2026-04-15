@@ -4,16 +4,18 @@ export default function Footer(props: { class?: string }) {
     return (
         <footer class={clsx("flex items-center justify-between", props.class)}>
             <p>
-                Não se esqueça de fazer sua matrícula no{" "}
-                <a class="text-nowrap" target="_blank" href="http://cagr.ufsc.br/" rel="noreferrer">
-                    CAGR
-                </a>
-                !
+                <span>Este aplicativo não possui vínculo oficial com a UFSC.</span>
                 <br />
-                Este aplicativo não tem nenhum vínculo com a UFSC.
+                <span>
+                    Não se esqueça de fazer sua matrícula no{" "}
+                    <a class="text-nowrap" target="_blank" href="http://cagr.ufsc.br/" rel="noreferrer">
+                        CAGR
+                    </a>
+                    !
+                </span>
             </p>
 
-            <div class="flex gap-4">
+            <div class="flex gap-7">
                 <a target="_blank" href="#" rel="noreferrer">
                     Sobre
                 </a>
