@@ -29,7 +29,7 @@ export function ImageExportProvider(props: ParentProps) {
         setShouldRenderCaptureScene(true);
 
         try {
-            await document.fonts.ready;
+            if (document.fonts?.ready) await document.fonts.ready;
             await waitForFrames(2);
 
             const contentElement = captureElement();
