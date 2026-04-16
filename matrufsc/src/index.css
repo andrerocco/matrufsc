@@ -38,8 +38,13 @@ h6 {
     @apply text-base font-medium;
 }
 
-a {
+a,
+.link {
     @apply text-blue-600 underline transition-colors duration-75 hover:text-blue-900;
+}
+a:disabled,
+.link:disabled {
+    @apply cursor-not-allowed text-neutral-500;
 }
 
 .materia-item.hovering,
