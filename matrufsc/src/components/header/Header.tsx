@@ -67,8 +67,8 @@ function ExportOptions() {
         showingExportOptions,
     );
 
-    const handleExportImage = () => {
-        exportImage();
+    const handleExportImage = async () => {
+        await exportImage();
         setShowingExportOptions(false);
     };
 
@@ -83,9 +83,9 @@ function ExportOptions() {
                 }
             >
                 <button class="link cursor-pointer" onClick={handleExportImage} disabled={isExportingImage()}>
-                    Exportar imagem
+                    {isExportingImage() ? "Exportando..." : "Exportar imagem"}
                 </button>
-                <button class="link cursor-pointer" disabled={true} title={"Funcionalidade em desenvolvimento"}>
+                <button class="link cursor-pointer" disabled={true} title="Em desenvolvimento...">
                     Compartilhar link
                 </button>
             </Show>

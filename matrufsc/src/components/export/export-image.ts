@@ -1,4 +1,6 @@
-import { toPng } from "html-to-image";
+// Lazy load `html-to-image` to reduce initial bundle size, as it's only needed during export.
+let toPngPromise: Promise<typeof import("html-to-image").toPng> | undefined;
+const getToPng = () => (toPngPromise ??= import("html-to-image").then((m) => m.toPng));
 
 export function waitForAnimationFrame() {
     return new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
@@ -21,6 +23,8 @@ export async function captureElementToPng(
     if (width <= 0 || height <= 0) {
         throw new Error("Export container has invalid size.");
     }
+
+    const toPng = await getToPng();
 
     return toPng(element, {
         cacheBust: true,
