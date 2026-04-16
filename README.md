@@ -1,13 +1,13 @@
-⚠️ _Em refatoração_
+# MatrUFSC
 
-# CAPIM (MatrUFSC)
+Visualizador de combinações de disciplinas para matrículas na UFSC.
 
-CAPIM (Combinador Automático de Possibilidades Interativo de Matrícula) é o front-end do MatrUFSC, um projeto desenvolvido por estudantes da UFSC para facilitar o planejamento de matrículas.
+## Contribuindo
 
-Site: https://matrufsc.caravela.club
+[CONTRIBUTING.md](CONTRIBUTING.md)
 
-# Estrutura
+## Reconhecimentos
 
-`db`: Python scrapper
+Esse projeto é fortemente baseado no [caravelahc/capim](https://github.com/caravelahc/capim). Em sua essência, consiste em uma repaginação visual e estrutural do mesmo. Fica aqui o reconhecimento pela qualidade do trabalho original.
 
-`matrufsc`: React frontend
+_Este projeto não possui vínculo oficial com a UFSC_
