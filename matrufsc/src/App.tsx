@@ -28,7 +28,7 @@ const CAMPUS: { title: string; value: JSONCampusCode }[] = [
 ];
 
 export default function App() {
-    const { addMateria } = usePlano();
+    const { addMateria, materias } = usePlano();
 
     const [campus, setCampus] = makePersisted(createSignal<JSONCampusCode>(CAMPUS[0].value), {
         name: "matrufsc:campus",
@@ -82,6 +82,7 @@ export default function App() {
                     semesterOptions={semesterOptions() ?? []}
                     semesterValue={semester()}
                     onSemesterChange={setSemester}
+                    showExportOptions={materias.length > 0}
                 />
             </div>
             <main>

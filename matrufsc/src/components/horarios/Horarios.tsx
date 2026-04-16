@@ -47,9 +47,9 @@ const HORAS_FIM = [
     "22:00",
 ];
 
-export default function Horarios(props: { class?: string }) {
-    const [showDetails, setShowDetails] = createSignal(false);
+const [showDetails, setShowDetails] = createSignal(false); // module level so is shared across instances (so value is preserved when exporting image)
 
+export default function Horarios(props: { class?: string }) {
     return (
         <div class={clsx(props.class)}>
             <table class="table-fixed border-separate">
