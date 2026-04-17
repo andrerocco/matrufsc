@@ -4,7 +4,7 @@ import { mergeEquivalentTurmas } from "~/context/plano/combinacoes";
 import { usePlano, type Materia, type Turma } from "~/context/plano/Plano.store";
 
 export default function Turmas(props: { class?: string }) {
-    const { materias, selectedMateriaId, setSelectedMateriaId, updateTurmaSelected } = usePlano();
+    const { materias, selectedMateriaId, setSelectedMateriaId, updateTurmasSelected } = usePlano();
 
     const selectedMateria = () => {
         const selectedId = selectedMateriaId();
@@ -27,7 +27,7 @@ export default function Turmas(props: { class?: string }) {
                                 class="divide-y divide-neutral-400"
                                 style={{ "background-color": selectedMateria()?.cor ?? "white" }}
                             >
-                                <TurmasTableRows materia={materia} onToggleTurma={updateTurmaSelected} />
+                                <TurmasTableRows materia={materia} onToggleTurmas={updateTurmasSelected} />
                             </tbody>
                         </table>
                     </div>
@@ -66,7 +66,7 @@ function TurmasTableHead(props: { onClose?: () => void }) {
 
 function TurmasTableRows(props: {
     materia: Accessor<Materia>;
-    onToggleTurma?: (materiaId: string, turmaId: string, value: boolean) => void;
+    onToggleTurmas?: (materiaId: string, turmaIds: string[], value: boolean) => void;
 }) {
     const materia = props.materia;
 
@@ -89,7 +89,7 @@ function TurmasTableRows(props: {
                     id={`turma-${groupedTurma.turmas[0].id}`} // Usar o ID da primeira turma como identificador do grupo
                     professores={groupedTurma.professores}
                     turmas={groupedTurma.turmas}
-                    onToggleTurma={(turmaId, value) => props.onToggleTurma?.(materia().id, turmaId, value)}
+                    onToggleTurmas={(turmaIds, value) => props.onToggleTurmas?.(materia().id, turmaIds, value)}
                 />
             )}
         </For>
@@ -110,7 +110,7 @@ function TurmaRow(props: {
     id: string;
     professores: string[];
     turmas: Turma[];
-    onToggleTurma: (turmaId: string, value: boolean) => void;
+    onToggleTurmas: (turmaIds: string[], value: boolean) => void;
     onMouseEnter?: () => void;
     onMouseLeave?: () => void;
 }) {
@@ -121,9 +121,17 @@ function TurmaRow(props: {
         return turmaWithExtras.pedidos_sem_vaga ?? turmaWithExtras.vagas_excedentes ?? 0;
     };
 
+    const toggleAllTurmas = () => {
+        props.onToggleTurmas(
+            props.turmas.map((turma) => turma.id), // All  turmas
+            !props.turmas.every((turma) => turma.selected), // Toggle to selected if any is unselected, toggle to unselected otherwise
+        );
+    };
+
     return (
         <tr
-            class="turma-item group divide-x divide-neutral-400"
+            class="turma-item group cursor-pointer divide-x divide-neutral-400"
+            onClick={toggleAllTurmas}
             onMouseEnter={props.onMouseEnter}
             onMouseLeave={props.onMouseLeave}
         >
@@ -135,7 +143,8 @@ function TurmaRow(props: {
                                 <input
                                     type="checkbox"
                                     checked={turma.selected}
-                                    onChange={(event) => props.onToggleTurma(turma.id, event.currentTarget.checked)}
+                                    onClick={(event) => event.stopPropagation()}
+                                    onChange={(event) => props.onToggleTurmas([turma.id], event.currentTarget.checked)}
                                     class="hit-area-2.75 mr-0 cursor-pointer"
                                 />
                             </div>

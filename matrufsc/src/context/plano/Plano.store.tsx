@@ -99,7 +99,19 @@ function removeMateria(id: string) {
 }
 
 function updateMateriaSelected(id: string, selected: boolean) {
-    setMaterias((materia) => materia.id === id, "selected", selected);
+    setMaterias(
+        produce((list) => {
+            const materia = list.find((item) => item.id === id);
+            if (!materia) return;
+
+            materia.selected = selected;
+
+            // If the materia is being selected and has no selected turmas, select all its turmas by default
+            if (selected && materia.turmas.every((turma) => !turma.selected)) {
+                for (const turma of materia.turmas) turma.selected = true;
+            }
+        }),
+    );
 
     const { planos, blockedMaterias } = combinacoes(materias);
     const closestIndex = findClosestCombination(currentPlano(), planos); // Find the closest combination to the current one (to avoid layout shifts)
@@ -114,13 +126,24 @@ function updateMateriaSelected(id: string, selected: boolean) {
     setCurrentPlanoIndex(closestIndex);
 }
 
-function updateTurmaSelected(materiaId: string, turmaId: string, selected: boolean) {
+function updateTurmasSelected(materiaId: string, turmaIds: string[], selected: boolean) {
+    const turmaIdSet = new Set(turmaIds);
+
     setMaterias(
-        (materia) => materia.id === materiaId,
-        "turmas",
-        (turma) => turma.id === turmaId,
-        "selected",
-        selected,
+        produce((list) => {
+            const materia = list.find((item) => item.id === materiaId);
+            if (!materia) return;
+
+            for (const turma of materia.turmas) {
+                if (turmaIdSet.has(turma.id)) turma.selected = selected;
+            }
+
+            // If any turma is explicitly enabled, enable the parent materia too.
+            if (selected) materia.selected = true;
+
+            // Prevent invalid state: selected materia with zero selected turmas.
+            if (materia.selected && materia.turmas.every((turma) => !turma.selected)) materia.selected = false;
+        }),
     );
 
     const { planos, blockedMaterias } = combinacoes(materias);
@@ -156,6 +179,6 @@ export const usePlano = () => ({
     addMateria,
     removeMateria,
     updateMateriaSelected,
-    updateTurmaSelected,
+    updateTurmasSelected,
     setPlanoIndex: setPlanoIndexClamped,
 });
