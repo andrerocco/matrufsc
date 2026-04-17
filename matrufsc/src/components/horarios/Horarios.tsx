@@ -64,7 +64,7 @@ function HorariosTableHead(props: { showDetails: boolean; onChangeShowDetails: (
     return (
         <thead>
             <tr>
-                <th class="px-1 py-[5px] whitespace-nowrap">
+                <th class="py-[5px] pr-1 whitespace-nowrap">
                     <input
                         title="Mostrar salas..."
                         type="checkbox"
@@ -138,7 +138,7 @@ function HorariosTableBody(props: { showDetails: boolean }) {
                         <tr>
                             <td
                                 class={clsx(
-                                    "px-2 tracking-tight whitespace-nowrap",
+                                    "pr-2 tracking-tight whitespace-nowrap",
                                     props.showDetails ? "py-0.5" : "py-1.5",
                                 )}
                             >
