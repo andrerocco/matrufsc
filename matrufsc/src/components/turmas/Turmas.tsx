@@ -4,7 +4,7 @@ import { mergeEquivalentTurmas } from "~/context/plano/combinacoes";
 import { usePlano, type Materia, type Turma } from "~/context/plano/Plano.store";
 
 export default function Turmas(props: { class?: string }) {
-    const { materias, selectedMateriaId, updateTurmaSelected } = usePlano();
+    const { materias, selectedMateriaId, setSelectedMateriaId, updateTurmaSelected } = usePlano();
 
     const selectedMateria = () => {
         const selectedId = selectedMateriaId();
@@ -22,7 +22,7 @@ export default function Turmas(props: { class?: string }) {
                 >
                     <div class="relative flex-1 overflow-x-auto overflow-y-hidden">
                         <table class="min-w-full table-fixed divide-y divide-neutral-400">
-                            <TurmasTableHead />
+                            <TurmasTableHead onClose={() => setSelectedMateriaId(null)} />
                             <tbody
                                 class="divide-y divide-neutral-400"
                                 style={{ "background-color": selectedMateria()?.cor ?? "white" }}
@@ -37,7 +37,7 @@ export default function Turmas(props: { class?: string }) {
     );
 }
 
-function TurmasTableHead() {
+function TurmasTableHead(props: { onClose?: () => void }) {
     return (
         <thead class="relative bg-neutral-100">
             <tr class="h-9 divide-x divide-neutral-400">
@@ -50,7 +50,15 @@ function TurmasTableHead() {
                 </th>
                 <th class="w-24 px-3 py-[5px] text-left font-normal text-neutral-700">Turma</th>
                 <th class="w-[1%] px-3 py-[5px] text-left font-normal text-neutral-700">Vagas</th>
-                <th class="px-3 py-[5px] text-left font-normal text-neutral-700">Professores</th>
+                <th class="flex w-full items-center justify-between px-3 py-[5px] font-normal">
+                    <span class="text-neutral-700">Professores</span>
+                    <button
+                        class="hit-area-y-1.5 hit-area-x-3 cursor-pointer pr-1 text-lg text-neutral-700 hover:text-black hover:underline"
+                        onClick={props.onClose}
+                    >
+                        —
+                    </button>
+                </th>
             </tr>
         </thead>
     );
