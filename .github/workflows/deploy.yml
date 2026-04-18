@@ -1,5 +1,4 @@
-# .github/workflows/deploy.yml
-name: Deploy static content to Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -40,6 +39,8 @@ jobs:
       - name: Build
         working-directory: ./matrufsc
         run: npm run build
+        env:
+          VITE_BASE_URL: "/matrufsc/"
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

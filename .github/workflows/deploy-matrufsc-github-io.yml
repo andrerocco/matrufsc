@@ -1,0 +1,43 @@
+name: Deploy to github.com/matrufsc/matrufsc.github.io
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: "npm"
+          cache-dependency-path: matrufsc/package-lock.json
+
+      - name: Install dependencies
+        working-directory: ./matrufsc
+        run: npm ci
+
+      - name: Build
+        working-directory: ./matrufsc
+        run: npm run build
+        env:
+          VITE_BASE_URL: "/"
+
+      - name: Deploy to matrufsc.github.io
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          deploy_key: ${{ secrets.DEPLOY_KEY_MATRUFSC_GITHUB_IO }}
+          external_repository: matrufsc/matrufsc.github.io
+          publish_branch: main
+          publish_dir: ./matrufsc/dist
+          force_orphan: true # keeps the deployment repo clean (only latest build)

@@ -6,7 +6,7 @@ import path from "path";
 
 export default defineConfig({
     plugins: [solid(), tailwindcss(), visualizer()],
-    base: "/matrufsc/",
+    base: process.env.VITE_BASE_URL ?? "/",
     resolve: {
         alias: {
             "~": path.resolve(__dirname, "src"),
