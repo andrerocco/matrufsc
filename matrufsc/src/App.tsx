@@ -30,13 +30,13 @@ const CAMPUS: { title: string; value: JSONCampusCode }[] = [
 export default function App() {
     const { addMateria, materias } = usePlano();
 
-    const [campus, setCampus] = makePersisted(createSignal<JSONCampusCode>(CAMPUS[0].value), {
-        name: "matrufsc:campus",
-    });
-    const [semester, setSemester] = makePersisted(createSignal(""), { name: "matrufsc:semester" });
-
     const [semesterOptions] = createResource(fetchAvailableSemesters, {
         storage: persistedSignal("matrufsc:semesterOptions"),
+    });
+    const [semester, setSemester] = createSignal(semesterOptions()?.[0]?.value ?? undefined);
+
+    const [campus, setCampus] = makePersisted(createSignal<JSONCampusCode>(CAMPUS[0].value), {
+        name: "matrufsc:campus",
     });
     const [campusData] = createResource(
         () => {
@@ -79,7 +79,7 @@ export default function App() {
                     campusOptions={CAMPUS}
                     campusValue={campus()}
                     onCampusChange={setCampus}
-                    semesterOptions={semesterOptions() ?? []}
+                    semesterOptions={semesterOptions()}
                     semesterValue={semester()}
                     onSemesterChange={setSemester}
                     showExportOptions={materias.length > 0}
