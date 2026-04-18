@@ -1,23 +1,28 @@
 import clsx from "clsx";
-import { createSignal, For, Show, type Resource } from "solid-js";
+import { createSignal, For, Show } from "solid-js";
 import { useClickOutside } from "../search/useClickOutside";
 import { useImageExport } from "../export/ImageExport";
-
-export type SelectOption = { title: string; value: string };
 
 export default function Header(props: {
     class?: string;
     // Campus
-    campusOptions: SelectOption[];
+    campusOptions: { title: string; value: string }[];
     campusValue: string;
     onCampusChange: (value: string) => void;
     // Semester
-    semesterOptions?: SelectOption[];
+    semesterOptions?: string[];
     semesterValue?: string;
     onSemesterChange: (value: string) => void;
     // Export options
     showExportOptions: boolean;
 }) {
+    function formattedSemesterOption(semester: string) {
+        if (semester.length !== 5) return semester;
+        const year = semester.slice(0, 4);
+        const sem = semester.slice(4);
+        return `${year}.${sem}`;
+    }
+
     return (
         <header class={clsx(props.class)}>
             <div class="flex justify-between">
@@ -47,7 +52,9 @@ export default function Header(props: {
                                 onChange={(e) => props.onSemesterChange(e.currentTarget.value)}
                             >
                                 <For each={props.semesterOptions}>
-                                    {(semester) => <option value={semester.value}>{semester.title}</option>}
+                                    {(semester) => (
+                                        <option value={semester}>{formattedSemesterOption(semester)}</option>
+                                    )}
                                 </For>
                             </select>
                         </Show>
@@ -62,21 +69,17 @@ export default function Header(props: {
 }
 
 function PlaceholderSemesterSelect(props: { loading?: boolean }) {
-    function getUfscSemesterPlaceholder(referenceDate: Date = new Date()): SelectOption {
+    const currentEstimatedSemester = () => {
+        const referenceDate = new Date();
         const year = referenceDate.getFullYear();
         const month = referenceDate.getMonth() + 1;
         const day = referenceDate.getDate();
 
-        const formatSemesterOption = (year: number, semesterNumber: 1 | 2): SelectOption => ({
-            value: `${year}${semesterNumber}`,
-            title: `${year}.${semesterNumber}`,
-        });
-
-        // UFSC's 2025/2026 academic calendars place semester turnover around mid-July and mid-December.
-        if (month === 12 && day >= 12) return formatSemesterOption(year + 1, 1);
-        if (month > 7 || (month === 7 && day >= 14)) return formatSemesterOption(year, 2);
-        return formatSemesterOption(year, 1);
-    }
+        // TODO: Melhorar essa estimativa de data
+        if (month === 12 && day >= 12) return `${year + 1}.1`; // após 12 de dezembro: primeiro semestre do próximo ano
+        if (month > 7 || (month === 7 && day >= 14)) return `${year}.2`; // após 14 de julho: segundo semestre do ano atual
+        return `${year}.1`; // caso contrário: primeiro semestre do ano atual
+    };
 
     return (
         <select
@@ -86,7 +89,7 @@ function PlaceholderSemesterSelect(props: { loading?: boolean }) {
                 props.loading ? "cursor-progress" : "cursor-not-allowed",
             )}
         >
-            <option value="">{getUfscSemesterPlaceholder().title}</option>
+            <option value="">{currentEstimatedSemester()}</option>
         </select>
     );
 }

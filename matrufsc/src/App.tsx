@@ -33,7 +33,7 @@ export default function App() {
     const [semesterOptions] = createResource(fetchAvailableSemesters, {
         storage: persistedSignal("matrufsc:semesterOptions"),
     });
-    const [semester, setSemester] = createSignal(semesterOptions()?.[0]?.value ?? undefined);
+    const [semester, setSemester] = createSignal(semesterOptions()?.[0] ?? undefined);
 
     const [campus, setCampus] = makePersisted(createSignal<JSONCampusCode>(CAMPUS[0].value), {
         name: "matrufsc:campus",
@@ -54,8 +54,8 @@ export default function App() {
         const options = semesterOptions();
         if (!options) return;
         const current = semester();
-        if (current && options.some((option) => option.value === current)) return;
-        setSemester(options[0]?.value ?? "");
+        if (current && options.some((option) => option === current)) return;
+        setSemester(options[0] ?? "");
     });
 
     const handleSelectMateria = (disciplina: JSONDisciplina) => {
@@ -121,12 +121,12 @@ export default function App() {
     );
 }
 
-async function fetchAvailableSemesters(): Promise<{ title: string; value: string }[]> {
+async function fetchAvailableSemesters(): Promise<string[]> {
     try {
         const resp = await fetch(`${import.meta.env.BASE_URL}data/index.json`);
         if (!resp.ok) throw new Error(`Failed to load semesters: ${resp.status} ${resp.statusText}`);
         const json = await resp.json();
-        return json.semesters ?? [];
+        return json.semesters?.sort().reverse() ?? [];
     } catch (error) {
         console.error("Error fetching semesters:", error);
         throw error;

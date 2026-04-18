@@ -35,11 +35,7 @@ def main():
 
     sorted_semesters = sorted(semesters, reverse=True)
 
-    index = {
-        "semesters": [
-            {"value": s, "title": f"{s[:4]}.{s[4]}"} for s in sorted_semesters
-        ]
-    }
+    index = {"semesters": sorted_semesters}
 
     output_path = os.path.join(data_dir, "index.json")
     with open(output_path, "w", encoding="utf-8") as f:
