@@ -1,3 +1,4 @@
+import { makePersisted } from "@solid-primitives/storage";
 import { createSignal } from "solid-js";
 import { createStore, produce } from "solid-js/store";
 import { combinacoes, findClosestCombination } from "~/context/plano/combinacoes";
@@ -32,13 +33,63 @@ export interface Materia {
 
 export type Plano = { materia: Materia; turma: Turma }[];
 
-const [materias, setMaterias] = createStore<Materia[]>([]);
-const [planos, setPlanos] = createStore<Plano[]>([]); // Signal this? No granular updates anyway
-const [currentPlanoIndex, setCurrentPlanoIndex] = createSignal(0);
-const currentPlano = () => planos[currentPlanoIndex()] ?? null;
-const [selectedMateriaId, setSelectedMateriaId] = createSignal<string | null>(null);
+const STORAGE_KEYS = {
+    materias: "matrufsc:materias",
+    currentPlanoIndex: "matrufsc:currentPlanoIndex",
+    selectedMateriaId: "matrufsc:selectedMateriaId",
+} as const;
+
+const [materias, setMaterias] = makePersisted(createStore<Materia[]>([]), {
+    name: STORAGE_KEYS.materias,
+});
+const [planos, setPlanos] = createSignal<Plano[]>([]);
+const [currentPlanoIndex, setCurrentPlanoIndex] = makePersisted(createSignal(0), {
+    name: STORAGE_KEYS.currentPlanoIndex,
+});
+const currentPlano = () => planos()[currentPlanoIndex()] ?? null;
+const [selectedMateriaId, setSelectedMateriaId] = makePersisted(createSignal<string | null>(null), {
+    name: STORAGE_KEYS.selectedMateriaId,
+});
 
 let colorIndex = 0;
+
+function sanitizeSelectedMateriaId() {
+    const selectedId = selectedMateriaId();
+    if (!selectedId) return;
+
+    if (!materias.some((materia) => materia.id === selectedId)) {
+        setSelectedMateriaId(null);
+    }
+}
+
+function applyBlockedMaterias(blockedMaterias: Set<string>) {
+    setMaterias(
+        produce((list) => {
+            for (const materia of list) {
+                materia.blocked = blockedMaterias.has(materia.id);
+            }
+        }),
+    );
+}
+
+function recomputePlanos(options?: { preserveCurrentIndex?: boolean }) {
+    const previousPlano = currentPlano();
+    const { planos: nextPlanos, blockedMaterias } = combinacoes(materias);
+
+    applyBlockedMaterias(blockedMaterias);
+    setPlanos(nextPlanos);
+
+    if (nextPlanos.length === 0) {
+        setCurrentPlanoIndex(0);
+    } else if (options?.preserveCurrentIndex) {
+        setCurrentPlanoIndex((current) => Math.max(0, Math.min(current, nextPlanos.length - 1)));
+    } else {
+        const closestIndex = findClosestCombination(previousPlano, nextPlanos);
+        setCurrentPlanoIndex(closestIndex);
+    }
+
+    sanitizeSelectedMateriaId();
+}
 
 function addMateria(materia: Materia) {
     const exists = materias.find((m) => m.id === materia.id); // Check if materia already exists
@@ -56,18 +107,7 @@ function addMateria(materia: Materia) {
 
     setMaterias((prev) => [...prev, newMateria]);
     setSelectedMateriaId(newMateria.id);
-
-    const { planos, blockedMaterias } = combinacoes(materias);
-    const closestIndex = findClosestCombination(currentPlano(), planos); // Find the closest combination to the current one (to avoid layout shifts)
-    setMaterias(
-        produce((list) => {
-            for (const materia of list) {
-                materia.blocked = blockedMaterias.has(materia.id);
-            }
-        }),
-    );
-    setPlanos(planos);
-    setCurrentPlanoIndex(closestIndex); // Reset to first plano
+    recomputePlanos();
 }
 
 function removeMateria(id: string) {
@@ -76,26 +116,7 @@ function removeMateria(id: string) {
 
     if (selectedMateriaId() === id) setSelectedMateriaId(null);
     setMaterias((prev) => prev.filter((m) => m.id !== id));
-
-    if (materias.length === 0) {
-        // If no materias left, reset store
-        setMaterias([]);
-        setPlanos([]);
-        setCurrentPlanoIndex(0);
-        setSelectedMateriaId(null);
-    } else {
-        const { planos, blockedMaterias } = combinacoes(materias);
-        const closestIndex = findClosestCombination(currentPlano(), planos); // Find the closest combination to the current one (to avoid layout shifts)
-        setMaterias(
-            produce((list) => {
-                for (const materia of list) {
-                    materia.blocked = blockedMaterias.has(materia.id);
-                }
-            }),
-        );
-        setPlanos(planos);
-        setCurrentPlanoIndex(closestIndex); // Reset to closest plano
-    }
+    recomputePlanos();
 }
 
 function updateMateriaSelected(id: string, selected: boolean) {
@@ -112,18 +133,7 @@ function updateMateriaSelected(id: string, selected: boolean) {
             }
         }),
     );
-
-    const { planos, blockedMaterias } = combinacoes(materias);
-    const closestIndex = findClosestCombination(currentPlano(), planos); // Find the closest combination to the current one (to avoid layout shifts)
-    setMaterias(
-        produce((list) => {
-            for (const materia of list) {
-                materia.blocked = blockedMaterias.has(materia.id);
-            }
-        }),
-    );
-    setPlanos(planos);
-    setCurrentPlanoIndex(closestIndex);
+    recomputePlanos();
 }
 
 function updateTurmasSelected(materiaId: string, turmaIds: string[], selected: boolean) {
@@ -145,29 +155,22 @@ function updateTurmasSelected(materiaId: string, turmaIds: string[], selected: b
             if (materia.selected && materia.turmas.every((turma) => !turma.selected)) materia.selected = false;
         }),
     );
-
-    const { planos, blockedMaterias } = combinacoes(materias);
-    const closestIndex = findClosestCombination(currentPlano(), planos); // Find the closest combination to the current one (to avoid layout shifts)
-    setMaterias(
-        produce((list) => {
-            for (const materia of list) {
-                materia.blocked = blockedMaterias.has(materia.id);
-            }
-        }),
-    );
-    setPlanos(planos);
-    setCurrentPlanoIndex(closestIndex);
+    recomputePlanos();
 }
 
 function setPlanoIndexClamped(value: number | ((current: number) => number)) {
-    if (planos.length === 0) return;
+    const currentPlanos = planos();
+    if (currentPlanos.length === 0) return;
 
     setCurrentPlanoIndex((current) => {
         const rawIndex = typeof value === "function" ? (value as (c: number) => number)(current) : value;
-        const clampedIndex = Math.max(0, Math.min(rawIndex, planos.length - 1));
+        const clampedIndex = Math.max(0, Math.min(rawIndex, currentPlanos.length - 1));
         return clampedIndex;
     });
 }
+
+// Rebuild derived state after localStorage hydration.
+recomputePlanos({ preserveCurrentIndex: true });
 
 export const usePlano = () => ({
     materias,
