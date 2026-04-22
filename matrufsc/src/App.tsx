@@ -28,7 +28,7 @@ const CAMPUS: { title: string; value: JSONCampusCode }[] = [
 ];
 
 export default function App() {
-    const { addMateria, materias } = usePlano();
+    const { addMateria, materias, syncMateriasFromRemote } = usePlano();
 
     const [semesterOptions] = createResource(fetchAvailableSemesters, {
         storage: persistedSignal("matrufsc:semesterOptions"),
@@ -56,6 +56,22 @@ export default function App() {
         const current = semester();
         if (current && options.some((option) => option === current)) return;
         setSemester(options[0] ?? "");
+    });
+
+    createEffect(() => {
+        const data = campusData();
+        if (!data) return;
+
+        const remoteMaterias = data.disciplinas.map(getDisciplinaFromJSON);
+        const warnings = syncMateriasFromRemote(remoteMaterias);
+        if (warnings.length === 0) return;
+
+        alert(
+            [
+                "Atualizamos seu plano com base na oferta mais recente:",
+                ...warnings.map((warning) => `- ${warning}`),
+            ].join("\n"),
+        );
     });
 
     const handleSelectMateria = (disciplina: JSONDisciplina) => {
