@@ -122,7 +122,8 @@ function planoToHorariosDescriptor(plano: Plano | null): HorariosDescriptor<Hora
 
 function HorariosTableBody(props: { showDetails: boolean }) {
     const { currentPlano } = usePlano();
-    const { overlay } = useHorariosOverlay();
+    const { overlay, overlayMateriaId } = useHorariosOverlay();
+
     const horarios = createMemo(() => planoToHorariosDescriptor(currentPlano()));
 
     return (
@@ -150,7 +151,12 @@ function HorariosTableBody(props: { showDetails: boolean }) {
                             <For each={DIAS}>
                                 {(dia) => (
                                     <HorarioCell
-                                        base={() => horarios()[dia.number]?.[hora] ?? undefined}
+                                        base={() => {
+                                            const base = horarios()[dia.number]?.[hora] ?? undefined;
+                                            const overlayId = overlayMateriaId();
+                                            if (base && overlayId && base.id === overlayId) return undefined; // hide base if an overlay for that materia is active
+                                            return base;
+                                        }}
                                         overlay={() => overlay()[dia.number]?.[hora] ?? undefined}
                                         showDetails={props.showDetails}
                                     />
@@ -172,6 +178,7 @@ interface HorarioCellBase {
 
 export interface HorarioCellOverlay {
     id: string;
+    sala: string;
 }
 
 function HorarioCell(props: {
@@ -191,7 +198,7 @@ function HorarioCell(props: {
         equals: (prev, next) => {
             if (prev === next) return true;
             if (!prev || !next) return false;
-            return prev.id === next.id;
+            return prev.id === next.id && prev.sala === next.sala;
         },
     });
 
@@ -208,21 +215,29 @@ function HorarioCell(props: {
     return (
         <Switch fallback={<EmptyHorarioCell />}>
             <Match when={conflict()}>
-                <FilledHorarioCell title={overlay()!.id} class="bg-red-500" />
-            </Match>
-            <Match when={overlay()}>
                 <FilledHorarioCell
                     title={overlay()!.id}
-                    subtitle={props.showDetails ? base()?.sala : undefined}
-                    class="bg-black text-white"
+                    subtitle={props.showDetails ? overlay()!.sala : undefined}
+                    class="bg-red-500"
                 />
             </Match>
+            <Match when={overlay()}>
+                {(overlay) => (
+                    <FilledHorarioCell
+                        title={overlay().id}
+                        subtitle={props.showDetails ? overlay().sala : undefined}
+                        class="bg-black text-white"
+                    />
+                )}
+            </Match>
             <Match when={base()}>
-                <FilledHorarioCell
-                    title={base()!.id}
-                    subtitle={props.showDetails ? base()!.sala : undefined}
-                    style={base()?.color ? { "background-color": base()!.color } : undefined}
-                />
+                {(base) => (
+                    <FilledHorarioCell
+                        title={base().id}
+                        subtitle={props.showDetails ? base().sala : undefined}
+                        style={base()?.color ? { "background-color": base().color } : undefined}
+                    />
+                )}
             </Match>
         </Switch>
     );

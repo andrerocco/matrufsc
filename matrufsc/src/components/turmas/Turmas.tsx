@@ -2,9 +2,11 @@ import clsx from "clsx";
 import { createMemo, For, Show, type Accessor } from "solid-js";
 import { mergeEquivalentTurmas } from "~/context/plano/combinacoes";
 import { usePlano, type Materia, type Turma } from "~/context/plano/Plano.store";
+import { useHorariosOverlay } from "../horarios/useHorariosOverlay";
 
 export default function Turmas(props: { class?: string }) {
     const { materias, selectedMateriaId, setSelectedMateriaId, updateTurmasSelected } = usePlano();
+    const { clearOverlay } = useHorariosOverlay();
 
     const selectedMateria = () => {
         const selectedId = selectedMateriaId();
@@ -22,7 +24,12 @@ export default function Turmas(props: { class?: string }) {
                 >
                     <div class="relative flex-1 overflow-x-auto overflow-y-hidden">
                         <table class="min-w-full table-fixed divide-y divide-neutral-400">
-                            <TurmasTableHead onClose={() => setSelectedMateriaId(null)} />
+                            <TurmasTableHead
+                                onClose={() => {
+                                    clearOverlay();
+                                    setSelectedMateriaId(null);
+                                }}
+                            />
                             <tbody
                                 class="divide-y divide-neutral-400"
                                 style={{ "background-color": selectedMateria()?.cor ?? "white" }}
@@ -68,6 +75,8 @@ function TurmasTableRows(props: {
     materia: Accessor<Materia>;
     onToggleTurmas?: (materiaId: string, turmaIds: string[], value: boolean) => void;
 }) {
+    const { overlayTurma, clearOverlay } = useHorariosOverlay();
+
     const materia = props.materia;
 
     const groupedTurmas = createMemo(() => {
@@ -86,10 +95,17 @@ function TurmasTableRows(props: {
         <For each={groupedTurmas()} fallback={<TurmasEmptyRow message="Nenhuma turma disponível para esta matéria." />}>
             {(groupedTurma) => (
                 <TurmaRow
-                    id={`turma-${groupedTurma.turmas[0].id}`} // Usar o ID da primeira turma como identificador do grupo
+                    id={`turma-${groupedTurma.turmas[0].id}`} // Use the first turma's id as the group id
                     professores={groupedTurma.professores}
                     turmas={groupedTurma.turmas}
                     onToggleTurmas={(turmaIds, value) => props.onToggleTurmas?.(materia().id, turmaIds, value)}
+                    onMouseEnter={() => {
+                        // Select one turma from the group as preview for the overlay
+                        const previewTurma =
+                            groupedTurma.turmas.find((turma) => turma.selected) ?? groupedTurma.turmas[0];
+                        if (previewTurma) overlayTurma(materia().id, previewTurma);
+                    }}
+                    onMouseLeave={() => clearOverlay()}
                 />
             )}
         </For>

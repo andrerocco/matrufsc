@@ -3,6 +3,7 @@ import { HORAS, type HorarioCellOverlay, type HorariosDescriptor } from "./Horar
 import { usePlano, type Materia, type Turma } from "~/context/plano/Plano.store";
 
 const [overlay, setOverlay] = createSignal<HorariosDescriptor<HorarioCellOverlay>>({});
+const [overlayMateriaId, setOverlayMateriaId] = createSignal<string | null>(null);
 
 function overlayMateria(materia: Materia) {
     const { currentPlano } = usePlano();
@@ -28,12 +29,13 @@ function overlayMateria(materia: Materia) {
         for (const aula of turma.aulas) {
             for (const horaIndex of aula.horarios) {
                 if (!overlayDescriptor[aula.dia_semana]) overlayDescriptor[aula.dia_semana] = {};
-                overlayDescriptor[aula.dia_semana][HORAS[horaIndex]] = { id: materia.id };
+                overlayDescriptor[aula.dia_semana][HORAS[horaIndex]] = { id: materia.id, sala: aula.sala };
             }
         }
     }
 
     setOverlay(overlayDescriptor);
+    setOverlayMateriaId(materia.id);
 }
 
 function overlayTurma(materiaId: string, turma: Turma) {
@@ -42,19 +44,22 @@ function overlayTurma(materiaId: string, turma: Turma) {
     for (const aula of turma.aulas) {
         for (const horaIndex of aula.horarios) {
             if (!overlayDescriptor[aula.dia_semana]) overlayDescriptor[aula.dia_semana] = {};
-            overlayDescriptor[aula.dia_semana][HORAS[horaIndex]] = { id: materiaId };
+            overlayDescriptor[aula.dia_semana][HORAS[horaIndex]] = { id: materiaId, sala: aula.sala };
         }
     }
 
     setOverlay(overlayDescriptor);
+    setOverlayMateriaId(materiaId);
 }
 
 function clearOverlay() {
     setOverlay({});
+    setOverlayMateriaId(null);
 }
 
 export const useHorariosOverlay = () => ({
     overlay,
+    overlayMateriaId,
     overlayMateria,
     overlayTurma,
     clearOverlay,
