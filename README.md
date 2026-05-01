@@ -8,6 +8,6 @@ Visualizador de combinações de disciplinas para matrículas na UFSC.
 
 ## Reconhecimentos
 
-Esse projeto é fortemente baseado no [caravelahc/capim](https://github.com/caravelahc/capim). Em sua essência, consiste em uma repaginação visual e estrutural do mesmo. Fica aqui o reconhecimento pela qualidade do trabalho original.
+Esse projeto foi fortemente baseado no [caravelahc/capim](https://github.com/caravelahc/capim) e, em sua essência, consiste em uma repaginação visual e estrutural do mesmo. Fica aqui o reconhecimento pela qualidade do trabalho original.
 
 _Este projeto não possui vínculo oficial com a UFSC_
