@@ -1,4 +1,4 @@
-import type { JSONDisciplina } from "~/context/plano/parser";
+import type { JSONDisciplina } from "~/context/campusData/types";
 
 function normalize(s: string): string {
     return s

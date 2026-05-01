@@ -1,6 +1,6 @@
 import { describe, test } from "node:test";
 import assert from "node:assert";
-import { getTurmaFromJSON, getDisciplinaFromJSON, type JSONTurma, type JSONDisciplina } from "./parser";
+import { getTurmaFromJSON, getDisciplinaFromJSON, type JSONTurma, type JSONDisciplina } from "~/context/plano/parser";
 
 describe("JSON Transformers", () => {
     describe("getTurmaFromJSON", () => {
