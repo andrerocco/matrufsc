@@ -18,7 +18,7 @@ import Materias from "~/components/materias/Materias";
 import Turmas from "~/components/turmas/Turmas";
 import Horarios from "~/components/horarios/Horarios";
 import CombinacaoSpinner from "./components/horarios/CombinacaoSpinner";
-import { createCachedResource } from "./lib/createCachedResource";
+import { createCachedQuery, createCachedResource } from "./lib/createCachedResource";
 
 const CAMPUS: { title: string; value: JSONCampusCode }[] = [
     { title: "Florianópolis", value: "FLO" },
@@ -27,6 +27,14 @@ const CAMPUS: { title: string; value: JSONCampusCode }[] = [
     { title: "Araranguá", value: "ARA" },
     { title: "Blumenau", value: "BLN" },
 ];
+
+type CampusDataSource = { semester: string; campus: JSONCampusCode };
+
+function campusDataKey(source: CampusDataSource) {
+    return `matrufsc:campusData:${source.campus}_${source.semester}`;
+}
+
+const campusDataQuery = createCachedQuery(fetchCampusData, { key: campusDataKey });
 
 export default function App() {
     const { addMateria, materias } = usePlano();
@@ -39,16 +47,12 @@ export default function App() {
     const [campus, setCampus] = makePersisted(createSignal<JSONCampusCode>(CAMPUS[0].value), {
         name: "matrufsc:campus",
     });
-    const [campusData] = createCachedResource(
-        () => {
-            const semesterValue = semester();
-            const campusValue = campus();
-            if (!semesterValue || !campusValue) return null; // blocks fetching
-            return { semester: semesterValue, campus: campusValue };
-        },
-        fetchCampusData,
-        { key: (source) => `matrufsc:campusData:${source.campus}_${source.semester}` },
-    );
+    const [campusData] = createCachedResource(() => {
+        const semesterValue = semester();
+        const campusValue = campus();
+        if (!semesterValue || !campusValue) return null; // blocks fetching
+        return { semester: semesterValue, campus: campusValue };
+    }, campusDataQuery);
     const disciplinas = () => campusData()?.disciplinas ?? [];
 
     createEffect(() => {
@@ -134,7 +138,7 @@ async function fetchAvailableSemesters(): Promise<string[]> {
     }
 }
 
-async function fetchCampusData(source: { semester: string; campus: JSONCampusCode }): Promise<JSONCampus> {
+async function fetchCampusData(source: CampusDataSource): Promise<JSONCampus> {
     const { semester, campus } = source;
     const ano = semester.slice(0, 4);
 
