@@ -8,7 +8,7 @@ import {
 } from "~/context/plano/parser";
 import { usePlano } from "~/context/plano/Plano.store";
 import { MateriaExistsError } from "~/context/plano/errors";
-import { persistedSignal } from "./lib/persistedSignal";
+import { createPersistedSignal } from "./lib/createPersistedSignal";
 // Components
 import Header from "~/components/header/Header";
 import Footer from "~/components/footer/Footer";
@@ -18,6 +18,7 @@ import Materias from "~/components/materias/Materias";
 import Turmas from "~/components/turmas/Turmas";
 import Horarios from "~/components/horarios/Horarios";
 import CombinacaoSpinner from "./components/horarios/CombinacaoSpinner";
+import { createCachedResource } from "./lib/createCachedResource";
 
 const CAMPUS: { title: string; value: JSONCampusCode }[] = [
     { title: "Florianópolis", value: "FLO" },
@@ -31,23 +32,23 @@ export default function App() {
     const { addMateria, materias } = usePlano();
 
     const [semesterOptions] = createResource(fetchAvailableSemesters, {
-        storage: persistedSignal("matrufsc:semesterOptions"),
+        storage: createPersistedSignal("matrufsc:semesterOptions"),
     });
     const [semester, setSemester] = createSignal(semesterOptions()?.[0] ?? undefined);
 
     const [campus, setCampus] = makePersisted(createSignal<JSONCampusCode>(CAMPUS[0].value), {
         name: "matrufsc:campus",
     });
-    const [campusData] = createResource(
+    const [campusData] = createCachedResource(
         () => {
-            const sem = semester();
-            if (!sem) return null;
-            return { semester: sem, campus: campus() };
+            const semesterValue = semester();
+            const campusValue = campus();
+            if (!semesterValue || !campusValue) return null; // blocks fetching
+            return { semester: semesterValue, campus: campusValue };
         },
         fetchCampusData,
-        { storage: persistedSignal("matrufsc:campusData") },
+        { key: (source) => `matrufsc:campusData:${source.campus}_${source.semester}` },
     );
-
     const disciplinas = () => campusData()?.disciplinas ?? [];
 
     createEffect(() => {
