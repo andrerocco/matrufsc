@@ -33,12 +33,26 @@ export interface Materia {
 export type Plano = { materia: Materia; turma: Turma }[];
 
 const [materias, setMaterias] = createStore<Materia[]>([]);
-const [planos, setPlanos] = createStore<Plano[]>([]); // Signal this? No granular updates anyway
+const [planos, setPlanos] = createSignal<Plano[]>([]);
 const [currentPlanoIndex, setCurrentPlanoIndex] = createSignal(0);
-const currentPlano = () => planos[currentPlanoIndex()] ?? null;
+const currentPlano = () => planos()[currentPlanoIndex()] ?? null;
 const [selectedMateriaId, setSelectedMateriaId] = createSignal<string | null>(null);
 
 let colorIndex = 0;
+
+function refreshPlanos() {
+    const { planos: newPlanos, blockedMaterias } = combinacoes(materias);
+    const closestIndex = findClosestCombination(currentPlano(), newPlanos);
+    setMaterias(
+        produce((list) => {
+            for (const materia of list) {
+                materia.blocked = blockedMaterias.has(materia.id);
+            }
+        }),
+    );
+    setPlanos(newPlanos);
+    setCurrentPlanoIndex(closestIndex);
+}
 
 function addMateria(materia: Materia) {
     const exists = materias.find((m) => m.id === materia.id); // Check if materia already exists
@@ -56,18 +70,7 @@ function addMateria(materia: Materia) {
 
     setMaterias((prev) => [...prev, newMateria]);
     setSelectedMateriaId(newMateria.id);
-
-    const { planos, blockedMaterias } = combinacoes(materias);
-    const closestIndex = findClosestCombination(currentPlano(), planos); // Find the closest combination to the current one (to avoid layout shifts)
-    setMaterias(
-        produce((list) => {
-            for (const materia of list) {
-                materia.blocked = blockedMaterias.has(materia.id);
-            }
-        }),
-    );
-    setPlanos(planos);
-    setCurrentPlanoIndex(closestIndex); // Reset to first plano
+    refreshPlanos();
 }
 
 function removeMateria(id: string) {
@@ -84,17 +87,7 @@ function removeMateria(id: string) {
         setCurrentPlanoIndex(0);
         setSelectedMateriaId(null);
     } else {
-        const { planos, blockedMaterias } = combinacoes(materias);
-        const closestIndex = findClosestCombination(currentPlano(), planos); // Find the closest combination to the current one (to avoid layout shifts)
-        setMaterias(
-            produce((list) => {
-                for (const materia of list) {
-                    materia.blocked = blockedMaterias.has(materia.id);
-                }
-            }),
-        );
-        setPlanos(planos);
-        setCurrentPlanoIndex(closestIndex); // Reset to closest plano
+        refreshPlanos();
     }
 }
 
@@ -113,17 +106,7 @@ function updateMateriaSelected(id: string, selected: boolean) {
         }),
     );
 
-    const { planos, blockedMaterias } = combinacoes(materias);
-    const closestIndex = findClosestCombination(currentPlano(), planos); // Find the closest combination to the current one (to avoid layout shifts)
-    setMaterias(
-        produce((list) => {
-            for (const materia of list) {
-                materia.blocked = blockedMaterias.has(materia.id);
-            }
-        }),
-    );
-    setPlanos(planos);
-    setCurrentPlanoIndex(closestIndex);
+    refreshPlanos();
 }
 
 function updateTurmasSelected(materiaId: string, turmaIds: string[], selected: boolean) {
@@ -145,26 +128,16 @@ function updateTurmasSelected(materiaId: string, turmaIds: string[], selected: b
             if (materia.selected && materia.turmas.every((turma) => !turma.selected)) materia.selected = false;
         }),
     );
-
-    const { planos, blockedMaterias } = combinacoes(materias);
-    const closestIndex = findClosestCombination(currentPlano(), planos); // Find the closest combination to the current one (to avoid layout shifts)
-    setMaterias(
-        produce((list) => {
-            for (const materia of list) {
-                materia.blocked = blockedMaterias.has(materia.id);
-            }
-        }),
-    );
-    setPlanos(planos);
-    setCurrentPlanoIndex(closestIndex);
+    refreshPlanos();
 }
 
 function setPlanoIndexClamped(value: number | ((current: number) => number)) {
-    if (planos.length === 0) return;
+    const currentPlanos = planos();
+    if (currentPlanos.length === 0) return;
 
     setCurrentPlanoIndex((current) => {
         const rawIndex = typeof value === "function" ? (value as (c: number) => number)(current) : value;
-        const clampedIndex = Math.max(0, Math.min(rawIndex, planos.length - 1));
+        const clampedIndex = Math.max(0, Math.min(rawIndex, currentPlanos.length - 1));
         return clampedIndex;
     });
 }

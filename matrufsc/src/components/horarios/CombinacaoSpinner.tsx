@@ -3,8 +3,8 @@ import { usePlano } from "~/context/plano/Plano.store";
 
 export default function CombinacaoSpinner() {
     const { planos, currentPlanoIndex, setPlanoIndex } = usePlano();
-    const totalPlanos = () => planos.length;
-    const planosEmpty = () => planos.length === 0 || planos[0].length === 0;
+    const totalPlanos = () => planos().length;
+    const planosEmpty = () => planos().length === 0 || planos()[0].length === 0;
 
     const [inputValue, setInputValue] = createSignal<string>("");
 
