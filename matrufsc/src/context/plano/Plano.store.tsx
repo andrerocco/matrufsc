@@ -38,7 +38,7 @@ const [materias, setMaterias] = createStore<Materia[]>([]);
 const [planos, setPlanos] = createSignal<Plano[]>([]);
 const [currentPlanoIndex, setCurrentPlanoIndex] = createSignal(0);
 const currentPlano = () => planos()[currentPlanoIndex()] ?? null;
-const [selectedMateriaId, setSelectedMateriaId] = createSignal<string | null>(null);
+const [focusedMateriaId, setFocusedMateriaId] = createSignal<string | null>(null);
 
 let colorIndex = 0;
 
@@ -71,7 +71,7 @@ function addMateria(materia: Materia) {
     };
 
     setMaterias((prev) => [...prev, newMateria]);
-    setSelectedMateriaId(newMateria.id);
+    setFocusedMateriaId(newMateria.id);
     refreshPlanos();
 }
 
@@ -79,7 +79,7 @@ function removeMateria(id: string) {
     const materiaIndex = materias.findIndex((m) => m.id === id);
     if (materiaIndex === -1) throw new MateriaNotFoundError(`Matéria ${id} não encontrada`);
 
-    if (selectedMateriaId() === id) setSelectedMateriaId(null);
+    if (focusedMateriaId() === id) setFocusedMateriaId(null);
     setMaterias((prev) => prev.filter((m) => m.id !== id));
 
     if (materias.length === 0) {
@@ -87,7 +87,7 @@ function removeMateria(id: string) {
         setMaterias([]);
         setPlanos([]);
         setCurrentPlanoIndex(0);
-        setSelectedMateriaId(null);
+        setFocusedMateriaId(null);
     } else {
         refreshPlanos();
     }
@@ -149,8 +149,8 @@ export const usePlano = () => ({
     planos,
     currentPlano,
     currentPlanoIndex,
-    selectedMateriaId,
-    setSelectedMateriaId,
+    focusedMateriaId,
+    setFocusedMateriaId,
     addMateria,
     removeMateria,
     updateMateriaSelected,

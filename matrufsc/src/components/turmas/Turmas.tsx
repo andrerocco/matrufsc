@@ -5,11 +5,11 @@ import { usePlano, type Materia, type Turma } from "~/context/plano/Plano.store"
 import { useHorariosOverlay } from "../horarios/useHorariosOverlay";
 
 export default function Turmas(props: { class?: string }) {
-    const { materias, selectedMateriaId, setSelectedMateriaId, updateTurmasSelected } = usePlano();
+    const { materias, focusedMateriaId, setFocusedMateriaId, updateTurmasSelected } = usePlano();
     const { clearOverlay } = useHorariosOverlay();
 
     const selectedMateria = () => {
-        const selectedId = selectedMateriaId();
+        const selectedId = focusedMateriaId();
         return materias.find((materia) => materia.id === selectedId) ?? null;
     };
 
@@ -27,7 +27,7 @@ export default function Turmas(props: { class?: string }) {
                             <TurmasTableHead
                                 onClose={() => {
                                     clearOverlay();
-                                    setSelectedMateriaId(null);
+                                    setFocusedMateriaId(null);
                                 }}
                             />
                             <tbody

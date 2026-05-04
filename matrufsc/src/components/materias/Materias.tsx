@@ -4,7 +4,7 @@ import { usePlano, type Materia, type Turma } from "~/context/plano/Plano.store"
 import { useHorariosOverlay } from "../horarios/useHorariosOverlay";
 
 export default function Materias(props: { class?: string }) {
-    const { materias, removeMateria, updateMateriaSelected, selectedMateriaId, setSelectedMateriaId, currentPlano } =
+    const { materias, removeMateria, updateMateriaSelected, focusedMateriaId, setFocusedMateriaId, currentPlano } =
         usePlano();
     const { overlayMateria, clearOverlay } = useHorariosOverlay();
 
@@ -25,7 +25,7 @@ export default function Materias(props: { class?: string }) {
     };
 
     const handleSelectMateria = (id: string) => {
-        setSelectedMateriaId((current) => (current === id ? null : id));
+        setFocusedMateriaId((current) => (current === id ? null : id));
     };
 
     return (
@@ -50,7 +50,7 @@ export default function Materias(props: { class?: string }) {
                                         onClickSelect={handleSelectMateria}
                                         onMouseEnter={() => overlayMateria(materia)}
                                         onMouseLeave={clearOverlay}
-                                        isSelected={selectedMateriaId() === materia.id}
+                                        isSelected={focusedMateriaId() === materia.id}
                                     />
                                 )}
                             </For>
