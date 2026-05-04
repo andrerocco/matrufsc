@@ -115,11 +115,13 @@ describe("JSON Transformers", () => {
                 [["06653", 36, 45, 16, 0, 29, 0, ["5.1420-2 / CTS-LB118A"], ["Simone Meister Sommer Bilessimo"]]],
             ];
 
-            const result = getDisciplinaFromJSON(jsonDisciplina);
+            const result = getDisciplinaFromJSON(jsonDisciplina, "FLO", "20261");
 
             assert.deepStrictEqual(result, {
                 id: "CIT7146",
                 nome: "Introdução à Economia na Engenharia",
+                semester: "20261",
+                campus: "FLO",
                 turmas: [
                     {
                         id: "06653",
@@ -136,7 +138,6 @@ describe("JSON Transformers", () => {
                     },
                 ],
                 selected: true,
-                cor: "black",
             });
         });
 
@@ -151,13 +152,14 @@ describe("JSON Transformers", () => {
                 ],
             ];
 
-            const result = getDisciplinaFromJSON(jsonDisciplina);
+            const result = getDisciplinaFromJSON(jsonDisciplina, "FLO", "20261");
 
             assert.strictEqual(result.turmas.length, 2);
             assert.strictEqual(result.id, "CIT7122");
             assert.strictEqual(result.nome, "Elaboração de Trabalhos Acadêmicos");
+            assert.strictEqual(result.semester, "20261");
+            assert.strictEqual(result.campus, "FLO");
             assert.strictEqual(result.selected, true);
-            assert.strictEqual(result.cor, "black");
 
             // Check first turma
             assert.deepStrictEqual(result.turmas[0].aulas[0], {

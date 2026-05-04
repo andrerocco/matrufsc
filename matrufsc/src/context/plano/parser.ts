@@ -46,12 +46,12 @@ export function getTurmaFromJSON(json: JSONTurma): Turma {
     };
 }
 
-export function getDisciplinaFromJSON(json: JSONDisciplina): Materia {
+export function getDisciplinaFromJSON(json: JSONDisciplina, campus: string, semester: string): Materia {
     const [id, _, nome, rawTurmas] = json;
 
     const turmas = rawTurmas.map(getTurmaFromJSON);
 
-    return { id, nome, turmas, selected: true }; // TODO: Make cor optional
+    return { id, nome, campus, semester, turmas, selected: true };
 }
 
 export type { JSONTurma, JSONDisciplina } from "~/context/campusData/types";

@@ -53,8 +53,8 @@ export default function App() {
         setSemester(options[0] ?? "");
     });
 
-    const handleSelectMateria = (disciplina: JSONDisciplina) => {
-        const parsedMateria = getDisciplinaFromJSON(disciplina);
+    const handleSelectMateria = (disciplina: JSONDisciplina, campus: string, semester: string) => {
+        const parsedMateria = getDisciplinaFromJSON(disciplina, campus, semester);
         try {
             addMateria(parsedMateria);
         } catch (error) {
@@ -94,7 +94,10 @@ export default function App() {
                         limit={10}
                         data={disciplinas()}
                         filter={(search) => searchDisciplinas(search, disciplinas())}
-                        onSelect={handleSelectMateria}
+                        onSelect={(materia) => {
+                            const sem = semester();
+                            if (sem) handleSelectMateria(materia, campus(), sem);
+                        }}
                         getLabel={(disciplina) => `${disciplina[0]} - ${disciplina[2]}`}
                     />
                     <Materias class="mt-6" />
