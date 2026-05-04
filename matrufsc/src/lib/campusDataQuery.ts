@@ -22,6 +22,8 @@ export type JSONDisciplina = [
 ];
 
 export type JSONCampusCode = "FLO" | "JOI" | "CBS" | "ARA" | "BLN";
+const CAMPUS_CODES: JSONCampusCode[] = ["FLO", "JOI", "CBS", "ARA", "BLN"];
+export const isCampusCode = (value: string): value is JSONCampusCode => CAMPUS_CODES.includes(value as JSONCampusCode);
 
 export interface JSONCampus {
     campus: JSONCampusCode;

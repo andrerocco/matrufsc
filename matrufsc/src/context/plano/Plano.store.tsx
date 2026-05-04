@@ -144,8 +144,39 @@ function setPlanoIndexClamped(value: number | ((current: number) => number)) {
     });
 }
 
+function replaceMaterias(nextMaterias: Materia[]) {
+    colorIndex = 0;
+    const materiasWithMetadata = nextMaterias.map((materia) => {
+        colorIndex = (colorIndex + 1) % COLORS.length;
+
+        return {
+            ...materia,
+            cor: materia.cor ?? COLORS[colorIndex],
+            blocked: false,
+            selected: materia.selected ?? true,
+            turmas: materia.turmas.map((turma) => ({
+                ...turma,
+                selected: turma.selected ?? true,
+            })),
+        };
+    });
+
+    setMaterias(materiasWithMetadata);
+
+    if (materiasWithMetadata.length === 0) {
+        setPlanos([]);
+        setCurrentPlanoIndex(0);
+        setFocusedMateriaId(null);
+        return;
+    }
+
+    setFocusedMateriaId(materiasWithMetadata[materiasWithMetadata.length - 1].id);
+    refreshPlanos();
+}
+
 export const usePlano = () => ({
     materias,
+    setMaterias: replaceMaterias,
     planos,
     currentPlano,
     currentPlanoIndex,
