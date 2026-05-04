@@ -1,4 +1,13 @@
-import { createContext, createEffect, createSignal, onMount, untrack, type JSXElement } from "solid-js";
+import {
+    createContext,
+    createEffect,
+    createSignal,
+    onMount,
+    untrack,
+    useContext,
+    type Accessor,
+    type JSXElement,
+} from "solid-js";
 import { usePlano, type Materia } from "../plano/Plano.store";
 import { createSearchParam } from "~/lib/createSearchParam";
 import { campusDataQuery } from "~/lib/campusDataQuery";
@@ -7,7 +16,7 @@ import { parseMaterias, serializeMaterias, type URLMateria } from "./url-parser"
 
 const MATERIAS_URL_PARAM = "m";
 
-const UrlStateContext = createContext();
+const UrlStateContext = createContext<{ loading: Accessor<boolean> }>();
 
 export function UrlStateProvider(props: { children?: JSXElement }) {
     const { materias, setMaterias } = usePlano();
@@ -43,7 +52,7 @@ export function UrlStateProvider(props: { children?: JSXElement }) {
     });
 
     // TODO: Update selected campus/semester based on URL
-    return <UrlStateContext.Provider value={{}}>{props.children}</UrlStateContext.Provider>;
+    return <UrlStateContext.Provider value={{ loading: () => !ready() }}>{props.children}</UrlStateContext.Provider>;
 }
 
 type MateriaQueryGroup = {
@@ -120,4 +129,10 @@ function createDisciplinaIndex(disciplinas: JSONDisciplina[]) {
         index.set(disciplina[0], disciplina);
     }
     return index;
+}
+
+export function useUrlState() {
+    const context = useContext(UrlStateContext);
+    if (!context) throw new Error("useUrlState must be used within a UrlStateProvider");
+    return context;
 }

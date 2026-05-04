@@ -7,6 +7,7 @@ import { campusDataQuery, type JSONCampusCode } from "~/lib/campusDataQuery";
 import { usePlano } from "~/context/plano/Plano.store";
 import { MateriaExistsError } from "~/context/plano/errors";
 import { getDisciplinaFromJSON, type JSONDisciplina } from "~/context/plano/parser";
+import { useUrlState } from "~/context/url/UrlState";
 // Components
 import Header from "~/components/header/Header";
 import Footer from "~/components/footer/Footer";
@@ -27,6 +28,7 @@ const CAMPUS: { title: string; value: JSONCampusCode }[] = [
 
 export default function App() {
     const { addMateria, materias } = usePlano();
+    const { loading: urlStateLoading } = useUrlState();
 
     const [semesterOptions] = createResource(fetchAvailableSemesters, {
         storage: createPersistedSignal("matrufsc:semesterOptions"),
@@ -76,6 +78,7 @@ export default function App() {
                     semesterOptions={semesterOptions()}
                     semesterValue={semester()}
                     onSemesterChange={setSemester}
+                    disabled={urlStateLoading()}
                     showExportOptions={materias.length > 0}
                 />
             </div>
@@ -83,13 +86,17 @@ export default function App() {
                 <div class="mx-auto max-w-[1000px] px-6">
                     <Search
                         placeholder={
-                            semesterOptions.loading || campusData.loading
-                                ? campusData()
-                                    ? "Pesquisar disciplina (atualizando...)"
-                                    : "Carregando disciplinas..."
-                                : "Pesquisar disciplina"
+                            urlStateLoading()
+                                ? "Carregando disciplinas..."
+                                : semesterOptions.loading || campusData.loading
+                                  ? campusData()
+                                      ? "Pesquisar disciplina (atualizando...)"
+                                      : "Carregando disciplinas..."
+                                  : "Pesquisar disciplina"
                         }
-                        disabled={(semesterOptions.loading || campusData.loading) && !campusData()}
+                        disabled={
+                            urlStateLoading() || ((semesterOptions.loading || campusData.loading) && !campusData())
+                        }
                         limit={10}
                         data={disciplinas()}
                         filter={(search) => searchDisciplinas(search, disciplinas())}

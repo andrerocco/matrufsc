@@ -5,6 +5,7 @@ import { useImageExport } from "../export/ImageExport";
 
 export default function Header(props: {
     class?: string;
+    disabled?: boolean;
     // Campus
     campusOptions: { title: string; value: string }[];
     campusValue: string;
@@ -32,7 +33,8 @@ export default function Header(props: {
                         <select
                             name="campus"
                             id="campus"
-                            class="bg-transparent focus:border-transparent focus:outline-none"
+                            class="bg-transparent focus:border-transparent focus:outline-none disabled:cursor-progress disabled:opacity-45"
+                            disabled={props.disabled}
                             value={props.campusValue}
                             onChange={(e) => props.onCampusChange(e.currentTarget.value)}
                         >
@@ -47,7 +49,8 @@ export default function Header(props: {
                             <select
                                 name="semester"
                                 id="semester"
-                                class="bg-transparent focus:border-transparent focus:outline-none"
+                                class="bg-transparent focus:border-transparent focus:outline-none disabled:cursor-progress disabled:opacity-45"
+                                disabled={props.disabled}
                                 value={props.semesterValue}
                                 onChange={(e) => props.onSemesterChange(e.currentTarget.value)}
                             >
