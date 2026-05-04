@@ -148,16 +148,18 @@ function replaceMaterias(nextMaterias: Materia[]) {
     colorIndex = 0;
     const materiasWithMetadata = nextMaterias.map((materia) => {
         colorIndex = (colorIndex + 1) % COLORS.length;
+        const turmas = materia.turmas.map((turma) => ({
+            ...turma,
+            selected: turma.selected ?? true,
+        }));
+        const selected = materia.selected ?? true;
 
         return {
             ...materia,
             cor: materia.cor ?? COLORS[colorIndex],
             blocked: false,
-            selected: materia.selected ?? true,
-            turmas: materia.turmas.map((turma) => ({
-                ...turma,
-                selected: turma.selected ?? true,
-            })),
+            selected: selected && turmas.every((turma) => !turma.selected) ? false : selected,
+            turmas,
         };
     });
 
