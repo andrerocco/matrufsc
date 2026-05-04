@@ -60,7 +60,6 @@ export type CachedQuery<S, T> = {
     write: (source: S, value: T | undefined) => void;
     fetch: (source: S, info?: { value?: T; cached?: boolean }) => Promise<T>;
     get: (source: S) => Promise<T>;
-    getMany: (sources: readonly S[]) => Promise<Map<string, T>>;
 };
 
 /**
@@ -70,8 +69,6 @@ export type CachedQuery<S, T> = {
  * const campusDataQuery = createCachedQuery(fetchCampusData, {
  *     key: (source) => `matrufsc:campusData:${source.campus}_${source.semester}`,
  * });
- *
- * const campusDataByKey = await campusDataQuery.getMany(sharedSources);
  */
 export function createCachedQuery<S, T>(fetcher: Fetcher<S, T>, options: Options<S> = {}): CachedQuery<S, T> {
     const keyOf = options.key ?? ((source: S) => JSON.stringify(source));
@@ -152,27 +149,12 @@ export function createCachedQuery<S, T>(fetcher: Fetcher<S, T>, options: Options
         return cache.hit ? cache.value : fetchSource(source);
     }
 
-    async function getMany(sources: readonly S[]) {
-        const uniqueSources = new Map<string, S>();
-
-        for (const source of sources) {
-            uniqueSources.set(keyOf(source), source);
-        }
-
-        const entries = await Promise.all(
-            [...uniqueSources].map(async ([key, source]) => [key, await get(source)] as const),
-        );
-
-        return new Map(entries);
-    }
-
     return {
         key: keyOf,
         read,
         write,
         fetch: fetchSource,
         get,
-        getMany,
     };
 }
 

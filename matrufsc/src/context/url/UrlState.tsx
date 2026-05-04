@@ -70,10 +70,13 @@ async function queryMaterias(parsedUrlMaterias: readonly URLMateria[]): Promise<
         campus: group.campus,
         semester: group.semester,
     }));
-    const campusDataByKey = await campusDataQuery.getMany(sources);
-
+    const results = await Promise.allSettled(
+        sources.map(async (source) => [campusDataQuery.key(source), await campusDataQuery.fetch(source)] as const),
+    );
     const disciplinaIndexByKey = new Map<string, Map<string, JSONDisciplina>>();
-    for (const [key, campusData] of campusDataByKey) {
+    for (const result of results) {
+        if (result.status !== "fulfilled") continue; // TODO: Handle error
+        const [key, campusData] = result.value;
         disciplinaIndexByKey.set(key, createDisciplinaIndex(campusData.disciplinas));
     }
 
@@ -83,7 +86,7 @@ async function queryMaterias(parsedUrlMaterias: readonly URLMateria[]): Promise<
     const visitedIds = new Set<string>();
 
     for (const materia of parsedUrlMaterias) {
-        if (visitedIds.has(materia.id)) continue;
+        if (visitedIds.has(materia.id)) continue; // TODO: Checking `id` copies the behavior of addMateria, but can it be
 
         const sourceKey = campusDataQuery.key({ campus: materia.campus, semester: materia.semester });
         const disciplinaIndex = disciplinaIndexByKey.get(sourceKey);
