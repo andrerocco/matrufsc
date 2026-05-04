@@ -24,10 +24,12 @@ export interface Turma {
 export interface Materia {
     id: string;
     nome: string;
+    campus: string;
+    semester: string;
     turmas: Turma[];
     cor?: string;
     selected: boolean;
-    blocked?: boolean; // New property to indicate clash status
+    blocked?: boolean;
 }
 
 export type Plano = { materia: Materia; turma: Turma }[];
