@@ -1,45 +1,64 @@
 import { HORAS } from "~/context/plano/constants";
 import type { Materia, Plano, Turma } from "./Plano.store";
 
+const NUM_DIAS = 7; // 1 = domingo, ..., 7 = sabado
+const NUM_SLOTS = HORAS.length;
+
+type ScheduleMask = number[];
+
+interface TurmaOption {
+    turma: Turma;
+    mask: ScheduleMask;
+}
+
+interface CombinationState {
+    plano: Plano;
+    mask: ScheduleMask;
+}
+
 export function combinacoes(materias: Materia[]): {
     planos: Plano[];
     blockedMaterias: Set<string>;
 } {
-    // console.log("Materias: ", materias);
+    const materiaOptions = materias
+        .filter((materia) => materia.selected) // Step 1: Filter out unselected materias
+        .map((materia) => {
+            // Step 2: Merge equivalent turmas and precompute each representative turma schedule
+            const selectedTurmas = materia.turmas.filter((turma) => turma.selected);
+            const mergedTurmas = mergeEquivalentTurmas(selectedTurmas);
+            const options = Object.values(mergedTurmas).map<TurmaOption>((turmaGroup) => {
+                const turma = turmaGroup[0]; // Take the first turma as representative
+                return { turma, mask: createTurmaMask(turma) };
+            });
 
-    // Step 1: Filter out unselected materias
-    const selectedMaterias = materias.filter((materia) => materia.selected);
-    // console.log("Selected materias: ", selectedMaterias); // Fixed this line to show selectedMaterias, not materias
-
-    // Step 2: Merge equivalent turmas
-    const materiaWithRepresentingTurma = selectedMaterias.map((materia) => {
-        const selectedTurmas = materia.turmas.filter((turma) => turma.selected);
-        const mergedTurmas = mergeEquivalentTurmas(selectedTurmas);
-        return { turmas: mergedTurmas, materia };
-    });
-    // console.log("Materia with representing turma: ", materiaWithRepresentingTurma);
+            return { materia, options };
+        });
 
     // Step 3: Process each materia incrementally
-    let combinacoes: Plano[] = [];
+    let combinationStates: CombinationState[] = [];
     const blockedMaterias = new Set<string>();
 
-    for (const { turmas, materia } of materiaWithRepresentingTurma) {
-        if (combinacoes.length === 0) {
+    for (const { options, materia } of materiaOptions) {
+        if (combinationStates.length === 0) {
             // Initial case: First materia added, create a combination with one turma from each equivalent group
-            combinacoes = Object.values(turmas).map((turmaGroup) => [{ materia, turma: turmaGroup[0] }]);
+            combinationStates = options.map((option) => ({
+                plano: [{ materia, turma: option.turma }],
+                mask: [...option.mask],
+            }));
         } else {
             // Try to add the materia to each existing combination
-            let updatedCombinacoes: Plano[] = [];
+            const updatedCombinacoes: CombinationState[] = [];
             let couldAddMateria = false;
 
-            // console.log("Combinacoes: ", combinacoes);
-            for (const combinacao of combinacoes) {
+            for (const combination of combinationStates) {
                 // For each equivalent turma group, try to add one representative turma
-                for (const turmaGroup of Object.values(turmas)) {
-                    const turma = turmaGroup[0]; // Take the first turma as representative
-                    if (!hasConflict(turma, combinacao)) {
+                for (const option of options) {
+                    if (!hasMaskConflict(option.mask, combination.mask)) {
                         couldAddMateria = true;
-                        updatedCombinacoes.push([...combinacao, { materia, turma }]);
+                        updatedCombinacoes.push({
+                            plano: [...combination.plano, { materia, turma: option.turma }],
+                            mask: mergeMasks(combination.mask, option.mask),
+                        });
                     }
                 }
             }
@@ -48,19 +67,19 @@ export function combinacoes(materias: Materia[]): {
                 blockedMaterias.add(materia.id);
                 // If this materia is blocked, keep the previous combinations and set as blocked
             } else {
-                combinacoes = updatedCombinacoes;
+                combinationStates = updatedCombinacoes;
             }
         }
     }
 
-    if (combinacoes.length === 0) {
+    if (combinationStates.length === 0) {
         return { planos: [], blockedMaterias: blockedMaterias };
     }
 
     // Sort combinations by calculated weights
-    const weightedCombinations = combinacoes.map((combination) => ({
-        combination,
-        ...calculateCombinationWeight(combination.map(({ turma }) => turma)),
+    const weightedCombinations = combinationStates.map((combination) => ({
+        combination: combination.plano,
+        ...calculateWeight(combination.mask),
     }));
 
     weightedCombinations.sort((a, b) => {
@@ -115,38 +134,46 @@ export function mergeEquivalentTurmas(turmas: Turma[]) {
     return mergedTurmas;
 }
 
-function hasConflict(turma: Turma, combinacao: Plano): boolean {
-    // Turmas with empty aulas never conflict
-    if (turma.aulas.length === 0) {
-        return false;
-    }
+function createTurmaMask(turma: Turma): ScheduleMask {
+    const mask = createEmptyMask();
 
-    // Build a schedule from the combination
-    const horarios = new Map<string, boolean>();
-
-    for (const { turma: existingTurma } of combinacao) {
-        for (const aula of existingTurma.aulas) {
-            for (const horario of aula.horarios) {
-                const key = `${aula.dia_semana}_${horario}`;
-                horarios.set(key, true);
-            }
-        }
-    }
-
-    // Check if turma conflicts with the schedule
     for (const aula of turma.aulas) {
-        for (const horario of aula.horarios) {
-            const key = `${aula.dia_semana}_${horario}`;
-            if (horarios.has(key)) return true;
+        const diaIndex = aula.dia_semana - 1;
+        if (diaIndex < 0 || diaIndex >= NUM_DIAS) continue;
+
+        for (const horarioIndex of aula.horarios) {
+            if (horarioIndex < 0 || horarioIndex >= NUM_SLOTS) continue;
+            mask[diaIndex] |= 1 << horarioIndex;
         }
+    }
+
+    return mask;
+}
+
+function createEmptyMask(): ScheduleMask {
+    return Array<number>(NUM_DIAS).fill(0);
+}
+
+function hasMaskConflict(a: ScheduleMask, b: ScheduleMask): boolean {
+    for (let dia = 0; dia < NUM_DIAS; dia++) {
+        if ((a[dia] & b[dia]) !== 0) return true;
     }
 
     return false;
 }
 
-// TODO: Conferir
+function mergeMasks(a: ScheduleMask, b: ScheduleMask): ScheduleMask {
+    const mask = createEmptyMask();
+
+    for (let dia = 0; dia < NUM_DIAS; dia++) {
+        mask[dia] = a[dia] | b[dia];
+    }
+
+    return mask;
+}
+
 /**
- * Calculates heuristic metrics for a combination of turmas.
+ * Calculates heuristic metrics for a weekly schedule mask.
  * Returns:
  * - sortDias: Number of days with classes (lower is better).
  * - sortJanelas: Total empty slots between first and last class per day (lower is better).
@@ -156,35 +183,7 @@ function hasConflict(turma: Turma, combinacao: Plano): boolean {
  * - horarios are valid indices into HORAS.
  * - Combinations are conflict-free.
  */
-function calculateCombinationWeight(combination: Turma[]): { sortPeso: number; sortDias: number; sortJanelas: number } {
-    const NUM_DIAS = 7; // 1 = domingo, ..., 7 = sábado
-    const NUM_SLOTS = HORAS.length; // number of possible horários in a day
-
-    // Matriz booleana: occupied[dia][slot] indica se há aula naquele horário
-    const occupied: boolean[][] = Array.from({ length: NUM_DIAS }, () => Array<boolean>(NUM_SLOTS).fill(false));
-
-    // Preenche a matriz de ocupação com as aulas da combinação
-    for (const turma of combination) {
-        for (const aula of turma.aulas) {
-            const diaIndex = aula.dia_semana - 1; // 1..7 -> 0..6
-
-            // Segurança extra: evita quebrar se vier dia_semana inválido
-            if (diaIndex < 0 || diaIndex >= NUM_DIAS) {
-                console.warn("calculateCombinationWeight: dia_semana out of range (1..7) for turma=", turma);
-                continue;
-            }
-
-            for (const horarioIndex of aula.horarios) {
-                if (horarioIndex < 0 || horarioIndex >= NUM_SLOTS) {
-                    console.warn("calculateCombinationWeight: horarioIndex out of range for turma=", turma);
-                    continue;
-                }
-
-                occupied[diaIndex][horarioIndex] = true;
-            }
-        }
-    }
-
+function calculateWeight(mask: ScheduleMask): { sortPeso: number; sortDias: number; sortJanelas: number } {
     let sortDias = 0; // número de dias com pelo menos uma aula
     let sortJanelas = 0; // total de janelas na semana
     let sortPeso = 0; // menor é melhor (menos / mais cedo)
@@ -192,14 +191,15 @@ function calculateCombinationWeight(combination: Turma[]): { sortPeso: number; s
     // TODO: Conferir
     // Percorre cada dia para calcular dias, janelas e peso
     for (let dia = 0; dia < NUM_DIAS; dia++) {
-        const daySlots = occupied[dia];
+        const dayMask = mask[dia];
+        if (dayMask === 0) continue;
 
         let firstSlot = -1;
         let lastSlot = -1;
         let dayOccupiedCount = 0;
 
         for (let slot = 0; slot < NUM_SLOTS; slot++) {
-            if (!daySlots[slot]) continue;
+            if ((dayMask & (1 << slot)) === 0) continue;
             dayOccupiedCount++;
 
             if (firstSlot === -1) firstSlot = slot;
@@ -209,8 +209,6 @@ function calculateCombinationWeight(combination: Turma[]): { sortPeso: number; s
             const timelineIndex = dia * NUM_SLOTS + slot;
             sortPeso += timelineIndex;
         }
-
-        if (dayOccupiedCount === 0) continue; // Nenhuma aula neste dia
 
         sortDias++;
 
@@ -226,27 +224,24 @@ function calculateCombinationWeight(combination: Turma[]): { sortPeso: number; s
 export function findClosestCombination(currentCombo: Plano | null, allCombos: Plano[]): number {
     if (!currentCombo || allCombos.length === 0) return 0;
 
+    const currentMateriaIds = new Set(currentCombo.map(({ materia }) => materia.id));
+    const currentTurmaIdByMateriaId = new Map(currentCombo.map(({ materia, turma }) => [materia.id, turma.id]));
+
     let bestMatch = 0;
     let bestScore = 0;
 
     allCombos.forEach((combo, index) => {
         let score = 0;
 
-        // Score for matching materias
-        combo.forEach(({ materia }) => {
-            if (currentCombo.some((item) => item.materia.id === materia.id)) {
+        for (const { materia, turma } of combo) {
+            if (currentMateriaIds.has(materia.id)) {
                 score += 10;
-            }
-        });
 
-        // Higher score for matching turmas
-        combo.forEach(({ materia, turma }) => {
-            currentCombo.forEach((item) => {
-                if (item.materia.id === materia.id && item.turma.id === turma.id) {
+                if (currentTurmaIdByMateriaId.get(materia.id) === turma.id) {
                     score += 100;
                 }
-            });
-        });
+            }
+        }
 
         if (score > bestScore) {
             bestScore = score;
