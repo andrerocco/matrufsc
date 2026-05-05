@@ -1,34 +1,8 @@
 /// Parses the JSON data into objects used by the app.
 
-import { HORAS } from "./constants";
-import type { Materia, Turma } from "./Plano.store";
-
-export type JSONTurma = [
-    string, // Código da turma
-    number, // Carga horária
-    number, // Vagas ofertadas
-    number, // Vagas ocupadas
-    number, // Vagas reservadas
-    number, // Vagas disponíveis
-    number, // Vagas excedentes
-    string[], // Locais e horários
-    string[], // Professores
-];
-
-export type JSONDisciplina = [
-    string, // Código
-    string, // Nome completo
-    string, // Nome
-    JSONTurma[], // Turmas
-];
-
-export type JSONCampusCode = "FLO" | "JOI" | "CBS" | "ARA" | "BLN";
-
-export interface JSONCampus {
-    campus: JSONCampusCode;
-    data_extracao: string;
-    disciplinas: JSONDisciplina[];
-}
+import type { JSONDisciplina, JSONTurma } from "~/lib/campusDataQuery";
+import type { Materia, Turma } from "~/context/plano/Plano.store";
+import { HORAS } from "~/context/plano/constants";
 
 function getHorarioList(horarioInicio: string, creditos: number): number[] {
     const horarioInicioIndex = HORAS.indexOf(horarioInicio);
@@ -45,8 +19,6 @@ function getHorarioList(horarioInicio: string, creditos: number): number[] {
 
     return Array.from({ length: creditos }, (_, i) => horarioInicioIndex + i);
 }
-
-// TODO: Tests
 
 export function getTurmaFromJSON(json: JSONTurma): Turma {
     const [id, carga_horaria, vagas_ofertadas, vagas_ocupadas, _, __, ___, rawAulas, professores] = json;
@@ -74,10 +46,12 @@ export function getTurmaFromJSON(json: JSONTurma): Turma {
     };
 }
 
-export function getDisciplinaFromJSON(json: JSONDisciplina): Materia {
+export function getDisciplinaFromJSON(json: JSONDisciplina, campus: string, semester: string): Materia {
     const [id, _, nome, rawTurmas] = json;
 
     const turmas = rawTurmas.map(getTurmaFromJSON);
 
-    return { id, nome, turmas, selected: true }; // TODO: Make cor optional
+    return { id, nome, campus, semester, turmas, selected: true };
 }
+
+export type { JSONTurma, JSONDisciplina } from "~/lib/campusDataQuery";

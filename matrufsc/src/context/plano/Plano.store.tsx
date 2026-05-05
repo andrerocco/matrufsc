@@ -24,21 +24,37 @@ export interface Turma {
 export interface Materia {
     id: string;
     nome: string;
+    campus: string;
+    semester: string;
     turmas: Turma[];
     cor?: string;
     selected: boolean;
-    blocked?: boolean; // New property to indicate clash status
+    blocked?: boolean;
 }
 
 export type Plano = { materia: Materia; turma: Turma }[];
 
 const [materias, setMaterias] = createStore<Materia[]>([]);
-const [planos, setPlanos] = createStore<Plano[]>([]); // Signal this? No granular updates anyway
+const [planos, setPlanos] = createSignal<Plano[]>([]);
 const [currentPlanoIndex, setCurrentPlanoIndex] = createSignal(0);
-const currentPlano = () => planos[currentPlanoIndex()] ?? null;
-const [selectedMateriaId, setSelectedMateriaId] = createSignal<string | null>(null);
+const currentPlano = () => planos()[currentPlanoIndex()] ?? null;
+const [focusedMateriaId, setFocusedMateriaId] = createSignal<string | null>(null);
 
 let colorIndex = 0;
+
+function refreshPlanos() {
+    const { planos: newPlanos, blockedMaterias } = combinacoes(materias);
+    const closestIndex = findClosestCombination(currentPlano(), newPlanos);
+    setMaterias(
+        produce((list) => {
+            for (const materia of list) {
+                materia.blocked = blockedMaterias.has(materia.id);
+            }
+        }),
+    );
+    setPlanos(newPlanos);
+    setCurrentPlanoIndex(closestIndex);
+}
 
 function addMateria(materia: Materia) {
     const exists = materias.find((m) => m.id === materia.id); // Check if materia already exists
@@ -55,26 +71,15 @@ function addMateria(materia: Materia) {
     };
 
     setMaterias((prev) => [...prev, newMateria]);
-    setSelectedMateriaId(newMateria.id);
-
-    const { planos, blockedMaterias } = combinacoes(materias);
-    const closestIndex = findClosestCombination(currentPlano(), planos); // Find the closest combination to the current one (to avoid layout shifts)
-    setMaterias(
-        produce((list) => {
-            for (const materia of list) {
-                materia.blocked = blockedMaterias.has(materia.id);
-            }
-        }),
-    );
-    setPlanos(planos);
-    setCurrentPlanoIndex(closestIndex); // Reset to first plano
+    setFocusedMateriaId(newMateria.id);
+    refreshPlanos();
 }
 
 function removeMateria(id: string) {
     const materiaIndex = materias.findIndex((m) => m.id === id);
     if (materiaIndex === -1) throw new MateriaNotFoundError(`Matéria ${id} não encontrada`);
 
-    if (selectedMateriaId() === id) setSelectedMateriaId(null);
+    if (focusedMateriaId() === id) setFocusedMateriaId(null);
     setMaterias((prev) => prev.filter((m) => m.id !== id));
 
     if (materias.length === 0) {
@@ -82,19 +87,9 @@ function removeMateria(id: string) {
         setMaterias([]);
         setPlanos([]);
         setCurrentPlanoIndex(0);
-        setSelectedMateriaId(null);
+        setFocusedMateriaId(null);
     } else {
-        const { planos, blockedMaterias } = combinacoes(materias);
-        const closestIndex = findClosestCombination(currentPlano(), planos); // Find the closest combination to the current one (to avoid layout shifts)
-        setMaterias(
-            produce((list) => {
-                for (const materia of list) {
-                    materia.blocked = blockedMaterias.has(materia.id);
-                }
-            }),
-        );
-        setPlanos(planos);
-        setCurrentPlanoIndex(closestIndex); // Reset to closest plano
+        refreshPlanos();
     }
 }
 
@@ -113,17 +108,7 @@ function updateMateriaSelected(id: string, selected: boolean) {
         }),
     );
 
-    const { planos, blockedMaterias } = combinacoes(materias);
-    const closestIndex = findClosestCombination(currentPlano(), planos); // Find the closest combination to the current one (to avoid layout shifts)
-    setMaterias(
-        produce((list) => {
-            for (const materia of list) {
-                materia.blocked = blockedMaterias.has(materia.id);
-            }
-        }),
-    );
-    setPlanos(planos);
-    setCurrentPlanoIndex(closestIndex);
+    refreshPlanos();
 }
 
 function updateTurmasSelected(materiaId: string, turmaIds: string[], selected: boolean) {
@@ -145,37 +130,60 @@ function updateTurmasSelected(materiaId: string, turmaIds: string[], selected: b
             if (materia.selected && materia.turmas.every((turma) => !turma.selected)) materia.selected = false;
         }),
     );
-
-    const { planos, blockedMaterias } = combinacoes(materias);
-    const closestIndex = findClosestCombination(currentPlano(), planos); // Find the closest combination to the current one (to avoid layout shifts)
-    setMaterias(
-        produce((list) => {
-            for (const materia of list) {
-                materia.blocked = blockedMaterias.has(materia.id);
-            }
-        }),
-    );
-    setPlanos(planos);
-    setCurrentPlanoIndex(closestIndex);
+    refreshPlanos();
 }
 
 function setPlanoIndexClamped(value: number | ((current: number) => number)) {
-    if (planos.length === 0) return;
+    const currentPlanos = planos();
+    if (currentPlanos.length === 0) return;
 
     setCurrentPlanoIndex((current) => {
         const rawIndex = typeof value === "function" ? (value as (c: number) => number)(current) : value;
-        const clampedIndex = Math.max(0, Math.min(rawIndex, planos.length - 1));
+        const clampedIndex = Math.max(0, Math.min(rawIndex, currentPlanos.length - 1));
         return clampedIndex;
     });
 }
 
+function replaceMaterias(nextMaterias: Materia[]) {
+    colorIndex = 0;
+    const materiasWithMetadata = nextMaterias.map((materia) => {
+        colorIndex = (colorIndex + 1) % COLORS.length;
+        const turmas = materia.turmas.map((turma) => ({
+            ...turma,
+            selected: turma.selected ?? true,
+        }));
+        const selected = materia.selected ?? true;
+
+        return {
+            ...materia,
+            cor: materia.cor ?? COLORS[colorIndex],
+            blocked: false,
+            selected: selected && turmas.every((turma) => !turma.selected) ? false : selected,
+            turmas,
+        };
+    });
+
+    setMaterias(materiasWithMetadata);
+
+    if (materiasWithMetadata.length === 0) {
+        setPlanos([]);
+        setCurrentPlanoIndex(0);
+        setFocusedMateriaId(null);
+        return;
+    }
+
+    setFocusedMateriaId(materiasWithMetadata[materiasWithMetadata.length - 1].id);
+    refreshPlanos();
+}
+
 export const usePlano = () => ({
     materias,
+    setMaterias: replaceMaterias,
     planos,
     currentPlano,
     currentPlanoIndex,
-    selectedMateriaId,
-    setSelectedMateriaId,
+    focusedMateriaId,
+    setFocusedMateriaId,
     addMateria,
     removeMateria,
     updateMateriaSelected,

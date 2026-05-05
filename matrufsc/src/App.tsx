@@ -1,14 +1,13 @@
 import { createEffect, createResource, createSignal } from "solid-js";
 import { makePersisted } from "@solid-primitives/storage";
-import {
-    getDisciplinaFromJSON,
-    type JSONCampus,
-    type JSONCampusCode,
-    type JSONDisciplina,
-} from "~/context/plano/parser";
+import { createPersistedSignal } from "~/lib/createPersistedSignal";
+import { createCachedResource } from "~/lib/createCachedResource";
+// Context
+import { campusDataQuery, type JSONCampusCode } from "~/lib/campusDataQuery";
 import { usePlano } from "~/context/plano/Plano.store";
 import { MateriaExistsError } from "~/context/plano/errors";
-import { persistedSignal } from "./lib/persistedSignal";
+import { getDisciplinaFromJSON, type JSONDisciplina } from "~/context/plano/parser";
+import { useUrlState } from "~/context/url/UrlState";
 // Components
 import Header from "~/components/header/Header";
 import Footer from "~/components/footer/Footer";
@@ -29,25 +28,22 @@ const CAMPUS: { title: string; value: JSONCampusCode }[] = [
 
 export default function App() {
     const { addMateria, materias } = usePlano();
+    const { loading: urlStateLoading } = useUrlState();
 
     const [semesterOptions] = createResource(fetchAvailableSemesters, {
-        storage: persistedSignal("matrufsc:semesterOptions"),
+        storage: createPersistedSignal("matrufsc:semesterOptions"),
     });
     const [semester, setSemester] = createSignal(semesterOptions()?.[0] ?? undefined);
 
     const [campus, setCampus] = makePersisted(createSignal<JSONCampusCode>(CAMPUS[0].value), {
         name: "matrufsc:campus",
     });
-    const [campusData] = createResource(
-        () => {
-            const sem = semester();
-            if (!sem) return null;
-            return { semester: sem, campus: campus() };
-        },
-        fetchCampusData,
-        { storage: persistedSignal("matrufsc:campusData") },
-    );
-
+    const [campusData] = createCachedResource(() => {
+        const semesterValue = semester();
+        const campusValue = campus();
+        if (!semesterValue || !campusValue) return null; // blocks fetching
+        return { semester: semesterValue, campus: campusValue };
+    }, campusDataQuery);
     const disciplinas = () => campusData()?.disciplinas ?? [];
 
     createEffect(() => {
@@ -58,8 +54,8 @@ export default function App() {
         setSemester(options[0] ?? "");
     });
 
-    const handleSelectMateria = (disciplina: JSONDisciplina) => {
-        const parsedMateria = getDisciplinaFromJSON(disciplina);
+    const handleSelectMateria = (disciplina: JSONDisciplina, campus: string, semester: string) => {
+        const parsedMateria = getDisciplinaFromJSON(disciplina, campus, semester);
         try {
             addMateria(parsedMateria);
         } catch (error) {
@@ -82,6 +78,7 @@ export default function App() {
                     semesterOptions={semesterOptions()}
                     semesterValue={semester()}
                     onSemesterChange={setSemester}
+                    disabled={urlStateLoading()}
                     showExportOptions={materias.length > 0}
                 />
             </div>
@@ -89,17 +86,24 @@ export default function App() {
                 <div class="mx-auto max-w-[1000px] px-6">
                     <Search
                         placeholder={
-                            semesterOptions.loading || campusData.loading
-                                ? campusData()
-                                    ? "Pesquisar disciplina (atualizando...)"
-                                    : "Carregando disciplinas..."
-                                : "Pesquisar disciplina"
+                            urlStateLoading()
+                                ? "Carregando disciplinas..."
+                                : semesterOptions.loading || campusData.loading
+                                  ? campusData()
+                                      ? "Pesquisar disciplina (atualizando...)"
+                                      : "Carregando disciplinas..."
+                                  : "Pesquisar disciplina"
                         }
-                        disabled={(semesterOptions.loading || campusData.loading) && !campusData()}
+                        disabled={
+                            urlStateLoading() || ((semesterOptions.loading || campusData.loading) && !campusData())
+                        }
                         limit={10}
                         data={disciplinas()}
                         filter={(search) => searchDisciplinas(search, disciplinas())}
-                        onSelect={handleSelectMateria}
+                        onSelect={(materia) => {
+                            const sem = semester();
+                            if (sem) handleSelectMateria(materia, campus(), sem);
+                        }}
                         getLabel={(disciplina) => `${disciplina[0]} - ${disciplina[2]}`}
                     />
                     <Materias class="mt-6" />
@@ -129,20 +133,6 @@ async function fetchAvailableSemesters(): Promise<string[]> {
         return json.semesters?.sort().reverse() ?? [];
     } catch (error) {
         console.error("Error fetching semesters:", error);
-        throw error;
-    }
-}
-
-async function fetchCampusData(source: { semester: string; campus: JSONCampusCode }): Promise<JSONCampus> {
-    const { semester, campus } = source;
-    const ano = semester.slice(0, 4);
-
-    try {
-        const resp = await fetch(`${import.meta.env.BASE_URL}data/${ano}/${semester}-${campus}.json`);
-        if (!resp.ok) throw new Error(`Failed to load campus data: ${resp.status} ${resp.statusText}`);
-        return await resp.json();
-    } catch (error) {
-        console.error("Error fetching campus data:", error);
         throw error;
     }
 }
