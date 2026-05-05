@@ -1,5 +1,6 @@
 import clsx from "clsx";
-import { createSignal, For, Show } from "solid-js";
+import { createSignal, For, onCleanup, Show } from "solid-js";
+import { writeClipboard } from "@solid-primitives/clipboard";
 import { useClickOutside } from "../search/useClickOutside";
 import { useImageExport } from "../export/ImageExport";
 
@@ -101,8 +102,10 @@ function ExportOptions() {
     const { isExportingImage, exportImage } = useImageExport();
 
     const [showingExportOptions, setShowingExportOptions] = createSignal(false);
+    const [shareStatus, setShareStatus] = createSignal<"idle" | "copied" | "error">("idle");
 
     let exportOptionsRef: HTMLDivElement | undefined;
+    let shareTimeoutId: number | undefined;
 
     useClickOutside(
         () => exportOptionsRef,
@@ -114,6 +117,27 @@ function ExportOptions() {
         await exportImage();
         setShowingExportOptions(false);
     };
+
+    const scheduleShareReset = (delayMs: number) => {
+        window.clearTimeout(shareTimeoutId);
+        shareTimeoutId = window.setTimeout(() => setShareStatus("idle"), delayMs);
+    };
+
+    const handleShareLink = async () => {
+        try {
+            await writeClipboard(window.location.href);
+            setShareStatus("copied");
+            scheduleShareReset(1800);
+        } catch (error) {
+            console.error("Error copying share link:", error);
+            setShareStatus("error");
+            scheduleShareReset(2400);
+        }
+    };
+
+    onCleanup(() => {
+        window.clearTimeout(shareTimeoutId);
+    });
 
     return (
         <div ref={exportOptionsRef} class="flex gap-7">
@@ -128,8 +152,12 @@ function ExportOptions() {
                 <button class="link cursor-pointer" onClick={handleExportImage} disabled={isExportingImage()}>
                     {isExportingImage() ? "Exportando..." : "Exportar imagem"}
                 </button>
-                <button class="link cursor-pointer" disabled={true} title="Em desenvolvimento...">
-                    Compartilhar link
+                <button class="link cursor-pointer" onClick={handleShareLink} disabled={shareStatus() === "copied"}>
+                    {shareStatus() === "copied"
+                        ? "Link copiado"
+                        : shareStatus() === "error"
+                          ? "Erro ao copiar"
+                          : "Compartilhar link"}
                 </button>
             </Show>
         </div>
