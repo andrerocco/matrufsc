@@ -1,6 +1,6 @@
 import { createContext, createSignal, Show, type ParentProps, type Accessor, useContext } from "solid-js";
 import { useHorariosOverlay } from "~/components/horarios/useHorariosOverlay";
-import { captureElementToPng, composeSquareImage, downloadDataUrl, loadImage, waitForFrames } from "./export-image";
+import { captureElementToPng, composeSquareImage, downloadDataUrl, loadImage, waitForFrames } from "./html-to-image";
 import Materias from "~/components/materias/Materias";
 import Horarios from "~/components/horarios/Horarios";
 

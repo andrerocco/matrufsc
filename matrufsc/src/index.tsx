@@ -2,8 +2,9 @@
 import { render } from "solid-js/web";
 import "./index.css";
 import App from "./App.tsx";
-import { ImageExportProvider } from "./components/export/ImageExport.tsx";
-import { UrlStateProvider } from "./context/url/UrlState.tsx";
+// Context
+import { ImageExportProvider } from "~/context/image-export/ImageExport.tsx";
+import { UrlStateProvider } from "~/context/url/UrlState.tsx";
 
 const root = document.getElementById("root");
 

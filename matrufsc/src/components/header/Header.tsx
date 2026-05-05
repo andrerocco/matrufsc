@@ -1,8 +1,8 @@
 import clsx from "clsx";
 import { createSignal, For, onCleanup, Show } from "solid-js";
 import { writeClipboard } from "@solid-primitives/clipboard";
-import { useClickOutside } from "../search/useClickOutside";
-import { useImageExport } from "../export/ImageExport";
+import { useClickOutside } from "~/components/search/useClickOutside";
+import { useImageExport } from "~/context/image-export/ImageExport";
 
 export default function Header(props: {
     class?: string;
