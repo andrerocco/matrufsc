@@ -73,7 +73,7 @@ function MateriasTableHead(props: { creditos: number }) {
     return (
         <thead class="relative bg-neutral-100">
             <tr class="divide-x divide-neutral-400">
-                <th class="h-7 w-10 px-3 py-1.5 text-left font-normal text-neutral-700"></th>
+                <th class="h-7 w-10 px-3 py-1.5 text-left font-normal text-neutral-700 select-none"></th>
                 <th class="col-span-2 h-7 w-24 px-3 py-1.5 text-left font-normal text-neutral-700">Código</th>
                 <th class="h-7 px-3 py-1.5 text-left font-normal text-neutral-700">
                     <div class="flex items-center justify-between">
@@ -115,7 +115,7 @@ function MateriaRow(props: {
             onMouseLeave={props.onMouseLeave}
             onClick={() => props.onClickSelect(props.materia.id)}
         >
-            <td class="px-3">
+            <td class="px-3 select-none">
                 <div class="flex h-full flex-col">
                     <input
                         type="checkbox"
@@ -131,9 +131,9 @@ function MateriaRow(props: {
             <td class="px-3 py-1.5">{props.materia.id}</td>
             <td class="px-3 py-1.5">
                 <div class="flex items-center justify-between">
-                    <p>{props.materia.nome}</p>
+                    <span>{props.materia.nome}</span>
                     <button
-                        class="absolute right-0 mr-3 cursor-pointer opacity-0 group-hover:opacity-100 hover:underline"
+                        class="absolute right-0 mr-3 cursor-pointer opacity-0 select-none group-hover:opacity-100 hover:underline"
                         onClick={(e) => {
                             e.stopPropagation();
                             props.onClickRemove(props.materia.id);
