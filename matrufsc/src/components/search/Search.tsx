@@ -144,7 +144,7 @@ export default function Search<T>(props: {
                 <Show when={open()}>
                     <button
                         onClick={close}
-                        class="absolute top-0 right-0 h-9 -translate-y-0.5 cursor-pointer px-3 text-lg text-neutral-700 hover:text-black hover:underline"
+                        class="absolute top-0 right-0 h-9 cursor-pointer px-3 text-lg text-neutral-700 hover:text-black hover:underline"
                     >
                         x
                     </button>
