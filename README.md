@@ -1,10 +1,12 @@
 # MatrUFSC
 
-Visualizador de combinações de disciplinas para matrículas na UFSC.
+MatrUFSC é um planejador de matrícula para cursos de graduação na UFSC. Monte e simule combinações de matérias e turmas para planejar sua matrícula.
 
-## Contribuindo
+Acesse em [matrufsc.github.io](https://matrufsc.github.io/).
 
-[CONTRIBUTING.md](CONTRIBUTING.md)
+## Guias
+
+- [Contribuindo](CONTRIBUTING.md)
 
 ## Reconhecimentos
 

@@ -16,7 +16,14 @@ export default function Footer(props: { class?: string }) {
             </p>
 
             <div class="flex gap-7">
-                <a target="_blank" href="#" rel="noreferrer">
+                <a
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSdJUFYTgDtF4iT-4-zBEEpW1HiAJ5ipaUl6rr67H6-KQFoKXw/viewform"
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    Avaliar
+                </a>
+                <a href="https://github.com/andrerocco/matrufsc" target="_blank" rel="noreferrer">
                     Sobre
                 </a>
             </div>

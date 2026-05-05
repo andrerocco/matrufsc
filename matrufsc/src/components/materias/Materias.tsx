@@ -103,8 +103,6 @@ function MateriaRow(props: {
     onMouseLeave?: () => void;
     isSelected?: boolean;
 }) {
-    console.log("Rendering MateriaRow for ", props.materia.id);
-
     return (
         <tr
             data-materia-id={props.materia.id}
