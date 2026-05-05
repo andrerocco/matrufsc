@@ -10,9 +10,9 @@ function overlayMateria(materia: Materia) {
 
     const overlayDescriptor: HorariosDescriptor<HorarioCellOverlay> = {};
 
-    // Se a matéria ta no plano, a matéria selecionada é {materia} = currentPlano.find...
-    if (currentPlano()) {
-        const planoEntry = currentPlano().find((entry) => entry.materia.id === materia.id);
+    const plano = currentPlano();
+    if (plano) {
+        const planoEntry = plano.find((entry) => entry.materia.id === materia.id);
 
         let turma: Turma;
 
