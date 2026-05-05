@@ -4,8 +4,15 @@ import { usePlano, type Materia, type Turma } from "~/context/plano/Plano.store"
 import { useHorariosOverlay } from "../horarios/useHorariosOverlay";
 
 export default function Materias(props: { class?: string }) {
-    const { materias, removeMateria, updateMateriaSelected, focusedMateriaId, setFocusedMateriaId, currentPlano } =
-        usePlano();
+    const {
+        materias,
+        removeMateria,
+        moveMateria,
+        updateMateriaSelected,
+        focusedMateriaId,
+        setFocusedMateriaId,
+        currentPlano,
+    } = usePlano();
     const { overlayMateria, clearOverlay } = useHorariosOverlay();
 
     const creditos = () => {
@@ -17,6 +24,11 @@ export default function Materias(props: { class?: string }) {
     const handleRemove = (id: string) => {
         clearOverlay();
         removeMateria(id);
+    };
+
+    const handleMove = (id: string, offset: -1 | 1) => {
+        clearOverlay();
+        moveMateria(id, offset);
     };
 
     const handleToggleSelection = (id: string, currentSelected: boolean) => {
@@ -42,15 +54,18 @@ export default function Materias(props: { class?: string }) {
 
                         <tbody class="divide-y divide-neutral-400">
                             <For each={materias}>
-                                {(materia) => (
+                                {(materia, index) => (
                                     <MateriaRow
                                         materia={materia}
+                                        isSelected={focusedMateriaId() === materia.id}
+                                        canMoveUp={index() > 0}
+                                        canMoveDown={index() < materias.length - 1}
+                                        onClickMove={handleMove}
                                         onClickRemove={handleRemove}
                                         onToggleSelection={handleToggleSelection}
                                         onClickSelect={handleSelectMateria}
                                         onMouseEnter={() => overlayMateria(materia)}
                                         onMouseLeave={clearOverlay}
-                                        isSelected={focusedMateriaId() === materia.id}
                                     />
                                 )}
                             </For>
@@ -96,20 +111,25 @@ function getTurmaCreditos(turma: Turma): number {
 
 function MateriaRow(props: {
     materia: Materia;
+    canMoveUp?: boolean;
+    canMoveDown?: boolean;
+    isSelected?: boolean;
+    onClickMove: (id: string, offset: -1 | 1) => void;
     onToggleSelection: (id: string, currentSelected: boolean) => void;
     onClickRemove: (id: string) => void;
     onClickSelect: (id: string) => void;
     onMouseEnter?: () => void;
     onMouseLeave?: () => void;
-    isSelected?: boolean;
 }) {
     console.log("Rendering MateriaRow for ", props.materia.id);
+
+    const materiaColor = () => props.materia.cor ?? "white";
 
     return (
         <tr
             data-materia-id={props.materia.id}
             data-selected={props.isSelected}
-            style={{ "background-color": props.materia.cor }}
+            style={{ "background-color": materiaColor() }}
             class="materia-item group min-h-7 cursor-pointer divide-x divide-neutral-400"
             onMouseEnter={props.onMouseEnter}
             onMouseLeave={props.onMouseLeave}
@@ -129,18 +149,52 @@ function MateriaRow(props: {
                 </div>
             </td>
             <td class="px-3 py-1.5">{props.materia.id}</td>
-            <td class="px-3 py-1.5">
+            <td class="relative px-3 py-1.5">
                 <div class="flex items-center justify-between">
                     <span>{props.materia.nome}</span>
-                    <button
-                        class="absolute right-0 mr-3 cursor-pointer opacity-0 select-none group-hover:opacity-100 hover:underline"
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            props.onClickRemove(props.materia.id);
+                    <div
+                        class="pointer-events-none absolute inset-y-0 right-0 flex items-center pl-5 opacity-0 select-none group-hover:opacity-100"
+                        style={{
+                            background: `linear-gradient(to right, transparent 0%, ${materiaColor()} 15%, ${materiaColor()} 100%)`,
                         }}
                     >
-                        Remover
-                    </button>
+                        <button
+                            type="button"
+                            title="Mover para cima"
+                            aria-label={`Mover ${props.materia.id} para cima`}
+                            disabled={props.canMoveUp === false}
+                            class="hit-area-y-1.25 pointer-events-auto cursor-pointer px-1.5 text-lg hover:underline"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                props.onClickMove(props.materia.id, -1);
+                            }}
+                        >
+                            ↑
+                        </button>
+                        <button
+                            type="button"
+                            title="Mover para baixo"
+                            aria-label={`Mover ${props.materia.id} para baixo`}
+                            disabled={props.canMoveDown === false}
+                            class="hit-area-y-1.25 pointer-events-auto cursor-pointer px-1.5 text-lg hover:underline"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                props.onClickMove(props.materia.id, 1);
+                            }}
+                        >
+                            ↓
+                        </button>
+                        <button
+                            type="button"
+                            class="hit-area-y-1.25 pointer-events-auto cursor-pointer px-1.5 pr-3 text-lg hover:underline"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                props.onClickRemove(props.materia.id);
+                            }}
+                        >
+                            x
+                        </button>
+                    </div>
                 </div>
             </td>
         </tr>

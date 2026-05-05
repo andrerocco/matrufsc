@@ -40,11 +40,13 @@ h6 {
 
 a,
 .link {
-    @apply text-blue-600 underline transition-colors duration-75 hover:text-blue-900;
+    @apply text-blue-600 transition-colors duration-75 hover:text-blue-900;
+    text-decoration: underline;
 }
 a:disabled,
 .link:disabled {
-    @apply cursor-not-allowed text-neutral-500;
+    @apply cursor-not-allowed text-neutral-800;
+    text-decoration: none;
 }
 
 .materia-item.hovering,
