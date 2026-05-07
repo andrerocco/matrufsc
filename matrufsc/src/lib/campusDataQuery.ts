@@ -52,3 +52,16 @@ export const campusDataQuery = createCachedQuery(fetchCampusData, {
     key: (source) => `matrufsc:campusData:${source.campus}_${source.semester}`,
     storage: makeCacheStorage({ cacheName: "matrufsc:campusData" }),
 });
+
+// TODO: Temporary, remove after 09/2026
+function cleanupLegacyCampusDataLocalStorage(): void {
+    if (typeof localStorage === "undefined") return;
+    try {
+        for (let index = localStorage.length - 1; index >= 0; index--) {
+            const key = localStorage.key(index);
+            if (!key?.startsWith("matrufsc:campusData")) continue;
+            localStorage.removeItem(key);
+        }
+    } catch {}
+}
+cleanupLegacyCampusDataLocalStorage();
