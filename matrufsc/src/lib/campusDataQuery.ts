@@ -1,4 +1,5 @@
 import { createCachedQuery } from "~/lib/createCachedResource";
+import { makeCacheStorage } from "~/lib/makeCacheStorage";
 
 // Response types
 
@@ -49,4 +50,5 @@ async function fetchCampusData(source: { semester: string; campus: JSONCampusCod
 
 export const campusDataQuery = createCachedQuery(fetchCampusData, {
     key: (source) => `matrufsc:campusData:${source.campus}_${source.semester}`,
+    storage: makeCacheStorage({ cacheName: "matrufsc:campusData" }),
 });

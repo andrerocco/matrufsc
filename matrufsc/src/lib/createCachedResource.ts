@@ -1,8 +1,11 @@
 import { type Accessor, batch, createEffect, createSignal, onCleanup, untrack } from "solid-js";
+import type { AsyncStorage, SyncStorage } from "@solid-primitives/storage";
 
 type ResourceState = "unresolved" | "pending" | "ready" | "refreshing" | "errored";
 
 type MaybeSource<S> = S | false | null | undefined;
+
+type MaybePromise<T> = T | Promise<T>;
 
 export type CachedResource<T, S> = Accessor<T | undefined> & {
     /**
@@ -48,16 +51,19 @@ type Fetcher<S, T> = (
     },
 ) => T | Promise<T>;
 
-type Options<S> = {
+type Options<S, T> = {
     key?: (source: S) => string;
+    storage?: SyncStorage | AsyncStorage;
+    serialize?: (value: T) => string;
+    deserialize?: (value: string) => T;
 };
 
 type CacheResult<T> = { hit: true; key: string; value: T } | { hit: false; key: string };
 
 export type CachedQuery<S, T> = {
     key: (source: S) => string;
-    read: (source: S) => CacheResult<T>;
-    write: (source: S, value: T | undefined) => void;
+    read: (source: S) => MaybePromise<CacheResult<T>>;
+    write: (source: S, value: T | undefined) => MaybePromise<void>;
     fetch: (source: S, info?: { value?: T; cached?: boolean }) => Promise<T>;
     get: (source: S) => Promise<T>;
 };
@@ -65,25 +71,44 @@ export type CachedQuery<S, T> = {
 /**
  * Creates a cached fetcher. Reusing the same query avoids fetching the same key twice.
  *
+ * A persistent `storage` can be provided using the same `getItem`/`setItem`/`removeItem`
+ * shape accepted by Solid Primitives. Both sync and async storages are supported.
+ *
  * @example
  * const campusDataQuery = createCachedQuery(fetchCampusData, {
  *     key: (source) => `matrufsc:campusData:${source.campus}_${source.semester}`,
+ *     storage: makeCacheStorage({ cacheName: "matrufsc:campusData" }),
  * });
  */
-export function createCachedQuery<S, T>(fetcher: Fetcher<S, T>, options: Options<S> = {}): CachedQuery<S, T> {
+export function createCachedQuery<S, T>(fetcher: Fetcher<S, T>, options: Options<S, T> = {}): CachedQuery<S, T> {
     const keyOf = options.key ?? ((source: S) => JSON.stringify(source));
+    const { storage } = options;
+    const serialize = options.serialize ?? JSON.stringify;
+    const deserialize = options.deserialize ?? JSON.parse;
     const memory = new Map<string, T>();
     const inFlight = new Map<string, Promise<T>>();
 
-    function readKey(key: string): { hit: true; value: T } | { hit: false } {
+    function readKey(key: string): MaybePromise<{ hit: true; value: T } | { hit: false }> {
         if (memory.has(key)) return { hit: true, value: memory.get(key) as T };
-        if (typeof localStorage === "undefined") return { hit: false };
+        if (!storage) return { hit: false };
 
         try {
-            const raw = localStorage.getItem(key);
+            const raw = storage.getItem(key);
+            if (isPromiseLike(raw)) {
+                return raw.then((value) => parseStorageValue(key, value)).catch(() => ({ hit: false }));
+            }
+
+            return parseStorageValue(key, raw);
+        } catch {
+            return { hit: false };
+        }
+    }
+
+    function parseStorageValue(key: string, raw: string | null): { hit: true; value: T } | { hit: false } {
+        try {
             if (raw == null) return { hit: false };
 
-            const value = JSON.parse(raw) as T;
+            const value = deserialize(raw) as T;
             memory.set(key, value);
             return { hit: true, value };
         } catch {
@@ -91,34 +116,42 @@ export function createCachedQuery<S, T>(fetcher: Fetcher<S, T>, options: Options
         }
     }
 
-    function writeKey(key: string, next: T | undefined) {
+    function writeKey(key: string, next: T | undefined): MaybePromise<void> {
         if (next === undefined) {
             memory.delete(key);
         } else {
             memory.set(key, next);
         }
 
-        if (typeof localStorage === "undefined") return;
+        if (!storage) return;
 
         try {
+            let result: unknown;
+
             if (next === undefined) {
-                localStorage.removeItem(key);
+                result = storage.removeItem(key);
             } else {
-                localStorage.setItem(key, JSON.stringify(next));
+                result = storage.setItem(key, serialize(next));
             }
+
+            if (isPromiseLike(result)) return result.then(noop, noop);
         } catch {
-            // Ignore quota/private-mode errors.
+            // Ignore quota/private-mode/cache-storage errors.
         }
     }
 
-    function read(source: S): CacheResult<T> {
+    function read(source: S): MaybePromise<CacheResult<T>> {
         const key = keyOf(source);
         const cache = readKey(key);
+        if (isPromiseLike(cache)) {
+            return cache.then((result) => (result.hit ? { ...result, key } : { hit: false, key }));
+        }
+
         return cache.hit ? { ...cache, key } : { hit: false, key };
     }
 
-    function write(source: S, next: T | undefined) {
-        writeKey(keyOf(source), next);
+    function write(source: S, next: T | undefined): MaybePromise<void> {
+        return writeKey(keyOf(source), next);
     }
 
     function fetchSource(source: S, info: { value?: T; cached?: boolean } = {}) {
@@ -134,7 +167,7 @@ export function createCachedQuery<S, T>(fetcher: Fetcher<S, T>, options: Options
                 signal: controller.signal,
             });
 
-            writeKey(key, next);
+            void writeKey(key, next);
             return next;
         })().finally(() => {
             inFlight.delete(key);
@@ -146,7 +179,8 @@ export function createCachedQuery<S, T>(fetcher: Fetcher<S, T>, options: Options
 
     async function get(source: S) {
         const cache = read(source);
-        return cache.hit ? cache.value : fetchSource(source);
+        const resolvedCache = isPromiseLike(cache) ? await cache : cache;
+        return resolvedCache.hit ? resolvedCache.value : fetchSource(source);
     }
 
     return {
@@ -210,14 +244,36 @@ export function createCachedResource<S, T>(
 
         if (readFromCache) {
             const cache = query.read(nextSource);
-            cached = cache.hit;
-            visibleValue = cache.hit ? cache.value : undefined;
+            if (isPromiseLike(cache)) {
+                batch(() => {
+                    setValue(undefined);
+                    setError(undefined);
+                    setState("pending");
+                });
 
-            batch(() => {
-                setValue(() => visibleValue);
-                setError(undefined);
-                setState(cache.hit ? "refreshing" : "pending");
-            });
+                const resolvedCache = await cache;
+                if (id !== requestId || untrack(currentKey) !== nextKey) {
+                    return untrack(value);
+                }
+
+                cached = resolvedCache.hit;
+                visibleValue = resolvedCache.hit ? resolvedCache.value : undefined;
+
+                batch(() => {
+                    setValue(() => visibleValue);
+                    setError(undefined);
+                    setState(resolvedCache.hit ? "refreshing" : "pending");
+                });
+            } else {
+                cached = cache.hit;
+                visibleValue = cache.hit ? cache.value : undefined;
+
+                batch(() => {
+                    setValue(() => visibleValue);
+                    setError(undefined);
+                    setState(cache.hit ? "refreshing" : "pending");
+                });
+            }
         } else {
             batch(() => {
                 setError(undefined);
@@ -307,7 +363,7 @@ export function createCachedResource<S, T>(
         const source = untrack(currentSource);
 
         if (source) {
-            query.write(source, next);
+            void query.write(source, next);
         }
 
         batch(() => {
@@ -321,3 +377,9 @@ export function createCachedResource<S, T>(
 
     return [resource, { refetch, mutate }];
 }
+
+function isPromiseLike<T>(value: MaybePromise<T>): value is Promise<T> {
+    return value != null && typeof (value as Promise<T>).then === "function";
+}
+
+function noop() {}
