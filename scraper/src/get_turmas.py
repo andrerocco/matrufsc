@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 from xml.etree import ElementTree as ET
 from io import BytesIO
 import http.cookiejar
+import ssl
 import urllib.request
 import urllib.parse
 import gzip
@@ -37,7 +38,10 @@ def scrape(semestre):
     jar = http.cookiejar.CookieJar()
     opener = urllib.request.build_opener(
         urllib.request.HTTPCookieProcessor(jar),
-        urllib.request.HTTPSHandler(debuglevel=0),
+        urllib.request.HTTPSHandler(
+            debuglevel=0,
+            context=ssl._create_unverified_context(),
+        ),
     )
 
     print("Semestre: %s" % semestre)

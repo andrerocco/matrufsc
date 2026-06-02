@@ -15,6 +15,7 @@ Exit codes:
 
 from bs4 import BeautifulSoup
 import http.cookiejar
+import ssl
 import urllib.request
 import json
 import glob
@@ -28,7 +29,12 @@ INDEX_PATH = os.path.join(DATA_DIR, "index.json")
 def get_latest_semester():
     with open(INDEX_PATH) as f:
         data = json.load(f)
-    return data["semesters"][0]["value"]
+
+    latest = data["semesters"][0]
+    if isinstance(latest, dict):
+        return latest["value"]
+
+    return latest
 
 
 def calc_next_semester(current):
@@ -50,7 +56,10 @@ def semester_available_on_cagr(semester):
     jar = http.cookiejar.CookieJar()
     opener = urllib.request.build_opener(
         urllib.request.HTTPCookieProcessor(jar),
-        urllib.request.HTTPSHandler(debuglevel=0),
+        urllib.request.HTTPSHandler(
+            debuglevel=0,
+            context=ssl._create_unverified_context(),
+        ),
     )
     resp = opener.open(
         "https://cagr.sistemas.ufsc.br/modules/comunidade/cadastroTurmas/"
