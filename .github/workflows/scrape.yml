@@ -1,0 +1,93 @@
+name: Scrape semester data
+
+on:
+  schedule:
+    - cron: "0 6 * * *" # 06:00 UTC = 03:00 America/Sao_Paulo
+  workflow_dispatch:
+
+permissions:
+  contents: write # push to the `data` branch
+  actions: write # dispatch the deploy workflows
+
+concurrency:
+  group: "scrape"
+  cancel-in-progress: false # never interrupt a publish mid-flight
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Baseline = the current `data` branch. Seeds the stage so unchanged campi
+      # stay byte-identical, and lets the reconciler pick the target semester.
+      # Empty on the very first run (branch not created yet).
+      - name: Fetch current data
+        run: |
+          mkdir -p current-data
+          if git fetch --no-tags --depth=1 origin data 2>/dev/null; then
+            git archive FETCH_HEAD | tar -x -C current-data
+            echo "Baseline: $(find current-data -name '*.json' | wc -l) arquivos"
+          else
+            echo "Branch 'data' inexistente; primeira execucao."
+          fi
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+
+      - name: Install scraper dependencies
+        working-directory: ./scraper
+        run: uv sync
+
+      # Scrapes CAGR, reconciles against the baseline, and validates the result
+      # against the frontend tuple contract. Fails (keeping the last good data)
+      # if CAGR is unreachable or the payload looks broken.
+      - name: Scrape and reconcile
+        working-directory: ./scraper/src
+        run: |
+          uv run python main.py \
+            --public-data-dir "$GITHUB_WORKSPACE/current-data" \
+            --stage-dir "$GITHUB_WORKSPACE/staged-data"
+
+      - name: Detect changes
+        id: diff
+        run: |
+          if diff -rq current-data staged-data >/dev/null 2>&1; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "Sem alteracoes nos dados do CAGR."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "Alteracoes detectadas."
+          fi
+
+      # Keeps full history on `data` (one commit per real change), so the log
+      # doubles as a record of when CAGR data changed. Skipped when nothing
+      # changed, so idle days add no commits.
+      - name: Publish to data branch
+        if: steps.diff.outputs.changed == 'true'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: staged-data
+          publish_branch: data
+          user_name: "matrufsc-bot"
+          user_email: "actions@users.noreply.github.com"
+          commit_message: "data: atualiza dados do CAGR"
+          enable_jekyll: true # data branch is not a site; skip the .nojekyll file
+
+      # A push by GITHUB_TOKEN does not trigger other workflows, so we fan out to
+      # the deploys explicitly (workflow_dispatch is exempt from that rule).
+      - name: Trigger deploys
+        if: steps.diff.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run deploy.yml
+          gh workflow run deploy-matrufsc-github-io.yml

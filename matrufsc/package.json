@@ -7,6 +7,7 @@
         "dev": "vite",
         "build": "tsc -b && vite build",
         "preview": "vite preview",
+        "data:pull": "bash scripts/pull-data.sh",
         "format": "prettier --write ."
     },
     "dependencies": {

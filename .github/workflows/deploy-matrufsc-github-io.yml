@@ -27,6 +27,12 @@ jobs:
         working-directory: ./matrufsc
         run: npm ci
 
+      # Course JSON lives on the `data` branch, not in this branch's history.
+      # Bake the latest snapshot into public/ so the build stays fully static.
+      - name: Fetch course data
+        working-directory: ./matrufsc
+        run: npm run data:pull
+
       - name: Build
         working-directory: ./matrufsc
         run: npm run build
