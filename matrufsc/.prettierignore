@@ -1,0 +1,5 @@
+# Minified course JSON pulled from the `data` branch — do not reformat.
+public/data
+
+# Build output
+dist
