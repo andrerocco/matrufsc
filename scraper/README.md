@@ -1,49 +1,112 @@
-Este repositório contém os bancos de dados extraídos do CAGR para serem
-utilizados no MatrUFSC, disponível no seguinte repositório:
-https://github.com/ramiropolla/matrufsc_dbs.git
+# Scraper
 
-O banco de dados é gerado usando os script src/get_turmas.py e
-src/parse_turmas.py. Estes scripts são específicos para o sistema de
-cadastro de disciplinas da UFSC.
+Scripts que extraem os dados de turmas do CAGR/UFSC e geram os JSONs consumidos
+pelo MatrUFSC. Usam Python (via [`uv`](https://docs.astral.sh/uv/)) e não têm
+backend em runtime.
 
-get_turmas.py pega os dados do CAGR e os grava separados por semestre e campus.
-O modo de usar é: ./src/get_turmas.py <semestre>
+Os dados **não** são versionados na `main`: a fonte de verdade é a branch órfã
+`data`, publicada pelo workflow `.github/workflows/scrape.yml`. Veja
+[`docs/DEPLOYMENT.md`](../docs/DEPLOYMENT.md) para o fluxo completo até o deploy.
 
-parse_turmas.py gera arquivos .json dos arquivos xml criados por get_turmas.
-O modo de usar é: ./src/parse_turmas.py <diretório de saída> <arquivos XML de entrada...>
+## Como rodar
 
-Exemplo:
-  ./src/parse_turmas.py ../matrufsc/public/data 20251_FLO.xml 20251_JOI.xml 20251_CBS.xml
+```bash
+cd scraper
+uv sync
+```
 
-Estrutura de saída:
-  <output_dir>/<ano>/<semestre>-<campus>.json
+### Atualização automática (reconciliador)
 
-  Exemplo:
-    ../matrufsc/public/data/2025/20251-FLO.json
-    ../matrufsc/public/data/2025/20251-JOI.json
-    ../matrufsc/public/data/2025/20251-CBS.json
+É o que o workflow diário executa. `src/main.py`:
 
-Cada JSON segue a seguinte estrutura:
+1. Lê o semestre mais recente do baseline (`--public-data-dir`).
+2. Calcula o próximo semestre e verifica no CAGR se ele já tem turmas para
+   **todos** os campi esperados.
+3. Se estiver completo, scrapeia esse novo semestre; senão, re-scrapeia o
+   semestre mais recente já indexado.
+4. Escreve o resultado num diretório de _staging_, reescrevendo cada arquivo de
+   campus só quando `disciplinas` muda de fato.
+5. Valida o staging contra o contrato de tuplas do frontend antes de terminar.
 
+```bash
+uv run python src/main.py \
+  --public-data-dir ../matrufsc/public/data \
+  --stage-dir /tmp/matrufsc-data
+```
+
+### Semestre específico (manual)
+
+Para forçar o scrape de um semestre (substitui o antigo `make <semestre>`):
+
+```bash
+uv run python src/main.py --semester 20262 --stage-dir /tmp/matrufsc-data
+```
+
+Depois de validar o staging, copie-o para onde precisar — ou publique na branch
+`data`. Localmente, `cd ../matrufsc && npm run data:pull` traz a `data` de volta
+para `public/data`.
+
+## Publicação: branch `data`, sem poluir a `main`
+
+O reconciliador só grava no diretório de staging. Quem publica é o workflow:
+quando o staging difere da branch `data`, ele cria **um commit na `data`** (com
+histórico, um por mudança real) e dispara os deploys. A `main` nunca recebe
+commits de dados, e o histórico da `data` vira um registro de quando o CAGR
+mudou.
+
+### Evitando commits sem mudança
+
+Cada arquivo de campus tem `data_extracao`, que mudaria a cada scrape. Para não
+gerar commits inúteis, `write_campus_if_changed` compara apenas `disciplinas`:
+se não mudou, o arquivo é preservado byte a byte (inclusive o `data_extracao`
+antigo). Assim um `git diff` simples decide se há algo a publicar.
+
+## Módulos
+
+- **`src/main.py`** — reconciliador/orquestrador; ponto de entrada único.
+- **`src/get_turmas.py`** — sessão e scraping bruto do CAGR (XML por campus).
+- **`src/parse_turmas.py`** — converte os XMLs nas tuplas compactas do app.
+- **`src/semesters.py`** — regras de dados: campi esperados, cálculo de
+  semestre, índice, staging, escrita idempotente e validação de contrato.
+
+## Formato dos dados
+
+Arquivos gravados em `<output_dir>/<ano>/<semestre>-<campus>.json`, ex.
+`2026/20262-FLO.json`. Cada arquivo:
+
+```json
 {
-  "campus": "<código do campus>",
-  "data_extracao": "<data e hora da captura>",
-  "disciplinas": [lista de disciplinas]
+    "campus": "FLO",
+    "data_extracao": "11/04/26 - 20:27",
+    "disciplinas": []
 }
+```
 
-Cada disciplina é uma lista com a seguinte estrutura:
-[ "código da disciplina", "nome da disciplina em ascii e caixa alta", "nome da disciplina", [lista de turmas] ]
+Cada disciplina é uma tupla posicional (para economizar bytes):
 
-Cada turma é uma lista com a seguinte estrutura:
-[ "nome_turma", horas_aula, vagas_ofertadas, vagas_ocupadas, alunos_especiais, saldo_vagas, pedidos_sem_vaga, [horarios], [professores]]
+```text
+[ codigo, nome_ascii_upper, nome, [turmas] ]
+```
 
-Os dados relativos a horas_aula e vagas são em números, não strings.
-Os horários são no formato disponibilizado pela UFSC:
+Cada turma:
+
+```text
+[ nome_turma, horas_aula, vagas_ofertadas, vagas_ocupadas,
+  alunos_especiais, saldo_vagas, pedidos_sem_vaga, [horarios], [professores] ]
+```
+
+Os campos de horas/vagas são números, não strings. Os horários seguem o formato
+da UFSC:
+
+```text
 "2.1010-2 / ARA-ARA209"
  | |    |   |   \----- código da sala
  | |    |   \--------- código do departamento
  | |    \------------- número de aulas seguidas no bloco
  | \------------------ horário da primeira aula do bloco
  \-------------------- dia da semana
+```
 
-Os professores são dispostos numa lista de strings.
+A ordem das tuplas deve permanecer em sincronia com `JSONDisciplina`/`JSONTurma`
+em `matrufsc/src/lib/campusDataQuery.ts` e com o parser em
+`matrufsc/src/context/plano/parser.ts`.

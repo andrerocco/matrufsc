@@ -13,6 +13,10 @@ dist-ssr
 stats.html
 *.local
 
+# Dados de curso: a fonte de verdade e a branch `data` (atualizada pelo scraper).
+# Popule localmente com `npm run data:pull`.
+public/data
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
