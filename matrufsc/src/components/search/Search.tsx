@@ -213,7 +213,7 @@ function SearchItem(props: {
 
 function SearchEmptyItem() {
     return (
-        <div class="flex min-h-8 items-center justify-center px-3 py-1.5 data-[selected='true']:bg-neutral-200">
+        <div class="flex min-h-8 items-center justify-center px-3 data-[selected='true']:bg-neutral-200">
             <p class="text-neutral-400">Nenhuma disciplina ou professor foi encontrado.</p>
         </div>
     );
