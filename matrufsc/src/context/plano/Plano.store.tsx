@@ -140,6 +140,23 @@ function removeMateria(id: string) {
     });
 }
 
+function moveMateria(id: string, direction: "up" | "down") {
+    const index = materias.findIndex((m) => m.id === id);
+    if (index === -1) throw new MateriaNotFoundError(`Matéria ${id} não encontrada`);
+
+    const target = direction === "up" ? index - 1 : index + 1;
+    if (target < 0 || target >= materias.length) return; // Já está no limite da lista
+
+    commitMateriaChange(() => {
+        setMaterias(
+            produce((list) => {
+                const [item] = list.splice(index, 1);
+                list.splice(target, 0, item);
+            }),
+        );
+    });
+}
+
 function updateMateriaSelected(id: string, selected: boolean) {
     commitMateriaChange(() => {
         setMaterias(
@@ -223,6 +240,7 @@ export const usePlano = () => ({
     setFocusedMateriaId,
     addMateria,
     removeMateria,
+    moveMateria,
     updateMateriaSelected,
     updateTurmasSelected,
     setPlanoIndex: setPlanoIndexClamped,

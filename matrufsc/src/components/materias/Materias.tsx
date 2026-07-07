@@ -4,8 +4,15 @@ import { usePlano, type Materia, type Turma } from "~/context/plano/Plano.store"
 import { useHorariosOverlay } from "../horarios/useHorariosOverlay";
 
 export default function Materias(props: { class?: string }) {
-    const { materias, removeMateria, updateMateriaSelected, focusedMateriaId, setFocusedMateriaId, currentPlano } =
-        usePlano();
+    const {
+        materias,
+        removeMateria,
+        moveMateria,
+        updateMateriaSelected,
+        focusedMateriaId,
+        setFocusedMateriaId,
+        currentPlano,
+    } = usePlano();
     const { overlayMateria, clearOverlay } = useHorariosOverlay();
 
     const creditos = () => {
@@ -28,6 +35,11 @@ export default function Materias(props: { class?: string }) {
         setFocusedMateriaId((current) => (current === id ? null : id));
     };
 
+    const handleMove = (id: string, direction: "up" | "down") => {
+        clearOverlay();
+        moveMateria(id, direction);
+    };
+
     return (
         <Show when={materias.length > 0}>
             <div
@@ -42,15 +54,18 @@ export default function Materias(props: { class?: string }) {
 
                         <tbody class="divide-y divide-neutral-400">
                             <For each={materias}>
-                                {(materia) => (
+                                {(materia, index) => (
                                     <MateriaRow
                                         materia={materia}
                                         onClickRemove={handleRemove}
+                                        onClickMove={handleMove}
                                         onToggleSelection={handleToggleSelection}
                                         onClickSelect={handleSelectMateria}
                                         onMouseEnter={() => overlayMateria(materia)}
                                         onMouseLeave={clearOverlay}
                                         isSelected={focusedMateriaId() === materia.id}
+                                        isFirst={index() === 0}
+                                        isLast={index() === materias.length - 1}
                                     />
                                 )}
                             </For>
@@ -98,10 +113,13 @@ function MateriaRow(props: {
     materia: Materia;
     onToggleSelection: (id: string, currentSelected: boolean) => void;
     onClickRemove: (id: string) => void;
+    onClickMove: (id: string, direction: "up" | "down") => void;
     onClickSelect: (id: string) => void;
     onMouseEnter?: () => void;
     onMouseLeave?: () => void;
     isSelected?: boolean;
+    isFirst?: boolean;
+    isLast?: boolean;
 }) {
     return (
         <tr
@@ -127,17 +145,49 @@ function MateriaRow(props: {
                 </div>
             </td>
             <td class="px-3 py-1.5">{props.materia.id}</td>
-            <td class="px-3 py-1.5">
-                <div class="flex items-center justify-between">
-                    <span>{props.materia.nome}</span>
+            <td class="relative px-3 py-1.5">
+                <span>{props.materia.nome}</span>
+                <div class="absolute top-1/2 right-0 flex -translate-y-1/2 items-stretch opacity-0 select-none group-hover:opacity-100">
                     <button
-                        class="absolute right-0 mr-3 cursor-pointer opacity-0 select-none group-hover:opacity-100 hover:underline"
+                        type="button"
+                        aria-label="Mover matéria para cima"
+                        disabled={props.isFirst}
+                        class={clsx(
+                            "disabled:cursor-default disabled:no-underline disabled:opacity-30",
+                            "flex cursor-pointer items-center px-1.5 py-1.5 underline-offset-1 hover:underline",
+                        )}
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            props.onClickMove(props.materia.id, "up");
+                        }}
+                    >
+                        ↑
+                    </button>
+                    <button
+                        type="button"
+                        aria-label="Mover matéria para baixo"
+                        disabled={props.isLast}
+                        class={clsx(
+                            "disabled:cursor-default disabled:no-underline disabled:opacity-30",
+                            "flex cursor-pointer items-center px-1.5 py-1.5 underline-offset-1 hover:underline",
+                        )}
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            props.onClickMove(props.materia.id, "down");
+                        }}
+                    >
+                        ↓
+                    </button>
+                    <button
+                        type="button"
+                        aria-label="Remover matéria"
+                        class="flex cursor-pointer items-center py-1.5 pr-3 pl-1.5 underline-offset-1 hover:underline"
                         onClick={(e) => {
                             e.stopPropagation();
                             props.onClickRemove(props.materia.id);
                         }}
                     >
-                        Remover
+                        ×
                     </button>
                 </div>
             </td>
