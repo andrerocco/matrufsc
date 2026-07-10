@@ -230,12 +230,33 @@ function replaceMaterias(nextMaterias: Materia[]) {
     });
 }
 
+/**
+ * Turma "em exibição" de uma matéria: a que foi usada para montá-la na grade
+ * (combinação atual) ou, se a matéria não está na grade (desmarcada ou em
+ * conflito), a que seria usada caso estivesse — sempre best effort, nunca nula
+ * enquanto a matéria tiver ao menos uma turma.
+ *
+ * O fallback replica a escolha do engine (`combinacoes`): a primeira turma
+ * selecionada é o representante do primeiro grupo de opções.
+ */
+function displayedTurma(materiaId: string): Turma | null {
+    const emGrade = currentPlano()?.find(({ materia }) => materia.id === materiaId)?.turma;
+    if (emGrade) return emGrade;
+
+    const materia = materias.find((m) => m.id === materiaId);
+    if (!materia) return null;
+
+    const selecionadas = materia.turmas.filter((turma) => turma.selected);
+    return selecionadas[0] ?? materia.turmas[0] ?? null;
+}
+
 export const usePlano = () => ({
     materias,
     setMaterias: replaceMaterias,
     planos,
     currentPlano,
     currentPlanoIndex,
+    displayedTurma,
     focusedMateriaId,
     setFocusedMateriaId,
     addMateria,

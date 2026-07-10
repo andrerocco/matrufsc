@@ -12,6 +12,7 @@ export default function Materias(props: { class?: string }) {
         focusedMateriaId,
         setFocusedMateriaId,
         currentPlano,
+        displayedTurma,
     } = usePlano();
     const { overlayMateria, clearOverlay } = useHorariosOverlay();
 
@@ -57,6 +58,7 @@ export default function Materias(props: { class?: string }) {
                                 {(materia, index) => (
                                     <MateriaRow
                                         materia={materia}
+                                        turmaSelecionada={displayedTurma(materia.id)}
                                         onClickRemove={handleRemove}
                                         onClickMove={handleMove}
                                         onToggleSelection={handleToggleSelection}
@@ -90,6 +92,7 @@ function MateriasTableHead(props: { creditos: number }) {
             <tr class="divide-x divide-neutral-400">
                 <th class="h-7 w-10 px-3 py-1.5 text-left font-normal text-neutral-700 select-none"></th>
                 <th class="col-span-2 h-7 w-24 px-3 py-1.5 text-left font-normal text-neutral-700">Código</th>
+                <th class="hidden h-7 w-20 px-3 py-1.5 text-left font-normal text-neutral-700 md:table-cell">Turma</th>
                 <th class="h-7 px-3 py-1.5 text-left font-normal text-neutral-700">
                     <div class="flex items-center justify-between">
                         <span>Matéria</span>
@@ -111,6 +114,7 @@ function getTurmaCreditos(turma: Turma): number {
 
 function MateriaRow(props: {
     materia: Materia;
+    turmaSelecionada: Turma | null;
     onToggleSelection: (id: string, currentSelected: boolean) => void;
     onClickRemove: (id: string) => void;
     onClickMove: (id: string, direction: "up" | "down") => void;
@@ -145,6 +149,9 @@ function MateriaRow(props: {
                 </div>
             </td>
             <td class="px-3 py-1.5">{props.materia.id}</td>
+            <td class="hidden px-3 py-1.5 whitespace-nowrap md:table-cell">
+                {props.turmaSelecionada ? props.turmaSelecionada.id : "—"}
+            </td>
             <td class="relative px-3 py-1.5">
                 <span>{props.materia.nome}</span>
                 <div class="absolute top-1/2 right-0 flex -translate-y-1/2 items-stretch opacity-0 select-none group-hover:opacity-100">
