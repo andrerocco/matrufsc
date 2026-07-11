@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { For, Show } from "solid-js";
 import { usePlano, type Materia, type Turma } from "~/context/plano/Plano.store";
+import { usePreferences } from "~/context/preferences/Preferences.store";
 import { useHorariosOverlay } from "../horarios/useHorariosOverlay";
 
 export default function Materias(props: { class?: string }) {
@@ -87,12 +88,20 @@ export default function Materias(props: { class?: string }) {
 }
 
 function MateriasTableHead(props: { creditos: number }) {
+    const { showDetails } = usePreferences();
     return (
         <thead class="relative bg-neutral-100">
             <tr class="divide-x divide-neutral-400">
                 <th class="h-7 w-10 px-3 py-1.5 text-left font-normal text-neutral-700 select-none"></th>
                 <th class="col-span-2 h-7 w-24 px-3 py-1.5 text-left font-normal text-neutral-700">Código</th>
-                <th class="hidden h-7 w-20 px-3 py-1.5 text-left font-normal text-neutral-700 md:table-cell">Turma</th>
+                <th
+                    class={clsx(
+                        "hidden h-7 w-20 px-3 py-1.5 text-left font-normal text-neutral-700",
+                        showDetails() && "md:table-cell",
+                    )}
+                >
+                    Turma
+                </th>
                 <th class="h-7 px-3 py-1.5 text-left font-normal text-neutral-700">
                     <div class="flex items-center justify-between">
                         <span>Matéria</span>
@@ -125,6 +134,7 @@ function MateriaRow(props: {
     isFirst?: boolean;
     isLast?: boolean;
 }) {
+    const { showDetails } = usePreferences();
     return (
         <tr
             data-materia-id={props.materia.id}
@@ -149,7 +159,7 @@ function MateriaRow(props: {
                 </div>
             </td>
             <td class="px-3 py-1.5">{props.materia.id}</td>
-            <td class="hidden px-3 py-1.5 whitespace-nowrap md:table-cell">
+            <td class={clsx("hidden px-3 py-1.5 whitespace-nowrap", showDetails() && "md:table-cell")}>
                 {props.turmaSelecionada ? props.turmaSelecionada.id : "—"}
             </td>
             <td class="relative px-3 py-1.5">

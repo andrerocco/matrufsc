@@ -1,7 +1,8 @@
-import { createMemo, createSignal, For, Match, Show, Switch, type JSX } from "solid-js";
+import { createMemo, For, Match, Show, Switch, type JSX } from "solid-js";
 import { clsx } from "clsx";
 // Context
 import { usePlano, type Plano } from "~/context/plano/Plano.store";
+import { usePreferences } from "~/context/preferences/Preferences.store";
 import { useHorariosOverlay } from "./useHorariosOverlay";
 
 const DIAS = [
@@ -47,20 +48,19 @@ const HORAS_FIM = [
     "22:00",
 ];
 
-const [showDetails, setShowDetails] = createSignal(false); // module level so is shared across instances (so value is preserved when exporting image)
-
 export default function Horarios(props: { class?: string }) {
     return (
         <div class={clsx(props.class)}>
             <table class="table-fixed border-separate">
-                <HorariosTableHead showDetails={showDetails()} onChangeShowDetails={setShowDetails} />
-                <HorariosTableBody showDetails={showDetails()} />
+                <HorariosTableHead />
+                <HorariosTableBody />
             </table>
         </div>
     );
 }
 
-function HorariosTableHead(props: { showDetails: boolean; onChangeShowDetails: (show: boolean) => void }) {
+function HorariosTableHead() {
+    const { showDetails, setShowDetails } = usePreferences();
     return (
         <thead>
             <tr>
@@ -68,8 +68,8 @@ function HorariosTableHead(props: { showDetails: boolean; onChangeShowDetails: (
                     <input
                         title="Mostrar salas..."
                         type="checkbox"
-                        checked={props.showDetails}
-                        onChange={(e) => props.onChangeShowDetails(e.currentTarget.checked)}
+                        checked={showDetails()}
+                        onChange={(e) => setShowDetails(e.currentTarget.checked)}
                         class="hit-area-3.5 mx-auto w-4 cursor-pointer align-middle"
                     />
                 </th>
@@ -120,8 +120,9 @@ function planoToHorariosDescriptor(plano: Plano | null): HorariosDescriptor<Hora
     return horarios;
 }
 
-function HorariosTableBody(props: { showDetails: boolean }) {
+function HorariosTableBody() {
     const { currentPlano } = usePlano();
+    const { showDetails } = usePreferences();
     const { overlay, overlayMateriaId } = useHorariosOverlay();
 
     const horarios = createMemo(() => planoToHorariosDescriptor(currentPlano()));
@@ -140,11 +141,11 @@ function HorariosTableBody(props: { showDetails: boolean }) {
                             <td
                                 class={clsx(
                                     "pr-2 tracking-tight whitespace-nowrap",
-                                    props.showDetails ? "py-0.5" : "py-1.5",
+                                    showDetails() ? "py-0.5" : "py-1.5",
                                 )}
                             >
                                 <p>{hora}</p>
-                                <Show when={props.showDetails}>
+                                <Show when={showDetails()}>
                                     <p class="block text-sm text-neutral-500">{HORAS_FIM[horaIndex()]}</p>
                                 </Show>
                             </td>
@@ -158,7 +159,6 @@ function HorariosTableBody(props: { showDetails: boolean }) {
                                             return base;
                                         }}
                                         overlay={() => overlay()[dia.number]?.[hora] ?? undefined}
-                                        showDetails={props.showDetails}
                                     />
                                 )}
                             </For>
@@ -184,8 +184,8 @@ export interface HorarioCellOverlay {
 function HorarioCell(props: {
     base: () => HorarioCellBase | undefined;
     overlay: () => HorarioCellOverlay | undefined;
-    showDetails?: boolean;
 }) {
+    const { showDetails } = usePreferences();
     const base = createMemo(props.base, undefined, {
         equals: (prev, next) => {
             if (prev === next) return true;
@@ -217,7 +217,7 @@ function HorarioCell(props: {
             <Match when={conflict()}>
                 <FilledHorarioCell
                     title={overlay()!.id}
-                    subtitle={props.showDetails ? overlay()!.sala : undefined}
+                    subtitle={showDetails() ? overlay()!.sala : undefined}
                     class="bg-red-500"
                 />
             </Match>
@@ -225,7 +225,7 @@ function HorarioCell(props: {
                 {(overlay) => (
                     <FilledHorarioCell
                         title={overlay().id}
-                        subtitle={props.showDetails ? overlay().sala : undefined}
+                        subtitle={showDetails() ? overlay().sala : undefined}
                         class="bg-black text-white"
                     />
                 )}
@@ -234,7 +234,7 @@ function HorarioCell(props: {
                 {(base) => (
                     <FilledHorarioCell
                         title={base().id}
-                        subtitle={props.showDetails ? base().sala : undefined}
+                        subtitle={showDetails() ? base().sala : undefined}
                         style={base()?.color ? { "background-color": base().color } : undefined}
                     />
                 )}
