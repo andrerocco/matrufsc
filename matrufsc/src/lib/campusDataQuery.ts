@@ -8,11 +8,12 @@ export type JSONTurma = [
     number, // Carga horária
     number, // Vagas ofertadas
     number, // Vagas ocupadas
-    number, // Vagas reservadas
+    number, // Alunos especiais
     number, // Vagas disponíveis
     number, // Vagas excedentes
     string[], // Locais e horários
     string[], // Professores
+    number | null, // Código do curso ofertante (chave em JSONCampus.cursos); null quando ausente
 ];
 
 export type JSONDisciplina = [
@@ -29,6 +30,7 @@ export const isCampusCode = (value: string): value is JSONCampusCode => CAMPUS_C
 export interface JSONCampus {
     campus: JSONCampusCode;
     data_extracao: string;
+    cursos: Record<string, string>; // { [id do curso]: nome do curso ofertante }
     disciplinas: JSONDisciplina[];
 }
 
