@@ -1,4 +1,4 @@
-import { createEffect, createResource, createSignal } from "solid-js";
+import { createEffect, createResource, createSignal, Show } from "solid-js";
 import { makePersisted } from "@solid-primitives/storage";
 import { createPersistedSignal } from "~/lib/createPersistedSignal";
 import { createCachedResource } from "~/lib/createCachedResource";
@@ -16,6 +16,7 @@ import { searchDisciplinas } from "~/components/search/searchDisciplinas";
 import Materias from "~/components/materias/Materias";
 import Turmas from "~/components/turmas/Turmas";
 import Horarios from "~/components/horarios/Horarios";
+import Aviso, { avisoVisible, avisoAltura } from "~/components/aviso/Aviso";
 import CombinacaoSpinner from "./components/horarios/CombinacaoSpinner";
 
 const CAMPUS: { title: string; value: JSONCampusCode }[] = [
@@ -121,6 +122,11 @@ export default function App() {
             <div class="mx-auto w-full max-w-[1000px] shrink-0 px-6">
                 <Footer class="mt-2" />
             </div>
+            {/* Reserva a altura exata da barra fixa para que ela não cubra o footer */}
+            <Show when={avisoVisible()}>
+                <div class="shrink-0" style={{ height: `${avisoAltura()}px` }} />
+            </Show>
+            <Aviso />
         </div>
     );
 }

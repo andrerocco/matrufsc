@@ -47,6 +47,26 @@ a:disabled,
     @apply cursor-not-allowed text-neutral-500;
 }
 
+/* Pisca o fundo do aviso rapidamente e para, voltando ao branco da classe base. */
+@keyframes aviso-pisca {
+    0% {
+        background-color: #fecaca; /* red-200 */
+    }
+    50% {
+        background-color: #ffffff;
+    }
+}
+
+.aviso-pisca {
+    animation: aviso-pisca 0.2s steps(1, end) 3;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .aviso-pisca {
+        animation: none;
+    }
+}
+
 .materia-item.hovering,
 .horario-item.hovering {
     /* TODO: Remove important */
