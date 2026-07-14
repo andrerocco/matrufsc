@@ -1,4 +1,5 @@
 import { createSignal, onCleanup, Show } from "solid-js";
+import { track } from "~/lib/analytics";
 
 const AVISO_ID = "professores-turmas-equivalentes";
 const CHAVE_FECHAMENTOS = `matrufsc:aviso:fechamentos:${AVISO_ID}`;
@@ -37,8 +38,12 @@ const [fechamentos, setFechamentos] = createSignal(lerFechamentos());
 export const avisoVisible = () => !dismissed() && fechamentos() < LIMITE_FECHAMENTOS;
 
 function fecharAviso() {
-    setFechamentos(registrarFechamento());
+    const total = registrarFechamento();
+    setFechamentos(total);
     setDismissed(true);
+    // `fechamentos` é o total acumulado: distingue quem fechou de primeira de quem já viu e ignorou
+    // várias vezes, e mostra quantos chegaram ao limite em que o aviso some de vez.
+    track("aviso_fechado", { fechamentos: total, ultimo: total >= LIMITE_FECHAMENTOS });
 }
 
 // Se outra aba atingir o limite, esta aba para de mostrar o aviso também (o evento `storage` só
@@ -101,6 +106,10 @@ export default function Aviso() {
     const correcao = momentoDaCorrecao();
     const pisca = consomePisca();
 
+    // Impressão: sem ela os outros eventos não têm denominador (não dá para saber se "10 cliques no
+    // CAGR" é muito ou pouco). Dispara no setup do componente, que roda uma vez por carregamento.
+    if (avisoVisible()) track("aviso_exibido", { fechamentos: fechamentos() });
+
     return (
         <Show when={avisoVisible()}>
             <div
@@ -123,12 +132,14 @@ export default function Aviso() {
                             <p>
                                 <b>
                                     Se fez sua matrícula antes de {dataDaCorrecao()}, confira se o código das turmas que
-                                    você escolheu está de acordo com o MatrUFSC atualizado ou com a listagem de turmas no{" "}
+                                    você escolheu está de acordo com o MatrUFSC atualizado ou com a listagem de turmas
+                                    no{" "}
                                     <a
                                         class="text-nowrap underline"
                                         href="https://cagr.sistemas.ufsc.br/modules/comunidade/cadastroTurmas/"
                                         target="_blank"
                                         rel="noreferrer"
+                                        onClick={() => track("aviso_link_cagr")}
                                     >
                                         CAGR
                                     </a>
@@ -139,6 +150,7 @@ export default function Aviso() {
                                     href="https://github.com/matrufsc/matrufsc.github.io/blob/main/MATERIAS_AFETADAS.md"
                                     target="_blank"
                                     rel="noreferrer"
+                                    onClick={() => track("aviso_link_materias")}
                                 >
                                     aqui
                                 </a>{" "}
