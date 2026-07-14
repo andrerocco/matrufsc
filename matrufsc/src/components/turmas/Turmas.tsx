@@ -82,27 +82,19 @@ function TurmasTableRows(props: {
     const groupedTurmas = createMemo(() => {
         if (!materia()) return [];
 
-        const turmas = materia().turmas;
-        const groupedByHorario = mergeEquivalentTurmas(turmas);
-
-        return Object.values(groupedByHorario).map((grupo) => {
-            const professores = Array.from(new Set(grupo.flatMap((turma) => turma.professores ?? []))).sort();
-            return { professores, turmas: grupo };
-        });
+        return Object.values(mergeEquivalentTurmas(materia().turmas));
     });
 
     return (
         <For each={groupedTurmas()} fallback={<TurmasEmptyRow message="Nenhuma turma disponível para esta matéria." />}>
-            {(groupedTurma) => (
+            {(turmas) => (
                 <TurmaRow
-                    id={`turma-${groupedTurma.turmas[0].id}`} // Use the first turma's id as the group id
-                    professores={groupedTurma.professores}
-                    turmas={groupedTurma.turmas}
+                    id={`turma-${turmas[0].id}`} // Use the first turma's id as the group id
+                    turmas={turmas}
                     onToggleTurmas={(turmaIds, value) => props.onToggleTurmas?.(materia().id, turmaIds, value)}
                     onMouseEnter={() => {
                         // Select one turma from the group as preview for the overlay
-                        const previewTurma =
-                            groupedTurma.turmas.find((turma) => turma.selected) ?? groupedTurma.turmas[0];
+                        const previewTurma = turmas.find((turma) => turma.selected) ?? turmas[0];
                         if (previewTurma) overlayTurma(materia().id, previewTurma);
                     }}
                     onMouseLeave={() => clearOverlay()}
@@ -122,9 +114,14 @@ function TurmasEmptyRow(props: { message: string }) {
     );
 }
 
+// Every column of a row stacks one cell per turma of the group, and the professores column renders one
+// `h-6` line per professor. The columns only line up if each turma's cell is as tall as its own professor
+// list, so all of them size their cells with `turmaCellHeight` (an emulated rowspan).
+const LINE_HEIGHT_REM = 1.5; // `h-6`
+const turmaCellHeight = (turma: Turma) => `${Math.max(1, turma.professores.length) * LINE_HEIGHT_REM}rem`;
+
 function TurmaRow(props: {
     id: string;
-    professores: string[];
     turmas: Turma[];
     onToggleTurmas: (turmaIds: string[], value: boolean) => void;
     onMouseEnter?: () => void;
@@ -155,7 +152,7 @@ function TurmaRow(props: {
                 <div class="flex h-full flex-col">
                     <For each={props.turmas}>
                         {(turma) => (
-                            <div class="flex h-6 items-center justify-center">
+                            <div class="flex items-center justify-center" style={{ height: turmaCellHeight(turma) }}>
                                 <input
                                     type="checkbox"
                                     checked={turma.selected}
@@ -171,7 +168,7 @@ function TurmaRow(props: {
             <td class="px-3 py-0.75">
                 <For each={props.turmas}>
                     {(turma) => (
-                        <div class="flex h-6 items-center">
+                        <div class="flex items-center" style={{ height: turmaCellHeight(turma) }}>
                             <span class="truncate">{turma.id}</span>
                         </div>
                     )}
@@ -183,7 +180,7 @@ function TurmaRow(props: {
                         const pedidosSemVaga = getPedidosSemVaga(turma);
 
                         return (
-                            <div class="flex h-6 items-center justify-center">
+                            <div class="flex items-center justify-center" style={{ height: turmaCellHeight(turma) }}>
                                 <span
                                     class={clsx(
                                         "whitespace-pre tabular-nums",
@@ -205,14 +202,19 @@ function TurmaRow(props: {
             </td>
             <td class="w-full min-w-0">
                 <div class="flex min-h-9 flex-col justify-center px-3 py-1">
-                    <For
-                        // each={[...props.professores, ...props.professores]}
-                        each={props.professores}
-                        fallback={<span class="text-neutral-600">---</span>}
-                    >
-                        {(professor) => (
-                            <div class="flex h-6 items-center">
-                                <p class="truncate">{professor}</p>
+                    <For each={props.turmas}>
+                        {(turma) => (
+                            <div class="flex flex-col justify-center" style={{ height: turmaCellHeight(turma) }}>
+                                <For
+                                    each={turma.professores}
+                                    fallback={<div class="flex h-6 items-center text-neutral-600">---</div>}
+                                >
+                                    {(professor) => (
+                                        <div class="flex h-6 items-center">
+                                            <p class="truncate">{professor}</p>
+                                        </div>
+                                    )}
+                                </For>
                             </div>
                         )}
                     </For>
