@@ -1,4 +1,4 @@
-import { createEffect, createResource, createSignal } from "solid-js";
+import { createEffect, createMemo, createResource, createSignal } from "solid-js";
 import { makePersisted } from "@solid-primitives/storage";
 import { createPersistedSignal } from "~/lib/createPersistedSignal";
 import { createCachedResource } from "~/lib/createCachedResource";
@@ -12,7 +12,8 @@ import { useUrlState } from "~/context/url/UrlState";
 import Header from "~/components/header/Header";
 import Footer from "~/components/footer/Footer";
 import Search from "~/components/search/Search";
-import { searchDisciplinas } from "~/components/search/searchDisciplinas";
+import { searchRows } from "~/components/search/searchDisciplinas";
+import { buildCatalogo } from "~/components/search/catalogo";
 import { disciplinaNome } from "~/lib/nomeComCurso";
 import Materias from "~/components/materias/Materias";
 import Turmas from "~/components/turmas/Turmas";
@@ -46,6 +47,7 @@ export default function App() {
         return { semester: semesterValue, campus: campusValue };
     }, campusDataQuery);
     const disciplinas = () => campusData()?.disciplinas ?? [];
+    const catalogo = createMemo(() => buildCatalogo(campusData()));
 
     createEffect(() => {
         const options = semesterOptions();
@@ -99,8 +101,7 @@ export default function App() {
                             urlStateLoading() || ((semesterOptions.loading || campusData.loading) && !campusData())
                         }
                         limit={10}
-                        data={disciplinas()}
-                        filter={(search) => searchDisciplinas(search, disciplinas())}
+                        filter={(segments) => searchRows(segments, disciplinas(), catalogo())}
                         onSelect={(materia) => {
                             const sem = semester();
                             if (sem) handleSelectMateria(materia, campus(), sem);
