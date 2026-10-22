@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { createMemo, For, Show, type Accessor } from "solid-js";
 import { mergeEquivalentTurmas } from "~/context/plano/combinacoes";
 import { usePlano, type Materia, type Turma } from "~/context/plano/Plano.store";
+import { cursoDisplayName } from "~/components/search/catalogo";
 import { useHorariosOverlay } from "../horarios/useHorariosOverlay";
 
 export default function Turmas(props: { class?: string }) {
@@ -85,12 +86,16 @@ function TurmasTableRows(props: {
         return Object.values(mergeEquivalentTurmas(materia().turmas));
     });
 
+    const multiCurso = () =>
+        new Set(materia().turmas.flatMap((turma) => (turma.curso ? [turma.curso.id] : []))).size > 1;
+
     return (
         <For each={groupedTurmas()} fallback={<TurmasEmptyRow message="Nenhuma turma disponível para esta matéria." />}>
             {(turmas) => (
                 <TurmaRow
                     id={`turma-${turmas[0].id}`} // Use the first turma's id as the group id
                     turmas={turmas}
+                    showCurso={multiCurso()}
                     onToggleTurmas={(turmaIds, value) => props.onToggleTurmas?.(materia().id, turmaIds, value)}
                     onMouseEnter={() => {
                         // Select one turma from the group as preview for the overlay
@@ -115,14 +120,17 @@ function TurmasEmptyRow(props: { message: string }) {
 }
 
 // Every column of a row stacks one cell per turma of the group, and the professores column renders one
-// `h-6` line per professor. The columns only line up if each turma's cell is as tall as its own professor
-// list, so all of them size their cells with `turmaCellHeight` (an emulated rowspan).
+// `h-6` line per professor plus, when shown, one for the curso. The columns only line up if each turma's
+// cell is as tall as its own line list, so all of them size their cells with `turmaCellHeight` (an
+// emulated rowspan).
 const LINE_HEIGHT_REM = 1.5; // `h-6`
-const turmaCellHeight = (turma: Turma) => `${Math.max(1, turma.professores.length) * LINE_HEIGHT_REM}rem`;
+const turmaCellHeight = (turma: Turma, withCurso: boolean) =>
+    `${(Math.max(1, turma.professores.length) + (withCurso ? 1 : 0)) * LINE_HEIGHT_REM}rem`;
 
 function TurmaRow(props: {
     id: string;
     turmas: Turma[];
+    showCurso: boolean;
     onToggleTurmas: (turmaIds: string[], value: boolean) => void;
     onMouseEnter?: () => void;
     onMouseLeave?: () => void;
@@ -152,7 +160,10 @@ function TurmaRow(props: {
                 <div class="flex h-full flex-col">
                     <For each={props.turmas}>
                         {(turma) => (
-                            <div class="flex items-center justify-center" style={{ height: turmaCellHeight(turma) }}>
+                            <div
+                                class="flex items-center justify-center"
+                                style={{ height: turmaCellHeight(turma, props.showCurso) }}
+                            >
                                 <input
                                     type="checkbox"
                                     checked={turma.selected}
@@ -168,7 +179,7 @@ function TurmaRow(props: {
             <td class="px-3 py-0.75">
                 <For each={props.turmas}>
                     {(turma) => (
-                        <div class="flex items-center" style={{ height: turmaCellHeight(turma) }}>
+                        <div class="flex items-center" style={{ height: turmaCellHeight(turma, props.showCurso) }}>
                             <span class="truncate">{turma.id}</span>
                         </div>
                     )}
@@ -180,7 +191,10 @@ function TurmaRow(props: {
                         const pedidosSemVaga = getPedidosSemVaga(turma);
 
                         return (
-                            <div class="flex items-center justify-center" style={{ height: turmaCellHeight(turma) }}>
+                            <div
+                                class="flex items-center justify-center"
+                                style={{ height: turmaCellHeight(turma, props.showCurso) }}
+                            >
                                 <span
                                     class={clsx(
                                         "whitespace-pre tabular-nums",
@@ -204,7 +218,10 @@ function TurmaRow(props: {
                 <div class="flex min-h-9 flex-col justify-center px-3 py-1">
                     <For each={props.turmas}>
                         {(turma) => (
-                            <div class="flex flex-col justify-center" style={{ height: turmaCellHeight(turma) }}>
+                            <div
+                                class="flex flex-col justify-center"
+                                style={{ height: turmaCellHeight(turma, props.showCurso) }}
+                            >
                                 <For
                                     each={turma.professores}
                                     fallback={<div class="flex h-6 items-center text-neutral-600">---</div>}
@@ -215,6 +232,13 @@ function TurmaRow(props: {
                                         </div>
                                     )}
                                 </For>
+                                <Show when={props.showCurso}>
+                                    <div class="flex h-6 items-center">
+                                        <p class="truncate">
+                                            {turma.curso ? cursoDisplayName(turma.curso.nome) : "---"}
+                                        </p>
+                                    </div>
+                                </Show>
                             </div>
                         )}
                     </For>

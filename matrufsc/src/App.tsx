@@ -13,6 +13,7 @@ import Header from "~/components/header/Header";
 import Footer from "~/components/footer/Footer";
 import Search from "~/components/search/Search";
 import { searchDisciplinas } from "~/components/search/searchDisciplinas";
+import { disciplinaNome } from "~/lib/nomeComCurso";
 import Materias from "~/components/materias/Materias";
 import Turmas from "~/components/turmas/Turmas";
 import Horarios from "~/components/horarios/Horarios";
@@ -104,7 +105,9 @@ export default function App() {
                             const sem = semester();
                             if (sem) handleSelectMateria(materia, campus(), sem);
                         }}
-                        getLabel={(disciplina) => `${disciplina[0]} - ${disciplina[2]}`}
+                        getLabel={(disciplina) =>
+                            `${disciplina[0]} - ${disciplinaNome(disciplina, campusData()?.cursos)}`
+                        }
                     />
                     <Materias class="mt-6" />
                 </div>
