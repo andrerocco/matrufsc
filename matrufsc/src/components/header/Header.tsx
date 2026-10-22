@@ -3,6 +3,7 @@ import { createSignal, For, onCleanup, Show } from "solid-js";
 import { writeClipboard } from "@solid-primitives/clipboard";
 import { useClickOutside } from "~/components/search/useClickOutside";
 import { useImageExport } from "~/context/image-export/ImageExport";
+import { track } from "~/lib/analytics";
 
 export default function Header(props: {
     class?: string;
@@ -113,7 +114,13 @@ function ExportOptions() {
         showingExportOptions,
     );
 
+    const handleOpenExportOptions = () => {
+        track("salvar_aberto");
+        setShowingExportOptions(true);
+    };
+
     const handleExportImage = async () => {
+        track("salvar_exportar_imagem");
         await exportImage();
         setShowingExportOptions(false);
     };
@@ -124,6 +131,7 @@ function ExportOptions() {
     };
 
     const handleShareLink = async () => {
+        track("salvar_compartilhar_link");
         try {
             await writeClipboard(window.location.href);
             setShareStatus("copied");
@@ -144,7 +152,7 @@ function ExportOptions() {
             <Show
                 when={showingExportOptions()}
                 fallback={
-                    <button class="link cursor-pointer" onClick={() => setShowingExportOptions(true)}>
+                    <button class="link cursor-pointer" onClick={handleOpenExportOptions}>
                         Salvar
                     </button>
                 }
