@@ -84,7 +84,7 @@ CONSUMPTION_POINTS = {
     "curso_field_type": "JSONTurma[9]: number | null (curso ofertante)",
     "horario_split": "getTurmaFromJSON: rawAula.split(' / ') / .split('.') / .split('-')",
     "horario_decode": "getHorarioList (lança exceção) + grade por dia_semana",
-    "curso_resolution": "futuro: resolução curso→nome via JSONCampus.cursos[curso]",
+    "curso_resolution": "getCursoFromJSON: resolução curso→nome via JSONCampus.cursos[curso]",
     "file_routing": "fetch de data/<ano>/<semestre>-<campus>.json (roteamento por arquivo)",
     "semester_routing": "semestre no caminho data/<ano>/<sem>-<campus> e SEMESTER_PATTERN da URL",
     "disciplina_by_codigo": "índice de disciplina por código; reconstrução por URL",

@@ -30,7 +30,7 @@ export const isCampusCode = (value: string): value is JSONCampusCode => CAMPUS_C
 export interface JSONCampus {
     campus: JSONCampusCode;
     data_extracao: string;
-    cursos: Record<string, string>; // { [id do curso]: nome do curso ofertante }
+    cursos?: Record<string, string>; // { [id do curso]: nome do curso ofertante }; ausente em arquivos legados
     disciplinas: JSONDisciplina[];
 }
 

@@ -55,7 +55,7 @@ export default function App() {
     });
 
     const handleSelectMateria = (disciplina: JSONDisciplina, campus: string, semester: string) => {
-        const parsedMateria = getDisciplinaFromJSON(disciplina, campus, semester);
+        const parsedMateria = getDisciplinaFromJSON(disciplina, campus, semester, campusData()?.cursos);
         try {
             addMateria(parsedMateria);
         } catch (error) {

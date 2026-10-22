@@ -33,6 +33,7 @@ describe("JSON Transformers", () => {
                     },
                 ],
                 professores: ["Cláudia Destro dos Santos"],
+                curso: null,
                 selected: true,
             });
         });
@@ -71,6 +72,7 @@ describe("JSON Transformers", () => {
                     },
                 ],
                 professores: ["Cristian Cechinel"],
+                curso: null,
                 selected: true,
             });
         });
@@ -114,8 +116,7 @@ describe("JSON Transformers", () => {
         });
 
         test("tolerates a legacy 9-field turma (no curso field)", () => {
-            // Legacy files predate the 10th `curso` field; the parser reads only
-            // indices 0–8, so a 9-field turma must still decode to the same domain.
+            // Legacy files predate the 10th `curso` field and the campus `cursos` map.
             const legacy = [
                 "01652",
                 36,
@@ -134,9 +135,10 @@ describe("JSON Transformers", () => {
             assert.strictEqual(result.carga_horaria, 36);
             assert.deepStrictEqual(result.aulas[0], { dia_semana: 6, horarios: [10, 11], sala: "CTS-SL117A" });
             assert.deepStrictEqual(result.professores, ["Cláudia Destro dos Santos"]);
+            assert.strictEqual(result.curso, null);
         });
 
-        test("ignores the curso field (index 9) when present and non-null", () => {
+        test("resolves the curso field (index 9) to its name through the campus map", () => {
             const withCurso: JSONTurma = [
                 "01652",
                 36,
@@ -147,13 +149,32 @@ describe("JSON Transformers", () => {
                 0,
                 ["6.1830-2 / CTS-SL117A"],
                 ["Cláudia Destro dos Santos"],
-                302, // curso ofertante — not surfaced on the domain object
+                302,
             ];
 
-            const result = getTurmaFromJSON(withCurso);
+            const result = getTurmaFromJSON(withCurso, { "302": "CIÊNCIAS CONTÁBEIS", "342": "CIÊNCIA DA INFORMAÇÃO" });
 
-            assert.strictEqual(result.id, "01652");
-            assert.strictEqual((result as unknown as Record<string, unknown>).curso, undefined);
+            assert.deepStrictEqual(result.curso, { id: 302, nome: "CIÊNCIAS CONTÁBEIS" });
+        });
+
+        test("yields no curso when the id is null or missing from the campus map", () => {
+            const base: JSONTurma = [
+                "01652",
+                36,
+                37,
+                27,
+                0,
+                10,
+                0,
+                ["6.1830-2 / CTS-SL117A"],
+                ["Cláudia Destro dos Santos"],
+                null,
+            ];
+            const cursos = { "302": "CIÊNCIAS CONTÁBEIS" };
+
+            assert.strictEqual(getTurmaFromJSON(base, cursos).curso, null);
+            assert.strictEqual(getTurmaFromJSON([...base.slice(0, 9), 999] as JSONTurma, cursos).curso, null);
+            assert.strictEqual(getTurmaFromJSON([...base.slice(0, 9), 302] as JSONTurma).curso, null);
         });
     });
 
@@ -187,6 +208,7 @@ describe("JSON Transformers", () => {
                             },
                         ],
                         professores: ["Simone Meister Sommer Bilessimo"],
+                        curso: null,
                         selected: true,
                     },
                 ],
@@ -220,6 +242,31 @@ describe("JSON Transformers", () => {
                 horarios: [10, 11],
                 sala: "CTS-SL117A",
             });
+        });
+
+        test("resolves each turma's curso through the campus map", () => {
+            const jsonDisciplina: JSONDisciplina = [
+                "ANT7101",
+                "INTRODUCAO A ANTROPOLOGIA",
+                "Introdução à Antropologia",
+                [
+                    ["01319", 72, 40, 10, 0, 30, 0, ["2.0820-2 / CFH-301"], ["Fulano"], 319],
+                    ["01320", 72, 40, 10, 0, 30, 0, ["3.0820-2 / CFH-301"], ["Beltrano"], 320],
+                ],
+            ];
+
+            const result = getDisciplinaFromJSON(jsonDisciplina, "FLO", "20262", {
+                "319": "PSICOLOGIA",
+                "320": "ANTROPOLOGIA",
+            });
+
+            assert.deepStrictEqual(
+                result.turmas.map((turma) => turma.curso),
+                [
+                    { id: 319, nome: "PSICOLOGIA" },
+                    { id: 320, nome: "ANTROPOLOGIA" },
+                ],
+            );
         });
     });
 });
