@@ -74,12 +74,21 @@ def choose_target_semester(session, public_data_dir):
 def parse_and_write_xmls(xml_files, stage_dir):
     changed = False
     data_extracao = extraction_time()
+    campus_by_codes = {}
 
     for filepath in xml_files:
         semester, campus = extract_semester_campus(filepath)
         disciplinas = parse_xml_file(filepath)
         if not disciplinas:
             raise RuntimeError(f"{os.path.basename(filepath)} nao possui disciplinas; abortando para evitar dados vazios")
+
+        codes = frozenset(disciplina[0] for disciplina in disciplinas)
+        if codes in campus_by_codes:
+            raise RuntimeError(
+                f"{campus} e {campus_by_codes[codes]} retornaram as mesmas disciplinas em {semester}; "
+                "o CAGR ignorou o filtro de campus, abortando para evitar dados trocados"
+            )
+        campus_by_codes[codes] = campus
 
         changed = write_campus_if_changed(stage_dir, semester, campus, disciplinas, data_extracao) or changed
 

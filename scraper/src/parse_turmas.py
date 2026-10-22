@@ -8,22 +8,32 @@ import os
 import re
 
 
+XHTML_NS = "{http://www.w3.org/1999/xhtml}"
+
+
+def find_id(xml, id):
+    for x in xml:
+        if x.get("id") == id:
+            return x
+        y = find_id(x, id)
+        if y is not None:
+            return y
+    return None
+
+
 def iter_rows_from_xml_text(xml_text):
-    """Itera pelas linhas de disciplinas em uma resposta AJAX do CAGR."""
-    split = xml_text.split('<?xml version="1.0"?>')
-
-    for xml in split:
-        if len(xml) == 0:
+    """Itera pelas linhas de disciplinas em uma ou mais respostas AJAX do CAGR."""
+    for xml in xml_text.split('<?xml version="1.0"?>'):
+        if not xml.strip():
             continue
 
-        root = cElementTree.fromstring(xml)
-        try:
-            rows = root[1][1][2]
-        except IndexError:
+        table = find_id(cElementTree.fromstring(xml), "formBusca:dataTable")
+        if table is None:
             continue
 
-        for row in rows:
-            yield row
+        for section in table:
+            if section.tag == XHTML_NS + "tbody":
+                yield from section
 
 
 def count_rows_in_xml_text(xml_text):

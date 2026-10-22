@@ -21,7 +21,8 @@ uv sync
 
 1. Lê o semestre mais recente do baseline (`--public-data-dir`).
 2. Calcula o próximo semestre e verifica no CAGR se ele já tem turmas para
-   **todos** os campi esperados.
+   **todos** os campi esperados, executando a busca real (botão "Buscar") para
+   cada campus.
 3. Se estiver completo, scrapeia esse novo semestre; senão, re-scrapeia o
    semestre mais recente já indexado.
 4. Escreve o resultado num diretório de _staging_, reescrevendo cada arquivo de
@@ -65,6 +66,11 @@ antigo). Assim um `git diff` simples decide se há algo a publicar.
 
 - **`src/main.py`** — reconciliador/orquestrador; ponto de entrada único.
 - **`src/get_turmas.py`** — sessão e scraping bruto do CAGR (XML por campus).
+  O CAGR só reexecuta a consulta ao receber o evento do botão "Buscar" ou uma
+  mudança de página; pedir "página 1" já estando na página 1 devolve o
+  resultado anterior, ignorando semestre e campus. Por isso cada campus começa
+  por `search()` (página 1) e só depois pagina com `fetch_page()`, e cada
+  resposta é conferida contra a página pedida.
 - **`src/parse_turmas.py`** — converte os XMLs nas tuplas compactas do app.
 - **`src/semesters.py`** — regras de dados: campi esperados, cálculo de
   semestre, índice, staging, escrita idempotente e validação de contrato.
