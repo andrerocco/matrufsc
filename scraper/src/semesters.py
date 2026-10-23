@@ -139,25 +139,30 @@ def prepare_stage(public_data_dir, stage_dir):
     return stage_dir
 
 
-def write_campus_if_changed(data_dir, semester, campus, disciplinas, data_extracao):
+def write_campus_if_changed(data_dir, semester, campus, disciplinas, cursos, data_extracao):
     output_path = os.path.join(data_dir, semester[:4], f"{semester}-{campus}.json")
     data = {
         "campus": campus,
         "data_extracao": data_extracao,
+        "cursos": cursos,
         "disciplinas": disciplinas,
     }
 
     if os.path.exists(output_path):
         try:
             existing = load_json(output_path)
-            if existing.get("campus") == campus and existing.get("disciplinas") == disciplinas:
+            if (
+                existing.get("campus") == campus
+                and existing.get("cursos") == cursos
+                and existing.get("disciplinas") == disciplinas
+            ):
                 print(f"  {semester}-{campus}.json unchanged")
                 return False
         except json.JSONDecodeError:
             pass
 
     write_json(output_path, data)
-    print(f"  {semester}-{campus}.json updated ({len(disciplinas)} disciplinas)")
+    print(f"  {semester}-{campus}.json updated ({len(disciplinas)} disciplinas, {len(cursos)} cursos)")
     return True
 
 
@@ -183,9 +188,17 @@ def _is_int(value):
     return isinstance(value, int) and not isinstance(value, bool)
 
 
-def _validate_turma(ctx, turma):
-    if not isinstance(turma, list) or len(turma) != 9:
-        raise RuntimeError(f"{ctx}: turma deve ter 9 campos, tem {len(turma) if isinstance(turma, list) else 'nao-lista'}")
+CURSO_KEY_RE = re.compile(r"0|[1-9]\d*")
+
+
+def _validate_turma(ctx, turma, cursos):
+    # Legacy files (no `cursos` map) carry 9 fields per turma; current files add
+    # the curso id and the status.
+    expected = 9 if cursos is None else 11
+    if not isinstance(turma, list) or len(turma) != expected:
+        raise RuntimeError(
+            f"{ctx}: turma deve ter {expected} campos, tem {len(turma) if isinstance(turma, list) else 'nao-lista'}"
+        )
     if not isinstance(turma[0], str) or not turma[0]:
         raise RuntimeError(f"{ctx}: id da turma invalido")
     for i in range(1, 7):
@@ -194,19 +207,44 @@ def _validate_turma(ctx, turma):
     for i, name in ((7, "horarios"), (8, "professores")):
         if not isinstance(turma[i], list) or not all(isinstance(x, str) for x in turma[i]):
             raise RuntimeError(f"{ctx}: {name} deve ser lista de strings")
+    if cursos is None:
+        return
+    if not _is_int(turma[9]):
+        raise RuntimeError(f"{ctx}: curso deve ser inteiro ({turma[9]!r})")
+    if str(turma[9]) not in cursos:
+        raise RuntimeError(f"{ctx}: curso {turma[9]} nao consta em cursos")
+    if turma[10] is not None and (not isinstance(turma[10], str) or not turma[10]):
+        raise RuntimeError(f"{ctx}: status deve ser string nao vazia ou null ({turma[10]!r})")
 
 
-def _validate_disciplina(ctx, disciplina):
+def _validate_disciplina(ctx, disciplina, cursos):
     if not isinstance(disciplina, list) or len(disciplina) != 4:
         raise RuntimeError(f"{ctx}: disciplina deve ter 4 campos")
     codigo, nome_ascii, nome, turmas = disciplina
     for value, name in ((codigo, "codigo"), (nome_ascii, "nome_ascii"), (nome, "nome")):
         if not isinstance(value, str) or not value:
             raise RuntimeError(f"{ctx}: {name} invalido")
+    if cursos is not None and "[" in nome:
+        raise RuntimeError(f"{ctx}: nome da disciplina com status vazado ({nome!r})")
     if not isinstance(turmas, list) or not turmas:
         raise RuntimeError(f"{ctx}: deve ter ao menos uma turma")
-    for i, turma in enumerate(turmas):
-        _validate_turma(f"{ctx} turma {i}", turma)
+    ids = set()
+    for turma in turmas:
+        turma_id = turma[0] if isinstance(turma, list) and turma else "?"
+        _validate_turma(f"{ctx} turma {turma_id}", turma, cursos)
+        if cursos is not None and turma_id in ids:
+            raise RuntimeError(f"{ctx}: turma {turma_id} repetida")
+        ids.add(turma_id)
+
+
+def _validate_cursos(ctx, cursos):
+    if not isinstance(cursos, dict) or not cursos:
+        raise RuntimeError(f"{ctx}: cursos deve ser um mapa nao vazio")
+    for key, nome in cursos.items():
+        if not CURSO_KEY_RE.fullmatch(key):
+            raise RuntimeError(f"{ctx}: chave de curso invalida ({key!r})")
+        if not isinstance(nome, str) or not nome:
+            raise RuntimeError(f"{ctx}: nome do curso {key} invalido ({nome!r})")
 
 
 def validate_data_dir(data_dir):
@@ -223,12 +261,24 @@ def validate_data_dir(data_dir):
                 raise RuntimeError(f"{semester}-{campus}.json ausente no staging")
 
             data = load_json(path)
+            ctx = f"{semester}-{campus}"
             if data.get("campus") != campus:
-                raise RuntimeError(f"{semester}-{campus}.json possui campus invalido: {data.get('campus')}")
+                raise RuntimeError(f"{ctx}.json possui campus invalido: {data.get('campus')}")
             if not isinstance(data.get("data_extracao"), str) or not data["data_extracao"]:
-                raise RuntimeError(f"{semester}-{campus}.json sem data_extracao")
+                raise RuntimeError(f"{ctx}.json sem data_extracao")
             disciplinas = data.get("disciplinas")
             if not isinstance(disciplinas, list) or not disciplinas:
-                raise RuntimeError(f"{semester}-{campus}.json nao possui disciplinas")
+                raise RuntimeError(f"{ctx}.json nao possui disciplinas")
+            cursos = None
+            if "cursos" in data:
+                cursos = data["cursos"]
+                _validate_cursos(ctx, cursos)
+                seen = set()
+                for disciplina in disciplinas:
+                    codigo = disciplina[0] if isinstance(disciplina, list) and disciplina else None
+                    if codigo in seen:
+                        raise RuntimeError(f"{ctx}.json possui o codigo {codigo} repetido")
+                    seen.add(codigo)
             for i, disciplina in enumerate(disciplinas):
-                _validate_disciplina(f"{semester}-{campus} disciplina {i}", disciplina)
+                codigo = disciplina[0] if isinstance(disciplina, list) and disciplina else f"#{i}"
+                _validate_disciplina(f"{ctx} {codigo}", disciplina, cursos)

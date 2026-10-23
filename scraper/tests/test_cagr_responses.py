@@ -1,37 +1,20 @@
 import os
-import sys
 import tempfile
 import unittest
 from unittest import mock
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
-
-import get_turmas  # noqa: E402
-from get_turmas import CagrSession, active_page, go_on, iter_pages, make_page_form, make_search_form, parse_ajax_xml, probe_semester_availability  # noqa: E402
-from main import parse_and_write_xmls  # noqa: E402
-from parse_turmas import count_rows_in_xml_text, iter_rows_from_xml_text, parse_xml_text  # noqa: E402
+import get_turmas
+from get_turmas import CagrSession, active_page, go_on, iter_pages, make_page_form, make_search_form, parse_ajax_xml, probe_semester_availability
+from main import parse_and_write_xmls
+from parse_turmas import count_rows_in_xml_text, iter_rows_from_xml_text, parse_xml_text
+from cagr_xml import cagr_row, cagr_table
 
 XML_HEADER = '<?xml version="1.0"?>'
 
 
 def row(codigo, turma="01208"):
-    cells = [
-        "<td/>",
-        "<td/>",
-        "<td/>",
-        f"<td>{codigo}</td>",
-        f"<td>{turma}</td>",
-        f"<td>Nome de {codigo}</td>",
-        "<td>72</td>",
-        "<td>50</td>",
-        "<td>10</td>",
-        "<td>0</td>",
-        "<td>40</td>",
-        "<td>0</td>",
-        "<td>2.1330-2 / CTC-CTC102</td>",
-        '<td><a title="x">Professor Um</a></td>',
-    ]
-    return "<tr>" + "".join(cells) + "</tr>"
+    return cagr_row(codigo, turma, nome=f"Nome de {codigo}", curso_id=208, nome_curso="ENGENHARIA MECANICA",
+                    horarios=("2.1330-2 / CTC-CTC102",), professores=("Professor Um",))
 
 
 def scroller(active, has_next):
@@ -44,11 +27,7 @@ def scroller(active, has_next):
 
 
 def table(rows):
-    return (
-        '<table id="formBusca:dataTable"><colgroup/><thead><tr/></thead><tbody>'
-        + "".join(rows)
-        + "</tbody></table>"
-    )
+    return cagr_table(rows)
 
 
 def scroll_response(rows, active=2, has_next=True, with_scroller=True):
@@ -82,7 +61,7 @@ class RowLocationTests(unittest.TestCase):
 
     def test_parse_groups_turmas_by_disciplina(self):
         xml = search_response([row("EMB5001", "01208"), row("EMB5001", "01209"), row("EMB5005")])
-        materias = parse_xml_text(xml)
+        materias, _ = parse_xml_text(xml)
         self.assertEqual([m[0] for m in materias], ["EMB5001", "EMB5005"])
         self.assertEqual([t[0] for t in materias[0][3]], ["01208", "01209"])
 
