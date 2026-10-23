@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { For, Show } from "solid-js";
 import { usePlano, type Materia, type Turma } from "~/context/plano/Plano.store";
+import { materiaNome } from "~/lib/nomeComCurso";
 import { useHorariosOverlay } from "../horarios/useHorariosOverlay";
 
 export default function Materias(props: { class?: string }) {
@@ -146,7 +147,7 @@ function MateriaRow(props: {
             </td>
             <td class="px-3 py-1.5">{props.materia.id}</td>
             <td class="relative px-3 py-1.5">
-                <span>{props.materia.nome}</span>
+                <span>{materiaNome(props.materia)}</span>
                 <div class="absolute top-1/2 right-0 flex -translate-y-1/2 items-stretch opacity-0 select-none group-hover:opacity-100">
                     <button
                         type="button"
