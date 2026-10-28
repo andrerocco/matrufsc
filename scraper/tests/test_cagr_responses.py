@@ -73,7 +73,7 @@ class RowLocationTests(unittest.TestCase):
         xml = search_response([row("EMB5001", "01208"), row("EMB5001", "01209"), row("EMB5005")])
         materias, _ = parse_xml_text(xml)
         self.assertEqual([m[0] for m in materias], ["EMB5001", "EMB5005"])
-        self.assertEqual([t[0] for t in materias[0][3]], ["01208", "01209"])
+        self.assertEqual([t[0] for t in materias[0][2]], ["01208", "01209"])
 
 
 class ScrollerTests(unittest.TestCase):
