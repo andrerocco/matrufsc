@@ -2,7 +2,7 @@
 
 from io import BytesIO
 from bs4 import BeautifulSoup
-from parse_turmas import count_rows_in_xml_text, find_id
+from parse_turmas import announced_total, count_rows_in_xml_text, find_id
 from semesters import CAMPUS_FORM_VALUES, campus_codes_for_semester
 from xml.etree import ElementTree as ET
 import http.cookiejar
@@ -199,16 +199,36 @@ def probe_semester_availability(semestre, campus_codes=None, session=None):
 
 
 def iter_pages(session, semestre, campus_code):
+    """Páginas de um campus, conferidas contra o total que a busca anuncia.
+
+    A paginação do CAGR é por deslocamento sobre a consulta viva: uma turma
+    inserida ou removida no meio do scrape repete ou engole uma linha na
+    fronteira de página. As linhas coletadas têm de bater com o total da
+    página 1, e uma nova busca ao fim tem de anunciar o mesmo total.
+    """
     data = session.search(semestre, campus_code)
+    total = announced_total(parse_ajax_xml(data))
     page = 1
+    rows = 0
     while True:
+        rows += count_rows_in_xml_text(data)
         yield data
         if not go_on(parse_ajax_xml(data)):
-            return
+            break
         page += 1
         if page > MAX_PAGES_PER_CAMPUS:
             raise RuntimeError(f"Campus {campus_code} excedeu {MAX_PAGES_PER_CAMPUS} paginas em {semestre}; abortando")
         data = session.fetch_page(semestre, campus_code, page)
+
+    if rows != total:
+        raise RuntimeError(
+            f"{semestre}-{campus_code}: a busca anunciou {total} resultados e a paginacao coletou {rows} linhas em {page} pagina(s)"
+        )
+    final = announced_total(parse_ajax_xml(session.search(semestre, campus_code)))
+    if final != total:
+        raise RuntimeError(
+            f"{semestre}-{campus_code}: a busca anunciava {total} resultados antes da paginacao e {final} depois"
+        )
 
 
 def scrape(semestre, output_dir=".", campus_codes=None, session=None):

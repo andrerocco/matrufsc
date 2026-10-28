@@ -7,7 +7,7 @@ Daily behavior (no --semester):
 1. Check whether the next semester has rows for every expected campus.
 2. If complete, scrape that new semester and index it.
 3. Otherwise, refresh the latest indexed semester.
-4. Write staged campus JSON files only when the class payload changed.
+4. Write staged campus JSON files only when the class payload or curso map changed.
 
 Manual behavior (--semester 20262): scrape exactly that semester, skipping the
 availability probe. This replaces the old `make <semester>` target.
@@ -78,7 +78,7 @@ def parse_and_write_xmls(xml_files, stage_dir):
 
     for filepath in xml_files:
         semester, campus = extract_semester_campus(filepath)
-        disciplinas = parse_xml_file(filepath)
+        disciplinas, cursos = parse_xml_file(filepath)
         if not disciplinas:
             raise RuntimeError(f"{os.path.basename(filepath)} nao possui disciplinas; abortando para evitar dados vazios")
 
@@ -90,7 +90,7 @@ def parse_and_write_xmls(xml_files, stage_dir):
             )
         campus_by_codes[codes] = campus
 
-        changed = write_campus_if_changed(stage_dir, semester, campus, disciplinas, data_extracao) or changed
+        changed = write_campus_if_changed(stage_dir, semester, campus, disciplinas, cursos, data_extracao) or changed
 
     changed = write_index_if_changed(stage_dir) or changed
     return changed
