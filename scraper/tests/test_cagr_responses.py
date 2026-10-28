@@ -5,6 +5,7 @@ from unittest import mock
 
 import get_turmas
 from get_turmas import CagrSession, active_page, go_on, iter_pages, make_page_form, make_search_form, parse_ajax_xml, probe_semester_availability
+from parse_turmas import announced_total
 from main import parse_and_write_xmls
 from parse_turmas import count_rows_in_xml_text, iter_rows_from_xml_text, parse_xml_text
 from cagr_xml import cagr_row, cagr_table
@@ -35,11 +36,20 @@ def scroll_response(rows, active=2, has_next=True, with_scroller=True):
     return f'{XML_HEADER}<html xmlns="http://www.w3.org/1999/xhtml"><head/><body><span id="a"/>{body}</body></html>'
 
 
-def search_response(rows, active=1, has_next=True):
+def total_group(inner, total):
+    """`formBusca:dataTableGroup`, que só a resposta do botão "Buscar" atualiza:
+    a frase com o total (omitida quando não há resultado), o scroller e a tabela."""
+    phrase = f'<span style="font-weight: bold;">{total}</span> resultados foram encontrados<br/>' if total else "<br/>"
+    return f'<span id="formBusca:dataTableGroup"><br/>{phrase}<br/>{inner}</span>'
+
+
+def search_response(rows, active=1, has_next=True, total=None, group=True):
     inner = "".join(f'<span id="s{i}"/>' for i in range(5))
     if rows:
         inner += scroller(active, has_next)
     inner += table(rows)
+    if group:
+        inner = total_group(inner, len(rows) if total is None else total)
     return f'{XML_HEADER}<html xmlns="http://www.w3.org/1999/xhtml"><head/><body><div id="wrap">{inner}</div></body></html>'
 
 
@@ -150,30 +160,89 @@ class FakeCagr(CagrSession):
         return self.responses.pop(0)
 
 
+class AnnouncedTotalTests(unittest.TestCase):
+    def test_total_comes_from_the_phrase_above_the_table(self):
+        self.assertEqual(announced_total(parse_ajax_xml(search_response([row("EMB5001")], total=5372))), 5372)
+
+    def test_empty_search_omits_the_phrase(self):
+        self.assertEqual(announced_total(parse_ajax_xml(search_response([]))), 0)
+
+    def test_search_without_the_group_raises(self):
+        with self.assertRaisesRegex(RuntimeError, "sem formBusca:dataTableGroup"):
+            announced_total(parse_ajax_xml(search_response([row("EMB5001")], group=False)))
+
+    def test_scroll_page_has_no_group(self):
+        with self.assertRaisesRegex(RuntimeError, "sem formBusca:dataTableGroup"):
+            announced_total(parse_ajax_xml(scroll_response([row("EMB5001")])))
+
+    def test_total_that_is_not_a_number_raises(self):
+        xml = search_response([row("EMB5001")], total="muitos")
+        with self.assertRaisesRegex(RuntimeError, "fora do padrao.*muitos"):
+            announced_total(parse_ajax_xml(xml))
+
+
 class PaginationTests(unittest.TestCase):
     def test_page_one_comes_from_search_and_the_rest_from_scroller(self):
         session = FakeCagr([
-            search_response([row("EMB5001")], has_next=True),
+            search_response([row("EMB5001")], has_next=True, total=3),
             scroll_response([row("EMB5002")], active=2, has_next=True),
             scroll_response([row("EMB5003")], active=3, has_next=False),
+            search_response([row("EMB5001")], has_next=True, total=3),
         ])
         pages = list(iter_pages(session, "20271", "JOI"))
         self.assertEqual(len(pages), 3)
         self.assertIn("formBusca:j_id119", session.forms[0])
         self.assertNotIn("formBusca:dataScroller1", session.forms[0])
-        self.assertEqual([f.get("formBusca:dataScroller1") for f in session.forms[1:]], ["2", "3"])
-        self.assertTrue(all("formBusca:j_id119" not in f for f in session.forms[1:]))
+        self.assertEqual([f.get("formBusca:dataScroller1") for f in session.forms[1:3]], ["2", "3"])
+        self.assertTrue(all("formBusca:j_id119" not in f for f in session.forms[1:3]))
         self.assertTrue(all(f["formBusca:selectCampus"] == "2" for f in session.forms))
 
-    def test_single_page_campus_stops_after_search(self):
-        session = FakeCagr([search_response([row("EMB5001")], has_next=False)])
+    def test_campus_ends_with_a_new_search_to_confirm_the_total(self):
+        session = FakeCagr([
+            search_response([row("EMB5001")], has_next=False),
+            search_response([row("EMB5001")], has_next=False),
+        ])
         self.assertEqual(len(list(iter_pages(session, "20271", "JOI"))), 1)
-        self.assertEqual(len(session.forms), 1)
+        self.assertEqual(len(session.forms), 2)
+        self.assertIn("formBusca:j_id119", session.forms[1])
+        self.assertNotIn("formBusca:dataScroller1", session.forms[1])
 
     def test_empty_campus_yields_one_page_without_rows(self):
-        session = FakeCagr([search_response([])])
+        session = FakeCagr([search_response([]), search_response([])])
         pages = list(iter_pages(session, "20271", "JOI"))
         self.assertEqual(count_rows_in_xml_text("".join(pages)), 0)
+
+    def test_fewer_rows_than_announced_raises(self):
+        """Turma removida no CAGR durante a paginacao: a pagina seguinte pula uma linha."""
+        session = FakeCagr([
+            search_response([row("EMB5001")], has_next=True, total=3),
+            scroll_response([row("EMB5003")], active=2, has_next=False),
+        ])
+        with self.assertRaisesRegex(RuntimeError, "20271-JOI: a busca anunciou 3 resultados e a paginacao coletou 2 linhas em 2 pagina"):
+            list(iter_pages(session, "20271", "JOI"))
+
+    def test_more_rows_than_announced_raises(self):
+        """Turma inserida no CAGR durante a paginacao: a pagina seguinte repete uma linha."""
+        session = FakeCagr([
+            search_response([row("EMB5001")], has_next=True, total=2),
+            scroll_response([row("EMB5001"), row("EMB5002")], active=2, has_next=False),
+        ])
+        with self.assertRaisesRegex(RuntimeError, "anunciou 2 resultados e a paginacao coletou 3 linhas"):
+            list(iter_pages(session, "20271", "JOI"))
+
+    def test_total_changed_by_the_end_raises(self):
+        session = FakeCagr([
+            search_response([row("EMB5001")], has_next=False),
+            search_response([row("EMB5001")], has_next=False, total=2),
+        ])
+        with self.assertRaisesRegex(RuntimeError, "20271-JOI: a busca anunciava 1 resultados antes da paginacao e 2 depois"):
+            list(iter_pages(session, "20271", "JOI"))
+
+    def test_search_without_total_raises_before_paging(self):
+        session = FakeCagr([search_response([row("EMB5001")], has_next=True, group=False)])
+        with self.assertRaisesRegex(RuntimeError, "sem formBusca:dataTableGroup"):
+            next(iter_pages(session, "20271", "JOI"))
+        self.assertEqual(len(session.forms), 1)
 
     def test_wrong_page_raises(self):
         session = FakeCagr([
