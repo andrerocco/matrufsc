@@ -83,17 +83,20 @@ describe("getTurmaFromJSON", () => {
     });
 
     test("throws for an aula outside dia.HHMM-N / sala", () => {
-        for (const raw of ["20730-2 / X", "2.0730-2", "2.0730-0 / X", "2.0730-x / X", "x.0730-2 / X", "2.730-2 / X"]) {
+        for (const raw of [
+            "8.0730-2 / X",
+            "0.0730-2 / X",
+            "20730-2 / X",
+            "2.0730-2",
+            "2.0730-0 / X",
+            "2.0730-x / X",
+            "x.0730-2 / X",
+            "2.730-2 / X",
+        ]) {
             assert.throws(() => getTurmaFromJSON(turma({ 7: [raw] }), CURSOS), {
                 message: `Aula "${raw}" is not in the format dia.HHMM-N / sala.`,
             });
         }
-    });
-
-    test("throws for a dia outside DIAS_SEMANA", () => {
-        assert.throws(() => getTurmaFromJSON(turma({ 7: ["8.0730-2 / X"] }), CURSOS), {
-            message: 'Aula "8.0730-2 / X" is on dia 8, expected one of 1, 2, 3, 4, 5, 6, 7.',
-        });
     });
 
     test("throws for a horário de início outside HORAS", () => {

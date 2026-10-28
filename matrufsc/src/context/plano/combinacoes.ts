@@ -1,4 +1,4 @@
-import { HORAS } from "~/data/constants";
+import { HORAS } from "~/data/schema";
 import type { Materia, Turma } from "~/data/types";
 import type { Plano } from "./Plano.store";
 

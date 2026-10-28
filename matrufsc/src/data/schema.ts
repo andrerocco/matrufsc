@@ -18,6 +18,24 @@ export type JSONTurma = [
     string | null, // Status mostrado pelo CAGR entre colchetes
 ];
 
+// Horários de início que uma aula "dia.HHMM-N / sala" pode citar, na ordem do dia.
+export const HORAS = [
+    "0730",
+    "0820",
+    "0910",
+    "1010",
+    "1100",
+    "1330",
+    "1420",
+    "1510",
+    "1620",
+    "1710",
+    "1830",
+    "1920",
+    "2020",
+    "2110",
+];
+
 export type JSONDisciplina = [
     string, // Código
     string, // Nome
