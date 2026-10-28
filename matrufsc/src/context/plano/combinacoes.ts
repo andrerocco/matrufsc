@@ -1,5 +1,6 @@
-import { HORAS } from "~/context/plano/constants";
-import type { Materia, Plano, Turma } from "./Plano.store";
+import { HORAS } from "~/data/schema";
+import type { Materia, Turma } from "~/data/types";
+import type { Plano } from "./Plano.store";
 
 const NUM_DIAS = 7; // 1 = domingo, ..., 7 = sabado
 const NUM_SLOTS = HORAS.length;

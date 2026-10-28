@@ -46,15 +46,33 @@ jobs:
         working-directory: ./scraper
         run: uv sync
 
-      # Scrapes CAGR, reconciles against the baseline, and validates the result
-      # against the frontend tuple contract. Fails (keeping the last good data)
-      # if CAGR is unreachable or the payload looks broken.
+      # Scrapes CAGR, reconciles against the baseline, and runs the checks the
+      # site parser cannot make (missing campus, disciplina count dropping...).
+      # Fails (keeping the last good data) if CAGR is unreachable or the
+      # payload looks broken.
       - name: Scrape and reconcile
         working-directory: ./scraper/src
         run: |
           uv run python main.py \
             --public-data-dir "$GITHUB_WORKSPACE/current-data" \
             --stage-dir "$GITHUB_WORKSPACE/staged-data"
+
+      - name: Set up Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: lts/*
+          cache: "npm"
+          cache-dependency-path: matrufsc/package-lock.json
+
+      - name: Install site dependencies
+        working-directory: ./matrufsc
+        run: npm ci
+
+      # Runs the site's own parser over the staging. What it cannot read, the
+      # browser cannot either, so publication stops here.
+      - name: Gate
+        working-directory: ./matrufsc
+        run: npm run data:gate -- "$GITHUB_WORKSPACE/staged-data"
 
       - name: Detect changes
         id: diff

@@ -27,7 +27,7 @@ uv sync
    semestre mais recente já indexado.
 4. Escreve o resultado num diretório de _staging_, reescrevendo cada arquivo de
    campus só quando `disciplinas` ou `cursos` muda de fato.
-5. Valida o staging contra o contrato de tuplas do frontend antes de terminar.
+5. Confere o staging (ver [Validação](#validação)) antes de terminar.
 
 ```bash
 uv run python src/main.py \
@@ -43,8 +43,9 @@ Para forçar o scrape de um semestre (substitui o antigo `make <semestre>`):
 uv run python src/main.py --semester 20262 --stage-dir /tmp/matrufsc-data
 ```
 
-Depois de validar o staging, copie-o para onde precisar — ou publique na branch
-`data`. Localmente, `cd ../matrufsc && npm run data:pull` traz a `data` de volta
+Depois, rode o gate do site sobre o staging
+(`cd ../matrufsc && npm run data:gate -- /tmp/matrufsc-data`) e copie-o para
+onde precisar — ou publique na branch `data`. Localmente, `cd ../matrufsc && npm run data:pull` traz a `data` de volta
 para `public/data`.
 
 ## Publicação: branch `data`, sem poluir a `main`
@@ -80,7 +81,9 @@ publicar.
 - **`src/parse_turmas.py`** — converte os XMLs nas tuplas compactas do app e no
   mapa `cursos`; falha em qualquer linha fora do padrão (ver abaixo).
 - **`src/semesters.py`** — regras de dados: campi esperados, cálculo de
-  semestre, índice, staging, escrita idempotente e validação de contrato.
+  semestre, índice, staging e escrita idempotente.
+- **`src/checks.py`** — conferências do staging que o parser do site não faz
+  (ver [Validação](#validação)).
 
 ## Formato dos dados
 
@@ -104,7 +107,7 @@ CAGR) para o nome que o CAGR mostra depois do `*` no nome da disciplina. O nome
 Cada disciplina é uma tupla posicional (para economizar bytes):
 
 ```text
-[ codigo, nome_ascii_upper, nome, [turmas] ]
+[ codigo, nome, [turmas] ]
 ```
 
 Cada turma:
@@ -122,12 +125,9 @@ não há. Uma disciplina ofertada para vários cursos aparece uma vez só, com a
 turmas de todos eles. `saldo_vagas` é 0 quando o CAGR mostra `LOTADA` no lugar
 do número, e `pedidos_sem_vaga` é 0 quando a célula vem vazia.
 
-Arquivos gerados antes desse formato não têm `cursos` e têm turmas de 9
-campos. Neles, `nome` e `nome_ascii` carregam o status e o sufixo `*CURSO` da
-primeira turma listada (ex.: `Atenção à Saúde IV [Cancelada] *FARMÁCIA`). A
-validação do staging decide o formato por arquivo pela presença de `cursos`.
-O refresh diário migra o semestre mais recente sozinho; os anteriores só
-mudam de formato quando alguém os re-scrapeia com `--semester` e publica.
+Todos os semestres publicados precisam estar neste formato: o site e as
+conferências não aceitam outro. Um semestre publicado antes dele só volta a
+passar depois de re-scrapeado com `--semester`.
 
 Os campos de horas/vagas são números, não strings. Os horários seguem o formato
 da UFSC:
@@ -142,8 +142,8 @@ da UFSC:
 ```
 
 A ordem das tuplas deve permanecer em sincronia com `JSONDisciplina`/`JSONTurma`
-em `matrufsc/src/lib/campusDataQuery.ts` e com o parser em
-`matrufsc/src/context/plano/parser.ts`.
+em `matrufsc/src/data/schema.ts` e com o parser em `matrufsc/src/data/parse.ts`.
+É esse parser que o gate roda sobre o staging antes de publicar.
 
 ### O que faz o scrape falhar
 
@@ -170,6 +170,39 @@ linha fora delas aborta o scrape inteiro, com o conteúdo na mensagem, e o
   total mudou entre a busca inicial e a busca repetida ao fim (o CAGR foi
   editado durante o scrape; rodar de novo resolve);
 - turmas do mesmo código com nomes diferentes.
+
+## Validação
+
+Dois programas precisam concordar sobre o formato dos JSONs: o scraper, que os
+escreve, e o site, que os lê. Em vez de reimplementar as regras do site em
+Python, o workflow roda o próprio parser do site sobre o staging:
+
+```bash
+cd ../matrufsc
+npm run data:gate -- /tmp/matrufsc-data
+```
+
+`matrufsc/scripts/gate.ts` chama `getDisciplinaFromJSON` para cada disciplina
+de cada `<ano>/<semestre>-<campus>.json`, com o `cursos` daquele arquivo, e
+lista todo erro como `<arquivo> <codigo> <turma>: <mensagem>` — horário fora do
+formato `dia.HHMM-N / sala`, em dia fora de 1 a 7 ou fora da tabela de horas
+do site, turma com número de campos errado, curso que não consta em `cursos`,
+JSON inválido. Se o site não consegue ler, o navegador também não, e
+a publicação para ali.
+
+O Python (`src/checks.py`, chamado por `main.py` antes do gate) fica só com o
+que o parser do site não enxerga:
+
+- arquivo de campus ausente, JSON inválido, `campus` diferente do nome do
+  arquivo, `data_extracao` vazio ou `disciplinas` vazio, para todo campus de
+  todo semestre do `index.json` (CAGR fora do ar devolve página vazia);
+- número de disciplinas caiu mais de 20% em relação ao publicado
+  (`--public-data-dir`) para o mesmo semestre e campus (paginação que falhou
+  no meio);
+- `cursos` ausente ou vazio, código de disciplina repetido, disciplina ou
+  turma com número de campos diferente de 3 e 11, turma cujo curso não consta
+  em `cursos`, e `[` ou `]` no nome da disciplina (o marcador `[Cancelada]`
+  vazou para o nome).
 
 ## Testes
 

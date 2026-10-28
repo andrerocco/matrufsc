@@ -1,18 +1,19 @@
-import { createEffect, createResource, createSignal } from "solid-js";
+import { createEffect, createMemo, createResource, createSignal } from "solid-js";
 import { makePersisted } from "@solid-primitives/storage";
 import { createPersistedSignal } from "~/lib/createPersistedSignal";
 import { createCachedResource } from "~/lib/createCachedResource";
 // Context
-import { campusDataQuery, type JSONCampusCode } from "~/lib/campusDataQuery";
+import { campusDataQuery } from "~/lib/campusDataQuery";
 import { usePlano } from "~/context/plano/Plano.store";
 import { MateriaExistsError } from "~/context/plano/errors";
-import { getDisciplinaFromJSON, type JSONDisciplina } from "~/context/plano/parser";
+import { getDisciplinaFromJSON } from "~/data/parse";
+import type { JSONCampus, JSONCampusCode, JSONDisciplina } from "~/data/schema";
 import { useUrlState } from "~/context/url/UrlState";
 // Components
 import Header from "~/components/header/Header";
 import Footer from "~/components/footer/Footer";
 import Search from "~/components/search/Search";
-import { searchDisciplinas } from "~/components/search/searchDisciplinas";
+import { indexDisciplinas, searchDisciplinas } from "~/components/search/searchDisciplinas";
 import Materias from "~/components/materias/Materias";
 import Turmas from "~/components/turmas/Turmas";
 import Horarios from "~/components/horarios/Horarios";
@@ -45,6 +46,7 @@ export default function App() {
         return { semester: semesterValue, campus: campusValue };
     }, campusDataQuery);
     const disciplinas = () => campusData()?.disciplinas ?? [];
+    const searchIndex = createMemo(() => indexDisciplinas(disciplinas()));
 
     createEffect(() => {
         const options = semesterOptions();
@@ -54,8 +56,8 @@ export default function App() {
         setSemester(options[0] ?? "");
     });
 
-    const handleSelectMateria = (disciplina: JSONDisciplina, campus: string, semester: string) => {
-        const parsedMateria = getDisciplinaFromJSON(disciplina, campus, semester);
+    const handleSelectMateria = (data: JSONCampus, disciplina: JSONDisciplina, campus: string, semester: string) => {
+        const parsedMateria = getDisciplinaFromJSON(disciplina, campus, semester, data.cursos);
         try {
             addMateria(parsedMateria);
         } catch (error) {
@@ -99,12 +101,16 @@ export default function App() {
                         }
                         limit={10}
                         data={disciplinas()}
-                        filter={(search) => searchDisciplinas(search, disciplinas())}
-                        onSelect={(materia) => {
+                        filter={(search) => searchDisciplinas(search, searchIndex())}
+                        onSelect={(disciplina) => {
+                            const data = campusData();
                             const sem = semester();
-                            if (sem) handleSelectMateria(materia, campus(), sem);
+                            if (data && sem) handleSelectMateria(data, disciplina, campus(), sem);
                         }}
-                        getLabel={(disciplina) => `${disciplina[0]} - ${disciplina[2]}`}
+                        getLabel={(disciplina) => {
+                            const [codigo, nome] = disciplina;
+                            return `${codigo} - ${nome}`;
+                        }}
                     />
                     <Materias class="mt-6" />
                 </div>
