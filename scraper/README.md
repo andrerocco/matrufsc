@@ -184,9 +184,10 @@ npm run data:gate -- /tmp/matrufsc-data
 
 `matrufsc/scripts/gate.ts` chama `getDisciplinaFromJSON` para cada disciplina
 de cada `<ano>/<semestre>-<campus>.json`, com o `cursos` daquele arquivo, e
-lista todo erro como `<arquivo> <codigo> <turma>: <mensagem>` — horário fora da
-tabela do site, turma com número de campos errado, curso que não consta em
-`cursos`, JSON inválido. Se o site não consegue ler, o navegador também não, e
+lista todo erro como `<arquivo> <codigo> <turma>: <mensagem>` — horário fora do
+formato `dia.HHMM-N / sala`, em dia fora de 1 a 7 ou fora da tabela de horas
+do site, turma com número de campos errado, curso que não consta em `cursos`,
+JSON inválido. Se o site não consegue ler, o navegador também não, e
 a publicação para ali.
 
 O Python (`src/checks.py`, chamado por `main.py` antes do gate) fica só com o

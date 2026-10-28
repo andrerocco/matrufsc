@@ -1,23 +1,28 @@
 /// Parses the JSON data into objects used by the app.
 
 import type { JSONCursos, JSONDisciplina, JSONTurma } from "./schema";
-import type { Curso, Materia, Turma } from "./types";
-import { HORAS } from "./constants";
+import type { Aula, Curso, Materia, Turma } from "./types";
+import { DIAS_SEMANA, HORAS } from "./constants";
 
-function getHorarioList(horarioInicio: string, creditos: number): number[] {
-    const horarioInicioIndex = HORAS.indexOf(horarioInicio);
+// "3.1620-3 / CTS-SL114A": dia da semana, horário da primeira aula, número de aulas seguidas e sala.
+const AULA_RE = /^(\d)\.(\d{4})-([1-9]\d*) \/ (.+)$/;
 
-    if (horarioInicioIndex === -1) {
-        throw new Error(`Invalid horarioInicio: ${horarioInicio}.`);
+function getAulaFromJSON(raw: string): Aula {
+    const match = AULA_RE.exec(raw);
+    if (!match) throw new Error(`Aula "${raw}" is not in the format dia.HHMM-N / sala.`);
+    const [, dia, horarioInicio, aulas, sala] = match;
+
+    const dia_semana = Number(dia);
+    if (!DIAS_SEMANA.includes(dia_semana)) {
+        throw new Error(`Aula "${raw}" is on dia ${dia}, expected one of ${DIAS_SEMANA.join(", ")}.`);
     }
 
-    const horarioFimIndex = horarioInicioIndex + creditos - 1;
+    const inicio = HORAS.indexOf(horarioInicio);
+    if (inicio === -1) throw new Error(`Aula "${raw}" starts at ${horarioInicio}, which is not in HORAS.`);
+    const creditos = Number(aulas);
+    if (inicio + creditos > HORAS.length) throw new Error(`Aula "${raw}" ends after the last horário in HORAS.`);
 
-    if (horarioFimIndex >= HORAS.length) {
-        throw new Error(`Sum of horarioInicio and creditos is out of bounds: ${horarioInicio}, ${creditos}.`);
-    }
-
-    return Array.from({ length: creditos }, (_, i) => horarioInicioIndex + i);
+    return { dia_semana, horarios: Array.from({ length: creditos }, (_, i) => inicio + i), sala };
 }
 
 function getCurso(id: number, cursos: JSONCursos): Curso {
@@ -34,25 +39,12 @@ export function getTurmaFromJSON(json: JSONTurma, cursos: JSONCursos): Turma {
     const [id, carga_horaria, vagas_ofertadas, vagas_ocupadas, _, __, ___, rawAulas, professores, cursoId, status] =
         json;
 
-    // Converts "3.1620-3 / CTS-SL114A" to dia_semana: 3, horarios: [12, 13, 14], sala: "CTS-SL114A"
-    const aulas = rawAulas.map((rawAula) => {
-        const [info, sala] = rawAula.split(" / ");
-        const [dia_semana, info2] = info.split(".");
-        const [horario_inicio, aulas] = info2.split("-");
-
-        return {
-            dia_semana: Number(dia_semana),
-            horarios: getHorarioList(horario_inicio, Number(aulas)),
-            sala: sala,
-        };
-    });
-
     return {
         id,
         carga_horaria,
         vagas_ofertadas,
         vagas_ocupadas,
-        aulas,
+        aulas: rawAulas.map(getAulaFromJSON),
         professores,
         curso: getCurso(cursoId, cursos),
         status,

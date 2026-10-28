@@ -76,16 +76,40 @@ describe("getTurmaFromJSON", () => {
         });
     });
 
-    test("throws for invalid horario_inicio", () => {
-        assert.throws(() => getTurmaFromJSON(turma({ 7: ["6.9999-2 / CTS-SL117A"] }), CURSOS), {
-            message: "Invalid horarioInicio: 9999.",
+    test("keeps everything after the first separator as the sala", () => {
+        assert.deepStrictEqual(getTurmaFromJSON(turma({ 7: ["2.2020-2 / CTS / SL1"] }), CURSOS).aulas, [
+            { dia_semana: 2, horarios: [12, 13], sala: "CTS / SL1" },
+        ]);
+    });
+
+    test("throws for an aula outside dia.HHMM-N / sala", () => {
+        for (const raw of ["20730-2 / X", "2.0730-2", "2.0730-0 / X", "2.0730-x / X", "x.0730-2 / X", "2.730-2 / X"]) {
+            assert.throws(() => getTurmaFromJSON(turma({ 7: [raw] }), CURSOS), {
+                message: `Aula "${raw}" is not in the format dia.HHMM-N / sala.`,
+            });
+        }
+    });
+
+    test("throws for a dia outside DIAS_SEMANA", () => {
+        assert.throws(() => getTurmaFromJSON(turma({ 7: ["8.0730-2 / X"] }), CURSOS), {
+            message: 'Aula "8.0730-2 / X" is on dia 8, expected one of 1, 2, 3, 4, 5, 6, 7.',
         });
     });
 
-    test("throws when horario_inicio + creditos exceeds HORAS length", () => {
-        assert.throws(() => getTurmaFromJSON(turma({ 7: ["6.2110-2 / CTS-SL117A"] }), CURSOS), {
-            message: "Sum of horarioInicio and creditos is out of bounds: 2110, 2.",
+    test("throws for a horário de início outside HORAS", () => {
+        assert.throws(() => getTurmaFromJSON(turma({ 7: ["6.9999-2 / CTS-SL117A"] }), CURSOS), {
+            message: 'Aula "6.9999-2 / CTS-SL117A" starts at 9999, which is not in HORAS.',
         });
+    });
+
+    test("throws when the aulas run past the last horário", () => {
+        assert.throws(() => getTurmaFromJSON(turma({ 7: ["6.2110-2 / CTS-SL117A"] }), CURSOS), {
+            message: 'Aula "6.2110-2 / CTS-SL117A" ends after the last horário in HORAS.',
+        });
+        assert.deepStrictEqual(
+            getTurmaFromJSON(turma({ 7: ["6.2110-1 / CTS-SL117A"] }), CURSOS).aulas[0].horarios,
+            [13],
+        );
     });
 });
 
