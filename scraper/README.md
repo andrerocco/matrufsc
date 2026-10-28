@@ -71,7 +71,12 @@ publicar.
   mudança de página; pedir "página 1" já estando na página 1 devolve o
   resultado anterior, ignorando semestre e campus. Por isso cada campus começa
   por `search()` (página 1) e só depois pagina com `fetch_page()`, e cada
-  resposta é conferida contra a página pedida.
+  resposta é conferida contra a página pedida. A paginação é por deslocamento
+  sobre a consulta viva: uma turma inserida ou removida no CAGR no meio do
+  scrape repete ou engole uma linha na fronteira de página. Por isso o total
+  que a página 1 anuncia ("N resultados foram encontrados") tem de bater com
+  as linhas coletadas, e uma nova busca ao fim do campus tem de anunciar o
+  mesmo total.
 - **`src/parse_turmas.py`** — converte os XMLs nas tuplas compactas do app e no
   mapa `cursos`; falha em qualquer linha fora do padrão (ver abaixo).
 - **`src/semesters.py`** — regras de dados: campi esperados, cálculo de
@@ -161,6 +166,9 @@ linha fora delas aborta o scrape inteiro, com o conteúdo na mensagem, e o
   (professor como texto ou como `<a>nome</a>`), ou com outro elemento dentro;
 - o mesmo par (código, turma) listado duas vezes, sinal de página repetida na
   busca stateful do CAGR; a mensagem mostra as duas cópias;
+- campus cujas linhas coletadas diferem do total anunciado na página 1, ou cujo
+  total mudou entre a busca inicial e a busca repetida ao fim (o CAGR foi
+  editado durante o scrape; rodar de novo resolve);
 - turmas do mesmo código com nomes diferentes.
 
 ## Testes

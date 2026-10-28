@@ -18,6 +18,8 @@ A = XHTML_NS + "a"
 BR = XHTML_NS + "br"
 SPAN = XHTML_NS + "span"
 TABLE_ID = "formBusca:dataTable"
+TOTAL_GROUP_ID = "formBusca:dataTableGroup"
+TOTAL_LABEL = "resultados foram encontrados"
 ROWS_PER_PAGE = 50
 HEADER = (
     "",
@@ -70,6 +72,21 @@ def iter_rows_from_xml_text(xml_text):
 
 def count_rows_in_xml_text(xml_text):
     return sum(1 for _ in iter_rows_from_xml_text(xml_text))
+
+
+def announced_total(page):
+    """Total que a resposta do botão "Buscar" anuncia acima da tabela, como
+    `<span>5372</span> resultados foram encontrados`; a busca sem resultado
+    omite a frase. As páginas da paginação não trazem o grupo."""
+    group = find_id(page, TOTAL_GROUP_ID)
+    if group is None:
+        raise RuntimeError(f"resposta da busca sem {TOTAL_GROUP_ID}")
+    totals = [el for el in group if el.tag == SPAN and (el.tail or "").strip().startswith(TOTAL_LABEL)]
+    if not totals:
+        return 0
+    if len(totals) > 1 or len(totals[0]) or INT_RE.fullmatch((totals[0].text or "").strip()) is None:
+        raise RuntimeError(f"total de resultados fora do padrao <span>N</span> {TOTAL_LABEL}: {[_describe(t) for t in totals]}")
+    return int(totals[0].text)
 
 
 def _describe(element):
