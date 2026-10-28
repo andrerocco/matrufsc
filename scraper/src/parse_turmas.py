@@ -8,7 +8,6 @@ a layout change on CAGR stops publication instead of producing incomplete data.
 """
 
 from xml.etree import cElementTree
-import unicodedata
 import os
 import re
 
@@ -264,24 +263,13 @@ def parse_xml_text(xml_text):
 
         materia = materias_by_codigo.get(codigo_disciplina)
         if materia is None:
-            nome_disciplina_ascii = (
-                unicodedata.normalize("NFKD", nome_disciplina)
-                .encode("ascii", "ignore")
-                .decode("ascii")
-                .upper()
-            )
-            materia = [
-                codigo_disciplina,
-                nome_disciplina_ascii,
-                nome_disciplina,
-                [],
-            ]
+            materia = [codigo_disciplina, nome_disciplina, []]
             materias_by_codigo[codigo_disciplina] = materia
-        elif materia[2] != nome_disciplina:
+        elif materia[1] != nome_disciplina:
             raise RuntimeError(
-                f"{ctx}: nome difere do de outra turma da mesma disciplina: {nome_disciplina!r} vs {materia[2]!r}"
+                f"{ctx}: nome difere do de outra turma da mesma disciplina: {nome_disciplina!r} vs {materia[1]!r}"
             )
-        materia[3].append(turma)
+        materia[2].append(turma)
 
     return list(materias_by_codigo.values()), cursos
 

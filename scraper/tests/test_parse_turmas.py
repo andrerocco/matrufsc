@@ -11,7 +11,7 @@ FIXTURES = os.path.join(os.path.dirname(__file__), "fixtures")
 def turma_by_id(disciplinas, codigo, turma_id):
     for disciplina in disciplinas:
         if disciplina[0] == codigo:
-            for turma in disciplina[3]:
+            for turma in disciplina[2]:
                 if turma[0] == turma_id:
                     return turma
     raise AssertionError(f"{codigo} {turma_id} nao encontrada")
@@ -30,9 +30,9 @@ class RealPageTests(unittest.TestCase):
             cls.disciplinas, cls.cursos = parse_xml_text(f.read())
 
     def test_agrupa_as_50_linhas_em_12_disciplinas(self):
-        self.assertEqual(sum(len(d[3]) for d in self.disciplinas), 50)
+        self.assertEqual(sum(len(d[2]) for d in self.disciplinas), 50)
         self.assertEqual(
-            [(d[0], d[2]) for d in self.disciplinas],
+            [(d[0], d[1]) for d in self.disciplinas],
             [
                 ("ACL5134", "Atenção à Saúde IV"),
                 ("ACL5139", "Gestão da Qualidade em Análises Clínicas"),
@@ -48,12 +48,11 @@ class RealPageTests(unittest.TestCase):
                 ("ACL5151", "Uroanálise"),
             ],
         )
-        self.assertEqual(self.disciplinas[0][1], "ATENCAO A SAUDE IV")
 
     def test_curso_por_turma_e_mapa(self):
         self.assertEqual(self.cursos, {"102": "FARMÁCIA"})
         for disciplina in self.disciplinas:
-            for turma in disciplina[3]:
+            for turma in disciplina[2]:
                 self.assertEqual(len(turma), 11)
                 self.assertEqual(turma[9], 102)
 
@@ -83,8 +82,8 @@ class GroupingTests(unittest.TestCase):
         disciplinas, cursos = parse_xml_text(page)
 
         self.assertEqual([d[0] for d in disciplinas], ["ADM7001", "MAT1000"])
-        self.assertEqual([t[0] for t in disciplinas[0][3]], ["01302", "02777"])
-        self.assertEqual([t[9] for t in disciplinas[0][3]], [302, 777])
+        self.assertEqual([t[0] for t in disciplinas[0][2]], ["01302", "02777"])
+        self.assertEqual([t[9] for t in disciplinas[0][2]], [302, 777])
         self.assertEqual(cursos, {"302": "CIÊNCIAS CONTÁBEIS", "1": "MATEMÁTICA", "777": "ADMINISTRAÇÃO"})
 
     def test_status_so_na_turma_que_o_tem(self):
@@ -93,13 +92,13 @@ class GroupingTests(unittest.TestCase):
             cagr_row("ADM7001", "02302"),
         ])
         disciplinas, _ = parse_xml_text(page)
-        self.assertEqual(disciplinas[0][2], "Administração I")
-        self.assertEqual([t[10] for t in disciplinas[0][3]], ["Cancelada", None])
+        self.assertEqual(disciplinas[0][1], "Administração I")
+        self.assertEqual([t[10] for t in disciplinas[0][2]], ["Cancelada", None])
 
     def test_asterisco_dentro_do_nome_e_conteudo(self):
         page = cagr_page([cagr_row("CSO7708", "01301", nome="Trabalho de Conclusão de Curso I - TCC I (*)")])
         disciplinas, _ = parse_xml_text(page)
-        self.assertEqual(disciplinas[0][2], "Trabalho de Conclusão de Curso I - TCC I (*)")
+        self.assertEqual(disciplinas[0][1], "Trabalho de Conclusão de Curso I - TCC I (*)")
 
     def test_nome_do_curso_fica_como_o_cagr_manda_e_o_primeiro_vence(self):
         page = cagr_page([
@@ -117,7 +116,7 @@ class GroupingTests(unittest.TestCase):
             cagr_row("ADM7001", "03302", prof_raw='<a href="x">Ana</a><br/>Beto<br/><a href="y">Caio</a><br/>'),
         ])
         disciplinas, _ = parse_xml_text(page)
-        self.assertEqual([t[8] for t in disciplinas[0][3]], [["Professor A Contratar"], [], ["Ana", "Beto", "Caio"]])
+        self.assertEqual([t[8] for t in disciplinas[0][2]], [["Professor A Contratar"], [], ["Ana", "Beto", "Caio"]])
 
     def test_horarios_um_por_linha(self):
         page = cagr_page([
@@ -125,7 +124,7 @@ class GroupingTests(unittest.TestCase):
             cagr_row("ADM7001", "02302", horarios=()),
         ])
         disciplinas, _ = parse_xml_text(page)
-        self.assertEqual([t[7] for t in disciplinas[0][3]], [["2.0730-2 / A", "4.0730-2 / B"], []])
+        self.assertEqual([t[7] for t in disciplinas[0][2]], [["2.0730-2 / A", "4.0730-2 / B"], []])
 
     def test_paginas_cheias_seguidas_da_ultima(self):
         xml = cagr_page(full_page("AAA")) + cagr_page(full_page("BBB")) + cagr_page([cagr_row("CCC0001", "01302")])
@@ -212,7 +211,7 @@ class RejectionTests(unittest.TestCase):
     def test_saldo_lotada_vira_zero(self):
         page = cagr_page([cagr_row("ADM7001", "01302", nums_raw=["72", "50", "10", "0", '<span style="color: red">LOTADA</span>', ""])])
         disciplinas, _ = parse_xml_text(page)
-        self.assertEqual(disciplinas[0][3][0][5:7], [0, 0])
+        self.assertEqual(disciplinas[0][2][0][5:7], [0, 0])
 
     def test_pedidos_fora_do_padrao(self):
         self.assert_rejects([cagr_row("ADM7001", "01302", nums_raw=["72", "50", "10", "0", "40", "<span/>"])], "pedidos_sem_vaga nao e um numero")

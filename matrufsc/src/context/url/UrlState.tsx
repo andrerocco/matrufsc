@@ -8,10 +8,12 @@ import {
     type Accessor,
     type JSXElement,
 } from "solid-js";
-import { usePlano, type Materia } from "../plano/Plano.store";
+import { usePlano } from "../plano/Plano.store";
+import type { Materia } from "~/data/types";
 import { createSearchParam } from "~/lib/createSearchParam";
 import { campusDataQuery } from "~/lib/campusDataQuery";
-import { getDisciplinaFromJSON, type JSONDisciplina } from "~/context/plano/parser";
+import { getDisciplinaFromJSON } from "~/data/parse";
+import type { JSONCampus, JSONDisciplina } from "~/data/schema";
 import { parseMaterias, serializeMaterias, type URLMateria } from "./url-parser";
 
 const MATERIAS_URL_PARAM = "m";
@@ -73,11 +75,11 @@ async function queryMaterias(parsedUrlMaterias: readonly URLMateria[]): Promise<
     const results = await Promise.allSettled(
         sources.map(async (source) => [campusDataQuery.key(source), await campusDataQuery.fetch(source)] as const),
     );
-    const disciplinaIndexByKey = new Map<string, Map<string, JSONDisciplina>>();
+    const campusDataByKey = new Map<string, { data: JSONCampus; disciplinaIndex: Map<string, JSONDisciplina> }>();
     for (const result of results) {
         if (result.status !== "fulfilled") continue; // TODO: Handle error
-        const [key, campusData] = result.value;
-        disciplinaIndexByKey.set(key, createDisciplinaIndex(campusData.disciplinas));
+        const [key, data] = result.value;
+        campusDataByKey.set(key, { data, disciplinaIndex: createDisciplinaIndex(data.disciplinas) });
     }
 
     // TODO: Store errors and display then to warn about invalid URL entries
@@ -89,13 +91,18 @@ async function queryMaterias(parsedUrlMaterias: readonly URLMateria[]): Promise<
         if (visitedIds.has(materia.id)) continue; // TODO: Checking `id` copies the behavior of addMateria, but can it be
 
         const sourceKey = campusDataQuery.key({ campus: materia.campus, semester: materia.semester });
-        const disciplinaIndex = disciplinaIndexByKey.get(sourceKey);
-        if (!disciplinaIndex) continue;
+        const campusData = campusDataByKey.get(sourceKey);
+        if (!campusData) continue;
 
-        const disciplina = disciplinaIndex.get(materia.id);
+        const disciplina = campusData.disciplinaIndex.get(materia.id);
         if (!disciplina) continue;
 
-        const parsedMateria = getDisciplinaFromJSON(disciplina, materia.campus, materia.semester);
+        const parsedMateria = getDisciplinaFromJSON(
+            disciplina,
+            materia.campus,
+            materia.semester,
+            campusData.data.cursos,
+        );
         parsedMateria.selected = materia.selected; // update selection state from URL
 
         // Update turma selection based on URL
