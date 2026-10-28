@@ -1,7 +1,8 @@
 import clsx from "clsx";
 import { createMemo, For, Show, type Accessor } from "solid-js";
 import { mergeEquivalentTurmas } from "~/context/plano/combinacoes";
-import { usePlano, type Materia, type Turma } from "~/context/plano/Plano.store";
+import { usePlano } from "~/context/plano/Plano.store";
+import type { Materia, Turma } from "~/data/types";
 import { useHorariosOverlay } from "../horarios/useHorariosOverlay";
 
 export default function Turmas(props: { class?: string }) {

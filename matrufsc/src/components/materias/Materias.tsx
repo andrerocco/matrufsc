@@ -2,7 +2,8 @@ import clsx from "clsx";
 import { For, Show } from "solid-js";
 import GripVertical from "lucide-solid/icons/grip-vertical";
 import X from "lucide-solid/icons/x";
-import { usePlano, type Materia, type Turma } from "~/context/plano/Plano.store";
+import { usePlano } from "~/context/plano/Plano.store";
+import type { Materia, Turma } from "~/data/types";
 import { dragRow } from "./dragRow";
 import { useHorariosOverlay } from "../horarios/useHorariosOverlay";
 

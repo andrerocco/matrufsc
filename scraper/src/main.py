@@ -8,6 +8,8 @@ Daily behavior (no --semester):
 2. If complete, scrape that new semester and index it.
 3. Otherwise, refresh the latest indexed semester.
 4. Write staged campus JSON files only when the class payload or curso map changed.
+5. Run the checks the site parser cannot make; the workflow then runs that
+   parser over the stage (`npm run data:gate`) before publishing.
 
 Manual behavior (--semester 20262): scrape exactly that semester, skipping the
 availability probe. This replaces the old `make <semester>` target.
@@ -17,6 +19,7 @@ workflow publishes the resulting diff to the `data` branch (the single source
 of truth for course JSON, baked into the build by `npm run data:pull`).
 """
 
+from checks import check_stage
 from get_turmas import CagrSession, probe_semester_availability, scrape as scrape_semester
 from parse_turmas import extract_semester_campus, parse_xml_file
 from semesters import (
@@ -26,7 +29,6 @@ from semesters import (
     extraction_time,
     get_latest_indexed_semester,
     prepare_stage,
-    validate_data_dir,
     write_campus_if_changed,
     write_index_if_changed,
 )
@@ -146,8 +148,8 @@ def main():
         step(f"2. Scraping do semestre {target_semester}")
         changed = scrape_and_reconcile(target_semester, mode, session, stage_dir)
 
-        step("3. Validando staging")
-        validate_data_dir(stage_dir)
+        step("3. Conferindo staging")
+        check_stage(stage_dir, args.public_data_dir)
         print(f"Dados staged em {stage_dir}")
 
         step("4. Resultado")
