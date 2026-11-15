@@ -59,7 +59,13 @@ def _split_pages(xml_text):
 
 
 def _table_sections(table):
-    return {section.tag.replace(XHTML_NS, ""): section for section in table}
+    sections = {}
+    for section in table:
+        tag = section.tag.replace(XHTML_NS, "")
+        if tag in sections:
+            raise RuntimeError(f"tabela {TABLE_ID} com mais de um <{tag}>")
+        sections[tag] = section
+    return sections
 
 
 def iter_rows_from_xml_text(xml_text):

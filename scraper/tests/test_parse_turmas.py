@@ -2,7 +2,7 @@ import os
 import tempfile
 import unittest
 
-from parse_turmas import parse_xml_file, parse_xml_text
+from parse_turmas import count_rows_in_xml_text, parse_xml_file, parse_xml_text
 from cagr_xml import THEAD, cagr_page, cagr_row, curso_link
 
 FIXTURES = os.path.join(os.path.dirname(__file__), "fixtures")
@@ -258,6 +258,14 @@ class RejectionTests(unittest.TestCase):
         self.assert_rejects([cagr_row("ADM7001", "01302")], r"pagina 1: cabecalho da tabela diferente do esperado: \('', 'Ementa', .*'VagasOcupadas', 'VagasOcupadas'", thead=trocado)
         self.assert_rejects([cagr_row("ADM7001", "01302")], "cabecalho da tabela diferente", thead="<thead><tr/></thead>")
         self.assert_rejects([cagr_row("ADM7001", "01302")], "cabecalho da tabela diferente", thead="")
+
+    def test_tabela_com_dois_tbody(self):
+        outro_tbody = "<tbody>" + cagr_row("ADM7002", "01302") + "</tbody>"
+        xml = cagr_page([cagr_row("ADM7001", "01302")]).replace("</tbody>", "</tbody>" + outro_tbody)
+        with self.assertRaisesRegex(RuntimeError, "tabela formBusca:dataTable com mais de um <tbody>"):
+            parse_xml_text(xml)
+        with self.assertRaisesRegex(RuntimeError, "tabela formBusca:dataTable com mais de um <tbody>"):
+            count_rows_in_xml_text(xml)
 
     def test_pagina_do_meio_com_menos_linhas(self):
         xml = cagr_page(full_page("AAA")) + cagr_page(full_page("BBB", 49)) + cagr_page([cagr_row("CCC0001", "01302")])
