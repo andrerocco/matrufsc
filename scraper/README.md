@@ -35,18 +35,29 @@ uv run python src/main.py \
   --stage-dir /tmp/matrufsc-data
 ```
 
-### Semestre específico (manual)
+### Semestres específicos (manual)
 
-Para forçar o scrape de um semestre (substitui o antigo `make <semestre>`):
+Para forçar o scrape de um ou mais semestres (substitui o antigo
+`make <semestre>`):
 
 ```bash
 uv run python src/main.py --semester 20262 --stage-dir /tmp/matrufsc-data
+uv run python src/main.py --semester 20252 20261 20262 20271 --stage-dir /tmp/matrufsc-data
 ```
 
-Depois, rode o gate do site sobre o staging
-(`cd ../matrufsc && npm run data:gate -- /tmp/matrufsc-data`) e copie-o para
-onde precisar — ou publique na branch `data`. Localmente, `cd ../matrufsc && npm run data:pull` traz a `data` de volta
-para `public/data`.
+Todos os semestres pedidos vão para o mesmo staging, e as conferências rodam
+uma vez só, sobre o resultado. É assim que se migra o formato dos dados: como
+as conferências olham todos os semestres do índice, re-scrapear um de cada vez
+falha enquanto restar algum no formato antigo.
+
+Cada semestre abre uma sessão nova no CAGR e precisa constar na lista de
+semestres que o CAGR oferece. Dois arquivos da mesma execução com as mesmas
+disciplinas abortam: o CAGR ignorou o filtro de campus ou de semestre.
+
+Localmente, rode o gate do site sobre o staging
+(`cd ../matrufsc && npm run data:gate -- /tmp/matrufsc-data`) antes de usar o
+resultado. `cd ../matrufsc && npm run data:pull` traz a `data` de volta para
+`public/data`.
 
 ## Publicação: branch `data`, sem poluir a `main`
 
@@ -126,8 +137,9 @@ turmas de todos eles. `saldo_vagas` é 0 quando o CAGR mostra `LOTADA` no lugar
 do número, e `pedidos_sem_vaga` é 0 quando a célula vem vazia.
 
 Todos os semestres publicados precisam estar neste formato: o site e as
-conferências não aceitam outro. Um semestre publicado antes dele só volta a
-passar depois de re-scrapeado com `--semester`.
+conferências não aceitam outro. Semestres publicados antes dele só voltam a
+passar depois de re-scrapeados, todos na mesma execução, com `--semester`
+(ver [Semestres específicos](#semestres-específicos-manual)).
 
 Os campos de horas/vagas são números, não strings. Os horários seguem o formato
 da UFSC:
