@@ -155,6 +155,7 @@ linha fora delas aborta o scrape inteiro, com o conteúdo na mensagem, e o
 - página sem a tabela de resultados ou com cabeçalho diferente dos 14 títulos
   conhecidos (pega coluna trocada), ou página que não é a última com menos de
   50 linhas (pega página truncada);
+- tabela de resultados com uma seção repetida (dois `<tbody>`, por exemplo);
 - linha com número de células diferente de 14;
 - célula "Currículo" sem exatamente um link, e que seja
   `curriculoCurso?curso=<id>`;
