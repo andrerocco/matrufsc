@@ -54,6 +54,13 @@ Cada semestre abre uma sessão nova no CAGR e precisa constar na lista de
 semestres que o CAGR oferece. Dois arquivos da mesma execução com as mesmas
 disciplinas abortam: o CAGR ignorou o filtro de campus ou de semestre.
 
+Para publicar, dispare o workflow `Scrape semester data` pela aba Actions, a
+partir da `main`, com o campo `semesters` preenchido
+(`20252 20261 20262 20271`). Ele roda as mesmas conferências e o gate antes de
+publicar; vazio, faz a execução diária. Não dispare de outra branch: o workflow
+publica na `data` e dispara o deploy da `main`, e o site da `main` pode não ler
+o que o scraper daquela branch gera.
+
 Localmente, rode o gate do site sobre o staging
 (`cd ../matrufsc && npm run data:gate -- /tmp/matrufsc-data`) antes de usar o
 resultado. `cd ../matrufsc && npm run data:pull` traz a `data` de volta para

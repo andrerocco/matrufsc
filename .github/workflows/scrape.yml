@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: "0 6 * * *" # 06:00 UTC = 03:00 America/Sao_Paulo
   workflow_dispatch:
+    inputs:
+      semesters:
+        description: "Semestres a re-scrapear, separados por espaço (ex.: 20252 20261 20262 20271). Vazio: execução diária."
+        required: false
+        default: ""
 
 permissions:
   contents: write # push to the `data` branch
@@ -52,10 +57,15 @@ jobs:
       # payload looks broken.
       - name: Scrape and reconcile
         working-directory: ./scraper/src
+        # Through env, never interpolated into the script: the value is typed by
+        # whoever dispatches the run. Empty on the daily schedule.
+        env:
+          SEMESTERS: ${{ inputs.semesters }}
         run: |
           uv run python main.py \
             --public-data-dir "$GITHUB_WORKSPACE/current-data" \
-            --stage-dir "$GITHUB_WORKSPACE/staged-data"
+            --stage-dir "$GITHUB_WORKSPACE/staged-data" \
+            ${SEMESTERS:+--semester $SEMESTERS}
 
       - name: Set up Node
         uses: actions/setup-node@v5
