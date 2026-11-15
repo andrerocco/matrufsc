@@ -42,6 +42,13 @@ jobs:
         working-directory: ./matrufsc
         run: npm run data:pull
 
+      # The scrape gates new data against the site; this gates new site code
+      # against the data already published, so a failed run keeps the last
+      # deploy live.
+      - name: Gate
+        working-directory: ./matrufsc
+        run: npm run data:gate -- public/data
+
       - name: Build
         working-directory: ./matrufsc
         run: npm run build
