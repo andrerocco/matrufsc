@@ -9,6 +9,7 @@ Os JSONs de curso **não** ficam versionados na `main`. A fonte de verdade é a 
 1. O scraper compara os dados do CAGR com a branch `data` e só publica um commit novo quando `disciplinas` muda de fato — o histórico da `data` serve como registro de quando o CAGR mudou, sem poluir a `main`.
 2. Ao publicar, o workflow dispara os dois deploys via `workflow_dispatch`.
 3. Cada deploy roda `npm run data:pull`, que extrai a `data` para `matrufsc/public/data` **antes** do `vite build`. Assim o site continua 100% estático em runtime — os dados vão embutidos no `dist`.
+4. Entre o `data:pull` e o build, o deploy roda `npm run data:gate`, que passa o parser do site sobre esses dados. Se o site não consegue lê-los, o deploy falha e a versão anterior continua no ar.
 
 Consequências:
 
