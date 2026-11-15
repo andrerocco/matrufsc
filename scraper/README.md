@@ -99,7 +99,7 @@ Arquivos gravados em `<output_dir>/<ano>/<semestre>-<campus>.json`, ex.
 `cursos` mapeia o id do curso ofertante (como está no link "Currículo" do
 CAGR) para o nome que o CAGR mostra depois do `*` no nome da disciplina. O nome
 é gravado como vem, inclusive sufixos como `[Campus Joinville]` ou
-`[Semestral]`; quando o mesmo id aparece com nomes diferentes, vale o primeiro.
+`[Semestral]`.
 
 Cada disciplina é uma tupla posicional (para economizar bytes):
 
@@ -169,7 +169,8 @@ linha fora delas aborta o scrape inteiro, com o conteúdo na mensagem, e o
 - campus cujas linhas coletadas diferem do total anunciado na página 1, ou cujo
   total mudou entre a busca inicial e a busca repetida ao fim (o CAGR foi
   editado durante o scrape; rodar de novo resolve);
-- turmas do mesmo código com nomes diferentes.
+- turmas do mesmo código com nomes diferentes;
+- o mesmo id de curso com nomes de curso diferentes no mesmo campus.
 
 ## Testes
 
