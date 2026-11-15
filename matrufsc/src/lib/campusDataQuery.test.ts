@@ -2,33 +2,21 @@ import { before, describe, test } from "node:test";
 import assert from "node:assert";
 import { campusDataQuery } from "./campusDataQuery";
 import { makeCacheStorage } from "./makeCacheStorage";
-import type { JSONCampus } from "~/data/schema";
+import type { JSONCampus, JSONTurma } from "~/data/schema";
+
+const TURMA: JSONTurma = ["01208", 72, 50, 10, 0, 40, 0, ["2.1330-2 / CTC-CTC102"], ["Professor Um"], 208, null];
 
 const CURRENT: JSONCampus = {
     campus: "JOI",
     data_extracao: "15/11/26 - 03:00",
     cursos: { "208": "ENGENHARIA MECÂNICA" },
-    disciplinas: [
-        [
-            "EMB5001",
-            "Cálculo I",
-            [["01208", 72, 50, 10, 0, 40, 0, ["2.1330-2 / CTC-CTC102"], ["Professor Um"], 208, null]],
-        ],
-    ],
+    disciplinas: [["EMB5001", "Cálculo I", [TURMA]]],
 };
 
-// O formato publicado até a troca: disciplina com nome_ascii, turma sem curso nem status, arquivo sem cursos.
 const BEFORE_THE_FORMAT_CHANGE = {
     campus: "JOI",
     data_extracao: "15/11/26 - 03:00",
-    disciplinas: [
-        [
-            "EMB5001",
-            "CALCULO I",
-            "Cálculo I",
-            [["01208", 72, 50, 10, 0, 40, 0, ["2.1330-2 / CTC-CTC102"], ["Professor Um"]]],
-        ],
-    ],
+    disciplinas: [["EMB5001", "CALCULO I", "Cálculo I", [TURMA.slice(0, 9)]]],
 };
 
 function fakeCacheStorage(): CacheStorage {

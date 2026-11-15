@@ -205,7 +205,7 @@ npm run data:gate -- /tmp/matrufsc-data
 
 `matrufsc/scripts/gate.ts` chama `getDisciplinaFromJSON` para cada disciplina
 de cada `<ano>/<semestre>-<campus>.json`, com o `cursos` daquele arquivo, e
-lista todo erro como `<arquivo> <codigo> <turma>: <mensagem>`:
+lista todo erro como `<arquivo> <codigo>: <mensagem>`:
 
 - horário fora do formato `dia.HHMM-N / sala`, em dia fora de 1 a 7 ou fora da
   tabela de horas do site;

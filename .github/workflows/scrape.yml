@@ -7,8 +7,6 @@ on:
     inputs:
       semesters:
         description: "Semestres a re-scrapear, separados por espaço (ex.: 20252 20261 20262 20271). Vazio: execução diária."
-        required: false
-        default: ""
 
 permissions:
   contents: write # push to the `data` branch
@@ -26,9 +24,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
 
-      # Baseline = the current `data` branch. Seeds the stage so unchanged campi
-      # stay byte-identical, and lets the reconciler pick the target semester.
-      # Empty on the very first run (branch not created yet).
       - name: Fetch current data
         run: |
           mkdir -p current-data
@@ -51,14 +46,8 @@ jobs:
         working-directory: ./scraper
         run: uv sync
 
-      # Scrapes CAGR, reconciles against the baseline, and runs the checks the
-      # site parser cannot make (missing campus, disciplina count dropping...).
-      # Fails (keeping the last good data) if CAGR is unreachable or the
-      # payload looks broken.
       - name: Scrape and reconcile
         working-directory: ./scraper/src
-        # Through env, never interpolated into the script: the value is typed by
-        # whoever dispatches the run. Empty on the daily schedule.
         env:
           SEMESTERS: ${{ inputs.semesters }}
         run: |
@@ -78,9 +67,7 @@ jobs:
         working-directory: ./matrufsc
         run: npm ci
 
-      # Runs the site's own parser over the staging. What it cannot read, the
-      # browser cannot either, so publication stops here.
-      - name: Gate
+      - name: Check the data with the site parser
         working-directory: ./matrufsc
         run: npm run data:gate -- "$GITHUB_WORKSPACE/staged-data"
 
@@ -95,9 +82,6 @@ jobs:
             echo "Alteracoes detectadas."
           fi
 
-      # Keeps full history on `data` (one commit per real change), so the log
-      # doubles as a record of when CAGR data changed. Skipped when nothing
-      # changed, so idle days add no commits.
       - name: Publish to data branch
         if: steps.diff.outputs.changed == 'true'
         uses: peaceiris/actions-gh-pages@v4

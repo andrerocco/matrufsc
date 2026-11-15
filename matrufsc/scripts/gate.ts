@@ -2,25 +2,13 @@
 
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { getDisciplinaFromJSON, getTurmaFromJSON } from "../src/data/parse";
-import type { JSONCampus, JSONCursos, JSONDisciplina } from "../src/data/schema";
+import { getDisciplinaFromJSON } from "../src/data/parse";
+import type { JSONCampus } from "../src/data/schema";
 
 const CAMPUS_FILE = /^(\d{5})-([A-Z]{3})\.json$/;
 
 function message(error: unknown): string {
     return error instanceof Error ? error.message : String(error);
-}
-
-function failingTurmaId(disciplina: JSONDisciplina, cursos: JSONCursos): string | undefined {
-    if (disciplina.length !== 3 || !Array.isArray(disciplina[2])) return undefined;
-    for (const turma of disciplina[2]) {
-        try {
-            getTurmaFromJSON(turma, cursos);
-        } catch {
-            return String(turma[0]);
-        }
-    }
-    return undefined;
 }
 
 function* campusFiles(dir: string): Generator<{ path: string; name: string; semester: string; campus: string }> {
@@ -66,8 +54,7 @@ for (const file of campusFiles(dir)) {
             turmas += getDisciplinaFromJSON(disciplina, file.campus, file.semester, data.cursos).turmas.length;
             disciplinas++;
         } catch (error) {
-            const turmaId = failingTurmaId(disciplina, data.cursos);
-            errors.push(`${file.name} ${disciplina[0]}${turmaId ? ` ${turmaId}` : ""}: ${message(error)}`);
+            errors.push(`${file.name} ${disciplina[0]}: ${message(error)}`);
         }
     }
 }

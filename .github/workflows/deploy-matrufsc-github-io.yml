@@ -27,16 +27,11 @@ jobs:
         working-directory: ./matrufsc
         run: npm ci
 
-      # Course JSON lives on the `data` branch, not in this branch's history.
-      # Bake the latest snapshot into public/ so the build stays fully static.
       - name: Fetch course data
         working-directory: ./matrufsc
         run: npm run data:pull
 
-      # The scrape gates new data against the site; this gates new site code
-      # against the data already published, so a failed run keeps the last
-      # deploy live.
-      - name: Gate
+      - name: Check the data with the site parser
         working-directory: ./matrufsc
         run: npm run data:gate -- public/data
 

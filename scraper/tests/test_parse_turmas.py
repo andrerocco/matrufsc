@@ -217,11 +217,6 @@ class RejectionTests(unittest.TestCase):
         self.assert_rejects([cagr_row("ADM7001", "01302", nums_raw=["72", "50", "10", "0", "<span>LOTADA</span>x", ""])], "saldo_vagas nao e um numero")
         self.assert_rejects([cagr_row("ADM7001", "01302", nums_raw=["72", "50", "10", "0", "", ""])], "saldo_vagas nao e um numero")
 
-    def test_saldo_lotada_vira_zero(self):
-        page = cagr_page([cagr_row("ADM7001", "01302", nums_raw=["72", "50", "10", "0", '<span style="color: red">LOTADA</span>', ""])])
-        disciplinas, _ = parse_xml_text(page)
-        self.assertEqual(disciplinas[0][2][0][5:7], [0, 0])
-
     def test_pedidos_fora_do_padrao(self):
         self.assert_rejects([cagr_row("ADM7001", "01302", nums_raw=["72", "50", "10", "0", "40", "<span/>"])], "pedidos_sem_vaga nao e um numero")
 

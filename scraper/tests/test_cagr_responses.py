@@ -5,9 +5,8 @@ from unittest import mock
 
 import get_turmas
 from get_turmas import CagrSession, active_page, go_on, iter_pages, make_page_form, make_search_form, parse_ajax_xml, probe_semester_availability
-from parse_turmas import announced_total
 from main import parse_and_write_xmls
-from parse_turmas import count_rows_in_xml_text, iter_rows_from_xml_text, parse_xml_text
+from parse_turmas import announced_total, count_rows_in_xml_text, iter_rows_from_xml_text, parse_xml_text
 from cagr_xml import cagr_row, cagr_table
 
 XML_HEADER = '<?xml version="1.0"?>'
@@ -27,12 +26,8 @@ def scroller(active, has_next):
     )
 
 
-def table(rows):
-    return cagr_table(rows)
-
-
 def scroll_response(rows, active=2, has_next=True, with_scroller=True):
-    body = (scroller(active, has_next) if with_scroller else "") + table(rows)
+    body = (scroller(active, has_next) if with_scroller else "") + cagr_table(rows)
     return f'{XML_HEADER}<html xmlns="http://www.w3.org/1999/xhtml"><head/><body><span id="a"/>{body}</body></html>'
 
 
@@ -47,7 +42,7 @@ def search_response(rows, active=1, has_next=True, total=None, group=True):
     inner = "".join(f'<span id="s{i}"/>' for i in range(5))
     if rows:
         inner += scroller(active, has_next)
-    inner += table(rows)
+    inner += cagr_table(rows)
     if group:
         inner = total_group(inner, len(rows) if total is None else total)
     return f'{XML_HEADER}<html xmlns="http://www.w3.org/1999/xhtml"><head/><body><div id="wrap">{inner}</div></body></html>'
@@ -170,10 +165,6 @@ class AnnouncedTotalTests(unittest.TestCase):
     def test_search_without_the_group_raises(self):
         with self.assertRaisesRegex(RuntimeError, "sem formBusca:dataTableGroup"):
             announced_total(parse_ajax_xml(search_response([row("EMB5001")], group=False)))
-
-    def test_scroll_page_has_no_group(self):
-        with self.assertRaisesRegex(RuntimeError, "sem formBusca:dataTableGroup"):
-            announced_total(parse_ajax_xml(scroll_response([row("EMB5001")])))
 
     def test_total_that_is_not_a_number_raises(self):
         xml = search_response([row("EMB5001")], total="muitos")

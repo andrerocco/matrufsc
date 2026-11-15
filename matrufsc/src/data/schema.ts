@@ -1,4 +1,5 @@
-/// Formato dos JSONs publicados na branch `data`. Nada aqui importa de fora de `src/data`.
+/// Formato dos JSONs publicados na branch `data`.
+/// Nada em `src/data` importa de fora da pasta: `scripts/gate.ts` roda este código no Node, sem o alias `~/`.
 
 export type JSONCampusCode = "FLO" | "JOI" | "CBS" | "ARA" | "BLN";
 const CAMPUS_CODES: JSONCampusCode[] = ["FLO", "JOI", "CBS", "ARA", "BLN"];
@@ -18,7 +19,6 @@ export type JSONTurma = [
     string | null, // Status mostrado pelo CAGR entre colchetes
 ];
 
-// Horários de início que uma aula "dia.HHMM-N / sala" pode citar, na ordem do dia.
 export const HORAS = [
     "0730",
     "0820",
