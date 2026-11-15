@@ -76,6 +76,35 @@ describe("getTurmaFromJSON", () => {
         });
     });
 
+    test("throws for a field of the wrong type", () => {
+        const cases: [Partial<Record<number, unknown>>, string][] = [
+            [{ 0: "" }, 'Turma id "" is not a non-empty string.'],
+            [{ 0: 1652 }, "Turma id 1652 is not a non-empty string."],
+            [{ 1: "36" }, 'Turma 01652: carga horária "36" is not an integer.'],
+            [{ 2: null }, "Turma 01652: vagas ofertadas null is not an integer."],
+            [{ 3: 27.5 }, "Turma 01652: vagas ocupadas 27.5 is not an integer."],
+            [{ 4: true }, "Turma 01652: alunos especiais true is not an integer."],
+            [{ 5: "LOTADA" }, 'Turma 01652: saldo de vagas "LOTADA" is not an integer.'],
+            [{ 6: "" }, 'Turma 01652: pedidos sem vaga "" is not an integer.'],
+            [{ 7: "6.1830-2 / CTS-SL117A" }, 'Turma 01652: horários "6.1830-2 / CTS-SL117A" is not a list of strings.'],
+            [{ 7: [61830] }, "Turma 01652: horários [61830] is not a list of strings."],
+            [{ 8: "Cláudia" }, 'Turma 01652: professores "Cláudia" is not a list of strings.'],
+            [{ 8: [null] }, "Turma 01652: professores [null] is not a list of strings."],
+            [{ 9: "208" }, 'Curso "208" is not an integer.'],
+            [{ 10: "" }, 'Turma 01652: status "" is neither null nor a non-empty string.'],
+            [{ 10: 5 }, "Turma 01652: status 5 is neither null nor a non-empty string."],
+        ];
+        for (const [overrides, message] of cases) {
+            assert.throws(() => getTurmaFromJSON(turma(overrides), CURSOS), { message });
+        }
+    });
+
+    test("throws for a curso without a name", () => {
+        assert.throws(() => getTurmaFromJSON(TURMA, { "208": "" }), {
+            message: 'Curso 208 is named "", expected a non-empty string.',
+        });
+    });
+
     test("keeps everything after the first separator as the sala", () => {
         assert.deepStrictEqual(getTurmaFromJSON(turma({ 7: ["2.2020-2 / CTS / SL1"] }), CURSOS).aulas, [
             { dia_semana: 2, horarios: [12, 13], sala: "CTS / SL1" },
@@ -171,6 +200,41 @@ describe("getDisciplinaFromJSON", () => {
         );
         assert.throws(() => getDisciplinaFromJSON(["EMB5001", "Nome", [TURMA]], "JOI", "20271", { "3": "X" }), {
             message: "Curso 208 is not in cursos.",
+        });
+    });
+
+    test("throws for a code or a name that is not a non-empty string", () => {
+        const cases: [unknown[], string][] = [
+            [["", "Nome", [TURMA]], 'Disciplina code "" is not a non-empty string.'],
+            [[5001, "Nome", [TURMA]], "Disciplina code 5001 is not a non-empty string."],
+            [["EMB5001", "", [TURMA]], 'Disciplina EMB5001: nome "" is not a non-empty string.'],
+            [["EMB5001", 7, [TURMA]], "Disciplina EMB5001: nome 7 is not a non-empty string."],
+        ];
+        for (const [json, message] of cases) {
+            assert.throws(() => getDisciplinaFromJSON(json as unknown as JSONDisciplina, "JOI", "20271", CURSOS), {
+                message,
+            });
+        }
+    });
+
+    test("throws for a disciplina without turmas", () => {
+        for (const turmas of [[], null]) {
+            assert.throws(
+                () =>
+                    getDisciplinaFromJSON(
+                        ["EMB5001", "Nome", turmas] as unknown as JSONDisciplina,
+                        "JOI",
+                        "20271",
+                        CURSOS,
+                    ),
+                { message: "Disciplina EMB5001 has no turmas." },
+            );
+        }
+    });
+
+    test("throws for a turma listed twice", () => {
+        assert.throws(() => getDisciplinaFromJSON(["EMB5001", "Nome", [TURMA, TURMA]], "JOI", "20271", CURSOS), {
+            message: "Disciplina EMB5001 lists turma 01652 more than once.",
         });
     });
 
