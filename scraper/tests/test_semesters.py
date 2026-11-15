@@ -94,16 +94,17 @@ class ValidateDataDirTests(unittest.TestCase):
 
 class WriteCampusTests(unittest.TestCase):
     def test_legacy_file_is_rewritten_in_the_current_format(self):
-        disciplinas = [["EMB5001", "NOME", "Nome", [LEGACY_TURMA]]]
+        legacy = [["EMB5001", "NOME", "Nome", [LEGACY_TURMA]]]
+        current = [["EMB5001", "NOME", "Nome", [TURMA]]]
         with tempfile.TemporaryDirectory() as tmp:
             path = os.path.join(tmp, "2027", "20271-JOI.json")
             os.makedirs(os.path.dirname(path))
             with open(path, "w", encoding="utf-8") as f:
-                json.dump(campus_file(disciplinas), f)
-            self.assertTrue(write_campus_if_changed(tmp, "20271", "JOI", disciplinas, CURSOS, "t1"))
+                json.dump(campus_file(legacy), f)
+            self.assertTrue(write_campus_if_changed(tmp, "20271", "JOI", current, CURSOS, "t1"))
             with open(path, encoding="utf-8") as f:
                 self.assertEqual(f.read(), json.dumps(
-                    {"campus": "JOI", "data_extracao": "t1", "cursos": CURSOS, "disciplinas": disciplinas},
+                    {"campus": "JOI", "data_extracao": "t1", "cursos": CURSOS, "disciplinas": current},
                     ensure_ascii=False, separators=(",", ":"),
                 ))
 
