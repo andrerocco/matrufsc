@@ -81,6 +81,16 @@ class CheckStageTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, "20271-JOI.json: cursos deve ser um mapa nao vazio"):
             self.check(without_cursos)
 
+    def test_rejects_curso_key_that_is_not_an_id(self):
+        for key in ("abc", "0208", ""):
+            with self.assertRaisesRegex(RuntimeError, f"20271-JOI.json: chave de curso invalida \\('{key}'\\)"):
+                self.check(campus_file([["EMB5001", "Nome", [TURMA]]], cursos=CURSOS | {key: "X"}))
+
+    def test_rejects_curso_without_a_name(self):
+        for nome, shown in (("", "''"), (None, "None"), (3, "3")):
+            with self.assertRaisesRegex(RuntimeError, f"20271-JOI.json: nome do curso 208 invalido \\({shown}\\)"):
+                self.check(campus_file([["EMB5001", "Nome", [TURMA]]], cursos={"208": nome}))
+
     def test_disciplina_count_cannot_drop_more_than_the_threshold(self):
         baseline = {("20271", "JOI"): campus_file([[f"EMB500{i}", "Nome", [TURMA]] for i in range(10)])}
         eight = campus_file([[f"EMB500{i}", "Nome", [TURMA]] for i in range(8)])
