@@ -1,7 +1,7 @@
 import { describe, test } from "node:test";
 import assert from "node:assert";
-import { getTurmaFromJSON, getDisciplinaFromJSON } from "./parse";
-import type { JSONDisciplina, JSONTurma } from "./schema";
+import { checkCampusJSON, getTurmaFromJSON, getDisciplinaFromJSON } from "./parse";
+import type { JSONCampus, JSONDisciplina, JSONTurma } from "./schema";
 
 const CURSOS = { "208": "ENGENHARIA MECÂNICA", "3": "QUÍMICA - Bacharelado [Campus Florianópolis]" };
 
@@ -249,5 +249,39 @@ describe("getDisciplinaFromJSON", () => {
                 ),
             { message: "Disciplina CIT7146 has 4 fields, expected 3." },
         );
+    });
+});
+
+describe("checkCampusJSON", () => {
+    const campus = (disciplinas: unknown[], cursos: unknown = CURSOS) =>
+        ({ campus: "JOI", data_extracao: "15/11/26 - 03:00", cursos, disciplinas }) as JSONCampus;
+
+    test("returns the file as it came when every disciplina can be read", () => {
+        const file = campus([
+            ["EMB5001", "Nome", [TURMA]],
+            ["EMB5002", "Outro", [TURMA]],
+        ]);
+        assert.strictEqual(checkCampusJSON(file), file);
+    });
+
+    test("throws for the format published before cursos and status", () => {
+        const file = campus([["EMB5001", "NOME", "Nome", [TURMA.slice(0, 9)]]], undefined);
+        assert.throws(() => checkCampusJSON(file), { message: "Disciplina EMB5001 has 4 fields, expected 3." });
+    });
+
+    test("throws when a single disciplina cannot be read", () => {
+        const file = campus([
+            ["EMB5001", "Nome", [TURMA]],
+            ["EMB5002", "Outro", [turma({ 7: ["8.0730-2 / X"] })]],
+        ]);
+        assert.throws(() => checkCampusJSON(file), {
+            message: 'Aula "8.0730-2 / X" is not in the format dia.HHMM-N / sala.',
+        });
+    });
+
+    test("throws for something that is not a campus file", () => {
+        for (const value of [null, [], {}, "x"]) {
+            assert.throws(() => checkCampusJSON(value as unknown as JSONCampus));
+        }
     });
 });

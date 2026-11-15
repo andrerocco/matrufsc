@@ -1,6 +1,7 @@
 import { createCachedQuery } from "~/lib/createCachedResource";
 import { makeCacheStorage } from "~/lib/makeCacheStorage";
 
+import { checkCampusJSON } from "~/data/parse";
 import type { JSONCampus, JSONCampusCode } from "~/data/schema";
 
 // Query
@@ -22,6 +23,9 @@ async function fetchCampusData(source: { semester: string; campus: JSONCampusCod
 export const campusDataQuery = createCachedQuery(fetchCampusData, {
     key: (source) => `matrufsc:campusData:${source.campus}_${source.semester}`,
     storage: makeCacheStorage({ cacheName: "matrufsc:campusData" }),
+    // The cached file is shown before the network answers, and it may predate a
+    // format change. Throwing here makes it count as no cache.
+    deserialize: (raw) => checkCampusJSON(JSON.parse(raw)),
 });
 
 // TODO: Temporary, remove after 09/2026
