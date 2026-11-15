@@ -107,10 +107,7 @@ export default function App() {
                             const sem = semester();
                             if (data && sem) handleSelectMateria(data, disciplina, campus(), sem);
                         }}
-                        getLabel={(disciplina) => {
-                            const [codigo, nome] = disciplina;
-                            return `${codigo} - ${nome}`;
-                        }}
+                        getLabel={([codigo, nome]) => `${codigo} - ${nome}`}
                     />
                     <Materias class="mt-6" />
                 </div>

@@ -36,12 +36,12 @@ def fake_scrape(codigo=lambda semestre, campus: f"{campus}{semestre[3:]}00"):
 
 
 class MainTests(unittest.TestCase):
-    def run_main(self, argv, scrape, sessions=None):
+    def run_main(self, argv, scrape):
         """Roda main() num staging temporario; devolve (codigo de saida, stderr, staging lido, sessoes criadas)."""
         created = []
 
         def new_session():
-            created.append(sessions.pop(0) if sessions else FakeSession())
+            created.append(FakeSession())
             return created[-1]
 
         with tempfile.TemporaryDirectory() as tmp:

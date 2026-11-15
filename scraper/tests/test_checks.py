@@ -31,12 +31,9 @@ def write_stage(root, files, semesters=("20271",)):
 
 
 class CheckStageTests(unittest.TestCase):
-    def check(self, data=None, files=None, baseline=None):
+    def check(self, data, baseline=None):
         with tempfile.TemporaryDirectory() as stage, tempfile.TemporaryDirectory() as public:
-            files = dict(files or {})
-            if data is not None:
-                files[("20271", "JOI")] = data
-            write_stage(stage, files)
+            write_stage(stage, {("20271", "JOI"): data})
             for key, value in (baseline or {}).items():
                 write(public, key[0], key[1], value)
             check_stage(stage, public)

@@ -15,7 +15,6 @@ export interface SearchEntry {
     professores: string[];
 }
 
-/// Normalizes once per campus load what the search compares against on every keystroke.
 export function indexDisciplinas(disciplinas: JSONDisciplina[]): SearchEntry[] {
     return disciplinas.map((disciplina) => {
         const [codigo, nome, turmas] = disciplina;

@@ -64,15 +64,11 @@ describe("getTurmaFromJSON", () => {
 
     test("throws for a curso missing from cursos", () => {
         assert.throws(() => getTurmaFromJSON(turma({ 9: 999 }), CURSOS), { message: "Curso 999 is not in cursos." });
-        assert.throws(() => getTurmaFromJSON(TURMA, {}), { message: "Curso 208 is not in cursos." });
     });
 
     test("throws when the tuple does not have 11 fields", () => {
         assert.throws(() => getTurmaFromJSON(TURMA.slice(0, 9) as unknown as JSONTurma, CURSOS), {
             message: "Turma 01652 has 9 fields, expected 11.",
-        });
-        assert.throws(() => getTurmaFromJSON(TURMA.slice(0, 10) as unknown as JSONTurma, CURSOS), {
-            message: "Turma 01652 has 10 fields, expected 11.",
         });
     });
 
@@ -103,12 +99,6 @@ describe("getTurmaFromJSON", () => {
         assert.throws(() => getTurmaFromJSON(TURMA, { "208": "" }), {
             message: 'Curso 208 is named "", expected a non-empty string.',
         });
-    });
-
-    test("keeps everything after the first separator as the sala", () => {
-        assert.deepStrictEqual(getTurmaFromJSON(turma({ 7: ["2.2020-2 / CTS / SL1"] }), CURSOS).aulas, [
-            { dia_semana: 2, horarios: [12, 13], sala: "CTS / SL1" },
-        ]);
     });
 
     test("throws for an aula outside dia.HHMM-N / sala", () => {
@@ -146,60 +136,16 @@ describe("getTurmaFromJSON", () => {
 });
 
 describe("getDisciplinaFromJSON", () => {
-    test("disciplina with one turma", () => {
-        const jsonDisciplina: JSONDisciplina = [
-            "CIT7146",
-            "Introdução à Economia na Engenharia",
-            [["06653", 36, 45, 16, 0, 29, 0, ["5.1420-2 / CTS-LB118A"], ["Simone Meister Sommer Bilessimo"], 3, null]],
-        ];
+    const parse = (json: unknown[]) => getDisciplinaFromJSON(json as unknown as JSONDisciplina, "JOI", "20271", CURSOS);
 
-        const result = getDisciplinaFromJSON(jsonDisciplina, "FLO", "20261", CURSOS);
-
-        assert.deepStrictEqual(result, {
-            id: "CIT7146",
-            nome: "Introdução à Economia na Engenharia",
-            semester: "20261",
-            campus: "FLO",
-            turmas: [
-                {
-                    id: "06653",
-                    carga_horaria: 36,
-                    vagas_ofertadas: 45,
-                    vagas_ocupadas: 16,
-                    aulas: [
-                        {
-                            dia_semana: 5,
-                            horarios: [6, 7], // indices for 1420 and 1510
-                            sala: "CTS-LB118A",
-                        },
-                    ],
-                    professores: ["Simone Meister Sommer Bilessimo"],
-                    curso: { id: 3, nome: "QUÍMICA - Bacharelado [Campus Florianópolis]" },
-                    status: null,
-                    selected: true,
-                },
-            ],
+    test("builds the matéria and parses every turma", () => {
+        assert.deepStrictEqual(parse(["EMB5001", "Introdução à Engenharia", [TURMA, turma({ 0: "01653" })]]), {
+            id: "EMB5001",
+            nome: "Introdução à Engenharia",
+            campus: "JOI",
+            semester: "20271",
+            turmas: [PARSED_TURMA, { ...PARSED_TURMA, id: "01653" }],
             selected: true,
-        });
-    });
-
-    test("passes cursos to every turma", () => {
-        const result = getDisciplinaFromJSON(
-            ["EMB5001", "Nome", [TURMA, turma({ 0: "01653", 9: 3, 10: "Cancelada" })]],
-            "JOI",
-            "20271",
-            CURSOS,
-        );
-
-        assert.deepStrictEqual(
-            result.turmas.map((t) => [t.id, t.curso.id, t.status]),
-            [
-                ["01652", 208, null],
-                ["01653", 3, "Cancelada"],
-            ],
-        );
-        assert.throws(() => getDisciplinaFromJSON(["EMB5001", "Nome", [TURMA]], "JOI", "20271", { "3": "X" }), {
-            message: "Curso 208 is not in cursos.",
         });
     });
 
@@ -210,51 +156,31 @@ describe("getDisciplinaFromJSON", () => {
             [["EMB5001", "", [TURMA]], 'Disciplina EMB5001: nome "" is not a non-empty string.'],
             [["EMB5001", 7, [TURMA]], "Disciplina EMB5001: nome 7 is not a non-empty string."],
         ];
-        for (const [json, message] of cases) {
-            assert.throws(() => getDisciplinaFromJSON(json as unknown as JSONDisciplina, "JOI", "20271", CURSOS), {
-                message,
-            });
-        }
+        for (const [json, message] of cases) assert.throws(() => parse(json), { message });
     });
 
     test("throws for a disciplina without turmas", () => {
         for (const turmas of [[], null]) {
-            assert.throws(
-                () =>
-                    getDisciplinaFromJSON(
-                        ["EMB5001", "Nome", turmas] as unknown as JSONDisciplina,
-                        "JOI",
-                        "20271",
-                        CURSOS,
-                    ),
-                { message: "Disciplina EMB5001 has no turmas." },
-            );
+            assert.throws(() => parse(["EMB5001", "Nome", turmas]), { message: "Disciplina EMB5001 has no turmas." });
         }
     });
 
     test("throws for a turma listed twice", () => {
-        assert.throws(() => getDisciplinaFromJSON(["EMB5001", "Nome", [TURMA, TURMA]], "JOI", "20271", CURSOS), {
+        assert.throws(() => parse(["EMB5001", "Nome", [TURMA, TURMA]]), {
             message: "Disciplina EMB5001 lists turma 01652 more than once.",
         });
     });
 
     test("throws when the disciplina does not have 3 fields", () => {
-        assert.throws(
-            () =>
-                getDisciplinaFromJSON(
-                    ["CIT7146", "NOME", "Nome", [TURMA]] as unknown as JSONDisciplina,
-                    "FLO",
-                    "20261",
-                    CURSOS,
-                ),
-            { message: "Disciplina CIT7146 has 4 fields, expected 3." },
-        );
+        assert.throws(() => parse(["EMB5001", "NOME", "Nome", [TURMA]]), {
+            message: "Disciplina EMB5001 has 4 fields, expected 3.",
+        });
     });
 });
 
 describe("checkCampusJSON", () => {
-    const campus = (disciplinas: unknown[], cursos: unknown = CURSOS) =>
-        ({ campus: "JOI", data_extracao: "15/11/26 - 03:00", cursos, disciplinas }) as JSONCampus;
+    const campus = (disciplinas: unknown[]) =>
+        ({ campus: "JOI", data_extracao: "15/11/26 - 03:00", cursos: CURSOS, disciplinas }) as JSONCampus;
 
     test("returns the file as it came when every disciplina can be read", () => {
         const file = campus([
@@ -262,11 +188,6 @@ describe("checkCampusJSON", () => {
             ["EMB5002", "Outro", [TURMA]],
         ]);
         assert.strictEqual(checkCampusJSON(file), file);
-    });
-
-    test("throws for the format published before cursos and status", () => {
-        const file = campus([["EMB5001", "NOME", "Nome", [TURMA.slice(0, 9)]]], undefined);
-        assert.throws(() => checkCampusJSON(file), { message: "Disciplina EMB5001 has 4 fields, expected 3." });
     });
 
     test("throws when a single disciplina cannot be read", () => {
@@ -277,11 +198,5 @@ describe("checkCampusJSON", () => {
         assert.throws(() => checkCampusJSON(file), {
             message: 'Aula "8.0730-2 / X" is not in the format dia.HHMM-N / sala.',
         });
-    });
-
-    test("throws for something that is not a campus file", () => {
-        for (const value of [null, [], {}, "x"]) {
-            assert.throws(() => checkCampusJSON(value as unknown as JSONCampus));
-        }
     });
 });

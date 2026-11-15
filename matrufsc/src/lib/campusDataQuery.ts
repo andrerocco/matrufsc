@@ -4,8 +4,6 @@ import { makeCacheStorage } from "~/lib/makeCacheStorage";
 import { checkCampusJSON } from "~/data/parse";
 import type { JSONCampus, JSONCampusCode } from "~/data/schema";
 
-// Query
-
 async function fetchCampusData(source: { semester: string; campus: JSONCampusCode }): Promise<JSONCampus> {
     const { semester, campus } = source;
     const ano = semester.slice(0, 4);
