@@ -9,10 +9,12 @@ the index, the published baseline or the whole file.
 
 import json
 import os
+import re
 
 from semesters import campus_codes_for_semester, load_json, read_index_semesters
 
 MAX_DISCIPLINAS_DROP = 0.2
+CURSO_KEY_RE = re.compile(r"0|[1-9]\d*")
 
 
 def _is_int(value):
@@ -48,6 +50,15 @@ def _check_baseline(ctx, disciplinas, baseline_path):
             f"{ctx}: {len(disciplinas)} disciplinas, o publicado tem {len(baseline)}; "
             f"queda maior que {MAX_DISCIPLINAS_DROP:.0%}"
         )
+
+
+def _check_cursos(ctx, cursos):
+    """O parser do site so le os cursos que alguma turma cita; aqui vai o mapa inteiro."""
+    for key, nome in cursos.items():
+        if not CURSO_KEY_RE.fullmatch(key):
+            raise RuntimeError(f"{ctx}: chave de curso invalida ({key!r})")
+        if not isinstance(nome, str) or not nome:
+            raise RuntimeError(f"{ctx}: nome do curso {key} invalido ({nome!r})")
 
 
 def _check_disciplinas(ctx, data):
@@ -86,4 +97,5 @@ def check_stage(stage_dir, public_data_dir):
             ctx = f"{semester}-{campus}.json"
             data = _load_campus_file(ctx, os.path.join(stage_dir, name), campus)
             _check_baseline(ctx, data["disciplinas"], os.path.join(public_data_dir, name))
+            _check_cursos(ctx, data["cursos"])
             _check_disciplinas(ctx, data)
