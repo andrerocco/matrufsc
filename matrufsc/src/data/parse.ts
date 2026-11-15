@@ -1,4 +1,4 @@
-import { HORAS, type JSONCursos, type JSONDisciplina, type JSONTurma } from "./schema";
+import { HORAS, type JSONCampus, type JSONCursos, type JSONDisciplina, type JSONTurma } from "./schema";
 import type { Aula, Curso, Materia, Turma } from "./types";
 
 // "3.1620-3 / CTS-SL114A": dia da semana, horário da primeira aula, número de aulas seguidas e sala.
@@ -99,4 +99,10 @@ export function getDisciplinaFromJSON(
     }
 
     return { id, nome, campus, semester, turmas, selected: true };
+}
+
+// Devolve as tuplas como vieram: o site as guarda assim e só monta a matéria quando ela é adicionada.
+export function checkCampusJSON(json: JSONCampus): JSONCampus {
+    for (const disciplina of json.disciplinas) getDisciplinaFromJSON(disciplina, json.campus, "", json.cursos);
+    return json;
 }
