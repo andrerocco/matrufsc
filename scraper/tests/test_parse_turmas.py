@@ -101,14 +101,14 @@ class GroupingTests(unittest.TestCase):
         disciplinas, _ = parse_xml_text(page)
         self.assertEqual(disciplinas[0][2], "Trabalho de Conclusão de Curso I - TCC I (*)")
 
-    def test_nome_do_curso_fica_como_o_cagr_manda_e_o_primeiro_vence(self):
+    def test_nome_do_curso_fica_como_o_cagr_manda(self):
         page = cagr_page([
-            cagr_row("EMC5001", "01236", curso_id=236, nome_curso="ENGENHARIA DE MATERIAIS"),
+            cagr_row("EMC5001", "01236", curso_id=236, nome_curso="ENGENHARIA DE MATERIAIS [Semestral]"),
             cagr_row("EMC5002", "01236", curso_id=236, nome_curso="ENGENHARIA DE MATERIAIS [Semestral]"),
             cagr_row("ARA5001", "01653", curso_id=653, nome_curso="ENGENHARIA DE ENERGIA [Campus Araranguá]"),
         ])
         _, cursos = parse_xml_text(page)
-        self.assertEqual(cursos, {"236": "ENGENHARIA DE MATERIAIS", "653": "ENGENHARIA DE ENERGIA [Campus Araranguá]"})
+        self.assertEqual(cursos, {"236": "ENGENHARIA DE MATERIAIS [Semestral]", "653": "ENGENHARIA DE ENERGIA [Campus Araranguá]"})
 
     def test_professores_como_texto_link_ou_vazio(self):
         page = cagr_page([
@@ -160,6 +160,15 @@ class RejectionTests(unittest.TestCase):
         self.assert_rejects(
             [cagr_row("ADM7001", "01302", nome="Administração I"), cagr_row("ADM7001", "02302", nome="Administração 1")],
             r"linha 2 \(ADM7001 02302\): nome difere .*'Administração 1' vs 'Administração I'",
+        )
+
+    def test_nome_diferente_para_o_mesmo_id_de_curso(self):
+        self.assert_rejects(
+            [
+                cagr_row("EMC5001", "01236", curso_id=236, nome_curso="ENGENHARIA DE MATERIAIS"),
+                cagr_row("EMC5002", "01236", curso_id=236, nome_curso="ENGENHARIA DE MATERIAIS [Semestral]"),
+            ],
+            r"linha 2 \(EMC5002 01236\): nome do curso 236 difere .*'ENGENHARIA DE MATERIAIS \[Semestral\]' vs 'ENGENHARIA DE MATERIAIS'",
         )
 
     def test_linha_sem_link_de_curso(self):

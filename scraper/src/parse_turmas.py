@@ -260,7 +260,12 @@ def parse_xml_text(xml_text):
                 f"{ctx}: turma ja listada na linha {n_anterior}, copia {igual}: {turma_anterior!r} vs {turma!r}"
             )
         seen_turmas[(codigo_disciplina, nome_turma)] = (n, turma)
-        cursos.setdefault(str(curso_id), nome_curso)
+
+        nome_curso_visto = cursos.setdefault(str(curso_id), nome_curso)
+        if nome_curso_visto != nome_curso:
+            raise RuntimeError(
+                f"{ctx}: nome do curso {curso_id} difere do de outra linha: {nome_curso!r} vs {nome_curso_visto!r}"
+            )
 
         materia = materias_by_codigo.get(codigo_disciplina)
         if materia is None:
