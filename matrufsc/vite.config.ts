@@ -7,6 +7,11 @@ import path from "path";
 export default defineConfig({
     plugins: [solid(), tailwindcss(), visualizer()],
     base: process.env.VITE_BASE_URL ?? "/",
+    build: {
+        rollupOptions: {
+            input: [path.resolve(__dirname, "index.html"), path.resolve(__dirname, "sobre/index.html")],
+        },
+    },
     resolve: {
         alias: {
             "~": path.resolve(__dirname, "src"),
