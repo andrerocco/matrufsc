@@ -104,6 +104,7 @@ export default function App() {
                         }
                         limit={10}
                         filter={(segments) => searchRows(segments, searchIndex(), catalogo())}
+                        filterScope={campus()}
                         onSelect={(disciplina) => {
                             const data = campusData();
                             const sem = semester();

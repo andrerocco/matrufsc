@@ -18,6 +18,7 @@ import {
     restoreChip,
     selectValue,
     typeText,
+    withoutChips,
     type EditingChip,
     type Line,
     type SearchRow,
@@ -41,6 +42,7 @@ export default function Search<T>(props: {
     onSelect: (item: T) => void;
     getLabel: (item: T) => string;
     filter: (segments: Segment[]) => SearchRow<T>[];
+    filterScope?: unknown;
     placeholder?: string;
     limit: number;
     disabled?: boolean;
@@ -287,6 +289,14 @@ export default function Search<T>(props: {
                 setFocusedIndex((prev) => (prev >= rows().length ? Math.max(0, rows().length - 1) : prev));
                 enterHeld = false;
             },
+            { defer: true },
+        ),
+    );
+
+    createEffect(
+        on(
+            () => props.filterScope,
+            () => apply(withoutChips(line())),
             { defer: true },
         ),
     );

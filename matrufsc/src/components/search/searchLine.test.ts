@@ -22,6 +22,7 @@ import {
     selectedValues,
     text,
     typeText,
+    withoutChips,
     type Line,
     type Segment,
 } from "./searchLine";
@@ -221,6 +222,12 @@ describe("search line", () => {
             assert.strictEqual(restoreChip(deleteBackward(open)), null);
             assert.strictEqual(restoreChip(line(["", editing("FARMÁCIA"), ""])), null);
         });
+    });
+
+    test("dropping the chips keeps the free text", () => {
+        assert.deepStrictEqual(withoutChips(line(["calculo ", farmacia, " I", editing("x")])), line(["calculo I"]));
+        const plain = line(["calculo"], 2);
+        assert.strictEqual(withoutChips(plain), plain);
     });
 
     test("picking a value closes the open chip, or stands for the free text that suggested it", () => {
