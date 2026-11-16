@@ -307,6 +307,13 @@ function applySuggestion(line: Line, key: TokenKey, selected: TokenValue): Line 
     return { segments, caret: lineLength(segments) };
 }
 
+// Filters name values of one campus; on another campus they go and the free text stays.
+export function withoutChips(line: Line): Line {
+    if (line.segments.every((segment) => segment.kind === "text")) return line;
+    const segments = [text(queryText(line.segments))];
+    return { segments, caret: lineLength(segments) };
+}
+
 export function selectValue(line: Line, key: TokenKey, selected: TokenValue): Line {
     return closeChip(line, selected) ?? applySuggestion(line, key, selected);
 }
