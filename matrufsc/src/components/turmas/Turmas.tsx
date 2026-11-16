@@ -86,12 +86,16 @@ function TurmasTableRows(props: {
         return Object.values(mergeEquivalentTurmas(materia().turmas));
     });
 
+    // A curso every turma shares is on the materia's name.
+    const showCurso = () => new Set(materia().turmas.map((turma) => turma.curso.nome)).size > 1;
+
     return (
         <For each={groupedTurmas()} fallback={<TurmasEmptyRow message="Nenhuma turma disponível para esta matéria." />}>
             {(turmas) => (
                 <TurmaRow
                     id={`turma-${turmas[0].id}`} // Use the first turma's id as the group id
                     turmas={turmas}
+                    showCurso={showCurso()}
                     onToggleTurmas={(turmaIds, value) => props.onToggleTurmas?.(materia().id, turmaIds, value)}
                     onMouseEnter={() => {
                         // Select one turma from the group as preview for the overlay
@@ -116,19 +120,27 @@ function TurmasEmptyRow(props: { message: string }) {
 }
 
 // Every column of a row stacks one cell per turma of the group, and the professores column renders one
-// `h-6` line per professor. The columns only line up if each turma's cell is as tall as its own professor
-// list, so all of them size their cells with `turmaCellHeight` (an emulated rowspan).
+// `h-6` line per professor and per note. The columns only line up if each turma's cell is as tall as its
+// own line list, so all of them size their cells with `turmaCellHeight` (an emulated rowspan).
 const LINE_HEIGHT_REM = 1.5; // `h-6`
-const turmaCellHeight = (turma: Turma) => `${Math.max(1, turma.professores.length) * LINE_HEIGHT_REM}rem`;
 
 function TurmaRow(props: {
     id: string;
     turmas: Turma[];
+    showCurso: boolean;
     onToggleTurmas: (turmaIds: string[], value: boolean) => void;
     onMouseEnter?: () => void;
     onMouseLeave?: () => void;
 }) {
     const twochars = (n: number) => `${n < 10 ? "\u00A0" : ""}${n}`;
+
+    // The notation the CAGR prints under a disciplina's name.
+    const notes = (turma: Turma) => [
+        ...(props.showCurso ? [`*${turma.curso.nome}`] : []),
+        ...(turma.status ? [`[${turma.status}]`] : []),
+    ];
+    const turmaCellHeight = (turma: Turma) =>
+        `${(Math.max(1, turma.professores.length) + notes(turma).length) * LINE_HEIGHT_REM}rem`;
 
     const getPedidosSemVaga = (turma: Turma) => {
         const turmaWithExtras = turma as Turma & { pedidos_sem_vaga?: number; vagas_excedentes?: number };
@@ -213,6 +225,13 @@ function TurmaRow(props: {
                                     {(professor) => (
                                         <div class="flex h-6 items-center">
                                             <p class="truncate">{professor}</p>
+                                        </div>
+                                    )}
+                                </For>
+                                <For each={notes(turma)}>
+                                    {(note) => (
+                                        <div class="flex h-6 items-center text-neutral-600">
+                                            <p class="truncate">{note}</p>
                                         </div>
                                     )}
                                 </For>
