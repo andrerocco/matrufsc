@@ -13,7 +13,8 @@ import { useUrlState } from "~/context/url/UrlState";
 import Header from "~/components/header/Header";
 import Footer from "~/components/footer/Footer";
 import Search from "~/components/search/Search";
-import { indexDisciplinas, searchDisciplinas } from "~/components/search/searchDisciplinas";
+import { indexDisciplinas, searchRows } from "~/components/search/searchDisciplinas";
+import { buildCatalogo } from "~/components/search/catalogo";
 import Materias from "~/components/materias/Materias";
 import Turmas from "~/components/turmas/Turmas";
 import Horarios from "~/components/horarios/Horarios";
@@ -47,6 +48,7 @@ export default function App() {
     }, campusDataQuery);
     const disciplinas = () => campusData()?.disciplinas ?? [];
     const searchIndex = createMemo(() => indexDisciplinas(disciplinas()));
+    const catalogo = createMemo(() => buildCatalogo(campusData()));
 
     createEffect(() => {
         const options = semesterOptions();
@@ -100,8 +102,7 @@ export default function App() {
                             urlStateLoading() || ((semesterOptions.loading || campusData.loading) && !campusData())
                         }
                         limit={10}
-                        data={disciplinas()}
-                        filter={(search) => searchDisciplinas(search, searchIndex())}
+                        filter={(segments) => searchRows(segments, searchIndex(), catalogo())}
                         onSelect={(disciplina) => {
                             const data = campusData();
                             const sem = semester();
