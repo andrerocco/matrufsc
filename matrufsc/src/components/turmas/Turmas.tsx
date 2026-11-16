@@ -142,11 +142,6 @@ function TurmaRow(props: {
     const turmaCellHeight = (turma: Turma) =>
         `${(Math.max(1, turma.professores.length) + notes(turma).length) * LINE_HEIGHT_REM}rem`;
 
-    const getPedidosSemVaga = (turma: Turma) => {
-        const turmaWithExtras = turma as Turma & { pedidos_sem_vaga?: number; vagas_excedentes?: number };
-        return turmaWithExtras.pedidos_sem_vaga ?? turmaWithExtras.vagas_excedentes ?? 0;
-    };
-
     const toggleAllTurmas = () => {
         props.onToggleTurmas(
             props.turmas.map((turma) => turma.id), // All  turmas
@@ -189,28 +184,26 @@ function TurmaRow(props: {
             </td>
             <td class="px-2 py-0.75 whitespace-nowrap">
                 <For each={props.turmas}>
-                    {(turma) => {
-                        const pedidosSemVaga = getPedidosSemVaga(turma);
-
-                        return (
-                            <div class="flex items-center justify-center" style={{ height: turmaCellHeight(turma) }}>
-                                <span
-                                    class={clsx(
-                                        "whitespace-pre tabular-nums",
-                                        turma.vagas_ocupadas >= turma.vagas_ofertadas || pedidosSemVaga
-                                            ? "text-red-600"
-                                            : "text-green-700",
-                                    )}
-                                >
-                                    (<span title="Vagas ocupadas">{twochars(turma.vagas_ocupadas)}</span>
-                                    <span title="Pedidos sem vaga">
-                                        {pedidosSemVaga > 0 ? `+${twochars(pedidosSemVaga)}` : "\u00A0\u00A0\u00A0"}
-                                    </span>
-                                    /<span title="Vagas ofertadas">{twochars(turma.vagas_ofertadas)}</span>)
+                    {(turma) => (
+                        <div class="flex items-center justify-center" style={{ height: turmaCellHeight(turma) }}>
+                            <span
+                                class={clsx(
+                                    "whitespace-pre tabular-nums",
+                                    turma.vagas_ocupadas >= turma.vagas_ofertadas || turma.pedidos_sem_vaga
+                                        ? "text-red-600"
+                                        : "text-green-700",
+                                )}
+                            >
+                                (<span title="Vagas ocupadas">{twochars(turma.vagas_ocupadas)}</span>
+                                <span title="Pedidos sem vaga">
+                                    {turma.pedidos_sem_vaga > 0
+                                        ? `+${twochars(turma.pedidos_sem_vaga)}`
+                                        : "\u00A0\u00A0\u00A0"}
                                 </span>
-                            </div>
-                        );
-                    }}
+                                /<span title="Vagas ofertadas">{twochars(turma.vagas_ofertadas)}</span>)
+                            </span>
+                        </div>
+                    )}
                 </For>
             </td>
             <td class="w-full min-w-0">
