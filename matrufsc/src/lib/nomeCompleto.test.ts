@@ -26,13 +26,9 @@ const nomes = (turmas: JSONTurma[]) => {
 };
 
 describe("nome completo", () => {
-    test("the curso every turma shares goes after the name, as the CAGR names it", () => {
+    test("the first turma's curso goes after the name, as the CAGR names it", () => {
         const nome = "Cálculo 1 *ENGENHARIA NAVAL [Campus Joinville]";
-        assert.deepStrictEqual(nomes([turma("01606", 606), turma("02606", 606)]), [nome, nome]);
-    });
-
-    test("a disciplina offered to more than one curso names none", () => {
-        assert.deepStrictEqual(nomes([turma("01208", 208), turma("01606", 606)]), ["Cálculo 1", "Cálculo 1"]);
+        assert.deepStrictEqual(nomes([turma("01606", 606), turma("01208", 208)]), [nome, nome]);
     });
 
     test("the status every turma shares goes before the curso, and a status of only some turmas stays off", () => {

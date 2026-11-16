@@ -86,7 +86,7 @@ function TurmasTableRows(props: {
         return Object.values(mergeEquivalentTurmas(materia().turmas));
     });
 
-    // A curso every turma shares is on the materia's name.
+    // The materia's name carries only the first turma's curso.
     const showCurso = () => new Set(materia().turmas.map((turma) => turma.curso.nome)).size > 1;
 
     return (
