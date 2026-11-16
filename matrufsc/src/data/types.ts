@@ -14,6 +14,7 @@ export interface Turma {
     carga_horaria: number;
     vagas_ofertadas: number;
     vagas_ocupadas: number;
+    pedidos_sem_vaga: number;
     aulas: Aula[];
     professores: string[];
     curso: Curso;
