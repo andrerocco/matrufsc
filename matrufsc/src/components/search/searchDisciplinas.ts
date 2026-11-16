@@ -1,4 +1,5 @@
-import type { JSONDisciplina, JSONTurma } from "~/data/schema";
+import type { JSONCampus, JSONDisciplina, JSONTurma } from "~/data/schema";
+import { disciplinaNome } from "~/lib/nomeCompleto";
 import { departamentoOf, searchEntries, suggestEntries, type Catalogo, type Entry } from "./catalogo";
 import { normalize } from "./normalize";
 import {
@@ -15,50 +16,65 @@ interface SearchEntry {
     disciplina: JSONDisciplina;
     codigo: string;
     nome: string;
+    // The name as the list prints it, curso included, since users type that too ("estagio eletrica").
+    texto: string;
 }
 
-export function indexDisciplinas(disciplinas: JSONDisciplina[]): SearchEntry[] {
-    return disciplinas.map((disciplina) => {
+export function indexDisciplinas(campus?: Pick<JSONCampus, "cursos" | "disciplinas">): SearchEntry[] {
+    if (!campus) return [];
+    return campus.disciplinas.map((disciplina) => {
         const [codigo, nome] = disciplina;
         return {
             disciplina,
             codigo,
             nome: normalize(nome),
+            texto: normalize(disciplinaNome(disciplina, campus.cursos)),
         };
     });
 }
 
-export function searchDisciplinas(query: string, index: SearchEntry[]): JSONDisciplina[] {
+interface Match {
+    disciplina: JSONDisciplina;
+    score: number;
+    // Matched by its code or its own name, not only by the status or curso shown after the name.
+    direct: boolean;
+}
+
+function matchDisciplinas(query: string, index: SearchEntry[]): Match[] {
     const q = normalize(query);
-    if (!q) return index.map((entry) => entry.disciplina);
+    if (!q) return index.map(({ disciplina }) => ({ disciplina, score: 0, direct: true }));
 
     const code = q.replace(/^([A-Z]{3}) +(?=\d)/, "$1"); // "ine 5417"
     const tokens = q.split(/\s+/).filter(Boolean);
-    const scored: Array<{ item: JSONDisciplina; score: number }> = [];
+    const fits = (s: string) => tokens.every((t) => s.includes(t));
+    const matches: Match[] = [];
 
-    for (const { disciplina, codigo, nome } of index) {
+    for (const { disciplina, codigo, nome, texto } of index) {
         let score = 0;
 
         if (codigo === code) score = 10000;
         else if (codigo.startsWith(code)) score = 5000;
         else if (codigo.includes(code)) score = 1000;
 
-        if (tokens.every((t) => nome.includes(t))) {
-            const fullIdx = nome.indexOf(q);
+        const direct = score > 0 || fits(nome);
+        if (fits(texto)) {
+            const fullIdx = texto.indexOf(q);
             if (fullIdx !== -1) {
                 score += 500 + Math.max(0, 50 - fullIdx) + (nome === q ? 100 : 0);
             } else {
-                const firstIdx = nome.indexOf(tokens[0]);
+                const firstIdx = texto.indexOf(tokens[0]);
                 score += 100 + Math.max(0, 50 - firstIdx);
             }
         }
 
-        if (score > 0) scored.push({ item: disciplina, score });
+        if (score > 0) matches.push({ disciplina, score, direct });
     }
 
-    scored.sort((a, b) => b.score - a.score);
-    return scored.map((s) => s.item);
+    return matches.sort((a, b) => b.score - a.score);
 }
+
+export const searchDisciplinas = (query: string, index: SearchEntry[]): JSONDisciplina[] =>
+    matchDisciplinas(query, index).map((match) => match.disciplina);
 
 type Filtro = Record<TokenKey, ReadonlySet<string>>;
 
@@ -161,11 +177,14 @@ export function searchRows(segments: Segment[], index: SearchEntry[], catalogo: 
     const query = queryText(segments);
     const scoped = isActive(filtro) ? filterDisciplinas(index, filtro) : index;
     const ordered = filtro.curso.size > 0 ? sortByFase(scoped, filtro.curso) : scoped;
-    const items = itemRows(searchDisciplinas(query, ordered));
-    // The best disciplina stays above the suggested filters, so Enter still adds it.
+    const matches = matchDisciplinas(query, ordered);
+    const items = itemRows(matches.map((match) => match.disciplina));
+    // The best disciplina stays above the suggested filters, so Enter still adds it, unless only the curso after
+    // its name matched: "ciencias da computacao" asks for the curso.
+    const lead = matches[0]?.direct ? 1 : 0;
     return [
-        ...items.slice(0, 1),
+        ...items.slice(0, lead),
         ...suggestions(query, catalogo, index, filtro, items.length === 0),
-        ...items.slice(1),
+        ...items.slice(lead),
     ];
 }

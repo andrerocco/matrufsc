@@ -4,6 +4,7 @@ import GripVertical from "lucide-solid/icons/grip-vertical";
 import X from "lucide-solid/icons/x";
 import { usePlano } from "~/context/plano/Plano.store";
 import type { Materia, Turma } from "~/data/types";
+import { materiaNome } from "~/lib/nomeCompleto";
 import { dragRow } from "./dragRow";
 import { useHorariosOverlay } from "../horarios/useHorariosOverlay";
 
@@ -167,7 +168,7 @@ function MateriaRow(props: {
             </td>
             <td class="px-3 py-1.5">{props.materia.id}</td>
             <td class={clsx("relative px-3 py-1.5", props.actions && "pointer-coarse:pr-20")}>
-                <span>{props.materia.nome}</span>
+                <span>{materiaNome(props.materia)}</span>
                 <Show when={props.actions}>
                     <div class="absolute inset-y-0 right-0 flex opacity-0 select-none group-hover:opacity-100 group-data-dragging:opacity-100 has-focus-visible:opacity-100 pointer-coarse:text-black/50 pointer-coarse:opacity-100">
                         <button

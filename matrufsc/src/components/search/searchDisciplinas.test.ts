@@ -34,12 +34,12 @@ const DISCIPLINAS: JSONDisciplina[] = [
     ["FAR1001", "Farmacologia", [turma("05102", 102, ["Maria"])]],
 ];
 
-const index = indexDisciplinas(DISCIPLINAS);
+const index = indexDisciplinas({ cursos: CURSOS, disciplinas: DISCIPLINAS });
 const catalogo = buildCatalogo({ cursos: CURSOS, disciplinas: DISCIPLINAS });
 
 describe("searchDisciplinas", () => {
     const codes = (query: string, disciplinas = DISCIPLINAS) =>
-        searchDisciplinas(query, indexDisciplinas(disciplinas)).map((d) => d[0]);
+        searchDisciplinas(query, indexDisciplinas({ cursos: CURSOS, disciplinas })).map((d) => d[0]);
 
     test("empty query returns every disciplina", () => {
         assert.deepStrictEqual(searchDisciplinas("  ", index), DISCIPLINAS);
@@ -50,6 +50,11 @@ describe("searchDisciplinas", () => {
         assert.deepStrictEqual(codes("programacao objetos"), ["INE5404"]);
         const estagio: JSONDisciplina = ["ECV5001", "Estágio (1ª ênfase)", [turma("01208", 208)]];
         assert.deepStrictEqual(codes("1a enfase", [estagio]), ["ECV5001"]);
+    });
+
+    test("matches the curso the name shows, which is the first turma's", () => {
+        assert.deepStrictEqual(codes("software computacao"), ["INE5417"]);
+        assert.deepStrictEqual(codes("software informacao"), []);
     });
 
     test("an exact name comes before the longer names that begin with it", () => {
@@ -123,8 +128,9 @@ describe("searchRows", () => {
         assert.deepStrictEqual(rows(CCO, choosing("curso", "farm")), ["curso:FARMÁCIA"]);
     });
 
-    test("free text suggests a curso from the start of its name, below the best disciplina", () => {
+    test("free text suggests a curso from the start of its name, below the disciplina it names", () => {
         assert.deepStrictEqual(rows("farm"), ["FAR1001", "curso:FARMÁCIA"]);
+        assert.deepStrictEqual(rows("ciencias")[0], "curso:CIÊNCIAS DA COMPUTAÇÃO");
         assert.deepStrictEqual(rows(FAR, " farm"), ["FAR1001"]);
     });
 

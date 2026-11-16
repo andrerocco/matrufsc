@@ -16,6 +16,7 @@ import Footer from "~/components/footer/Footer";
 import Search from "~/components/search/Search";
 import { indexDisciplinas, searchRows } from "~/components/search/searchDisciplinas";
 import { buildCatalogo } from "~/components/search/catalogo";
+import { disciplinaNome } from "~/lib/nomeCompleto";
 import Materias from "~/components/materias/Materias";
 import Turmas from "~/components/turmas/Turmas";
 import Horarios from "~/components/horarios/Horarios";
@@ -47,8 +48,7 @@ export default function App() {
         if (!semesterValue || !campusValue) return null; // blocks fetching
         return { semester: semesterValue, campus: campusValue };
     }, campusDataQuery);
-    const disciplinas = () => campusData()?.disciplinas ?? [];
-    const searchIndex = createMemo(() => indexDisciplinas(disciplinas()));
+    const searchIndex = createMemo(() => indexDisciplinas(campusData()));
     const catalogo = createMemo(() => buildCatalogo(campusData()));
 
     createEffect(() => {
@@ -119,7 +119,9 @@ export default function App() {
                             const sem = semester();
                             if (data && sem) handleSelectMateria(data, disciplina, campus(), sem);
                         }}
-                        getLabel={([codigo, nome]) => `${codigo} - ${nome}`}
+                        getLabel={(disciplina) =>
+                            `${disciplina[0]} - ${disciplinaNome(disciplina, campusData()?.cursos ?? {})}`
+                        }
                     />
                     <Materias class="mt-6" />
                 </div>
