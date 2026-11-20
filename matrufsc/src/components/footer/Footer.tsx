@@ -23,9 +23,7 @@ export default function Footer(props: { class?: string }) {
                 >
                     Avaliar
                 </a>
-                <a href="https://github.com/andrerocco/matrufsc" target="_blank" rel="noreferrer">
-                    Sobre
-                </a>
+                <a href={`${import.meta.env.BASE_URL}sobre`}>Sobre</a>
             </div>
         </footer>
     );
