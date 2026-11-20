@@ -23,7 +23,7 @@ export default function Footer(props: { class?: string }) {
                 >
                     Avaliar
                 </a>
-                <a href={`${import.meta.env.BASE_URL}sobre/`}>Sobre</a>
+                <a href={`${import.meta.env.BASE_URL}sobre`}>Sobre</a>
             </div>
         </footer>
     );

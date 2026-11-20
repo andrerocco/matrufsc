@@ -9,7 +9,7 @@ export default defineConfig({
     base: process.env.VITE_BASE_URL ?? "/",
     build: {
         rollupOptions: {
-            input: [path.resolve(__dirname, "index.html"), path.resolve(__dirname, "sobre/index.html")],
+            input: [path.resolve(__dirname, "index.html"), path.resolve(__dirname, "sobre.html")],
         },
     },
     resolve: {
