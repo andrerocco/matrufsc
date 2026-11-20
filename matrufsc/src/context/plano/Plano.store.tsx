@@ -10,6 +10,11 @@ export interface Aula {
     sala: string;
 }
 
+export interface Curso {
+    id: number;
+    nome: string;
+}
+
 export interface Turma {
     id: string;
     carga_horaria: number;
@@ -17,6 +22,7 @@ export interface Turma {
     vagas_ocupadas: number;
     aulas: Aula[];
     professores: string[];
+    curso: Curso | null;
     selected: boolean;
 }
 

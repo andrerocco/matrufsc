@@ -139,18 +139,23 @@ def prepare_stage(public_data_dir, stage_dir):
     return stage_dir
 
 
-def write_campus_if_changed(data_dir, semester, campus, disciplinas, data_extracao):
+def write_campus_if_changed(data_dir, semester, campus, disciplinas, cursos, data_extracao):
     output_path = os.path.join(data_dir, semester[:4], f"{semester}-{campus}.json")
     data = {
         "campus": campus,
         "data_extracao": data_extracao,
+        "cursos": cursos,
         "disciplinas": disciplinas,
     }
 
     if os.path.exists(output_path):
         try:
             existing = load_json(output_path)
-            if existing.get("campus") == campus and existing.get("disciplinas") == disciplinas:
+            if (
+                existing.get("campus") == campus
+                and existing.get("disciplinas") == disciplinas
+                and existing.get("cursos") == cursos
+            ):
                 print(f"  {semester}-{campus}.json unchanged")
                 return False
         except json.JSONDecodeError:
@@ -176,59 +181,3 @@ def write_index_if_changed(data_dir):
     write_json(output_path, index)
     print(f"  index.json updated ({', '.join(index['semesters'])})")
     return True
-
-
-def _is_int(value):
-    # JSON booleans are ints in Python; reject them explicitly.
-    return isinstance(value, int) and not isinstance(value, bool)
-
-
-def _validate_turma(ctx, turma):
-    if not isinstance(turma, list) or len(turma) != 9:
-        raise RuntimeError(f"{ctx}: turma deve ter 9 campos, tem {len(turma) if isinstance(turma, list) else 'nao-lista'}")
-    if not isinstance(turma[0], str) or not turma[0]:
-        raise RuntimeError(f"{ctx}: id da turma invalido")
-    for i in range(1, 7):
-        if not _is_int(turma[i]):
-            raise RuntimeError(f"{ctx}: campo numerico {i} nao e inteiro ({turma[i]!r})")
-    for i, name in ((7, "horarios"), (8, "professores")):
-        if not isinstance(turma[i], list) or not all(isinstance(x, str) for x in turma[i]):
-            raise RuntimeError(f"{ctx}: {name} deve ser lista de strings")
-
-
-def _validate_disciplina(ctx, disciplina):
-    if not isinstance(disciplina, list) or len(disciplina) != 4:
-        raise RuntimeError(f"{ctx}: disciplina deve ter 4 campos")
-    codigo, nome_ascii, nome, turmas = disciplina
-    for value, name in ((codigo, "codigo"), (nome_ascii, "nome_ascii"), (nome, "nome")):
-        if not isinstance(value, str) or not value:
-            raise RuntimeError(f"{ctx}: {name} invalido")
-    if not isinstance(turmas, list) or not turmas:
-        raise RuntimeError(f"{ctx}: deve ter ao menos uma turma")
-    for i, turma in enumerate(turmas):
-        _validate_turma(f"{ctx} turma {i}", turma)
-
-
-def validate_data_dir(data_dir):
-    """Guardrail before publishing: index is non-empty and every campus file
-    matches the tuple contract the frontend parser decodes."""
-    index = build_index(data_dir)
-    if not index["semesters"]:
-        raise RuntimeError("index vazio; abortando para evitar dados indisponiveis")
-
-    for semester in index["semesters"]:
-        for campus in campus_codes_for_semester(semester):
-            path = os.path.join(data_dir, semester[:4], f"{semester}-{campus}.json")
-            if not os.path.exists(path):
-                raise RuntimeError(f"{semester}-{campus}.json ausente no staging")
-
-            data = load_json(path)
-            if data.get("campus") != campus:
-                raise RuntimeError(f"{semester}-{campus}.json possui campus invalido: {data.get('campus')}")
-            if not isinstance(data.get("data_extracao"), str) or not data["data_extracao"]:
-                raise RuntimeError(f"{semester}-{campus}.json sem data_extracao")
-            disciplinas = data.get("disciplinas")
-            if not isinstance(disciplinas, list) or not disciplinas:
-                raise RuntimeError(f"{semester}-{campus}.json nao possui disciplinas")
-            for i, disciplina in enumerate(disciplinas):
-                _validate_disciplina(f"{semester}-{campus} disciplina {i}", disciplina)

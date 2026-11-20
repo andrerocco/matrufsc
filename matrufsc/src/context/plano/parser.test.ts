@@ -10,11 +10,12 @@ describe("JSON Transformers", () => {
                 36, // carga_horaria
                 37, // vagas_ofertadas
                 27, // vagas_ocupadas
-                0, // vagas_reservadas
+                0, // alunos_especiais
                 10, // vagas_disponiveis
                 0, // vagas_excedentes
                 ["6.1830-2 / CTS-SL117A"], // rawAulas
                 ["Cláudia Destro dos Santos"], // professores
+                null, // curso ofertante
             ];
 
             const result = getTurmaFromJSON(jsonTurma);
@@ -22,6 +23,8 @@ describe("JSON Transformers", () => {
             assert.deepStrictEqual(result, {
                 id: "01652",
                 carga_horaria: 36,
+                vagas_ofertadas: 37,
+                vagas_ocupadas: 27,
                 aulas: [
                     {
                         dia_semana: 6,
@@ -30,6 +33,7 @@ describe("JSON Transformers", () => {
                     },
                 ],
                 professores: ["Cláudia Destro dos Santos"],
+                curso: null,
                 selected: true,
             });
         });
@@ -45,6 +49,7 @@ describe("JSON Transformers", () => {
                 0,
                 ["3.1830-2 / CTS-LB108A", "4.2020-2 / CTS-LB108A"],
                 ["Cristian Cechinel"],
+                null,
             ];
 
             const result = getTurmaFromJSON(jsonTurma);
@@ -52,6 +57,8 @@ describe("JSON Transformers", () => {
             assert.deepStrictEqual(result, {
                 id: "02652",
                 carga_horaria: 72,
+                vagas_ofertadas: 35,
+                vagas_ocupadas: 33,
                 aulas: [
                     {
                         dia_semana: 3,
@@ -65,6 +72,7 @@ describe("JSON Transformers", () => {
                     },
                 ],
                 professores: ["Cristian Cechinel"],
+                curso: null,
                 selected: true,
             });
         });
@@ -80,6 +88,7 @@ describe("JSON Transformers", () => {
                 0,
                 ["6.9999-2 / CTS-SL117A"], // invalid time
                 ["Cláudia Destro dos Santos"],
+                null,
             ];
 
             assert.throws(() => getTurmaFromJSON(jsonTurma), {
@@ -98,11 +107,74 @@ describe("JSON Transformers", () => {
                 0,
                 ["6.2110-2 / CTS-SL117A"], // last time slot + 2 credits
                 ["Cláudia Destro dos Santos"],
+                null,
             ];
 
             assert.throws(() => getTurmaFromJSON(jsonTurma), {
                 message: "Sum of horarioInicio and creditos is out of bounds: 2110, 2.",
             });
+        });
+
+        test("tolerates a legacy 9-field turma (no curso field)", () => {
+            // Legacy files predate the 10th `curso` field and the campus `cursos` map.
+            const legacy = [
+                "01652",
+                36,
+                37,
+                27,
+                0,
+                10,
+                0,
+                ["6.1830-2 / CTS-SL117A"],
+                ["Cláudia Destro dos Santos"],
+            ] as unknown as JSONTurma;
+
+            const result = getTurmaFromJSON(legacy);
+
+            assert.strictEqual(result.id, "01652");
+            assert.strictEqual(result.carga_horaria, 36);
+            assert.deepStrictEqual(result.aulas[0], { dia_semana: 6, horarios: [10, 11], sala: "CTS-SL117A" });
+            assert.deepStrictEqual(result.professores, ["Cláudia Destro dos Santos"]);
+            assert.strictEqual(result.curso, null);
+        });
+
+        test("resolves the curso field (index 9) to its name through the campus map", () => {
+            const withCurso: JSONTurma = [
+                "01652",
+                36,
+                37,
+                27,
+                0,
+                10,
+                0,
+                ["6.1830-2 / CTS-SL117A"],
+                ["Cláudia Destro dos Santos"],
+                302,
+            ];
+
+            const result = getTurmaFromJSON(withCurso, { "302": "CIÊNCIAS CONTÁBEIS", "342": "CIÊNCIA DA INFORMAÇÃO" });
+
+            assert.deepStrictEqual(result.curso, { id: 302, nome: "CIÊNCIAS CONTÁBEIS" });
+        });
+
+        test("yields no curso when the id is null or missing from the campus map", () => {
+            const base: JSONTurma = [
+                "01652",
+                36,
+                37,
+                27,
+                0,
+                10,
+                0,
+                ["6.1830-2 / CTS-SL117A"],
+                ["Cláudia Destro dos Santos"],
+                null,
+            ];
+            const cursos = { "302": "CIÊNCIAS CONTÁBEIS" };
+
+            assert.strictEqual(getTurmaFromJSON(base, cursos).curso, null);
+            assert.strictEqual(getTurmaFromJSON([...base.slice(0, 9), 999] as JSONTurma, cursos).curso, null);
+            assert.strictEqual(getTurmaFromJSON([...base.slice(0, 9), 302] as JSONTurma).curso, null);
         });
     });
 
@@ -112,7 +184,7 @@ describe("JSON Transformers", () => {
                 "CIT7146",
                 "INTRODUCAO A ECONOMIA NA ENGENHARIA",
                 "Introdução à Economia na Engenharia",
-                [["06653", 36, 45, 16, 0, 29, 0, ["5.1420-2 / CTS-LB118A"], ["Simone Meister Sommer Bilessimo"]]],
+                [["06653", 36, 45, 16, 0, 29, 0, ["5.1420-2 / CTS-LB118A"], ["Simone Meister Sommer Bilessimo"], null]],
             ];
 
             const result = getDisciplinaFromJSON(jsonDisciplina, "FLO", "20261");
@@ -126,6 +198,8 @@ describe("JSON Transformers", () => {
                     {
                         id: "06653",
                         carga_horaria: 36,
+                        vagas_ofertadas: 45,
+                        vagas_ocupadas: 16,
                         aulas: [
                             {
                                 dia_semana: 5,
@@ -134,6 +208,7 @@ describe("JSON Transformers", () => {
                             },
                         ],
                         professores: ["Simone Meister Sommer Bilessimo"],
+                        curso: null,
                         selected: true,
                     },
                 ],
@@ -147,8 +222,8 @@ describe("JSON Transformers", () => {
                 "ELABORACAO DE TRABALHOS ACADEMICOS",
                 "Elaboração de Trabalhos Acadêmicos",
                 [
-                    ["01652", 36, 37, 27, 0, 10, 0, ["6.1830-2 / CTS-SL117A"], ["Cláudia Destro dos Santos"]],
-                    ["01653", 36, 30, 12, 0, 18, 0, ["6.1830-2 / CTS-SL117A"], ["Cláudia Destro dos Santos"]],
+                    ["01652", 36, 37, 27, 0, 10, 0, ["6.1830-2 / CTS-SL117A"], ["Cláudia Destro dos Santos"], null],
+                    ["01653", 36, 30, 12, 0, 18, 0, ["6.1830-2 / CTS-SL117A"], ["Cláudia Destro dos Santos"], null],
                 ],
             ];
 
@@ -167,6 +242,31 @@ describe("JSON Transformers", () => {
                 horarios: [10, 11],
                 sala: "CTS-SL117A",
             });
+        });
+
+        test("resolves each turma's curso through the campus map", () => {
+            const jsonDisciplina: JSONDisciplina = [
+                "ANT7101",
+                "INTRODUCAO A ANTROPOLOGIA",
+                "Introdução à Antropologia",
+                [
+                    ["01319", 72, 40, 10, 0, 30, 0, ["2.0820-2 / CFH-301"], ["Fulano"], 319],
+                    ["01320", 72, 40, 10, 0, 30, 0, ["3.0820-2 / CFH-301"], ["Beltrano"], 320],
+                ],
+            ];
+
+            const result = getDisciplinaFromJSON(jsonDisciplina, "FLO", "20262", {
+                "319": "PSICOLOGIA",
+                "320": "ANTROPOLOGIA",
+            });
+
+            assert.deepStrictEqual(
+                result.turmas.map((turma) => turma.curso),
+                [
+                    { id: 319, nome: "PSICOLOGIA" },
+                    { id: 320, nome: "ANTROPOLOGIA" },
+                ],
+            );
         });
     });
 });

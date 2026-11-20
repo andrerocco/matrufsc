@@ -17,6 +17,7 @@ workflow publishes the resulting diff to the `data` branch (the single source
 of truth for course JSON, baked into the build by `npm run data:pull`).
 """
 
+from gate import format_report, run_gate
 from get_turmas import CagrSession, probe_semester_availability, scrape as scrape_semester
 from parse_turmas import extract_semester_campus, parse_xml_file
 from semesters import (
@@ -26,7 +27,6 @@ from semesters import (
     extraction_time,
     get_latest_indexed_semester,
     prepare_stage,
-    validate_data_dir,
     write_campus_if_changed,
     write_index_if_changed,
 )
@@ -78,7 +78,7 @@ def parse_and_write_xmls(xml_files, stage_dir):
 
     for filepath in xml_files:
         semester, campus = extract_semester_campus(filepath)
-        disciplinas = parse_xml_file(filepath)
+        disciplinas, cursos = parse_xml_file(filepath)
         if not disciplinas:
             raise RuntimeError(f"{os.path.basename(filepath)} nao possui disciplinas; abortando para evitar dados vazios")
 
@@ -90,7 +90,7 @@ def parse_and_write_xmls(xml_files, stage_dir):
             )
         campus_by_codes[codes] = campus
 
-        changed = write_campus_if_changed(stage_dir, semester, campus, disciplinas, data_extracao) or changed
+        changed = write_campus_if_changed(stage_dir, semester, campus, disciplinas, cursos, data_extracao) or changed
 
     changed = write_index_if_changed(stage_dir) or changed
     return changed
@@ -146,9 +146,15 @@ def main():
         step(f"2. Scraping do semestre {target_semester}")
         changed = scrape_and_reconcile(target_semester, mode, session, stage_dir)
 
-        step("3. Validando staging")
-        validate_data_dir(stage_dir)
-        print(f"Dados staged em {stage_dir}")
+        step("3. Gate de integridade (pre-publicacao)")
+        report = run_gate(stage_dir)
+        if not report.ok:
+            print(format_report(report), file=sys.stderr)
+            raise RuntimeError(
+                f"Gate de integridade falhou: {len(report.violations)} violacao(oes); "
+                f"nao publicando (ver relatorio acima)."
+            )
+        print(f"Gate OK: {report.checks_run} checks, 0 violacoes. Dados staged em {stage_dir}")
 
         step("4. Resultado")
         if changed:
