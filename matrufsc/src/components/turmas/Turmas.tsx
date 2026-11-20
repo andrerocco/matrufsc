@@ -121,6 +121,12 @@ function TurmasEmptyRow(props: { message: string }) {
 const LINE_HEIGHT_REM = 1.5; // `h-6`
 const turmaCellHeight = (turma: Turma) => `${Math.max(1, turma.professores.length) * LINE_HEIGHT_REM}rem`;
 
+// A status shows as a mark on the turma's id: struck through when nobody can take the turma, an asterisk
+// for any other status.
+const UNAVAILABLE = new Set(["Cancelada", "Bloqueada (inativa)"]);
+const isUnavailable = (turma: Turma) => turma.status !== null && UNAVAILABLE.has(turma.status);
+const dimmed = (turma: Turma) => isUnavailable(turma) && "opacity-50";
+
 function TurmaRow(props: {
     id: string;
     turmas: Turma[];
@@ -165,7 +171,12 @@ function TurmaRow(props: {
                 <For each={props.turmas}>
                     {(turma) => (
                         <div class="flex items-center" style={{ height: turmaCellHeight(turma) }}>
-                            <span class="truncate">{turma.id}</span>
+                            <span class={clsx("truncate", isUnavailable(turma) && "line-through opacity-50")}>
+                                {turma.id}
+                            </span>
+                            <Show when={turma.status && !isUnavailable(turma)}>
+                                <span class="font-sans text-neutral-600">*</span>
+                            </Show>
                         </div>
                     )}
                 </For>
@@ -177,6 +188,7 @@ function TurmaRow(props: {
                             <span
                                 class={clsx(
                                     "whitespace-pre tabular-nums",
+                                    dimmed(turma),
                                     turma.vagas_ocupadas >= turma.vagas_ofertadas || turma.pedidos_sem_vaga
                                         ? "text-red-600"
                                         : "text-green-700",
@@ -198,7 +210,10 @@ function TurmaRow(props: {
                 <div class="flex min-h-9 flex-col justify-center px-3 py-1">
                     <For each={props.turmas}>
                         {(turma) => (
-                            <div class="flex flex-col justify-center" style={{ height: turmaCellHeight(turma) }}>
+                            <div
+                                class={clsx("flex flex-col justify-center", dimmed(turma))}
+                                style={{ height: turmaCellHeight(turma) }}
+                            >
                                 <For
                                     each={turma.professores}
                                     fallback={<div class="flex h-6 items-center text-neutral-600">---</div>}
