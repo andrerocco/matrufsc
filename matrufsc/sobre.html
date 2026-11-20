@@ -198,7 +198,35 @@
         </main>
 
         <script>
-            document.getElementById(location.hash.slice(1))?.setAttribute("open", "");
+            let abertoPeloLink = document.getElementById(location.hash.slice(1));
+            abertoPeloLink?.setAttribute("open", "");
+
+            const abertoDesde = new Map();
+            const enviarTempo = (details) => {
+                const segundos = Math.round((performance.now() - abertoDesde.get(details)) / 1000);
+                abertoDesde.delete(details);
+                if (segundos > 0) gtag("event", "faq_tempo_aberto", { pergunta: details.id, segundos });
+            };
+
+            document.addEventListener(
+                "toggle",
+                (e) => {
+                    if (!e.target.open) {
+                        if (abertoDesde.has(e.target)) enviarTempo(e.target);
+                        return;
+                    }
+                    const origem = e.target === abertoPeloLink ? "link" : "clique";
+                    if (origem === "link") abertoPeloLink = null;
+                    gtag("event", "faq_aberto", { pergunta: e.target.id, origem });
+                    if (document.visibilityState === "visible") abertoDesde.set(e.target, performance.now());
+                },
+                true,
+            );
+
+            document.addEventListener("visibilitychange", () => {
+                if (document.visibilityState === "hidden") [...abertoDesde.keys()].forEach(enviarTempo);
+                else document.querySelectorAll("details[open]").forEach((d) => abertoDesde.set(d, performance.now()));
+            });
 
             const voltar = document.querySelector("h1 a");
             if (document.referrer.startsWith(voltar.href)) voltar.href = document.referrer;
