@@ -8,6 +8,7 @@ import { usePlano } from "~/context/plano/Plano.store";
 import { MateriaExistsError } from "~/context/plano/errors";
 import { getDisciplinaFromJSON, type JSONDisciplina } from "~/context/plano/parser";
 import { useUrlState } from "~/context/url/UrlState";
+import { setUserProperties, track } from "~/lib/analytics";
 // Components
 import Header from "~/components/header/Header";
 import Footer from "~/components/footer/Footer";
@@ -54,10 +55,19 @@ export default function App() {
         setSemester(options[0] ?? "");
     });
 
+    createEffect(() => {
+        const sem = semester();
+        if (sem) setUserProperties({ campus: campus(), semestre: sem });
+    });
+
     const handleSelectMateria = (disciplina: JSONDisciplina, campus: string, semester: string) => {
         const parsedMateria = getDisciplinaFromJSON(disciplina, campus, semester);
         try {
             addMateria(parsedMateria);
+            track("materia_adicionada", {
+                materias_no_plano: materias.length,
+                departamento: parsedMateria.id.slice(0, 3),
+            });
         } catch (error) {
             if (error instanceof MateriaExistsError) {
                 alert(error.message); // TODO: Lidar visualmente

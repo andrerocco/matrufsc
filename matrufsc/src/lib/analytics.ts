@@ -2,7 +2,10 @@
 
 declare global {
     interface Window {
-        gtag?: (command: "event", eventName: string, params?: Record<string, unknown>) => void;
+        gtag?: {
+            (command: "event", eventName: string, params?: Record<string, unknown>): void;
+            (command: "set", target: "user_properties", params: Record<string, unknown>): void;
+        };
     }
 }
 
@@ -13,4 +16,9 @@ declare global {
  */
 export function track(evento: string, params?: Record<string, unknown>): void {
     window.gtag?.("event", evento, params);
+}
+
+/** Anexadas a todos os eventos enviados depois, inclusive os automáticos do GA. */
+export function setUserProperties(params: Record<string, unknown>): void {
+    window.gtag?.("set", "user_properties", params);
 }
