@@ -57,7 +57,7 @@
         <main class="mx-auto flex min-h-dvh max-w-[1000px] flex-col gap-10 px-6 py-8">
             <h1 class="text-2xl!"><a href="./">MatrUFSC</a> / Sobre</h1>
 
-            <div class="flex flex-col gap-3">
+            <div class="mb-4 flex flex-col gap-3">
                 <p>
                     O MatrUFSC é uma iniciativa independente, desenvolvida por estudantes da UFSC, para o planejamento
                     da matrícula. As combinações de turmas e horários são simuladas a partir dos dados públicos do
@@ -67,68 +67,25 @@
                 </p>
             </div>
 
-            <section id="perguntas-frequentes" class="flex flex-col gap-2">
+            <section class="flex flex-col gap-2">
                 <h2 class="text-xl!">Perguntas frequentes</h2>
                 <div class="divide-y divide-neutral-300">
                     <details id="materias-faltando">
-                        <summary class="cursor-pointer py-4 font-bold">Não encontro as matérias do meu curso</summary>
+                        <summary class="cursor-pointer py-4 font-bold italic">
+                            “Não consigo encontrar uma matéria.”
+                        </summary>
                         <div class="flex flex-col gap-3 pb-4">
                             <p>
                                 Os dados do MatrUFSC vêm do
                                 <a href="https://cagr.sistemas.ufsc.br/modules/comunidade/cadastroTurmas/">
                                     Cadastro de Turmas do CAGR</a
                                 >
-                                e são atualizados uma vez por dia. Antes de tudo, confira se o campus e o semestre
-                                selecionados no topo da página são os certos.
-                            </p>
-                            <p>
-                                Se a disciplina também não aparece no Cadastro de Turmas do CAGR, ela não tem turmas
+                                e são atualizados uma vez por dia. Se a matéria não aparecer nele, ela não tem turmas
                                 cadastradas para o semestre, e o MatrUFSC não tem como mostrá-la.
                             </p>
                             <p>
-                                Se a disciplina aparece no CAGR há mais de um dia, no mesmo campus e semestre
-                                selecionados aqui, e continua faltando, é um erro do MatrUFSC. Avise pelo
-                                <a
-                                    href="https://docs.google.com/forms/d/e/1FAIpQLSdJUFYTgDtF4iT-4-zBEEpW1HiAJ5ipaUl6rr67H6-KQFoKXw/viewform"
-                                    >formulário de feedback</a
-                                >
-                                ou abra uma
-                                <a href="https://github.com/andrerocco/matrufsc/issues">issue no GitHub</a>.
-                            </p>
-                        </div>
-                    </details>
-
-                    <details id="salvar-plano">
-                        <summary class="cursor-pointer py-4 font-bold">Como salvo meu plano?</summary>
-                        <div class="flex flex-col gap-3 pb-4">
-                            <p>
-                                O plano fica salvo no próprio link da página: a cada matéria ou turma que você muda, o
-                                endereço é atualizado. O salvamento por identificador da versão antiga não existe mais.
-                            </p>
-                            <p>
-                                Para guardar ou compartilhar o plano, clique em <strong>Salvar</strong> e depois em
-                                <strong>Compartilhar link</strong>. Ao abrir esse link, o plano volta exatamente como
-                                estava. Em <strong>Salvar</strong> também é possível baixar uma imagem do plano, em
-                                <strong>Exportar imagem</strong>.
-                            </p>
-                        </div>
-                    </details>
-
-                    <details id="multiplos-planos">
-                        <summary class="cursor-pointer py-4 font-bold">
-                            O que aconteceu com os múltiplos planos?
-                        </summary>
-                        <div class="flex flex-col gap-3 pb-4">
-                            <p>
-                                A versão atual não tem mais o seletor de planos. Como o plano agora é salvo no link,
-                                guardar vários planos no mesmo link deixaria o endereço longo e ilegível.
-                            </p>
-                            <p>
-                                Para comparar planos, use uma aba para cada um. Cada aba tem o próprio link, que você
-                                salva separadamente. Para começar um plano do zero, abra o MatrUFSC em uma aba nova.
-                            </p>
-                            <p>
-                                Se você sente falta dos múltiplos planos, conte como usava o recurso pelo
+                                Se a matéria aparece no CAGR há mais de um dia, no mesmo campus e semestre selecionados
+                                aqui, e continua faltando, é um erro do MatrUFSC. Por favor, avise pelo
                                 <a
                                     href="https://docs.google.com/forms/d/e/1FAIpQLSdJUFYTgDtF4iT-4-zBEEpW1HiAJ5ipaUl6rr67H6-KQFoKXw/viewform"
                                     >formulário de feedback</a
@@ -137,17 +94,58 @@
                         </div>
                     </details>
 
-                    <details id="prioridade-vagas">
-                        <summary class="cursor-pointer py-4 font-bold">
-                            Como as vagas são distribuídas na matrícula?
+                    <details id="salvar-plano">
+                        <summary class="cursor-pointer py-4 font-bold italic">“Como salvo meu plano?”</summary>
+                        <div class="flex flex-col gap-3 pb-4">
+                            <p>
+                                Para fins de estabilidade, esta versão do MatrUFSC não possui a funcionalidade de salvar
+                                seu plano por um identificador, como era possível na versão antiga.
+                            </p>
+                            <p>
+                                Agora, o plano fica salvo no próprio link da página. Para salvar um plano, basta guardar
+                                o link da página. O link também pode ser compartilhado com outras pessoas.
+                            </p>
+                            <p>
+                                Dessa forma, o plano também fica salvo no histórico do seu navegador. Caso queira
+                                recuperar um plano de uma aba que fechou sem querer, basta reabrir a aba pelo histórico.
+                            </p>
+                        </div>
+                    </details>
+
+                    <details id="multiplos-planos">
+                        <summary class="cursor-pointer py-4 font-bold italic">
+                            “Onde está a funcionalidade de montar vários planos ao mesmo tempo do MatrUFSC antigo?”
                         </summary>
                         <div class="flex flex-col gap-3 pb-4">
                             <p>
-                                Na renovação de matrícula e no ajuste, as vagas de cada turma são preenchidas nesta
-                                ordem de prioridade (art. 90 da Resolução Normativa nº 227/2026/CUn, que substituiu a
-                                Resolução nº 17/CUn/97):
+                                Por enquanto, essa funcionalidade deixou de existir. Recomendamos que utilize uma aba
+                                para cada plano. Se essa maneira de usar o MatrUFSC não satisfaz suas expectativas, por
+                                favor,
+                                <a
+                                    href="https://docs.google.com/forms/d/e/1FAIpQLSdJUFYTgDtF4iT-4-zBEEpW1HiAJ5ipaUl6rr67H6-KQFoKXw/viewform"
+                                    >conte-nos como você usa o MatrUFSC</a
+                                >.
                             </p>
-                            <ol class="list-[upper-roman] pl-12">
+                        </div>
+                    </details>
+                </div>
+            </section>
+
+            <section class="flex flex-col gap-2">
+                <h2 class="text-xl!">Informações úteis</h2>
+                <div class="divide-y divide-neutral-300">
+                    <details id="prioridade-vagas">
+                        <summary class="cursor-pointer py-4 font-bold">
+                            Entendendo os critérios de prioridade do processo de matrículas da UFSC
+                        </summary>
+                        <div class="flex flex-col gap-3 pb-4">
+                            <p>
+                                Hoje, os critérios de prioridade são definidos pelo art. 90 da Resolução Normativa nº
+                                227/2026/CUn, que substituiu a Resolução nº 17/CUn/97. Ele estipula que, na renovação de
+                                matrícula e no ajuste, as vagas de cada turma são preenchidas na seguinte ordem de
+                                prioridade:
+                            </p>
+                            <ol class="list-decimal pl-12">
                                 <li>
                                     estudantes do curso em que a turma está alocada, tendo por base o semestre de
                                     ingresso via processo seletivo;
@@ -158,7 +156,7 @@
                                 <li>outras pessoas interessadas, conforme o art. 61 da resolução.</li>
                             </ol>
                             <p>Dentro de cada grupo, tem prioridade quem tem o maior índice de matrícula (IM):</p>
-                            <p class="pl-8">IM = IAA × CHC / CHT</p>
+                            <p class="text-center">IM = IAA × CHC / CHT</p>
                             <ul class="list-disc pl-8">
                                 <li>
                                     IAA é o índice de aproveitamento acumulado: a média das suas notas, ponderada pela
@@ -168,13 +166,10 @@
                                 <li>CHT é a carga horária total do currículo do seu curso.</li>
                             </ul>
                             <p>
-                                Ou seja, o IM cresce com as notas e com o quanto do curso você já cursou. E, em uma
+                                Ou seja, o IM cresce com as notas e com o quanto do curso você já concluiu. E, em uma
                                 turma de outro curso, você só fica com a vaga se ela sobrar depois dos estudantes
-                                daquele curso.
-                            </p>
-                            <p>
-                                Cursos a distância seguem a ordem de prioridade definida pelo Colegiado de cada curso
-                                (art. 91).
+                                daquele curso. Cursos a distância seguem a ordem de prioridade definida pelo Colegiado
+                                de cada curso (art. 91).
                             </p>
                             <p>
                                 Isto é um resumo, não o texto oficial. Na dúvida, vale a seção “Da Renovação da
@@ -188,7 +183,8 @@
                     </details>
                 </div>
             </section>
-            <div class="flex justify-end gap-7 text-nowrap">
+
+            <div class="mt-4 flex justify-end gap-7 text-nowrap">
                 <a
                     href="https://docs.google.com/forms/d/e/1FAIpQLSdJUFYTgDtF4iT-4-zBEEpW1HiAJ5ipaUl6rr67H6-KQFoKXw/viewform"
                     target="_blank"
