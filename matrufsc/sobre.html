@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+        <title>Sobre · MatrUFSC</title>
+        <meta
+            name="description"
+            content="Sobre o MatrUFSC e perguntas frequentes: matérias que não aparecem, como salvar o plano, múltiplos planos e a ordem de prioridade das vagas na matrícula."
+        />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="canonical" href="https://matrufsc.github.io/sobre" />
+        <link rel="stylesheet" href="/src/index.css" />
+        <style>
+            summary {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 1rem;
+                list-style: none;
+            }
+            summary::-webkit-details-marker {
+                display: none;
+            }
+            summary::after {
+                content: "";
+                flex-shrink: 0;
+                width: 0.5em;
+                height: 0.5em;
+                margin-right: 1rem;
+                border-right: 1px solid;
+                border-bottom: 1px solid;
+                translate: 0 -25%;
+                rotate: 45deg;
+            }
+            details[open] > summary::after {
+                translate: 0 25%;
+                rotate: 225deg;
+            }
+        </style>
+
+        <!-- Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-240YZZ87QH"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+            gtag("config", "G-240YZZ87QH");
+        </script>
+        <script data-goatcounter="https://matrufsc.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    </head>
+    <body>
+        <main class="mx-auto flex min-h-dvh max-w-[1000px] flex-col gap-10 px-6 py-8">
+            <h1 class="text-2xl!"><a href="./">MatrUFSC</a> / Sobre</h1>
+
+            <div class="mb-4 flex flex-col gap-3">
+                <p>
+                    O MatrUFSC é uma iniciativa independente, desenvolvida por estudantes da UFSC, para o planejamento
+                    da matrícula. As combinações de turmas e horários são simuladas a partir dos dados públicos do
+                    Cadastro de Turmas do CAGR, atualizados diariamente. A partir do plano montado no MatrUFSC, cada
+                    estudante deve efetivar a sua matrícula no
+                    <a href="https://cagr.ufsc.br/">CAGR</a>.
+                </p>
+            </div>
+
+            <section class="flex flex-col gap-2">
+                <h2 class="text-xl!">Perguntas frequentes</h2>
+                <div class="divide-y divide-neutral-300">
+                    <details id="materias-faltando">
+                        <summary class="cursor-pointer py-4 font-bold italic">
+                            “Não consigo encontrar uma matéria.”
+                        </summary>
+                        <div class="flex flex-col gap-3 pb-4">
+                            <p>
+                                Os dados do MatrUFSC vêm do
+                                <a href="https://cagr.sistemas.ufsc.br/modules/comunidade/cadastroTurmas/">
+                                    Cadastro de Turmas do CAGR</a
+                                >
+                                e são atualizados uma vez por dia. Se a matéria não aparecer nele, ela não tem turmas
+                                cadastradas para o semestre, e o MatrUFSC não tem como mostrá-la.
+                            </p>
+                            <p>
+                                Se a matéria aparece no CAGR há mais de um dia, no mesmo campus e semestre selecionados
+                                aqui, e continua faltando, é um erro do MatrUFSC. Por favor, avise pelo
+                                <a
+                                    href="https://docs.google.com/forms/d/e/1FAIpQLSdJUFYTgDtF4iT-4-zBEEpW1HiAJ5ipaUl6rr67H6-KQFoKXw/viewform"
+                                    >formulário de feedback</a
+                                >.
+                            </p>
+                        </div>
+                    </details>
+
+                    <details id="salvar-plano">
+                        <summary class="cursor-pointer py-4 font-bold italic">“Como salvo meu plano?”</summary>
+                        <div class="flex flex-col gap-3 pb-4">
+                            <p>
+                                Para fins de estabilidade, esta versão do MatrUFSC não possui a funcionalidade de salvar
+                                seu plano por um identificador, como era possível na versão antiga.
+                            </p>
+                            <p>
+                                Agora, o plano fica salvo no próprio link da página. Para salvar um plano, basta guardar
+                                o link da página. O link também pode ser compartilhado com outras pessoas.
+                            </p>
+                            <p>
+                                Dessa forma, o plano também fica salvo no histórico do seu navegador. Caso queira
+                                recuperar um plano de uma aba que fechou sem querer, basta reabrir a aba pelo histórico.
+                            </p>
+                        </div>
+                    </details>
+
+                    <details id="multiplos-planos">
+                        <summary class="cursor-pointer py-4 font-bold italic">
+                            “Onde está a funcionalidade de montar vários planos ao mesmo tempo do MatrUFSC antigo?”
+                        </summary>
+                        <div class="flex flex-col gap-3 pb-4">
+                            <p>
+                                Por enquanto, essa funcionalidade deixou de existir. Recomendamos que utilize uma aba
+                                para cada plano. Se essa maneira de usar o MatrUFSC não satisfaz suas expectativas, por
+                                favor,
+                                <a
+                                    href="https://docs.google.com/forms/d/e/1FAIpQLSdJUFYTgDtF4iT-4-zBEEpW1HiAJ5ipaUl6rr67H6-KQFoKXw/viewform"
+                                    >conte-nos como você usa o MatrUFSC</a
+                                >.
+                            </p>
+                        </div>
+                    </details>
+                </div>
+            </section>
+
+            <section class="flex flex-col gap-2">
+                <h2 class="text-xl!">Informações úteis</h2>
+                <div class="divide-y divide-neutral-300">
+                    <details id="prioridade-vagas">
+                        <summary class="cursor-pointer py-4 font-bold">
+                            Entendendo os critérios de prioridade do processo de matrículas da UFSC
+                        </summary>
+                        <div class="flex flex-col gap-3 pb-4">
+                            <p>
+                                Hoje, os critérios de prioridade são definidos pelo art. 90 da Resolução Normativa nº
+                                227/2026/CUn, que substituiu a Resolução nº 17/CUn/97. Ele estipula que, na renovação de
+                                matrícula e no ajuste, as vagas de cada turma são preenchidas na seguinte ordem de
+                                prioridade:
+                            </p>
+                            <ol class="list-decimal pl-12">
+                                <li>
+                                    estudantes do curso em que a turma está alocada, tendo por base o semestre de
+                                    ingresso via processo seletivo;
+                                </li>
+                                <li>estudantes do curso e do mesmo turno da turma;</li>
+                                <li>estudantes do curso, mas de outro turno;</li>
+                                <li>estudantes de outro curso que possui a disciplina;</li>
+                                <li>outras pessoas interessadas, conforme o art. 61 da resolução.</li>
+                            </ol>
+                            <p>Dentro de cada grupo, tem prioridade quem tem o maior índice de matrícula (IM):</p>
+                            <p class="text-center">IM = IAA × CHC / CHT</p>
+                            <ul class="list-disc pl-8">
+                                <li>
+                                    IAA é o índice de aproveitamento acumulado: a média das suas notas, ponderada pela
+                                    carga horária, em todos os semestres cursados;
+                                </li>
+                                <li>CHC é a carga horária que você já cursou;</li>
+                                <li>CHT é a carga horária total do currículo do seu curso.</li>
+                            </ul>
+                            <p>
+                                Ou seja, o IM cresce com as notas e com o quanto do curso você já concluiu. E, em uma
+                                turma de outro curso, você só fica com a vaga se ela sobrar depois dos estudantes
+                                daquele curso. Cursos a distância seguem a ordem de prioridade definida pelo Colegiado
+                                de cada curso (art. 91).
+                            </p>
+                            <p>
+                                Isto é um resumo, não o texto oficial. Na dúvida, vale a seção “Da Renovação da
+                                Matrícula” do
+                                <a
+                                    href="https://preg.paginas.ufsc.br/files/2026/07/RN_227_Revis%C3%A3o-da-Resolu%C3%A7%C3%A3o-017.pdf"
+                                    >texto completo da resolução</a
+                                >.
+                            </p>
+                        </div>
+                    </details>
+                </div>
+            </section>
+
+            <div class="mt-4 flex justify-end gap-7 text-nowrap">
+                <a
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSdJUFYTgDtF4iT-4-zBEEpW1HiAJ5ipaUl6rr67H6-KQFoKXw/viewform"
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    Enviar feedback
+                </a>
+                <a href="https://github.com/andrerocco/matrufsc" target="_blank" rel="noreferrer">GitHub</a>
+            </div>
+        </main>
+
+        <script>
+            document.getElementById(location.hash.slice(1))?.setAttribute("open", "");
+        </script>
+    </body>
+</html>
