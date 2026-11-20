@@ -4,6 +4,7 @@ import { mergeEquivalentTurmas } from "~/context/plano/combinacoes";
 import { usePlano } from "~/context/plano/Plano.store";
 import type { Materia, Turma } from "~/data/types";
 import { useHorariosOverlay } from "../horarios/useHorariosOverlay";
+import { setTip, tip, TurmaTip, type Note } from "./TurmaTip";
 
 export default function Turmas(props: { class?: string }) {
     const { materias, focusedMateriaId, setFocusedMateriaId, updateTurmasSelected } = usePlano();
@@ -39,6 +40,7 @@ export default function Turmas(props: { class?: string }) {
                             </tbody>
                         </table>
                     </div>
+                    <TurmaTip />
                 </div>
             )}
         </Show>
@@ -86,12 +88,16 @@ function TurmasTableRows(props: {
         return Object.values(mergeEquivalentTurmas(materia().turmas));
     });
 
+    // The materia's name carries only the first turma's curso.
+    const showCurso = () => new Set(materia().turmas.map((turma) => turma.curso.nome)).size > 1;
+
     return (
         <For each={groupedTurmas()} fallback={<TurmasEmptyRow message="Nenhuma turma disponível para esta matéria." />}>
             {(turmas) => (
                 <TurmaRow
                     id={`turma-${turmas[0].id}`} // Use the first turma's id as the group id
                     turmas={turmas}
+                    showCurso={showCurso()}
                     onToggleTurmas={(turmaIds, value) => props.onToggleTurmas?.(materia().id, turmaIds, value)}
                     onMouseEnter={() => {
                         // Select one turma from the group as preview for the overlay
@@ -127,14 +133,46 @@ const UNAVAILABLE = new Set(["Cancelada", "Bloqueada (inativa)"]);
 const isUnavailable = (turma: Turma) => turma.status !== null && UNAVAILABLE.has(turma.status);
 const dimmed = (turma: Turma) => isUnavailable(turma) && "opacity-50";
 
+const RESERVADA = "Reservada Curso";
+
 function TurmaRow(props: {
     id: string;
     turmas: Turma[];
+    showCurso: boolean;
     onToggleTurmas: (turmaIds: string[], value: boolean) => void;
     onMouseEnter?: () => void;
     onMouseLeave?: () => void;
 }) {
     const twochars = (n: number) => `${n < 10 ? "\u00A0" : ""}${n}`;
+
+    // A reserved turma is reserved for its curso, so its status is unreadable without it.
+    const notes = (turma: Turma): Note[] => [
+        ...(turma.status ? [{ label: "Situação", value: turma.status }] : []),
+        ...(props.showCurso || turma.status === RESERVADA ? [{ label: "Curso", value: turma.curso.nome }] : []),
+    ];
+    const tipped = (turma: Turma) => tip()?.turmaId === turma.id;
+
+    // The whole cell answers for the turma whose line is closest to the pointer, so moving down the column
+    // never crosses a dead band between two ids.
+    const turmaAt = (cell: HTMLElement, y: number) => {
+        let closest: HTMLElement | undefined;
+        let closestDistance = Infinity;
+        for (const line of cell.querySelectorAll<HTMLElement>("[data-turma-id]")) {
+            const { top, bottom } = line.getBoundingClientRect();
+            const distance = Math.max(top - y, y - bottom, 0);
+            if (distance < closestDistance) [closest, closestDistance] = [line, distance];
+        }
+        const turma = props.turmas.find((turma) => turma.id === closest?.dataset.turmaId);
+        return turma && notes(turma).length > 0 ? { turma, id: closest!.firstElementChild! } : null;
+    };
+    const showTipAt = (cell: HTMLElement, y: number) => {
+        const found = turmaAt(cell, y);
+        if (found?.turma.id === tip()?.turmaId) return;
+        setTip(
+            found && { turmaId: found.turma.id, notes: notes(found.turma), anchor: found.id.getBoundingClientRect() },
+        );
+    };
+    let lastPointer = "mouse";
 
     const toggleAllTurmas = () => {
         props.onToggleTurmas(
@@ -167,16 +205,50 @@ function TurmaRow(props: {
                     </For>
                 </div>
             </td>
-            <td class="px-3 py-0.75">
+            <td
+                class="px-3 py-0.75"
+                data-turma-tip
+                onPointerDown={(event) => (lastPointer = event.pointerType)}
+                onPointerMove={(event) =>
+                    event.pointerType === "mouse" && showTipAt(event.currentTarget, event.clientY)
+                }
+                onPointerLeave={(event) => event.pointerType === "mouse" && setTip(null)}
+                onClick={(event) => {
+                    // A touch cannot hover, so there the id opens its tip instead of marking the turma.
+                    if (lastPointer !== "touch") return;
+                    const found = turmaAt(event.currentTarget, event.clientY);
+                    if (!found) return;
+                    event.stopPropagation();
+                    if (tipped(found.turma)) setTip(null);
+                    else showTipAt(event.currentTarget, event.clientY);
+                }}
+            >
                 <For each={props.turmas}>
                     {(turma) => (
-                        <div class="flex items-center" style={{ height: turmaCellHeight(turma) }}>
-                            <span class={clsx("truncate", isUnavailable(turma) && "line-through opacity-50")}>
-                                {turma.id}
+                        <div
+                            data-turma-id={turma.id}
+                            class="flex items-center"
+                            style={{ height: turmaCellHeight(turma) }}
+                        >
+                            <span
+                                class={clsx(
+                                    "-mx-1 flex min-w-0 items-center rounded-sm px-1",
+                                    tipped(turma) && "bg-white ring-1 ring-neutral-400",
+                                )}
+                            >
+                                <span
+                                    class={clsx(
+                                        "truncate",
+                                        isUnavailable(turma) && "line-through",
+                                        isUnavailable(turma) && !tipped(turma) && "opacity-50",
+                                    )}
+                                >
+                                    {turma.id}
+                                </span>
+                                <Show when={turma.status && !isUnavailable(turma)}>
+                                    <span class="font-sans text-neutral-600">*</span>
+                                </Show>
                             </span>
-                            <Show when={turma.status && !isUnavailable(turma)}>
-                                <span class="font-sans text-neutral-600">*</span>
-                            </Show>
                         </div>
                     )}
                 </For>
