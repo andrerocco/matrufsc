@@ -55,7 +55,7 @@
     </head>
     <body>
         <main class="mx-auto flex min-h-dvh max-w-[1000px] flex-col gap-10 px-6 py-8">
-            <h1 class="text-2xl!">MatrUFSC / Sobre</h1>
+            <h1 class="text-2xl!"><a href="./">MatrUFSC</a> / Sobre</h1>
 
             <div class="mb-4 flex flex-col gap-3">
                 <p>
@@ -199,6 +199,9 @@
 
         <script>
             document.getElementById(location.hash.slice(1))?.setAttribute("open", "");
+
+            const voltar = document.querySelector("h1 a");
+            if (document.referrer.startsWith(voltar.href)) voltar.href = document.referrer;
         </script>
     </body>
 </html>
