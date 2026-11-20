@@ -1,5 +1,5 @@
-import { isCampusCode, type JSONCampusCode } from "~/lib/campusDataQuery";
-import type { Materia } from "~/context/plano/Plano.store";
+import { isCampusCode, type JSONCampusCode } from "~/data/schema";
+import type { Materia } from "~/data/types";
 
 interface MateriaOrigin {
     campus: JSONCampusCode;

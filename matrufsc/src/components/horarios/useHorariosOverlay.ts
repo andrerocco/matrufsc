@@ -1,6 +1,7 @@
 import { createSignal } from "solid-js";
 import { HORAS, type HorarioCellOverlay, type HorariosDescriptor } from "./Horarios";
-import { usePlano, type Materia, type Turma } from "~/context/plano/Plano.store";
+import { usePlano } from "~/context/plano/Plano.store";
+import type { Materia, Turma } from "~/data/types";
 
 const [overlay, setOverlay] = createSignal<HorariosDescriptor<HorarioCellOverlay>>({});
 const [overlayMateriaId, setOverlayMateriaId] = createSignal<string | null>(null);

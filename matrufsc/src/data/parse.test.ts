@@ -1,0 +1,202 @@
+import { describe, test } from "node:test";
+import assert from "node:assert";
+import { checkCampusJSON, getTurmaFromJSON, getDisciplinaFromJSON } from "./parse";
+import type { JSONCampus, JSONDisciplina, JSONTurma } from "./schema";
+
+const CURSOS = { "208": "ENGENHARIA MECÂNICA", "3": "QUÍMICA - Bacharelado [Campus Florianópolis]" };
+
+const TURMA: JSONTurma = [
+    "01652", // id
+    36, // carga_horaria
+    37, // vagas_ofertadas
+    27, // vagas_ocupadas
+    0, // alunos_especiais
+    10, // saldo_vagas
+    0, // pedidos_sem_vaga
+    ["6.1830-2 / CTS-SL117A"], // rawAulas
+    ["Cláudia Destro dos Santos"], // professores
+    208, // curso
+    null, // status
+];
+
+const PARSED_TURMA = {
+    id: "01652",
+    carga_horaria: 36,
+    vagas_ofertadas: 37,
+    vagas_ocupadas: 27,
+    aulas: [
+        {
+            dia_semana: 6,
+            horarios: [10, 11], // indices for 1830 and 1920
+            sala: "CTS-SL117A",
+        },
+    ],
+    professores: ["Cláudia Destro dos Santos"],
+    curso: { id: 208, nome: "ENGENHARIA MECÂNICA" },
+    status: null,
+    selected: true,
+};
+
+function turma(overrides: Partial<Record<number, unknown>>): JSONTurma {
+    const copy = [...TURMA] as unknown[];
+    for (const [index, value] of Object.entries(overrides)) copy[Number(index)] = value;
+    return copy as JSONTurma;
+}
+
+describe("getTurmaFromJSON", () => {
+    test("resolves curso in cursos and keeps status raw", () => {
+        assert.deepStrictEqual(getTurmaFromJSON(TURMA, CURSOS), PARSED_TURMA);
+        assert.deepStrictEqual(getTurmaFromJSON(turma({ 9: 3, 10: "Reservada Curso" }), CURSOS), {
+            ...PARSED_TURMA,
+            curso: { id: 3, nome: "QUÍMICA - Bacharelado [Campus Florianópolis]" },
+            status: "Reservada Curso",
+        });
+    });
+
+    test("multiple aulas", () => {
+        const result = getTurmaFromJSON(turma({ 7: ["3.1830-2 / CTS-LB108A", "4.2020-2 / CTS-LB108A"] }), CURSOS);
+
+        assert.deepStrictEqual(result.aulas, [
+            { dia_semana: 3, horarios: [10, 11], sala: "CTS-LB108A" },
+            { dia_semana: 4, horarios: [12, 13], sala: "CTS-LB108A" },
+        ]);
+    });
+
+    test("throws for a curso missing from cursos", () => {
+        assert.throws(() => getTurmaFromJSON(turma({ 9: 999 }), CURSOS), { message: "Curso 999 is not in cursos." });
+    });
+
+    test("throws when the tuple does not have 11 fields", () => {
+        assert.throws(() => getTurmaFromJSON(TURMA.slice(0, 9) as unknown as JSONTurma, CURSOS), {
+            message: "Turma 01652 has 9 fields, expected 11.",
+        });
+    });
+
+    test("throws for a field of the wrong type", () => {
+        const cases: [Partial<Record<number, unknown>>, string][] = [
+            [{ 0: "" }, 'Turma id "" is not a non-empty string.'],
+            [{ 0: 1652 }, "Turma id 1652 is not a non-empty string."],
+            [{ 1: "36" }, 'Turma 01652: carga horária "36" is not an integer.'],
+            [{ 2: null }, "Turma 01652: vagas ofertadas null is not an integer."],
+            [{ 3: 27.5 }, "Turma 01652: vagas ocupadas 27.5 is not an integer."],
+            [{ 4: true }, "Turma 01652: alunos especiais true is not an integer."],
+            [{ 5: "LOTADA" }, 'Turma 01652: saldo de vagas "LOTADA" is not an integer.'],
+            [{ 6: "" }, 'Turma 01652: pedidos sem vaga "" is not an integer.'],
+            [{ 7: "6.1830-2 / CTS-SL117A" }, 'Turma 01652: horários "6.1830-2 / CTS-SL117A" is not a list of strings.'],
+            [{ 7: [61830] }, "Turma 01652: horários [61830] is not a list of strings."],
+            [{ 8: "Cláudia" }, 'Turma 01652: professores "Cláudia" is not a list of strings.'],
+            [{ 8: [null] }, "Turma 01652: professores [null] is not a list of strings."],
+            [{ 9: "208" }, 'Curso "208" is not an integer.'],
+            [{ 10: "" }, 'Turma 01652: status "" is neither null nor a non-empty string.'],
+            [{ 10: 5 }, "Turma 01652: status 5 is neither null nor a non-empty string."],
+        ];
+        for (const [overrides, message] of cases) {
+            assert.throws(() => getTurmaFromJSON(turma(overrides), CURSOS), { message });
+        }
+    });
+
+    test("throws for a curso without a name", () => {
+        assert.throws(() => getTurmaFromJSON(TURMA, { "208": "" }), {
+            message: 'Curso 208 is named "", expected a non-empty string.',
+        });
+    });
+
+    test("throws for an aula outside dia.HHMM-N / sala", () => {
+        for (const raw of [
+            "8.0730-2 / X",
+            "0.0730-2 / X",
+            "20730-2 / X",
+            "2.0730-2",
+            "2.0730-0 / X",
+            "2.0730-x / X",
+            "x.0730-2 / X",
+            "2.730-2 / X",
+        ]) {
+            assert.throws(() => getTurmaFromJSON(turma({ 7: [raw] }), CURSOS), {
+                message: `Aula "${raw}" is not in the format dia.HHMM-N / sala.`,
+            });
+        }
+    });
+
+    test("throws for a horário de início outside HORAS", () => {
+        assert.throws(() => getTurmaFromJSON(turma({ 7: ["6.9999-2 / CTS-SL117A"] }), CURSOS), {
+            message: 'Aula "6.9999-2 / CTS-SL117A" starts at 9999, which is not in HORAS.',
+        });
+    });
+
+    test("throws when the aulas run past the last horário", () => {
+        assert.throws(() => getTurmaFromJSON(turma({ 7: ["6.2110-2 / CTS-SL117A"] }), CURSOS), {
+            message: 'Aula "6.2110-2 / CTS-SL117A" ends after the last horário in HORAS.',
+        });
+        assert.deepStrictEqual(
+            getTurmaFromJSON(turma({ 7: ["6.2110-1 / CTS-SL117A"] }), CURSOS).aulas[0].horarios,
+            [13],
+        );
+    });
+});
+
+describe("getDisciplinaFromJSON", () => {
+    const parse = (json: unknown[]) => getDisciplinaFromJSON(json as unknown as JSONDisciplina, "JOI", "20271", CURSOS);
+
+    test("builds the matéria and parses every turma", () => {
+        assert.deepStrictEqual(parse(["EMB5001", "Introdução à Engenharia", [TURMA, turma({ 0: "01653" })]]), {
+            id: "EMB5001",
+            nome: "Introdução à Engenharia",
+            campus: "JOI",
+            semester: "20271",
+            turmas: [PARSED_TURMA, { ...PARSED_TURMA, id: "01653" }],
+            selected: true,
+        });
+    });
+
+    test("throws for a code or a name that is not a non-empty string", () => {
+        const cases: [unknown[], string][] = [
+            [["", "Nome", [TURMA]], 'Disciplina code "" is not a non-empty string.'],
+            [[5001, "Nome", [TURMA]], "Disciplina code 5001 is not a non-empty string."],
+            [["EMB5001", "", [TURMA]], 'Disciplina EMB5001: nome "" is not a non-empty string.'],
+            [["EMB5001", 7, [TURMA]], "Disciplina EMB5001: nome 7 is not a non-empty string."],
+        ];
+        for (const [json, message] of cases) assert.throws(() => parse(json), { message });
+    });
+
+    test("throws for a disciplina without turmas", () => {
+        for (const turmas of [[], null]) {
+            assert.throws(() => parse(["EMB5001", "Nome", turmas]), { message: "Disciplina EMB5001 has no turmas." });
+        }
+    });
+
+    test("throws for a turma listed twice", () => {
+        assert.throws(() => parse(["EMB5001", "Nome", [TURMA, TURMA]]), {
+            message: "Disciplina EMB5001 lists turma 01652 more than once.",
+        });
+    });
+
+    test("throws when the disciplina does not have 3 fields", () => {
+        assert.throws(() => parse(["EMB5001", "NOME", "Nome", [TURMA]]), {
+            message: "Disciplina EMB5001 has 4 fields, expected 3.",
+        });
+    });
+});
+
+describe("checkCampusJSON", () => {
+    const campus = (disciplinas: unknown[]) =>
+        ({ campus: "JOI", data_extracao: "15/11/26 - 03:00", cursos: CURSOS, disciplinas }) as JSONCampus;
+
+    test("returns the file as it came when every disciplina can be read", () => {
+        const file = campus([
+            ["EMB5001", "Nome", [TURMA]],
+            ["EMB5002", "Outro", [TURMA]],
+        ]);
+        assert.strictEqual(checkCampusJSON(file), file);
+    });
+
+    test("throws when a single disciplina cannot be read", () => {
+        const file = campus([
+            ["EMB5001", "Nome", [TURMA]],
+            ["EMB5002", "Outro", [turma({ 7: ["8.0730-2 / X"] })]],
+        ]);
+        assert.throws(() => checkCampusJSON(file), {
+            message: 'Aula "8.0730-2 / X" is not in the format dia.HHMM-N / sala.',
+        });
+    });
+});
