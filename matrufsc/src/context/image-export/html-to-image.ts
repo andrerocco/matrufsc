@@ -69,12 +69,18 @@ export function composeSquareImage(
 
     context.drawImage(sourceImage, offsetX, offsetY, drawWidth, drawHeight);
 
-    return canvas.toDataURL("image/png");
+    return new Promise<Blob>((resolve, reject) => {
+        canvas.toBlob((blob) => (blob ? resolve(blob) : reject(new Error("Failed to encode image."))), "image/png");
+    });
 }
 
-export function downloadDataUrl(dataUrl: string, filename: string) {
+// iOS Safari neither saves nor shows a `data:` URL from a download link, and drops a `blob:` one revoked right after
+// the click.
+export function downloadBlob(blob: Blob, filename: string) {
+    const url = URL.createObjectURL(blob);
     const anchor = document.createElement("a");
-    anchor.href = dataUrl;
+    anchor.href = url;
     anchor.download = filename;
     anchor.click();
+    setTimeout(() => URL.revokeObjectURL(url), 60_000);
 }

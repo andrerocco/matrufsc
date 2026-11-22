@@ -1,6 +1,6 @@
 import { createContext, createSignal, Show, type ParentProps, type Accessor, useContext } from "solid-js";
 import { useHorariosOverlay } from "~/components/horarios/useHorariosOverlay";
-import { captureElementToPng, composeSquareImage, downloadDataUrl, loadImage, waitForFrames } from "./html-to-image";
+import { captureElementToPng, composeSquareImage, downloadBlob, loadImage, waitForFrames } from "./html-to-image";
 import Materias from "~/components/materias/Materias";
 import Horarios from "~/components/horarios/Horarios";
 
@@ -42,14 +42,14 @@ export function ImageExportProvider(props: ParentProps) {
                 pixelRatio: Math.max(2, EXPORT_SCALE_FACTOR + 1),
             });
             const sourceImage = await loadImage(sourceDataUrl);
-            const exportedDataUrl = composeSquareImage(sourceImage, {
+            const blob = await composeSquareImage(sourceImage, {
                 size: EXPORT_IMAGE_SIZE,
                 padding: EXPORT_IMAGE_PADDING,
                 backgroundColor: EXPORT_BG_COLOR,
             });
 
             const fileName = `Plano_${formatExportTimestamp(new Date())}.png`;
-            downloadDataUrl(exportedDataUrl, fileName);
+            downloadBlob(blob, fileName);
         } catch (error) {
             console.error("Error exporting image:", error);
             alert("Não foi possível exportar a imagem da combinação atual.");
