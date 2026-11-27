@@ -2,7 +2,7 @@ import type { JSONDisciplina } from "~/data/schema";
 
 function normalize(s: string): string {
     return s
-        .normalize("NFD")
+        .normalize("NFKD")
         .replace(/[\u0300-\u036f]/g, "")
         .toUpperCase()
         .trim();

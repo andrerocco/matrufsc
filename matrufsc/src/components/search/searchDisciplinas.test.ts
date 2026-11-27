@@ -9,6 +9,7 @@ const DISCIPLINAS: JSONDisciplina[] = [
     ["EMB5001", "Introdução à Engenharia", [turma(["Ana Lúcia"])]],
     ["EMB5002", "Cálculo I", [turma(["José"])]],
     ["MAT1000", "Cálculo II", [turma(["Maria"])]],
+    ["ECV5001", "Estágio (1ª ênfase)", [turma(["Paulo"])]],
 ];
 
 describe("searchDisciplinas", () => {
@@ -26,6 +27,10 @@ describe("searchDisciplinas", () => {
         assert.deepStrictEqual(
             searchDisciplinas("introducao engenharia", index).map((d) => d[0]),
             ["EMB5001"],
+        );
+        assert.deepStrictEqual(
+            searchDisciplinas("1a enfase", index).map((d) => d[0]),
+            ["ECV5001"],
         );
     });
 
