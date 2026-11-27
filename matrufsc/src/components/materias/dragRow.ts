@@ -4,10 +4,7 @@ const SETTLE_MS = 200;
 
 let busy = false;
 
-// Drags one row of a vertical list from a `pointerdown` on its handle, which needs `touch-action: none` or the
-// browser takes the gesture for a scroll and cancels it. The row follows the pointer, the others make room and
-// the page scrolls while the pointer is near its top or bottom. Nothing is reordered before the drop: `onDrop`
-// gets the row's new index, and a cancelled gesture puts everything back.
+// The handle needs `touch-action: none`, or the browser takes a touch drag for a scroll and cancels it.
 export function dragRow(event: PointerEvent, rows: HTMLElement[], from: number, onDrop: (to: number) => void) {
     if (busy || event.button !== 0 || from < 0) return;
     busy = true;

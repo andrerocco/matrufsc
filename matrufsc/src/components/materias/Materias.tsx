@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { For, Show } from "solid-js";
 import { usePlano, type Materia, type Turma } from "~/context/plano/Plano.store";
 import { IconClose, IconGrip } from "~/components/icons";
-import { dragRow } from "~/lib/dragRow";
+import { dragRow } from "./dragRow";
 import { useHorariosOverlay } from "../horarios/useHorariosOverlay";
 
 export default function Materias(props: { class?: string }) {
