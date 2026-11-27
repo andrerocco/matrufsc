@@ -24,6 +24,8 @@ function getAulaFromJSON(raw: string): Aula {
     const match = AULA_RE.exec(raw);
     if (!match) throw new Error(`Aula "${raw}" is not in the format dia.HHMM-N / sala.`);
     const [, dia, horarioInicio, aulas, sala] = match;
+    if (sala.includes(" / "))
+        throw new Error(`Aula "${raw}" has " / " inside the sala, as if two aulas were in one line.`);
 
     const inicio = HORAS.indexOf(horarioInicio);
     if (inicio === -1) throw new Error(`Aula "${raw}" starts at ${horarioInicio}, which is not in HORAS.`);

@@ -209,6 +209,8 @@ lista todo erro como `<arquivo> <codigo>: <mensagem>`:
 
 - horário fora do formato `dia.HHMM-N / sala`, em dia fora de 2 a 7 (a grade
   não tem domingo) ou fora da tabela de horas do site;
+- horário com " / " dentro da sala, como se fossem duas aulas na mesma linha
+  (salas reais como `CCB-CCB/A2` têm barra, mas sem espaços);
 - disciplina ou turma com número de campos errado;
 - campo com o tipo errado: código, nome ou id da turma que não é texto não
   vazio, número que não é inteiro, horários ou professores que não são lista

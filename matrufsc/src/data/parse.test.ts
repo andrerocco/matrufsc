@@ -119,6 +119,13 @@ describe("getTurmaFromJSON", () => {
         }
     });
 
+    test("throws for two aulas in one line", () => {
+        const raw = "3.1620-2 / CTS-SL114A 5.1010-2 / CFH-301";
+        assert.throws(() => getTurmaFromJSON(turma({ 7: [raw] }), CURSOS), {
+            message: `Aula "${raw}" has " / " inside the sala, as if two aulas were in one line.`,
+        });
+    });
+
     test("throws for a horário de início outside HORAS", () => {
         assert.throws(() => getTurmaFromJSON(turma({ 7: ["6.9999-2 / CTS-SL117A"] }), CURSOS), {
             message: 'Aula "6.9999-2 / CTS-SL117A" starts at 9999, which is not in HORAS.',
