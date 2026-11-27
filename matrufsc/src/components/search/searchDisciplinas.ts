@@ -32,20 +32,21 @@ export function searchDisciplinas(query: string, index: SearchEntry[]): JSONDisc
     const q = normalize(query);
     if (!q) return index.map((entry) => entry.disciplina);
 
+    const code = q.replace(/^([A-Z]{3}) +(?=\d)/, "$1"); // "ine 5417"
     const tokens = q.split(/\s+/).filter(Boolean);
     const scored: Array<{ item: JSONDisciplina; score: number }> = [];
 
     for (const { disciplina, codigo, nome } of index) {
         let score = 0;
 
-        if (codigo === q) score = 10000;
-        else if (codigo.startsWith(q)) score = 5000;
-        else if (codigo.includes(q)) score = 1000;
+        if (codigo === code) score = 10000;
+        else if (codigo.startsWith(code)) score = 5000;
+        else if (codigo.includes(code)) score = 1000;
 
         if (tokens.every((t) => nome.includes(t))) {
             const fullIdx = nome.indexOf(q);
             if (fullIdx !== -1) {
-                score += 500 + Math.max(0, 50 - fullIdx);
+                score += 500 + Math.max(0, 50 - fullIdx) + (nome === q ? 100 : 0);
             } else {
                 const firstIdx = nome.indexOf(tokens[0]);
                 score += 100 + Math.max(0, 50 - firstIdx);

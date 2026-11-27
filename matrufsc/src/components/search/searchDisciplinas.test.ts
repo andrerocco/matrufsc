@@ -38,7 +38,8 @@ const index = indexDisciplinas(DISCIPLINAS);
 const catalogo = buildCatalogo({ cursos: CURSOS, disciplinas: DISCIPLINAS });
 
 describe("searchDisciplinas", () => {
-    const codes = (query: string) => searchDisciplinas(query, index).map((d) => d[0]);
+    const codes = (query: string, disciplinas = DISCIPLINAS) =>
+        searchDisciplinas(query, indexDisciplinas(disciplinas)).map((d) => d[0]);
 
     test("empty query returns every disciplina", () => {
         assert.deepStrictEqual(searchDisciplinas("  ", index), DISCIPLINAS);
@@ -48,14 +49,20 @@ describe("searchDisciplinas", () => {
         assert.deepStrictEqual(codes("calculo"), ["MTM3100"]);
         assert.deepStrictEqual(codes("programacao objetos"), ["INE5404"]);
         const estagio: JSONDisciplina = ["ECV5001", "Estágio (1ª ênfase)", [turma("01208", 208)]];
-        assert.deepStrictEqual(
-            searchDisciplinas("1a enfase", indexDisciplinas([estagio])).map((d) => d[0]),
-            ["ECV5001"],
-        );
+        assert.deepStrictEqual(codes("1a enfase", [estagio]), ["ECV5001"]);
+    });
+
+    test("an exact name comes before the longer names that begin with it", () => {
+        const disciplinas: JSONDisciplina[] = [
+            ["INE5001", "Engenharia de Software I", [turma("05208", 208)]],
+            ["INE5002", "Engenharia de Software", [turma("05208", 208)]],
+        ];
+        assert.deepStrictEqual(codes("engenharia de software", disciplinas), ["INE5002", "INE5001"]);
     });
 
     test("matches by code, never by professor", () => {
         assert.deepStrictEqual(codes("ine54"), ["INE5417", "INE5404", "INE5430"]);
+        assert.deepStrictEqual(codes("ine 5417"), ["INE5417"]);
         assert.deepStrictEqual(codes("lucia"), []);
     });
 });
