@@ -52,20 +52,20 @@ a:disabled,
     position: relative;
     z-index: 1;
     box-shadow:
-        inset 0 -1px 0 var(--color-neutral-400),
+        0 1px 0 var(--color-neutral-400),
         0 1px 2px rgb(0 0 0 / 0.06),
         0 4px 10px -4px rgb(0 0 0 / 0.12);
 }
 
 .materia-item[data-dragging] > td {
-    box-shadow: inset 0 -1px 0 var(--color-neutral-400);
+    box-shadow: 0 1px 0 var(--color-neutral-400);
 }
 
 :has(> .materia-item[data-dragging]) {
     background: repeating-linear-gradient(-45deg, #e9e9e9 0 4px, #eeeeee 4px 8px);
 }
 
-/* The line under the header is the first row's top border, which leaves with it when it is dragged */
+/* The line under the header is the first row's top border, so it leaves with that row */
 :has(> tbody > .materia-item[data-dragging]) > thead th {
     box-shadow: 0 1px 0 var(--color-neutral-400);
 }
