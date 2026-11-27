@@ -161,7 +161,7 @@ function MateriaRow(props: {
                     <button
                         type="button"
                         aria-label="Reordenar matéria"
-                        class="flex cursor-grab touch-none items-center justify-center px-1.5 py-1.5 active:cursor-grabbing"
+                        class="pointer-events-none flex cursor-grab touch-none items-center justify-center px-1.5 py-1.5 group-hover:pointer-events-auto active:cursor-grabbing"
                         onPointerDown={props.onDrag}
                         onKeyDown={handleKeyDown}
                         onClick={(event) => event.stopPropagation()}
