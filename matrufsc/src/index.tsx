@@ -1,4 +1,5 @@
 /* @refresh reload */
+import "~/lib/sentry";
 import { render } from "solid-js/web";
 import "./index.css";
 import App from "./App.tsx";
