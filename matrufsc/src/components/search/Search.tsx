@@ -15,6 +15,7 @@ import {
     leaveChip,
     lineLength,
     moveCaret,
+    openKey,
     reopenChip,
     restoreChip,
     selectValue,
@@ -118,7 +119,7 @@ export default function Search<T>(props: {
             props.onSelect(row.item);
             return;
         }
-        apply(selectValue(line(), row.key, row.value));
+        apply(row.kind === "key" ? openKey(line(), row.key) : selectValue(line(), row.key, row.value));
         focusLine();
     };
 
@@ -446,10 +447,11 @@ interface RowView {
     value?: string;
 }
 
-// A suggested filter reads like the chip it produces: the key as plain text and the value tinted. While a chip
-// is being edited the rows are its values alone.
+// A suggested filter reads like the chip it produces: the key as plain text and the value tinted, one blank
+// space for a key alone. While a chip is being edited the rows are its values alone.
 function rowView<T>(row: SearchRow<T>, editing: boolean, getLabel: (item: T) => string): RowView {
     if (row.kind === "item") return { text: getLabel(row.item) };
+    if (row.kind === "key") return { prefix: `${row.key}:`, value: "\u00a0" };
     return editing ? { text: row.value.nome } : { prefix: `${row.key}:`, value: row.value.nome };
 }
 

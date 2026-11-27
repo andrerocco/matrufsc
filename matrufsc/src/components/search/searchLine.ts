@@ -34,7 +34,10 @@ export interface Line {
     caret: number;
 }
 
-export type SearchRow<T> = { kind: "item"; item: T } | { kind: "token"; key: TokenKey; value: TokenValue };
+export type SearchRow<T> =
+    | { kind: "item"; item: T }
+    | { kind: "token"; key: TokenKey; value: TokenValue }
+    | { kind: "key"; key: TokenKey };
 
 export const text = (text: string): TextSegment => ({ kind: "text", text });
 export const editingChip = (key: TokenKey, value: string, reopened?: TokenValue): EditingChip => ({
@@ -316,4 +319,10 @@ export function withoutChips(line: Line): Line {
 
 export function selectValue(line: Line, key: TokenKey, selected: TokenValue): Line {
     return closeChip(line, selected) ?? applySuggestion(line, key, selected);
+}
+
+// A suggested key stands for the free text too, and opens as an empty chip.
+export function openKey(line: Line, key: TokenKey): Line {
+    const segments = normalize([...keptChips(line), editingChip(key, "")]);
+    return { segments, caret: lineLength(segments) };
 }

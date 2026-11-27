@@ -192,7 +192,10 @@ export function searchRows(segments: Segment[], index: SearchEntry[], catalogo: 
     // The best disciplina stays above the suggested filters, so Enter still adds it, unless only the curso after
     // its name matched: "ciencias da computacao" asks for the curso.
     const lead = matches[0]?.direct ? 1 : 0;
+    // A key's name typed alone ("curso") offers that filter above everything.
+    const key = TOKEN_KEYS.find((k) => normalize(query) === k.toUpperCase());
     return [
+        ...(key ? [{ kind: "key" as const, key }] : []),
         ...items.slice(0, lead),
         ...suggestions(query, catalogo, index, filtro, items.length === 0),
         ...items.slice(lead),

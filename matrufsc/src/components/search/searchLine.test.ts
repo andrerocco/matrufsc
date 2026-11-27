@@ -15,6 +15,7 @@ import {
     lineLength,
     moveCaret,
     normalize,
+    openKey,
     queryText,
     reopenChip,
     restoreChip,
@@ -235,6 +236,14 @@ describe("search line", () => {
         assert.deepStrictEqual(
             selectValue(line(["", farmacia, " cien"]), "curso", SOCIAIS),
             line(["", farmacia, " ", sociais, " "], 4),
+        );
+    });
+
+    test("picking a suggested key opens its chip in place of the free text", () => {
+        assert.deepStrictEqual(openKey(line(["curso"]), "curso"), line(["", editing(""), ""], 0));
+        assert.deepStrictEqual(
+            openKey(line(["", farmacia, " professor"]), "professor"),
+            line(["", farmacia, " ", editingChip("professor", ""), ""], 2),
         );
     });
 });

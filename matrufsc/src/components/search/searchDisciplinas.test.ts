@@ -2,7 +2,7 @@ import { describe, test } from "node:test";
 import assert from "node:assert";
 import { buildCatalogo } from "./catalogo";
 import { indexDisciplinas, searchDisciplinas, searchRows } from "./searchDisciplinas";
-import { closedChip, editingChip, normalize, text, type Segment } from "./searchLine";
+import { closedChip, editingChip, normalize, text, type SearchRow, type Segment } from "./searchLine";
 import type { JSONDisciplina, JSONTurma } from "~/data/schema";
 
 const turma = (id: string, curso: number, professores: string[] = []): JSONTurma => [
@@ -93,9 +93,11 @@ describe("searchRows", () => {
     const INE = closedChip("departamento", { id: "INE", nome: "INE" });
     const choosing = (key: "curso" | "professor" | "departamento", value = "") => editingChip(key, value);
 
+    const label = (row: SearchRow<JSONDisciplina>) =>
+        row.kind === "item" ? row.item[0] : row.kind === "key" ? `${row.key}:` : `${row.key}:${row.value.nome}`;
     const rows = (...parts: (string | Segment)[]) =>
         searchRows(normalize(parts.map((part) => (typeof part === "string" ? text(part) : part))), index, catalogo).map(
-            (row) => (row.kind === "item" ? row.item[0] : `${row.key}:${row.value.nome}`),
+            label,
         );
 
     test("without filters or text, every disciplina in the data order", () => {
@@ -158,6 +160,18 @@ describe("searchRows", () => {
         assert.deepStrictEqual(rows("ana"), ["professor:Ana Lúcia"]);
         assert.deepStrictEqual(rows(CCO, " ana"), []);
         assert.deepStrictEqual(rows("engenharia"), ["INE5417"]);
+    });
+
+    test("a key's name typed alone offers that key first", () => {
+        assert.deepStrictEqual(rows(CCO, " Professor"), ["professor:"]);
+        assert.deepStrictEqual(rows("prof"), []);
+        const tcc = indexDisciplinas({
+            cursos: CURSOS,
+            disciplinas: [["INE5433", "Trabalho de Conclusão de Curso", [turma("08208", 208)]]],
+        });
+        const tccRows = (query: string) => searchRows([text(query)], tcc, catalogo).map(label);
+        assert.deepStrictEqual(tccRows("conclusao de curso"), ["INE5433"]);
+        assert.deepStrictEqual(tccRows("curso"), ["curso:", "INE5433"]);
     });
 
     test("at most three suggestions", () => {
