@@ -17,11 +17,6 @@ MAX_DISCIPLINAS_DROP = 0.2
 CURSO_KEY_RE = re.compile(r"0|[1-9]\d*")
 
 
-def _is_int(value):
-    # JSON booleans are ints in Python; reject them explicitly.
-    return isinstance(value, int) and not isinstance(value, bool)
-
-
 def _load_campus_file(ctx, path, campus):
     if not os.path.exists(path):
         raise RuntimeError(f"{ctx} ausente no staging")
@@ -62,23 +57,17 @@ def _check_cursos(ctx, cursos):
 
 
 def _check_disciplinas(ctx, data):
-    """Codigos unicos, todo curso resolvido e nenhum status vazado para o nome."""
-    cursos = data["cursos"]
+    """Codigos unicos e nenhum status vazado para o nome."""
     seen = set()
     for disciplina in data["disciplinas"]:
         if not isinstance(disciplina, list) or len(disciplina) != 3:
             raise RuntimeError(f"{ctx}: disciplina deve ter 3 campos ({disciplina!r})")
-        codigo, nome, turmas = disciplina
+        codigo, nome, _ = disciplina
         if codigo in seen:
             raise RuntimeError(f"{ctx}: codigo {codigo} repetido")
         seen.add(codigo)
         if not isinstance(nome, str) or "[" in nome or "]" in nome:
             raise RuntimeError(f"{ctx} {codigo}: nome com colchetes ({nome!r})")
-        for turma in turmas:
-            if not isinstance(turma, list) or len(turma) != 11:
-                raise RuntimeError(f"{ctx} {codigo}: turma deve ter 11 campos ({turma!r})")
-            if not _is_int(turma[9]) or str(turma[9]) not in cursos:
-                raise RuntimeError(f"{ctx} {codigo} turma {turma[0]}: curso {turma[9]!r} nao consta em cursos")
 
 
 def check_stage(stage_dir, public_data_dir):

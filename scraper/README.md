@@ -230,9 +230,9 @@ que o parser do site não enxerga:
   no meio);
 - `cursos` ausente ou vazio, com chave que não é um id de curso ou com nome
   vazio (o parser do site só lê os cursos que alguma turma cita);
-- código de disciplina repetido, disciplina ou turma com número de campos
-  diferente de 3 e 11, turma cujo curso não consta em `cursos`, e `[` ou `]`
-  no nome da disciplina (o marcador `[Cancelada]` vazou para o nome).
+- código de disciplina repetido e `[` ou `]` no nome da disciplina (o
+  marcador `[Cancelada]` vazou para o nome), depois de conferir que a
+  disciplina tem 3 campos.
 
 ## Testes
 

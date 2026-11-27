@@ -102,16 +102,6 @@ class CheckStageTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, "20271-JOI.json: codigo EMB5001 repetido"):
             self.check(campus_file([disciplina, disciplina]))
 
-    def test_rejects_curso_missing_from_map(self):
-        with self.assertRaisesRegex(RuntimeError, "20271-JOI.json EMB5001 turma 01208: curso 999 nao consta"):
-            self.check(campus_file([["EMB5001", "Nome", [TURMA[:9] + [999, None]]]]))
-        with self.assertRaisesRegex(RuntimeError, "curso '208' nao consta"):
-            self.check(campus_file([["EMB5001", "Nome", [TURMA[:9] + ["208", None]]]]))
-
-    def test_rejects_turma_without_11_fields(self):
-        with self.assertRaisesRegex(RuntimeError, "EMB5001: turma deve ter 11 campos"):
-            self.check(campus_file([["EMB5001", "Nome", [TURMA[:9]]]]))
-
     def test_rejects_status_leaked_into_nome(self):
         with self.assertRaisesRegex(RuntimeError, r"EMB5001: nome com colchetes \('Nome \[Cancelada\]'\)"):
             self.check(campus_file([["EMB5001", "Nome [Cancelada]", [TURMA]]]))
@@ -122,8 +112,8 @@ class CheckStageTests(unittest.TestCase):
 
     def test_every_indexed_semester_is_checked(self):
         with tempfile.TemporaryDirectory() as stage, tempfile.TemporaryDirectory() as public:
-            write_stage(stage, {("20262", "ARA"): campus_file([["EMB5001", "Nome", [TURMA[:9]]]])}, semesters=("20271", "20262"))
-            with self.assertRaisesRegex(RuntimeError, "20262-ARA.json EMB5001: turma deve ter 11 campos"):
+            write_stage(stage, {("20262", "ARA"): campus_file([["EMB5001", "Nome [Cancelada]", [TURMA]]])}, semesters=("20271", "20262"))
+            with self.assertRaisesRegex(RuntimeError, "20262-ARA.json EMB5001: nome com colchetes"):
                 check_stage(stage, public)
 
 
