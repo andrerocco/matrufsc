@@ -107,7 +107,7 @@ export default function App() {
                         disabled={
                             urlStateLoading() || ((semesterOptions.loading || campusData.loading) && !campusData())
                         }
-                        limit={10}
+                        limit={30}
                         data={disciplinas()}
                         filter={(search) => searchDisciplinas(search, disciplinas())}
                         onSelect={(materia) => {

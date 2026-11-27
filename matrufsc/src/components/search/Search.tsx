@@ -15,8 +15,8 @@ export default function Search<T>(props: {
     let inputRef: HTMLInputElement | undefined;
     let listRef: HTMLDivElement | undefined;
     let componentRef: HTMLDivElement | undefined;
-    // @ts-ignore // Unused for now but good keep if behavior changes
     let navigationSource = "keyboard";
+    let pointer = { x: -1, y: -1 };
     let enterHeld = false;
 
     const [open, setOpen] = createSignal(false);
@@ -26,8 +26,7 @@ export default function Search<T>(props: {
     const [dataShownAmount, setDataShownAmount] = createSignal(props.limit);
     const [filteredData, setFilteredData] = createSignal(props.data);
     const filteredDataShown = () => filteredData().slice(0, dataShownAmount());
-    const displayShowMore = () => filteredData().length > dataShownAmount();
-    const totalShownAmount = () => filteredDataShown().length + (displayShowMore() ? 1 : 0);
+    const hasMore = () => filteredData().length > dataShownAmount();
 
     useClickOutside(
         () => componentRef,
@@ -50,11 +49,15 @@ export default function Search<T>(props: {
     const handleKeyDown = (e: KeyboardEvent) => {
         if (e.key == "ArrowUp") {
             navigationSource = "keyboard";
-            setFocusedIndex((prev) => (prev - 1 + totalShownAmount()) % totalShownAmount());
+            const last = filteredDataShown().length - 1;
+            // Only wrap to the end once the whole list is loaded
+            if (last >= 0) setFocusedIndex((prev) => (prev > 0 ? prev - 1 : hasMore() ? 0 : last));
             e.preventDefault();
         } else if (e.key == "ArrowDown") {
             navigationSource = "keyboard";
-            setFocusedIndex((prev) => (prev + 1) % totalShownAmount());
+            if (focusedIndex() === filteredDataShown().length - 1) showMore();
+            const shown = filteredDataShown().length;
+            if (shown > 0) setFocusedIndex((prev) => (prev + 1) % shown);
             e.preventDefault();
         } else if (e.key == "Enter") {
             if (e.repeat || enterHeld) {
@@ -63,10 +66,6 @@ export default function Search<T>(props: {
             }
             enterHeld = true;
             e.preventDefault();
-            if (focusedIndex() === dataShownAmount()) {
-                handleShowMore();
-                return;
-            }
             const item = filteredData()[focusedIndex()];
             if (item) props.onSelect(item);
         } else if (e.key == "Escape") {
@@ -84,15 +83,29 @@ export default function Search<T>(props: {
     const handleInput = (e: Event) => {
         const target = e.target as HTMLInputElement;
         const search = target.value;
+        navigationSource = "keyboard";
         setSearchValue(search);
         setDataShownAmount(props.limit);
         setFilteredData(props.filter(search));
         setFocusedIndex(0);
+        if (listRef) listRef.scrollTop = 0;
     };
 
-    const handleShowMore = () => {
-        setDataShownAmount(dataShownAmount() + props.limit);
-        setFocusedIndex(totalShownAmount() - 1);
+    const showMore = () => {
+        if (hasMore()) setDataShownAmount(dataShownAmount() + props.limit);
+    };
+
+    // Scrolling fires mouseenter under a still pointer, which would steal focus from arrow-key navigation
+    const handleItemHover = (e: MouseEvent, index: number) => {
+        if (e.screenX !== pointer.x || e.screenY !== pointer.y) navigationSource = "mouse";
+        pointer = { x: e.screenX, y: e.screenY };
+        if (navigationSource === "mouse") setFocusedIndex(index);
+    };
+
+    const handleScroll = () => {
+        if (!listRef) return;
+        const remaining = listRef.scrollHeight - listRef.scrollTop - listRef.clientHeight;
+        if (remaining < listRef.clientHeight) showMore();
     };
 
     // Update filtered data if original data changes, trying to preserve the focused index
@@ -109,10 +122,10 @@ export default function Search<T>(props: {
         ),
     );
 
-    // Scroll focused element into view
+    // Scroll focused element into view (hovering a partially visible row must not move the list)
     createEffect(
         on(focusedIndex, () => {
-            if (!listRef) return;
+            if (!listRef || navigationSource === "mouse") return;
             const focusedElement = listRef.querySelector(`[data-index="${focusedIndex()}"]`) as HTMLElement;
             if (focusedElement) focusedElement.scrollIntoView({ block: "nearest" });
         }),
@@ -154,17 +167,15 @@ export default function Search<T>(props: {
             <Show when={open()}>
                 <div
                     ref={listRef}
-                    class="max-h-[calc(22rem+1px)] w-full overflow-y-auto rounded-b-md border border-t-0 border-neutral-400 bg-white"
+                    onScroll={handleScroll}
+                    class="max-h-[calc(21rem+1px)] w-full overflow-y-auto rounded-b-md border border-t-0 border-neutral-400 bg-white"
                 >
                     <For each={filteredDataShown()}>
                         {(item, index) => (
                             <SearchItem
                                 label={props.getLabel(item)}
                                 isSelected={focusedIndex() === index()}
-                                onMouseEnter={() => {
-                                    navigationSource = "mouse";
-                                    setFocusedIndex(index());
-                                }}
+                                onHover={(e) => handleItemHover(e, index())}
                                 onClick={() => props.onSelect(item)}
                                 dataIndex={index()}
                             />
@@ -173,18 +184,6 @@ export default function Search<T>(props: {
 
                     <Show when={filteredData().length === 0}>
                         <SearchEmptyItem />
-                    </Show>
-
-                    <Show when={displayShowMore()}>
-                        <SearchShowMore
-                            isSelected={focusedIndex() === dataShownAmount()}
-                            onClick={handleShowMore}
-                            onMouseEnter={() => {
-                                navigationSource = "mouse";
-                                setFocusedIndex(dataShownAmount());
-                            }}
-                            dataIndex={dataShownAmount()}
-                        />
                     </Show>
                 </div>
             </Show>
@@ -195,14 +194,15 @@ export default function Search<T>(props: {
 function SearchItem(props: {
     label: string;
     isSelected: boolean;
-    onMouseEnter?: () => void;
+    onHover?: (e: MouseEvent) => void;
     onClick?: () => void;
     dataIndex: number;
 }) {
     return (
         <div
             class={clsx("flex h-8 cursor-pointer items-center px-3", props.isSelected && "bg-neutral-200")}
-            onMouseEnter={props.onMouseEnter}
+            onMouseEnter={props.onHover}
+            onMouseMove={props.onHover}
             onClick={props.onClick}
             data-index={props.dataIndex}
         >
@@ -216,23 +216,5 @@ function SearchEmptyItem() {
         <div class="flex min-h-8 items-center justify-center px-3 data-[selected='true']:bg-neutral-200">
             <p class="text-neutral-400">Nenhuma disciplina ou professor foi encontrado.</p>
         </div>
-    );
-}
-
-function SearchShowMore(props: {
-    isSelected?: boolean;
-    onClick?: () => void;
-    onMouseEnter?: () => void;
-    dataIndex: number;
-}) {
-    return (
-        <button
-            class={`h-8 w-full cursor-pointer px-3 text-center text-blue-600 hover:underline ${props.isSelected ? "bg-neutral-200" : ""}`}
-            onClick={props.onClick}
-            onMouseEnter={props.onMouseEnter}
-            data-index={props.dataIndex}
-        >
-            Carregar mais...
-        </button>
     );
 }
