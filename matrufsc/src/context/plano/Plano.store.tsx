@@ -140,18 +140,18 @@ function removeMateria(id: string) {
     });
 }
 
-function moveMateria(id: string, direction: "up" | "down") {
-    const index = materias.findIndex((m) => m.id === id);
-    if (index === -1) throw new MateriaNotFoundError(`Matéria ${id} não encontrada`);
+function reorderMateria(id: string, toIndex: number) {
+    const from = materias.findIndex((m) => m.id === id);
+    if (from === -1) throw new MateriaNotFoundError(`Matéria ${id} não encontrada`);
 
-    const target = direction === "up" ? index - 1 : index + 1;
-    if (target < 0 || target >= materias.length) return; // Já está no limite da lista
+    const to = Math.max(0, Math.min(toIndex, materias.length - 1));
+    if (from === to) return;
 
     commitMateriaChange(() => {
         setMaterias(
             produce((list) => {
-                const [item] = list.splice(index, 1);
-                list.splice(target, 0, item);
+                const [item] = list.splice(from, 1);
+                list.splice(to, 0, item);
             }),
         );
     });
@@ -240,7 +240,7 @@ export const usePlano = () => ({
     setFocusedMateriaId,
     addMateria,
     removeMateria,
-    moveMateria,
+    reorderMateria,
     updateMateriaSelected,
     updateTurmasSelected,
     setPlanoIndex: setPlanoIndexClamped,
