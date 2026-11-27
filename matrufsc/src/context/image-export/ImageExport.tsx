@@ -67,7 +67,7 @@ export function ImageExportProvider(props: ParentProps) {
                 <div class="pointer-events-none fixed top-0 left-[-10000px]" aria-hidden="true">
                     <div ref={setCaptureElement} class="flex w-fit flex-col gap-6">
                         <div class="max-w-[800px]">
-                            <Materias />
+                            <Materias capture />
                         </div>
                         <div class="mx-auto w-fit">
                             <Horarios />
