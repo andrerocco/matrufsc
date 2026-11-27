@@ -9,7 +9,10 @@ async function fetchCampusData(source: { semester: string; campus: JSONCampusCod
     const ano = semester.slice(0, 4);
 
     try {
-        const resp = await fetch(`${import.meta.env.BASE_URL}data/${ano}/${semester}-${campus}.json`);
+        // GitHub Pages lets the browser reuse a file for 10 minutes, which would hand a new deploy the previous data.
+        const resp = await fetch(`${import.meta.env.BASE_URL}data/${ano}/${semester}-${campus}.json`, {
+            cache: "no-cache",
+        });
         if (!resp.ok) throw new Error(`Failed to load campus data: ${resp.status} ${resp.statusText}`);
         return await resp.json();
     } catch (error) {
