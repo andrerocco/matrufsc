@@ -1,5 +1,5 @@
 export interface Aula {
-    dia_semana: number; // 1 = domingo, 2 = segunda, ..., 7 = sábado
+    dia_semana: number; // 2 = segunda, ..., 7 = sábado
     horarios: number[]; // Indexes of HORAS array
     sala: string;
 }

@@ -2,7 +2,8 @@ import { HORAS, type JSONCampus, type JSONCursos, type JSONDisciplina, type JSON
 import type { Aula, Curso, Materia, Turma } from "./types";
 
 // "3.1620-3 / CTS-SL114A": dia da semana, horário da primeira aula, número de aulas seguidas e sala.
-const AULA_RE = /^([1-7])\.(\d{4})-([1-9]\d*) \/ (.+)$/;
+// Domingo (1) é recusado porque a grade não tem essa coluna.
+const AULA_RE = /^([2-7])\.(\d{4})-([1-9]\d*) \/ (.+)$/;
 
 // Posições 1 a 6 da tupla da turma.
 const NUMERIC_FIELDS = [
