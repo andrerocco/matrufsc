@@ -33,6 +33,16 @@ export function indexDisciplinas(campus?: Pick<JSONCampus, "cursos" | "disciplin
     });
 }
 
+const ROMANOS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"];
+const OUTRA_FORMA = new Map<string, string>();
+ROMANOS.forEach((r, i) => OUTRA_FORMA.set(r, `${i + 1}`).set(`${i + 1}`, r));
+
+// A phrase found in the name scores more the earlier it starts, and most when it is the whole name.
+function phraseScore(texto: string, nome: string, phrase: string): number {
+    const at = texto.indexOf(phrase);
+    return at === -1 ? 0 : 500 + Math.max(0, 50 - at) + (nome === phrase ? 100 : 0);
+}
+
 interface Match {
     disciplina: JSONDisciplina;
     score: number;
@@ -46,7 +56,12 @@ function matchDisciplinas(query: string, index: SearchEntry[]): Match[] {
 
     const code = q.replace(/^([A-Z]{3}) +(?=\d)/, "$1"); // "ine 5417"
     const tokens = q.split(/\s+/).filter(Boolean);
-    const fits = (s: string) => tokens.every((t) => s.includes(t));
+    // After the first word a numeral also matches its other form as a whole word: "fisica 2" finds Física II, and
+    // "calculo ii" lists Cálculo 2 right below Cálculo II.
+    const others = tokens.map((t, i) => (i > 0 ? OUTRA_FORMA.get(t) : undefined));
+    const otherWords = others.map((o) => (o ? new RegExp(`\\b${o}\\b`) : undefined));
+    const alt = tokens.map((t, i) => others[i] ?? t).join(" ");
+    const fits = (s: string) => tokens.every((t, i) => s.includes(t) || otherWords[i]?.test(s));
     const matches: Match[] = [];
 
     for (const { disciplina, codigo, nome, texto } of index) {
@@ -58,13 +73,8 @@ function matchDisciplinas(query: string, index: SearchEntry[]): Match[] {
 
         const direct = score > 0 || fits(nome);
         if (fits(texto)) {
-            const fullIdx = texto.indexOf(q);
-            if (fullIdx !== -1) {
-                score += 500 + Math.max(0, 50 - fullIdx) + (nome === q ? 100 : 0);
-            } else {
-                const firstIdx = texto.indexOf(tokens[0]);
-                score += 100 + Math.max(0, 50 - firstIdx);
-            }
+            const phrase = Math.max(phraseScore(texto, nome, q), phraseScore(texto, nome, alt) - 1);
+            score += phrase || 100 + Math.max(0, 50 - texto.indexOf(tokens[0]));
         }
 
         if (score > 0) matches.push({ disciplina, score, direct });

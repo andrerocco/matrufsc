@@ -65,6 +65,18 @@ describe("searchDisciplinas", () => {
         assert.deepStrictEqual(codes("engenharia de software", disciplinas), ["INE5002", "INE5001"]);
     });
 
+    test("a numeral after the first word also matches its other form, below the form typed", () => {
+        const disciplinas: JSONDisciplina[] = [
+            ["FSC5002", "Física II", [turma("02208", 208)]],
+            ["FSC5003", "Física III", [turma("03208", 208)]],
+            ["MTM3120", "Cálculo 2", [turma("02208", 208)]],
+            ["MTM3402", "Cálculo II", [turma("02208", 208)]],
+        ];
+        assert.deepStrictEqual(codes("fisica 2", disciplinas), ["FSC5002"]);
+        assert.deepStrictEqual(codes("calculo ii", disciplinas), ["MTM3402", "MTM3120"]);
+        assert.deepStrictEqual(codes("calculo 2", disciplinas), ["MTM3120", "MTM3402"]);
+    });
+
     test("matches by code, never by professor", () => {
         assert.deepStrictEqual(codes("ine54"), ["INE5417", "INE5404", "INE5430"]);
         assert.deepStrictEqual(codes("ine 5417"), ["INE5417"]);
