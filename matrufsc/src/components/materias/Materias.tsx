@@ -39,6 +39,11 @@ export default function Materias(props: { class?: string }) {
         setFocusedMateriaId((current) => (current === id ? null : id));
     };
 
+    const handleMove = (id: string, toIndex: number) => {
+        clearOverlay();
+        reorderMateria(id, toIndex);
+    };
+
     const handleDrag = (event: PointerEvent, index: number) => {
         clearOverlay();
         const { id } = materias[index];
@@ -64,7 +69,7 @@ export default function Materias(props: { class?: string }) {
                                         materia={materia}
                                         onClickRemove={handleRemove}
                                         onDrag={(event) => handleDrag(event, index())}
-                                        onMove={(delta) => reorderMateria(materia.id, index() + delta)}
+                                        onMove={(delta) => handleMove(materia.id, index() + delta)}
                                         onToggleSelection={handleToggleSelection}
                                         onClickSelect={handleSelectMateria}
                                         onMouseEnter={() => overlayMateria(materia)}
