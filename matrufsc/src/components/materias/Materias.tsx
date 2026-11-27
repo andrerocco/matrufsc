@@ -1,11 +1,12 @@
 import clsx from "clsx";
 import { For, Show } from "solid-js";
+import GripVertical from "lucide-solid/icons/grip-vertical";
+import X from "lucide-solid/icons/x";
 import { usePlano, type Materia, type Turma } from "~/context/plano/Plano.store";
-import { IconClose, IconGrip } from "~/components/icons";
 import { dragRow } from "./dragRow";
 import { useHorariosOverlay } from "../horarios/useHorariosOverlay";
 
-export default function Materias(props: { class?: string }) {
+export default function Materias(props: { class?: string; capture?: boolean }) {
     const {
         materias,
         removeMateria,
@@ -67,6 +68,7 @@ export default function Materias(props: { class?: string }) {
                                 {(materia, index) => (
                                     <MateriaRow
                                         materia={materia}
+                                        actions={!props.capture}
                                         onClickRemove={handleRemove}
                                         onDrag={(event) => handleDrag(event, index())}
                                         onMove={(delta) => handleMove(materia.id, index() + delta)}
@@ -118,8 +120,11 @@ function getTurmaCreditos(turma: Turma): number {
     return turma.aulas.reduce((total, aula) => total + aula.horarios.length, 0);
 }
 
+const FOCUS_RING = "focus-visible:outline-1 focus-visible:-outline-offset-3 focus-visible:outline-black";
+
 function MateriaRow(props: {
     materia: Materia;
+    actions: boolean;
     onToggleSelection: (id: string, currentSelected: boolean) => void;
     onClickRemove: (id: string) => void;
     onDrag: (event: PointerEvent) => void;
@@ -160,31 +165,40 @@ function MateriaRow(props: {
                 </div>
             </td>
             <td class="px-3 py-1.5">{props.materia.id}</td>
-            <td class="relative px-3 py-1.5">
+            <td class={clsx("relative px-3 py-1.5", props.actions && "pointer-coarse:pr-20")}>
                 <span>{props.materia.nome}</span>
-                <div class="absolute top-1/2 right-0 flex -translate-y-1/2 items-stretch opacity-0 select-none group-hover:opacity-100 group-data-dragging:opacity-100">
-                    <button
-                        type="button"
-                        aria-label="Reordenar matéria"
-                        class="pointer-events-none flex cursor-grab touch-none items-center justify-center px-1.5 py-1.5 group-hover:pointer-events-auto active:cursor-grabbing"
-                        onPointerDown={props.onDrag}
-                        onKeyDown={handleKeyDown}
-                        onClick={(event) => event.stopPropagation()}
-                    >
-                        <IconGrip class="size-[1.125em]" />
-                    </button>
-                    <button
-                        type="button"
-                        aria-label="Remover matéria"
-                        class="flex cursor-pointer items-center py-1.5 pr-3 pl-1.5 underline-offset-1 hover:underline"
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            props.onClickRemove(props.materia.id);
-                        }}
-                    >
-                        <IconClose class="size-[1em]" />
-                    </button>
-                </div>
+                <Show when={props.actions}>
+                    <div class="absolute inset-y-0 right-0 flex opacity-0 select-none group-hover:opacity-100 group-data-dragging:opacity-100 has-focus-visible:opacity-100 pointer-coarse:text-black/50 pointer-coarse:opacity-100">
+                        <button
+                            type="button"
+                            aria-label="Reordenar matéria"
+                            class={clsx(
+                                "flex cursor-grab touch-none items-center px-1.5 active:cursor-grabbing pointer-coarse:px-2.5",
+                                "pointer-events-none group-hover:pointer-events-auto pointer-coarse:pointer-events-auto",
+                                FOCUS_RING,
+                            )}
+                            onPointerDown={props.onDrag}
+                            onKeyDown={handleKeyDown}
+                            onClick={(event) => event.stopPropagation()}
+                        >
+                            <GripVertical size="1.125em" strokeWidth={1.75} aria-hidden="true" />
+                        </button>
+                        <button
+                            type="button"
+                            aria-label="Remover matéria"
+                            class={clsx(
+                                "flex cursor-pointer items-center pr-3 pl-1.5 pointer-coarse:pl-2.5",
+                                FOCUS_RING,
+                            )}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                props.onClickRemove(props.materia.id);
+                            }}
+                        >
+                            <X size="1em" strokeWidth={1.75} aria-hidden="true" />
+                        </button>
+                    </div>
+                </Show>
             </td>
         </tr>
     );
