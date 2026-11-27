@@ -8,6 +8,7 @@ export default defineConfig({
     plugins: [solid(), tailwindcss(), visualizer()],
     base: process.env.VITE_BASE_URL ?? "/",
     build: {
+        sourcemap: true,
         rollupOptions: {
             input: [path.resolve(__dirname, "index.html"), path.resolve(__dirname, "sobre.html")],
         },
