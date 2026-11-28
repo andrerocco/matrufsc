@@ -1,47 +1,184 @@
 import { describe, test } from "node:test";
 import assert from "node:assert";
-import { indexDisciplinas, searchDisciplinas } from "./searchDisciplinas";
+import { buildCatalogo } from "./catalogo";
+import { indexDisciplinas, searchDisciplinas, searchRows } from "./searchDisciplinas";
+import { closedChip, editingChip, normalize, text, type SearchRow, type Segment } from "./searchLine";
 import type { JSONDisciplina, JSONTurma } from "~/data/schema";
 
-const turma = (professores: string[]): JSONTurma => ["01208", 72, 50, 10, 0, 40, 0, [], professores, 208, null];
-
-const DISCIPLINAS: JSONDisciplina[] = [
-    ["EMB5001", "Introdução à Engenharia", [turma(["Ana Lúcia"])]],
-    ["EMB5002", "Cálculo I", [turma(["José"])]],
-    ["MAT1000", "Cálculo II", [turma(["Maria"])]],
-    ["ECV5001", "Estágio (1ª ênfase)", [turma(["Paulo"])]],
+const turma = (id: string, curso: number, professores: string[] = []): JSONTurma => [
+    id,
+    72,
+    40,
+    10,
+    0,
+    30,
+    0,
+    [],
+    professores,
+    curso,
+    null,
 ];
 
+const CURSOS = { "208": "CIÊNCIAS DA COMPUTAÇÃO", "238": "SISTEMAS DE INFORMAÇÃO (noturno)", "102": "FARMÁCIA" };
+
+const DISCIPLINAS: JSONDisciplina[] = [
+    [
+        "INE5417",
+        "Engenharia de Software I",
+        [turma("05208", 208, ["Jean Martina"]), turma("05238", 238, ["Ana Lúcia"])],
+    ],
+    ["INE5404", "Programação Orientada a Objetos II", [turma("09208", 208), turma("02208", 208, ["Jean Martina"])]],
+    ["MTM3100", "Pré-Cálculo", [turma("01208", 208), turma("09238", 238, ["Ana Lúcia"])]],
+    ["INE5430", "Inteligência Artificial", [turma("12208A", 208), turma("11208B", 208)]],
+    ["INE5999", "Tópicos Especiais", [turma("1018", 208)]],
+    ["FAR1001", "Farmacologia", [turma("05102", 102, ["Maria"])]],
+];
+
+const index = indexDisciplinas({ cursos: CURSOS, disciplinas: DISCIPLINAS });
+const catalogo = buildCatalogo({ cursos: CURSOS, disciplinas: DISCIPLINAS });
+
 describe("searchDisciplinas", () => {
-    const index = indexDisciplinas(DISCIPLINAS);
+    const codes = (query: string, disciplinas = DISCIPLINAS) =>
+        searchDisciplinas(query, indexDisciplinas({ cursos: CURSOS, disciplinas })).map((d) => d[0]);
 
     test("empty query returns every disciplina", () => {
         assert.deepStrictEqual(searchDisciplinas("  ", index), DISCIPLINAS);
     });
 
     test("matches the name without accents", () => {
-        assert.deepStrictEqual(
-            searchDisciplinas("calculo", index).map((d) => d[0]),
-            ["EMB5002", "MAT1000"],
-        );
-        assert.deepStrictEqual(
-            searchDisciplinas("introducao engenharia", index).map((d) => d[0]),
-            ["EMB5001"],
-        );
-        assert.deepStrictEqual(
-            searchDisciplinas("1a enfase", index).map((d) => d[0]),
-            ["ECV5001"],
-        );
+        assert.deepStrictEqual(codes("calculo"), ["MTM3100"]);
+        assert.deepStrictEqual(codes("programacao objetos"), ["INE5404"]);
+        const estagio: JSONDisciplina = ["ECV5001", "Estágio (1ª ênfase)", [turma("01208", 208)]];
+        assert.deepStrictEqual(codes("1a enfase", [estagio]), ["ECV5001"]);
     });
 
-    test("matches by code and by professor", () => {
-        assert.deepStrictEqual(
-            searchDisciplinas("emb", index).map((d) => d[0]),
-            ["EMB5001", "EMB5002"],
+    test("matches the curso the name shows, which is the first turma's", () => {
+        assert.deepStrictEqual(codes("software computacao"), ["INE5417"]);
+        assert.deepStrictEqual(codes("software informacao"), []);
+    });
+
+    test("an exact name comes before the longer names that begin with it", () => {
+        const disciplinas: JSONDisciplina[] = [
+            ["INE5001", "Engenharia de Software I", [turma("05208", 208)]],
+            ["INE5002", "Engenharia de Software", [turma("05208", 208)]],
+        ];
+        assert.deepStrictEqual(codes("engenharia de software", disciplinas), ["INE5002", "INE5001"]);
+    });
+
+    test("a numeral after the first word also matches its other form, below the form typed", () => {
+        const disciplinas: JSONDisciplina[] = [
+            ["FSC5002", "Física II", [turma("02208", 208)]],
+            ["FSC5003", "Física III", [turma("03208", 208)]],
+            ["MTM3120", "Cálculo 2", [turma("02208", 208)]],
+            ["MTM3402", "Cálculo II", [turma("02208", 208)]],
+        ];
+        assert.deepStrictEqual(codes("fisica 2", disciplinas), ["FSC5002"]);
+        assert.deepStrictEqual(codes("calculo ii", disciplinas), ["MTM3402", "MTM3120"]);
+        assert.deepStrictEqual(codes("calculo 2", disciplinas), ["MTM3120", "MTM3402"]);
+    });
+
+    test("matches by code, never by professor", () => {
+        assert.deepStrictEqual(codes("ine54"), ["INE5417", "INE5404", "INE5430"]);
+        assert.deepStrictEqual(codes("ine 5417"), ["INE5417"]);
+        assert.deepStrictEqual(codes("lucia"), []);
+    });
+});
+
+describe("searchRows", () => {
+    const CCO = closedChip("curso", { id: "208", nome: CURSOS["208"] });
+    const SI = closedChip("curso", { id: "238", nome: CURSOS["238"] });
+    const FAR = closedChip("curso", { id: "102", nome: CURSOS["102"] });
+    const JEAN = closedChip("professor", { id: "Jean Martina", nome: "Jean Martina" });
+    const ANA = closedChip("professor", { id: "Ana Lúcia", nome: "Ana Lúcia" });
+    const INE = closedChip("departamento", { id: "INE", nome: "INE" });
+    const choosing = (key: "curso" | "professor" | "departamento", value = "") => editingChip(key, value);
+
+    const label = (row: SearchRow<JSONDisciplina>) =>
+        row.kind === "item" ? row.item[0] : row.kind === "key" ? `${row.key}:` : `${row.key}:${row.value.nome}`;
+    const rows = (...parts: (string | Segment)[]) =>
+        searchRows(normalize(parts.map((part) => (typeof part === "string" ? text(part) : part))), index, catalogo).map(
+            label,
         );
-        assert.deepStrictEqual(
-            searchDisciplinas("lucia", index).map((d) => d[0]),
-            ["EMB5001"],
-        );
+
+    test("without filters or text, every disciplina in the data order", () => {
+        assert.deepStrictEqual(rows(), ["INE5417", "INE5404", "MTM3100", "INE5430", "INE5999", "FAR1001"]);
+    });
+
+    test("under a curso, its disciplinas come by the lowest fase among that curso's turmas, then by code", () => {
+        assert.deepStrictEqual(rows(CCO), ["MTM3100", "INE5404", "INE5417", "INE5430", "INE5999"]);
+        assert.deepStrictEqual(rows(SI), ["INE5417", "MTM3100"]);
+    });
+
+    test("chips of one key widen: a turma of any of the cursos is enough", () => {
+        assert.deepStrictEqual(rows(SI, FAR), ["FAR1001", "INE5417", "MTM3100"]);
+    });
+
+    test("keys narrow each other, and curso with professor must hold on the same turma", () => {
+        assert.deepStrictEqual(rows(CCO, JEAN), ["INE5404", "INE5417"]);
+        assert.deepStrictEqual(rows(CCO, ANA), []);
+        assert.deepStrictEqual(rows(INE, ANA), ["INE5417"]);
+    });
+
+    test("text beside chips scores as usual, inside what the chips leave", () => {
+        assert.deepStrictEqual(rows(CCO, " calculo"), ["MTM3100"]);
+        assert.deepStrictEqual(rows(FAR, " calculo"), []);
+    });
+
+    test("an open chip lists the values of its key that match what was typed", () => {
+        assert.deepStrictEqual(rows(choosing("curso")), [
+            "curso:CIÊNCIAS DA COMPUTAÇÃO",
+            "curso:FARMÁCIA",
+            "curso:SISTEMAS DE INFORMAÇÃO (noturno)",
+        ]);
+        assert.deepStrictEqual(rows("calculo ", choosing("curso", "info sist")), [
+            "curso:SISTEMAS DE INFORMAÇÃO (noturno)",
+        ]);
+    });
+
+    test("an open chip offers only what the chips of the other keys leave reachable", () => {
+        assert.deepStrictEqual(rows(CCO, choosing("professor")), ["professor:Jean Martina"]);
+        assert.deepStrictEqual(rows(ANA, choosing("curso")), ["curso:SISTEMAS DE INFORMAÇÃO (noturno)"]);
+        assert.deepStrictEqual(rows(FAR, choosing("departamento")), ["departamento:FAR"]);
+        assert.deepStrictEqual(rows(CCO, choosing("curso", "farm")), ["curso:FARMÁCIA"]);
+    });
+
+    test("free text suggests a curso from the start of its name, below the disciplina it names", () => {
+        assert.deepStrictEqual(rows("farm"), ["FAR1001", "curso:FARMÁCIA"]);
+        assert.deepStrictEqual(rows("ciencias")[0], "curso:CIÊNCIAS DA COMPUTAÇÃO");
+        assert.deepStrictEqual(rows(FAR, " farm"), ["FAR1001"]);
+    });
+
+    test("a departamento is suggested only by its exact code, a professor from two words on", () => {
+        assert.deepStrictEqual(rows("in"), ["INE5430", "INE5417", "INE5404", "INE5999"]);
+        assert.deepStrictEqual(rows("ine").slice(0, 2), ["INE5417", "departamento:INE"]);
+        assert.deepStrictEqual(rows("jean mar"), ["professor:Jean Martina"]);
+        assert.deepStrictEqual(rows(FAR, " jean mar"), []);
+    });
+
+    test("one word suggests a professor only when no disciplina matches it", () => {
+        assert.deepStrictEqual(rows("jean"), ["professor:Jean Martina"]);
+        assert.deepStrictEqual(rows("ana"), ["professor:Ana Lúcia"]);
+        assert.deepStrictEqual(rows(CCO, " ana"), []);
+        assert.deepStrictEqual(rows("engenharia"), ["INE5417"]);
+    });
+
+    test("a key's name typed alone offers that key first", () => {
+        assert.deepStrictEqual(rows(CCO, " Professor"), ["professor:"]);
+        assert.deepStrictEqual(rows("prof"), []);
+        const tcc = indexDisciplinas({
+            cursos: CURSOS,
+            disciplinas: [["INE5433", "Trabalho de Conclusão de Curso", [turma("08208", 208)]]],
+        });
+        const tccRows = (query: string) => searchRows([text(query)], tcc, catalogo).map(label);
+        assert.deepStrictEqual(tccRows("conclusao de curso"), ["INE5433"]);
+        assert.deepStrictEqual(tccRows("curso"), ["curso:", "INE5433"]);
+    });
+
+    test("at most three suggestions", () => {
+        const engenharias = buildCatalogo({
+            cursos: { "1": "ENGENHARIA A", "2": "ENGENHARIA B", "3": "ENGENHARIA C", "4": "ENGENHARIA D" },
+            disciplinas: [],
+        });
+        assert.strictEqual(searchRows([text("eng")], [], engenharias).length, 3);
     });
 });

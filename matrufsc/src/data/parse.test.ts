@@ -12,7 +12,7 @@ const TURMA: JSONTurma = [
     27, // vagas_ocupadas
     0, // alunos_especiais
     10, // saldo_vagas
-    0, // pedidos_sem_vaga
+    3, // pedidos_sem_vaga
     ["6.1830-2 / CTS-SL117A"], // rawAulas
     ["Cláudia Destro dos Santos"], // professores
     208, // curso
@@ -24,6 +24,7 @@ const PARSED_TURMA = {
     carga_horaria: 36,
     vagas_ofertadas: 37,
     vagas_ocupadas: 27,
+    pedidos_sem_vaga: 3,
     aulas: [
         {
             dia_semana: 6,

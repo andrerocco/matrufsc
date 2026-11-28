@@ -49,8 +49,19 @@ export function getTurmaFromJSON(json: JSONTurma, cursos: JSONCursos): Turma {
     if (!Array.isArray(json)) throw new Error(`Turma ${show(json)} is not a list.`);
     if (json.length !== 11) throw new Error(`Turma ${json[0]} has ${json.length} fields, expected 11.`);
 
-    const [id, carga_horaria, vagas_ofertadas, vagas_ocupadas, _, __, ___, rawAulas, professores, cursoId, status] =
-        json;
+    const [
+        id,
+        carga_horaria,
+        vagas_ofertadas,
+        vagas_ocupadas,
+        _,
+        __,
+        pedidos_sem_vaga,
+        rawAulas,
+        professores,
+        cursoId,
+        status,
+    ] = json;
 
     if (!isText(id)) throw new Error(`Turma id ${show(id)} is not a non-empty string.`);
     NUMERIC_FIELDS.forEach((name, index) => {
@@ -70,6 +81,7 @@ export function getTurmaFromJSON(json: JSONTurma, cursos: JSONCursos): Turma {
         carga_horaria,
         vagas_ofertadas,
         vagas_ocupadas,
+        pedidos_sem_vaga,
         aulas: rawAulas.map(getAulaFromJSON),
         professores,
         curso: getCurso(cursoId, cursos),
