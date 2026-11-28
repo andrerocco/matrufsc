@@ -15,8 +15,9 @@ export function createSearchParam(key: string) {
         if (next) url.searchParams.set(key, next);
         else url.searchParams.delete(key);
 
-        const method = options.replace ? "replaceState" : "pushState";
-        history[method](null, "", url);
+        // Replacing keeps the entry's state, which marks an open sheet (see layerHistory).
+        if (options.replace) history.replaceState(history.state, "", url);
+        else history.pushState(null, "", url);
 
         setValue(next);
     };

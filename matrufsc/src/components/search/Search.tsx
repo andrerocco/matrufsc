@@ -1,5 +1,8 @@
 import { batch, createSignal, createEffect, createMemo, Index, Show, on, onCleanup, onMount } from "solid-js";
 import { clsx } from "clsx";
+import X from "lucide-solid/icons/x";
+import Sheet from "~/components/sheet/Sheet";
+import { isTouch, viewport } from "~/lib/media";
 import { useClickOutside } from "./useClickOutside";
 import {
     EMPTY,
@@ -43,7 +46,10 @@ import {
 
 export default function Search<T>(props: {
     onSelect: (item: T) => void;
-    getLabel: (item: T) => string;
+    // In the sheet an item already picked is marked, and a tap on it removes it.
+    picked: (item: T) => boolean;
+    onRemove: (item: T) => void;
+    getLabel: (item: T) => { code: string; name: string };
     filter: (segments: Segment[]) => SearchRow<T>[];
     filterScope?: unknown;
     placeholder?: string;
@@ -76,7 +82,7 @@ export default function Search<T>(props: {
     const focused = () => lineRef !== undefined && document.activeElement === lineRef;
 
     useClickOutside(
-        () => componentRef,
+        () => (isTouch() ? undefined : componentRef),
         () => setOpen(false),
         open,
     );
@@ -114,9 +120,27 @@ export default function Search<T>(props: {
         enterHeld = false;
     };
 
+    // The line takes focus inside the tap, or iOS keeps the keyboard down.
+    const openSheet = () => {
+        apply(EMPTY);
+        setOpen(true);
+        focusLine();
+    };
+
+    const closeSheet = () => {
+        setOpen(false);
+        lineRef?.blur();
+    };
+
+    // A sheet that mounts already open stays out of sight while it holds the page.
+    createEffect(on(isTouch, () => setOpen(false), { defer: true }));
+
+    const picked = (row: SearchRow<T>) => isTouch() && row.kind === "item" && props.picked(row.item);
+
     const select = (row: SearchRow<T>) => {
         if (row.kind === "item") {
-            props.onSelect(row.item);
+            if (picked(row)) props.onRemove(row.item);
+            else props.onSelect(row.item);
             return;
         }
         apply(row.kind === "key" ? openKey(line(), row.key) : selectValue(line(), row.key, row.value));
@@ -251,10 +275,15 @@ export default function Search<T>(props: {
         focusLine();
     };
 
-    onMount(() => {
-        if (lineRef) renderLine(lineRef, rendered);
-        document.addEventListener("selectionchange", syncCaret);
-    });
+    // The line is drawn as it mounts, which a change of layout makes it do again.
+    const setLine = (element: HTMLDivElement) => {
+        lineRef = element;
+        renderLine(element, rendered);
+        // Android keyboards then offer no suggestions; Solid types `autocomplete` for form fields only.
+        element.setAttribute("autocomplete", "off");
+    };
+
+    onMount(() => document.addEventListener("selectionchange", syncCaret));
     onCleanup(() => document.removeEventListener("selectionchange", syncCaret));
 
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -273,9 +302,11 @@ export default function Search<T>(props: {
                 handleShowMore();
                 return;
             }
+            // The sheet shows no keyboard cursor, so Enter must not remove a row picked before.
             const row = rows()[focusedIndex()];
-            if (row) select(row);
+            if (row && !picked(row)) select(row);
         } else if (e.key == "Escape") {
+            e.preventDefault();
             const next = restoreChip(line()) ?? escapeChip(line());
             if (next) {
                 apply(next);
@@ -309,6 +340,15 @@ export default function Search<T>(props: {
         setFocusedIndex(totalShownAmount() - 1);
     };
 
+    // The sheet's list grows as it scrolls instead of offering "Carregar mais".
+    const loadMore = () => {
+        if (!listRef || !isTouch() || !open() || !displayShowMore()) return;
+        if (listRef.scrollTop + listRef.clientHeight >= listRef.scrollHeight - 100) {
+            setShownAmount((amount) => amount + props.limit);
+        }
+    };
+    createEffect(on([rowsShown, viewport, open], loadMore));
+
     // Keep the focused index valid when the rows change under it (e.g. campus data refresh)
     createEffect(
         on(
@@ -338,7 +378,48 @@ export default function Search<T>(props: {
         }),
     );
 
-    return (
+    // A drag that starts on the empty line moves the sheet; with text in it, the drag is the caret's.
+    const lineBox = (lineClass: string) => (
+        <>
+            <div
+                ref={setLine}
+                contenteditable={props.disabled ? "false" : "true"}
+                role="textbox"
+                aria-label={props.placeholder}
+                spellcheck={false}
+                autocorrect="off"
+                autocapitalize="off"
+                data-corvu-no-drag={isEmpty(segments()) ? undefined : ""}
+                onKeyDown={handleKeyDown}
+                onKeyUp={handleKeyUp}
+                onMouseDown={handleMouseDown}
+                onBeforeInput={handleBeforeInput}
+                onInput={handleInput}
+                onCompositionStart={() => {
+                    composing = true;
+                }}
+                onCompositionEnd={() => {
+                    composing = false;
+                    readBack();
+                }}
+                onFocus={() => setOpen(true)}
+                onBlur={() => {
+                    enterHeld = false;
+                }}
+                class={clsx(
+                    "min-w-0 flex-1 overflow-x-auto overflow-y-hidden whitespace-pre outline-none [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+                    lineClass,
+                )}
+            />
+            <Show when={props.placeholder && isEmpty(segments())}>
+                <span class={clsx("pointer-events-none absolute left-3 text-neutral-400", isTouch() && "text-[16px]")}>
+                    {props.placeholder}
+                </span>
+            </Show>
+        </>
+    );
+
+    const dropdown = () => (
         <div ref={componentRef} class={clsx(props.class)}>
             <div class="relative w-full">
                 <div
@@ -351,35 +432,7 @@ export default function Search<T>(props: {
                         if (!lineRef?.contains(e.target as Node)) focusLine();
                     }}
                 >
-                    <div
-                        ref={lineRef}
-                        contenteditable={props.disabled ? "false" : "true"}
-                        role="textbox"
-                        aria-label={props.placeholder}
-                        spellcheck={false}
-                        autocorrect="off"
-                        autocapitalize="off"
-                        onKeyDown={handleKeyDown}
-                        onKeyUp={handleKeyUp}
-                        onMouseDown={handleMouseDown}
-                        onBeforeInput={handleBeforeInput}
-                        onInput={handleInput}
-                        onCompositionStart={() => {
-                            composing = true;
-                        }}
-                        onCompositionEnd={() => {
-                            composing = false;
-                            readBack();
-                        }}
-                        onFocus={() => setOpen(true)}
-                        onBlur={() => {
-                            enterHeld = false;
-                        }}
-                        class="h-9 min-w-0 flex-1 overflow-x-auto overflow-y-hidden leading-9 whitespace-pre outline-none [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-                    />
-                    <Show when={props.placeholder && isEmpty(segments())}>
-                        <span class="pointer-events-none absolute left-3 text-neutral-400">{props.placeholder}</span>
-                    </Show>
+                    {lineBox("h-9 leading-9")}
                 </div>
                 <Show when={open()}>
                     <button
@@ -424,6 +477,75 @@ export default function Search<T>(props: {
             </Show>
         </div>
     );
+
+    return (
+        <Show when={isTouch()} fallback={dropdown()}>
+            <button
+                type="button"
+                disabled={props.disabled}
+                onClick={openSheet}
+                class={clsx(
+                    "flex h-9 w-full items-center rounded-md border border-neutral-400 px-3 text-left text-neutral-400",
+                    props.disabled ? "bg-neutral-200" : "bg-white",
+                    props.class,
+                )}
+            >
+                <span class="truncate">{props.placeholder}</span>
+            </button>
+            <Sheet
+                open={open()}
+                onClose={closeSheet}
+                label="Pesquisar disciplina"
+                whiteFoot
+                keepMounted
+                trapFocus={false}
+                header={
+                    <div class="px-3 pt-[19.5px] pb-3">
+                        <div class="relative flex h-[44px] items-center rounded-md border border-neutral-400 bg-white pl-3 focus-within:border-neutral-600">
+                            {lineBox("h-[44px] text-[16px] leading-[44px]")}
+                            <Show when={!isEmpty(segments())}>
+                                <button
+                                    aria-label="Limpar pesquisa"
+                                    data-corvu-no-drag
+                                    onMouseDown={keepFocus}
+                                    onClick={() => {
+                                        apply(EMPTY);
+                                        focusLine();
+                                    }}
+                                    class="flex size-[44px] shrink-0 cursor-pointer items-center justify-center text-[12px] text-neutral-500"
+                                >
+                                    <X size="1.25em" strokeWidth={1.75} aria-hidden="true" />
+                                </button>
+                            </Show>
+                        </div>
+                    </div>
+                }
+            >
+                <div
+                    ref={listRef}
+                    class="min-h-0 flex-1 overflow-y-auto overscroll-contain border-t border-neutral-400 bg-white pb-[env(safe-area-inset-bottom)]"
+                    onScroll={loadMore}
+                >
+                    <Index
+                        each={rowsShown()}
+                        fallback={
+                            <p class="flex h-full items-center justify-center px-3 text-center text-neutral-500">
+                                {emptyMessage(segments())}
+                            </p>
+                        }
+                    >
+                        {(row) => (
+                            <SheetItem
+                                {...rowView(row(), editing(), props.getLabel)}
+                                picked={picked(row())}
+                                onClick={() => select(row())}
+                            />
+                        )}
+                    </Index>
+                </div>
+            </Sheet>
+        </Show>
+    );
 }
 
 const EMPTY_BY_KEY: Record<TokenKey, string> = {
@@ -442,6 +564,7 @@ function emptyMessage(segments: Segment[]): string {
 }
 
 interface RowView {
+    code?: string;
     text?: string;
     prefix?: string;
     value?: string;
@@ -449,8 +572,15 @@ interface RowView {
 
 // A suggested filter reads like the chip it produces: the key as plain text and the value tinted, one blank
 // space for a key alone. While a chip is being edited the rows are its values alone.
-function rowView<T>(row: SearchRow<T>, editing: boolean, getLabel: (item: T) => string): RowView {
-    if (row.kind === "item") return { text: getLabel(row.item) };
+function rowView<T>(
+    row: SearchRow<T>,
+    editing: boolean,
+    getLabel: (item: T) => { code: string; name: string },
+): RowView {
+    if (row.kind === "item") {
+        const { code, name } = getLabel(row.item);
+        return { code, text: name };
+    }
     if (row.kind === "key") return { prefix: `${row.key}:`, value: "\u00a0" };
     return editing ? { text: row.value.nome } : { prefix: `${row.key}:`, value: row.value.nome };
 }
@@ -466,12 +596,43 @@ function SearchItem(
             data-index={props.dataIndex}
         >
             <p class="min-w-0 truncate">
+                {props.code && `${props.code} - `}
                 {props.text}
                 {props.prefix}
                 <Show when={props.value}>
                     <span class={VALUE_CLASS}>{props.value}</span>
                 </Show>
             </p>
+        </div>
+    );
+}
+
+// A tap in the sheet leaves the line focused, and so the keyboard up.
+const keepFocus = (e: MouseEvent) => e.preventDefault();
+
+function SheetItem(props: RowView & { picked: boolean; onClick: () => void }) {
+    return (
+        <div
+            class={clsx(
+                "flex min-h-[44px] cursor-pointer items-center border-b px-3 py-2.5",
+                props.picked ? "border-white/25 bg-blue-600 text-white" : "border-neutral-300",
+            )}
+            onMouseDown={keepFocus}
+            onClick={props.onClick}
+        >
+            <p class="min-w-0 flex-1 break-words">
+                <Show when={props.code}>
+                    <span class="mr-[1ch]">{props.code}</span>
+                </Show>
+                {props.text}
+                {props.prefix}
+                <Show when={props.value}>
+                    <span class={VALUE_CLASS}>{props.value}</span>
+                </Show>
+            </p>
+            <Show when={props.picked}>
+                <span class="sr-only">Adicionada</span>
+            </Show>
         </div>
     );
 }

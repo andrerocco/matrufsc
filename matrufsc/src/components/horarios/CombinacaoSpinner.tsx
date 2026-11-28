@@ -1,5 +1,8 @@
-import { createEffect, createSignal } from "solid-js";
+import { createEffect, createSignal, Show } from "solid-js";
 import { usePlano } from "~/context/plano/Plano.store";
+import ChevronLeft from "lucide-solid/icons/chevron-left";
+import ChevronRight from "lucide-solid/icons/chevron-right";
+import { isTouch } from "~/lib/media";
 
 export default function CombinacaoSpinner() {
     const { planos, currentPlanoIndex, setPlanoIndex } = usePlano();
@@ -43,14 +46,15 @@ export default function CombinacaoSpinner() {
         }
     }
 
+    const button =
+        "flex size-6 cursor-pointer items-center justify-center rounded-md border border-neutral-400 bg-white pb-px disabled:opacity-50";
+
     return (
         <div class="flex w-fit gap-2">
-            <button
-                class="flex size-6 cursor-pointer items-center justify-center rounded-md border border-neutral-400 bg-white pb-px disabled:opacity-50"
-                onClick={handleDecrement}
-                disabled={planosEmpty()}
-            >
-                {"<"}
+            <button class={button} aria-label="Combinação anterior" onClick={handleDecrement} disabled={planosEmpty()}>
+                <Show when={isTouch()} fallback="<">
+                    <ChevronLeft size="1.25em" strokeWidth={1.75} aria-hidden="true" />
+                </Show>
             </button>
             <input
                 class="hide-spin-button h-6 w-12 rounded-md border border-neutral-400 bg-white px-1 text-right disabled:opacity-50"
@@ -64,12 +68,10 @@ export default function CombinacaoSpinner() {
                 onKeyDown={handleKeyDown}
             />
             <span>/ {totalPlanos()}</span>
-            <button
-                class="flex size-6 cursor-pointer items-center justify-center rounded-md border border-neutral-400 bg-white pb-px disabled:opacity-50"
-                onClick={handleIncrement}
-                disabled={planosEmpty()}
-            >
-                {">"}
+            <button class={button} aria-label="Próxima combinação" onClick={handleIncrement} disabled={planosEmpty()}>
+                <Show when={isTouch()} fallback=">">
+                    <ChevronRight size="1.25em" strokeWidth={1.75} aria-hidden="true" />
+                </Show>
             </button>
             <span>combinações</span>
         </div>

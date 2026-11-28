@@ -5,7 +5,8 @@ const SETTLE_MS = 200;
 
 let busy = false;
 
-// The handle needs `touch-action: none`, or the browser takes a touch drag for a scroll and cancels it.
+// The browser must not take a touch drag for a scroll, which cancels it: the handle needs `touch-action: none`,
+// unless what hands it the touch holds the page still, as `swipeRows` does.
 export function dragRow(event: PointerEvent, rows: HTMLElement[], from: number, onDrop: (to: number) => void) {
     if (busy || event.button !== 0 || from < 0) return;
     busy = true;

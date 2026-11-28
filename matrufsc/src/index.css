@@ -8,15 +8,32 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    scrollbar-gutter: stable;
+    touch-action: manipulation;
+
+    /* Below this the grid and the turmas table scroll sideways, and an empty gutter shows beside them */
+    @media (min-width: 1140px) {
+        scrollbar-gutter: stable;
+    }
 }
 
 body {
     background-color: #eeeeee;
 }
 
+/* Side padding that also clears the notch in landscape */
+@utility px-safe-* {
+    padding-left: max(--spacing(--value(number)), env(safe-area-inset-left));
+    padding-right: max(--spacing(--value(number)), env(safe-area-inset-right));
+}
+
 h1 {
-    @apply text-4xl font-medium;
+    @apply text-4xl font-medium max-sm:text-3xl;
+}
+
+@media (width < 400px) {
+    header h1 {
+        @apply text-2xl;
+    }
 }
 
 h2 {
