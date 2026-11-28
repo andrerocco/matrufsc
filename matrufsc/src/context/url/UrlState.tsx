@@ -2,36 +2,74 @@ import {
     createContext,
     createEffect,
     createSignal,
+    onCleanup,
     onMount,
     useContext,
     type Accessor,
     type JSXElement,
 } from "solid-js";
-import { usePlano } from "../plano/Plano.store";
+import { usePlano, type Plano } from "../plano/Plano.store";
 import type { Materia } from "~/data/types";
 import { createSearchParam } from "~/lib/createSearchParam";
 import { campusDataQuery } from "~/lib/campusDataQuery";
 import { getDisciplinaFromJSON } from "~/data/parse";
 import type { JSONCampus, JSONDisciplina } from "~/data/schema";
 import { parseMaterias, serializeMaterias, type URLMateria } from "./url-parser";
+import { findCombinacao, hashCombinacao, isCombinacaoHash } from "./combinacao-hash";
 
 const MATERIAS_URL_PARAM = "m";
+const COMBINACAO_URL_PARAM = "c";
+const COMBINACAO_WRITE_DELAY_MS = 400;
 
-const UrlStateContext = createContext<{ loading: Accessor<boolean> }>();
+const UrlStateContext = createContext<{
+    loading: Accessor<boolean>;
+    combinacaoLost: Accessor<boolean>;
+    dismissCombinacaoLost: () => void;
+}>();
 
 export function UrlStateProvider(props: { children?: JSXElement }) {
-    const { materias, setMaterias } = usePlano();
+    const { materias, setMaterias, planos, currentPlano, setPlanoIndex } = usePlano();
 
     const [urlMaterias, setUrlMaterias] = createSearchParam(MATERIAS_URL_PARAM);
+    const [urlCombinacao, setUrlCombinacao] = createSearchParam(COMBINACAO_URL_PARAM);
     const [ready, setReady] = createSignal(false);
+    // The combinação shown in place of the one the link stood for, until the plano moves on from it.
+    const [standIn, setStandIn] = createSignal<Plano | null>(null);
+
+    createEffect(() => {
+        if (standIn() !== currentPlano()) setStandIn(null);
+    });
 
     // Also runs when Back lands on an entry written before the latest changes, so the URL follows the plano.
     createEffect(() => {
         if (!ready()) return;
 
         const materiasString = serializeMaterias(materias) ?? "";
-        if (materiasString !== urlMaterias()) setUrlMaterias(materiasString, { replace: true });
+        const plano = currentPlano();
+        const combinacao = plano ? hashCombinacao(plano) : "";
+
+        if (materiasString !== urlMaterias()) {
+            setUrlMaterias(materiasString, { replace: true });
+            if (combinacao !== urlCombinacao()) setUrlCombinacao(combinacao, { replace: true });
+        } else if (combinacao !== urlCombinacao()) {
+            // Stepping through the combinações with a key held down would pass Safari's limit of 100 history
+            // writes per 30 seconds.
+            const timeoutId = window.setTimeout(
+                () => setUrlCombinacao(combinacao, { replace: true }),
+                COMBINACAO_WRITE_DELAY_MS,
+            );
+            onCleanup(() => window.clearTimeout(timeoutId));
+        }
     });
+
+    function restoreCombinacao() {
+        const hash = urlCombinacao();
+        if (!isCombinacaoHash(hash) || planos().length === 0) return;
+
+        const { index, unique } = findCombinacao(planos(), hash);
+        if (index >= 0) setPlanoIndex(index);
+        if (!unique) setStandIn(currentPlano());
+    }
 
     onMount(async () => {
         const materiasString = urlMaterias();
@@ -44,6 +82,7 @@ export function UrlStateProvider(props: { children?: JSXElement }) {
             const parsedMaterias = parseMaterias(materiasString);
             const remoteMaterias = await queryMaterias(parsedMaterias);
             setMaterias(remoteMaterias);
+            restoreCombinacao();
         } catch (error) {
             console.error("Failed to hydrate materias from URL:", error);
         } finally {
@@ -52,7 +91,17 @@ export function UrlStateProvider(props: { children?: JSXElement }) {
     });
 
     // TODO: Update selected campus/semester based on URL
-    return <UrlStateContext.Provider value={{ loading: () => !ready() }}>{props.children}</UrlStateContext.Provider>;
+    return (
+        <UrlStateContext.Provider
+            value={{
+                loading: () => !ready(),
+                combinacaoLost: () => standIn() !== null,
+                dismissCombinacaoLost: () => setStandIn(null),
+            }}
+        >
+            {props.children}
+        </UrlStateContext.Provider>
+    );
 }
 
 type MateriaQueryGroup = {

@@ -25,6 +25,7 @@ import TouchStage from "~/components/horarios/TouchStage";
 import CombinacaoSpinner from "./components/horarios/CombinacaoSpinner";
 import Announcements from "~/components/announcements/Announcements";
 import UndoToast from "~/components/materias/UndoToast";
+import LostCombinacaoToast from "~/components/horarios/LostCombinacaoToast";
 import { WITH_SHEET } from "~/components/sheet/Sheet";
 import { isTouch } from "~/lib/media";
 
@@ -166,6 +167,7 @@ export default function App() {
             </div>
             {/* Outside the page, whose `translate` would become what the toast is fixed to */}
             <UndoToast />
+            <LostCombinacaoToast />
             <Announcements />
         </>
     );
