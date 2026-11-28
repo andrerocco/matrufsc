@@ -91,16 +91,13 @@ function TurmasTableRows(props: {
         return Object.values(mergeEquivalentTurmas(materia().turmas));
     });
 
-    // The materia's name carries only the first turma's curso.
-    const showCurso = () => new Set(materia().turmas.map((turma) => turma.curso.nome)).size > 1;
-
     return (
         <For each={groupedTurmas()} fallback={<TurmasEmptyRow message="Nenhuma turma disponível para esta matéria." />}>
             {(turmas) => (
                 <TurmaRow
                     id={`turma-${turmas[0].id}`} // Use the first turma's id as the group id
                     turmas={turmas}
-                    showCurso={showCurso()}
+                    showCurso={hasManyCursos(materia())}
                     onToggleTurmas={(turmaIds, value) => props.onToggleTurmas?.(materia().id, turmaIds, value)}
                     onMouseEnter={() => {
                         // Select one turma from the group as preview for the overlay
@@ -133,10 +130,36 @@ const turmaCellHeight = (turma: Turma) => `${Math.max(1, turma.professores.lengt
 // A status shows as a mark on the turma's id: struck through when nobody can take the turma, an asterisk
 // for any other status.
 const UNAVAILABLE = new Set(["Cancelada", "Bloqueada (inativa)"]);
-const isUnavailable = (turma: Turma) => turma.status !== null && UNAVAILABLE.has(turma.status);
+export const isUnavailable = (turma: Turma) => turma.status !== null && UNAVAILABLE.has(turma.status);
 const dimmed = (turma: Turma) => isUnavailable(turma) && "opacity-50";
 
+// The materia's name carries only the first turma's curso, and a reserved turma is reserved for its curso, so
+// its status is unreadable without it.
 const RESERVADA = "Reservada Curso";
+export const hasManyCursos = (materia: Materia) => new Set(materia.turmas.map((turma) => turma.curso.nome)).size > 1;
+export const showsCurso = (turma: Turma, manyCursos: boolean) => manyCursos || turma.status === RESERVADA;
+
+export function TurmaVagas(props: { turma: Turma; class?: string | false }) {
+    const twochars = (n: number) => `${n < 10 ? "\u00A0" : ""}${n}`;
+
+    return (
+        <span
+            class={clsx(
+                "whitespace-pre tabular-nums",
+                props.class,
+                props.turma.vagas_ocupadas >= props.turma.vagas_ofertadas || props.turma.pedidos_sem_vaga
+                    ? "text-red-600"
+                    : "text-green-700",
+            )}
+        >
+            (<span title="Vagas ocupadas">{twochars(props.turma.vagas_ocupadas)}</span>
+            <span title="Pedidos sem vaga">
+                {props.turma.pedidos_sem_vaga > 0 ? `+${twochars(props.turma.pedidos_sem_vaga)}` : "\u00A0\u00A0\u00A0"}
+            </span>
+            /<span title="Vagas ofertadas">{twochars(props.turma.vagas_ofertadas)}</span>)
+        </span>
+    );
+}
 
 function TurmaRow(props: {
     id: string;
@@ -146,12 +169,9 @@ function TurmaRow(props: {
     onMouseEnter?: () => void;
     onMouseLeave?: () => void;
 }) {
-    const twochars = (n: number) => `${n < 10 ? "\u00A0" : ""}${n}`;
-
-    // A reserved turma is reserved for its curso, so its status is unreadable without it.
     const notes = (turma: Turma): Note[] => [
         ...(turma.status ? [{ label: "Situação", value: turma.status }] : []),
-        ...(props.showCurso || turma.status === RESERVADA ? [{ label: "Curso", value: turma.curso.nome }] : []),
+        ...(showsCurso(turma, props.showCurso) ? [{ label: "Curso", value: turma.curso.nome }] : []),
     ];
     const tipped = (turma: Turma) => tip()?.turmaId === turma.id;
 
@@ -248,23 +268,7 @@ function TurmaRow(props: {
                 <For each={props.turmas}>
                     {(turma) => (
                         <div class="flex items-center justify-center" style={{ height: turmaCellHeight(turma) }}>
-                            <span
-                                class={clsx(
-                                    "whitespace-pre tabular-nums",
-                                    dimmed(turma),
-                                    turma.vagas_ocupadas >= turma.vagas_ofertadas || turma.pedidos_sem_vaga
-                                        ? "text-red-600"
-                                        : "text-green-700",
-                                )}
-                            >
-                                (<span title="Vagas ocupadas">{twochars(turma.vagas_ocupadas)}</span>
-                                <span title="Pedidos sem vaga">
-                                    {turma.pedidos_sem_vaga > 0
-                                        ? `+${twochars(turma.pedidos_sem_vaga)}`
-                                        : "\u00A0\u00A0\u00A0"}
-                                </span>
-                                /<span title="Vagas ofertadas">{twochars(turma.vagas_ofertadas)}</span>)
-                            </span>
+                            <TurmaVagas turma={turma} class={dimmed(turma)} />
                         </div>
                     )}
                 </For>

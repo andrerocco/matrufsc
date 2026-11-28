@@ -1,9 +1,12 @@
 import clsx from "clsx";
-import { createSignal, For, onCleanup, Show } from "solid-js";
+import { createSignal, For, onCleanup, Show, type JSX } from "solid-js";
 import { writeClipboard } from "@solid-primitives/clipboard";
+import ChevronDown from "lucide-solid/icons/chevron-down";
+import X from "lucide-solid/icons/x";
 import { useClickOutside } from "~/components/search/useClickOutside";
 import { useImageExport } from "~/context/image-export/ImageExport";
 import { track } from "~/lib/analytics";
+import { isTouch } from "~/lib/media";
 
 export default function Header(props: {
     class?: string;
@@ -28,45 +31,43 @@ export default function Header(props: {
 
     return (
         <header class={clsx(props.class)}>
-            <div class="flex justify-between">
-                <div class="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-                    <h1 class="mr-3">MatrUFSC</h1>
-                    <div class="flex gap-4">
-                        <select
-                            name="campus"
-                            id="campus"
-                            class="bg-transparent focus:border-transparent focus:outline-none disabled:cursor-progress disabled:opacity-45"
+            <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                <h1 class="mr-3 max-sm:mr-auto">MatrUFSC</h1>
+                <div class="flex gap-4">
+                    <HeaderSelect
+                        name="campus"
+                        id="campus"
+                        class="disabled:cursor-progress disabled:opacity-45"
+                        disabled={props.disabled}
+                        value={props.campusValue}
+                        onChange={(e) => props.onCampusChange(e.currentTarget.value)}
+                    >
+                        <For each={props.campusOptions}>
+                            {(campus) => <option value={campus.value}>{campus.title}</option>}
+                        </For>
+                    </HeaderSelect>
+                    <Show
+                        when={props.semesterOptions && props.semesterOptions.length > 0}
+                        fallback={<PlaceholderSemesterSelect />}
+                    >
+                        <HeaderSelect
+                            name="semester"
+                            id="semester"
+                            class="disabled:cursor-progress disabled:opacity-45"
                             disabled={props.disabled}
-                            value={props.campusValue}
-                            onChange={(e) => props.onCampusChange(e.currentTarget.value)}
+                            value={props.semesterValue}
+                            onChange={(e) => props.onSemesterChange(e.currentTarget.value)}
                         >
-                            <For each={props.campusOptions}>
-                                {(campus) => <option value={campus.value}>{campus.title}</option>}
+                            <For each={props.semesterOptions}>
+                                {(semester) => <option value={semester}>{formattedSemesterOption(semester)}</option>}
                             </For>
-                        </select>
-                        <Show
-                            when={props.semesterOptions && props.semesterOptions.length > 0}
-                            fallback={<PlaceholderSemesterSelect />}
-                        >
-                            <select
-                                name="semester"
-                                id="semester"
-                                class="bg-transparent focus:border-transparent focus:outline-none disabled:cursor-progress disabled:opacity-45"
-                                disabled={props.disabled}
-                                value={props.semesterValue}
-                                onChange={(e) => props.onSemesterChange(e.currentTarget.value)}
-                            >
-                                <For each={props.semesterOptions}>
-                                    {(semester) => (
-                                        <option value={semester}>{formattedSemesterOption(semester)}</option>
-                                    )}
-                                </For>
-                            </select>
-                        </Show>
-                    </div>
+                        </HeaderSelect>
+                    </Show>
                 </div>
                 <Show when={props.showExportOptions}>
-                    <ExportOptions />
+                    <div class="flex justify-end max-sm:basis-full sm:ml-auto">
+                        <ExportOptions />
+                    </div>
                 </Show>
             </div>
         </header>
@@ -87,19 +88,37 @@ function PlaceholderSemesterSelect(props: { loading?: boolean }) {
     };
 
     return (
-        <select
-            disabled
-            class={clsx(
-                "bg-transparent opacity-35 focus:border-transparent focus:outline-none",
-                props.loading ? "cursor-progress" : "cursor-not-allowed",
-            )}
-        >
+        <HeaderSelect disabled class={clsx("opacity-35", props.loading ? "cursor-progress" : "cursor-not-allowed")}>
             <option value="">{currentEstimatedSemester()}</option>
-        </select>
+        </HeaderSelect>
     );
 }
 
-function ExportOptions() {
+// On a touch screen the native look changes from system to system and sits off the header's edge.
+function HeaderSelect(props: JSX.SelectHTMLAttributes<HTMLSelectElement>) {
+    return (
+        <span class="contents pointer-coarse:relative pointer-coarse:flex pointer-coarse:items-center">
+            <select
+                {...props}
+                class={clsx(
+                    "bg-transparent focus:border-transparent focus:outline-none pointer-coarse:appearance-none pointer-coarse:py-2 pointer-coarse:pr-6",
+                    props.class,
+                )}
+            />
+            <Show when={isTouch()}>
+                <ChevronDown
+                    size="1.25em"
+                    strokeWidth={1.75}
+                    class="pointer-events-none absolute right-0"
+                    aria-hidden="true"
+                />
+            </Show>
+        </span>
+    );
+}
+
+// `data-export-open` lets what shares its row make room for the options.
+export function ExportOptions() {
     const { isExportingImage, exportImage } = useImageExport();
 
     const [showingExportOptions, setShowingExportOptions] = createSignal(false);
@@ -148,7 +167,7 @@ function ExportOptions() {
     });
 
     return (
-        <div ref={exportOptionsRef} class="flex gap-7">
+        <div ref={exportOptionsRef} data-export-open={showingExportOptions() ? "" : undefined} class="flex gap-7">
             <Show
                 when={showingExportOptions()}
                 fallback={
@@ -166,6 +185,13 @@ function ExportOptions() {
                         : shareStatus() === "error"
                           ? "Erro ao copiar"
                           : "Compartilhar link"}
+                </button>
+                <button
+                    class="hit-area-[13px] -ml-3 flex cursor-pointer items-center"
+                    aria-label="Fechar"
+                    onClick={() => setShowingExportOptions(false)}
+                >
+                    <X size="1em" strokeWidth={1.75} aria-hidden="true" />
                 </button>
             </Show>
         </div>

@@ -1,4 +1,5 @@
-import { createEffect, createMemo, createResource, createSignal } from "solid-js";
+import { createEffect, createMemo, createResource, createSignal, Show } from "solid-js";
+import clsx from "clsx";
 import { makePersisted } from "@solid-primitives/storage";
 import { createPersistedSignal } from "~/lib/createPersistedSignal";
 import { createCachedResource } from "~/lib/createCachedResource";
@@ -20,8 +21,12 @@ import { disciplinaNome } from "~/lib/nomeCompleto";
 import Materias from "~/components/materias/Materias";
 import Turmas from "~/components/turmas/Turmas";
 import Horarios from "~/components/horarios/Horarios";
+import TouchStage from "~/components/horarios/TouchStage";
 import CombinacaoSpinner from "./components/horarios/CombinacaoSpinner";
 import Announcements from "~/components/announcements/Announcements";
+import UndoToast from "~/components/materias/UndoToast";
+import { WITH_SHEET } from "~/components/sheet/Sheet";
+import { isTouch } from "~/lib/media";
 
 const CAMPUS: { title: string; value: JSONCampusCode }[] = [
     { title: "Florianópolis", value: "FLO" },
@@ -32,7 +37,7 @@ const CAMPUS: { title: string; value: JSONCampusCode }[] = [
 ];
 
 export default function App() {
-    const { addMateria, materias } = usePlano();
+    const { addMateria, removeMateria, materias } = usePlano();
     const { loading: urlStateLoading } = useUrlState();
 
     const [semesterOptions] = createResource(fetchAvailableSemesters, {
@@ -68,7 +73,8 @@ export default function App() {
     const handleSelectMateria = (data: JSONCampus, disciplina: JSONDisciplina, campus: string, semester: string) => {
         const parsedMateria = getDisciplinaFromJSON(disciplina, campus, semester, data.cursos);
         try {
-            addMateria(parsedMateria);
+            // On a touch screen the turmas open over the search, so they wait for a tap on the matéria.
+            addMateria(parsedMateria, !isTouch());
             track("materia_adicionada", {
                 materias_no_plano: materias.length,
                 departamento: parsedMateria.id.slice(0, 3),
@@ -82,65 +88,86 @@ export default function App() {
         }
     };
 
+    const [lift, setLift] = createSignal(0);
+
     return (
-        <div class="flex min-h-dvh w-full flex-col py-8">
-            <div class="mx-auto w-full max-w-[1000px] shrink-0 px-6">
-                <Header
-                    class="mb-8"
-                    campusOptions={CAMPUS}
-                    campusValue={campus()}
-                    onCampusChange={setCampus}
-                    semesterOptions={semesterOptions()}
-                    semesterValue={semester()}
-                    onSemesterChange={setSemester}
-                    disabled={urlStateLoading()}
-                    showExportOptions={materias.length > 0}
-                />
-            </div>
-            <main>
-                <div class="mx-auto max-w-[1000px] px-6">
-                    <Search
-                        placeholder={
-                            urlStateLoading()
-                                ? "Carregando disciplinas..."
-                                : semesterOptions.loading || campusData.loading
-                                  ? campusData()
-                                      ? "Pesquisar disciplina (atualizando...)"
-                                      : "Carregando disciplinas..."
-                                  : "Pesquisar disciplina"
-                        }
-                        disabled={
-                            urlStateLoading() || ((semesterOptions.loading || campusData.loading) && !campusData())
-                        }
-                        limit={10}
-                        filter={(segments) => searchRows(segments, searchIndex(), catalogo())}
-                        filterScope={campus()}
-                        onSelect={(disciplina) => {
-                            const data = campusData();
-                            const sem = semester();
-                            if (data && sem) handleSelectMateria(data, disciplina, campus(), sem);
-                        }}
-                        getLabel={(disciplina) =>
-                            `${disciplina[0]} - ${disciplinaNome(disciplina, campusData()?.cursos ?? {})}`
-                        }
+        <>
+            <div
+                class={clsx(
+                    "flex min-h-dvh w-full flex-col",
+                    isTouch() ? ["pt-2 transition-[translate]", WITH_SHEET] : "py-8 max-sm:pt-4",
+                )}
+                style={{ translate: lift() ? `0 ${-lift()}px` : undefined }}
+            >
+                <div class="px-safe-4 sm:px-safe-6 mx-auto w-full max-w-[1000px] shrink-0">
+                    <Header
+                        class={isTouch() ? "mb-1" : "mb-8 max-sm:mb-5"}
+                        campusOptions={CAMPUS}
+                        campusValue={campus()}
+                        onCampusChange={setCampus}
+                        semesterOptions={semesterOptions()}
+                        semesterValue={semester()}
+                        onSemesterChange={setSemester}
+                        disabled={urlStateLoading()}
+                        showExportOptions={!isTouch() && materias.length > 0}
                     />
-                    <Materias class="mt-6" />
                 </div>
-                <div class="my-4 flex flex-col items-center gap-3 lg:my-8">
-                    <div class="w-full overflow-x-auto px-6">
-                        <div class="mx-auto flex w-max gap-6">
-                            <Horarios />
-                            <Turmas class="min-w-[520px]" />
-                        </div>
+                <main class={clsx(isTouch() && "flex flex-1 flex-col")}>
+                    <div class="px-safe-4 sm:px-safe-6 mx-auto w-full max-w-[1000px]">
+                        <Search
+                            placeholder={
+                                urlStateLoading()
+                                    ? "Carregando disciplinas..."
+                                    : semesterOptions.loading || campusData.loading
+                                      ? campusData()
+                                          ? "Pesquisar disciplina (atualizando...)"
+                                          : "Carregando disciplinas..."
+                                      : "Pesquisar disciplina"
+                            }
+                            disabled={
+                                urlStateLoading() || ((semesterOptions.loading || campusData.loading) && !campusData())
+                            }
+                            limit={10}
+                            filter={(segments) => searchRows(segments, searchIndex(), catalogo())}
+                            filterScope={campus()}
+                            onSelect={(disciplina) => {
+                                const data = campusData();
+                                const sem = semester();
+                                if (data && sem) handleSelectMateria(data, disciplina, campus(), sem);
+                            }}
+                            getLabel={(disciplina) => ({
+                                code: disciplina[0],
+                                name: disciplinaNome(disciplina, campusData()?.cursos ?? {}),
+                            })}
+                            picked={(disciplina) => materias.some((materia) => materia.id === disciplina[0])}
+                            onRemove={(disciplina) => removeMateria(disciplina[0])}
+                        />
+                        <Show when={!isTouch()}>
+                            <Materias class="mt-6 max-sm:mt-4" />
+                        </Show>
                     </div>
-                    <CombinacaoSpinner />
-                </div>
-            </main>
-            <div class="mx-auto w-full max-w-[1000px] shrink-0 px-6">
-                <Footer class="mt-2" />
+                    <Show when={!isTouch()} fallback={<TouchStage onLift={setLift} />}>
+                        <div class="my-4 flex flex-col items-center gap-3 lg:my-8">
+                            <div class="px-safe-6 w-full overflow-x-auto">
+                                <div class="mx-auto flex w-max gap-6">
+                                    <Horarios />
+                                    <Turmas class="min-w-[520px]" />
+                                </div>
+                            </div>
+                            <CombinacaoSpinner />
+                        </div>
+                    </Show>
+                </main>
+                <Show when={!isTouch()}>
+                    <div class="px-safe-4 sm:px-safe-6 mx-auto w-full max-w-[1000px] shrink-0">
+                        <Footer class="mt-2 max-sm:mt-6" />
+                    </div>
+                </Show>
             </div>
+            {/* Outside the page, whose `translate` would become what the toast is fixed to */}
+            <UndoToast />
             <Announcements />
-        </div>
+        </>
     );
 }
 

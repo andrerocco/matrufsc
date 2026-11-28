@@ -1,5 +1,5 @@
 import { batch, createSignal } from "solid-js";
-import { createStore, produce } from "solid-js/store";
+import { createStore, produce, unwrap } from "solid-js/store";
 import { combinacoes, findClosestCombination } from "~/context/plano/combinacoes";
 import { MateriaExistsError, MateriaNotFoundError } from "./errors";
 import { COLORS } from "./constants";
@@ -89,7 +89,7 @@ function commitMateriaChange(change: () => void) {
 
 /// Mutators
 
-function addMateria(materia: Materia) {
+function addMateria(materia: Materia, focus = true) {
     const exists = materias.some((m) => m.id === materia.id);
     if (exists) throw new MateriaExistsError(`${materia.id} já adicionada ao plano`);
 
@@ -97,13 +97,17 @@ function addMateria(materia: Materia) {
 
     commitMateriaChange(() => {
         setMaterias((prev) => [...prev, newMateria]);
-        setFocusedMateriaId(newMateria.id);
+        if (focus) setFocusedMateriaId(newMateria.id);
     });
 }
 
-function removeMateria(id: string) {
-    const exists = materias.some((m) => m.id === id);
-    if (!exists) throw new MateriaNotFoundError(`Matéria ${id} não encontrada`);
+/**
+ * Returns a function that puts the materia back where it was, with its color and selections.
+ */
+function removeMateria(id: string): () => void {
+    const index = materias.findIndex((m) => m.id === id);
+    if (index === -1) throw new MateriaNotFoundError(`Matéria ${id} não encontrada`);
+    const removed = unwrap(materias[index]);
 
     commitMateriaChange(() => {
         if (focusedMateriaId() === id) {
@@ -112,6 +116,11 @@ function removeMateria(id: string) {
 
         setMaterias((prev) => prev.filter((m) => m.id !== id));
     });
+
+    return () => {
+        if (materias.some((m) => m.id === id)) return;
+        commitMateriaChange(() => setMaterias((prev) => [...prev.slice(0, index), removed, ...prev.slice(index)]));
+    };
 }
 
 function reorderMateria(id: string, toIndex: number) {

@@ -114,7 +114,7 @@ function MateriasTableHead(props: { creditos: number }) {
     );
 }
 
-function getPlanoCreditos(plano: { turma: Turma }[]): number {
+export function getPlanoCreditos(plano: { turma: Turma }[]): number {
     return plano.reduce((total, { turma }) => total + getTurmaCreditos(turma), 0);
 }
 
@@ -167,16 +167,16 @@ function MateriaRow(props: {
                 </div>
             </td>
             <td class="px-3 py-1.5">{props.materia.id}</td>
-            <td class={clsx("relative px-3 py-1.5", props.actions && "pointer-coarse:pr-20")}>
+            <td class="relative px-3 py-1.5">
                 <span>{materiaNome(props.materia)}</span>
                 <Show when={props.actions}>
-                    <div class="absolute inset-y-0 right-0 flex opacity-0 select-none group-hover:opacity-100 group-data-dragging:opacity-100 has-focus-visible:opacity-100 pointer-coarse:text-black/50 pointer-coarse:opacity-100">
+                    <div class="absolute inset-y-0 right-0 flex opacity-0 select-none group-hover:opacity-100 group-data-dragging:opacity-100 has-focus-visible:opacity-100">
                         <button
                             type="button"
                             aria-label="Reordenar matéria"
                             class={clsx(
-                                "flex cursor-grab touch-none items-center px-1.5 active:cursor-grabbing pointer-coarse:px-2.5",
-                                "pointer-events-none group-hover:pointer-events-auto pointer-coarse:pointer-events-auto",
+                                "flex cursor-grab touch-none items-center px-1.5 active:cursor-grabbing",
+                                "pointer-events-none group-hover:pointer-events-auto",
                                 FOCUS_RING,
                             )}
                             onPointerDown={props.onDrag}
@@ -188,10 +188,7 @@ function MateriaRow(props: {
                         <button
                             type="button"
                             aria-label="Remover matéria"
-                            class={clsx(
-                                "flex cursor-pointer items-center pr-3 pl-1.5 pointer-coarse:pl-2.5",
-                                FOCUS_RING,
-                            )}
+                            class={clsx("flex cursor-pointer items-center pr-3 pl-1.5", FOCUS_RING)}
                             onClick={(e) => {
                                 e.stopPropagation();
                                 props.onClickRemove(props.materia.id);

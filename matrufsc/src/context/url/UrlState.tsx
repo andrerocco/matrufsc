@@ -3,7 +3,6 @@ import {
     createEffect,
     createSignal,
     onMount,
-    untrack,
     useContext,
     type Accessor,
     type JSXElement,
@@ -26,13 +25,12 @@ export function UrlStateProvider(props: { children?: JSXElement }) {
     const [urlMaterias, setUrlMaterias] = createSearchParam(MATERIAS_URL_PARAM);
     const [ready, setReady] = createSignal(false);
 
+    // Also runs when Back lands on an entry written before the latest changes, so the URL follows the plano.
     createEffect(() => {
         if (!ready()) return;
 
         const materiasString = serializeMaterias(materias) ?? "";
-        const currentUrlMaterias = untrack(urlMaterias);
-
-        if (materiasString !== currentUrlMaterias) setUrlMaterias(materiasString, { replace: true });
+        if (materiasString !== urlMaterias()) setUrlMaterias(materiasString, { replace: true });
     });
 
     onMount(async () => {
