@@ -6,6 +6,7 @@ import X from "lucide-solid/icons/x";
 import { useClickOutside } from "~/components/search/useClickOutside";
 import { useImageExport } from "~/context/image-export/ImageExport";
 import { track } from "~/lib/analytics";
+import { flushUrl } from "~/context/url/UrlState";
 import { isTouch } from "~/lib/media";
 
 export default function Header(props: {
@@ -152,6 +153,7 @@ export function ExportOptions() {
     const handleShareLink = async () => {
         track("salvar_compartilhar_link");
         try {
+            flushUrl();
             await writeClipboard(window.location.href);
             setShareStatus("copied");
             scheduleShareReset(1800);
