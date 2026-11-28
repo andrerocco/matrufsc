@@ -10,7 +10,11 @@ export default defineConfig({
     build: {
         sourcemap: true,
         rollupOptions: {
-            input: [path.resolve(__dirname, "index.html"), path.resolve(__dirname, "sobre.html")],
+            input: [
+                path.resolve(__dirname, "index.html"),
+                path.resolve(__dirname, "sobre.html"),
+                path.resolve(__dirname, "novidades.html"),
+            ],
         },
     },
     resolve: {

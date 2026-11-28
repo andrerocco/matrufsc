@@ -196,6 +196,7 @@
             </section>
 
             <div class="mt-4 flex justify-end gap-7 text-nowrap">
+                <a class="mr-auto" href="./novidades">Novidades</a>
                 <a
                     href="https://docs.google.com/forms/d/e/1FAIpQLSdJUFYTgDtF4iT-4-zBEEpW1HiAJ5ipaUl6rr67H6-KQFoKXw/viewform"
                     target="_blank"
@@ -237,9 +238,10 @@
                 if (document.visibilityState === "hidden") [...abertoDesde.keys()].forEach(enviarTempo);
                 else document.querySelectorAll("details[open]").forEach((d) => abertoDesde.set(d, performance.now()));
             });
-
-            const voltar = document.querySelector("h1 a");
-            if (document.referrer.startsWith(voltar.href)) voltar.href = document.referrer;
+        </script>
+        <script type="module">
+            import { appLink } from "/src/lib/appLink.ts";
+            document.querySelector("h1 a").href = appLink();
         </script>
     </body>
 </html>
