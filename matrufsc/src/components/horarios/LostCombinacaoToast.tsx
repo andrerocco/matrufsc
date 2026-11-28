@@ -9,7 +9,9 @@ export default function LostCombinacaoToast() {
     return (
         <Show when={combinacaoLost()}>
             <Toast>
-                <span class="py-2">Os horários mudaram: a combinação deste link não existe mais.</span>
+                <span class="py-2">
+                    Uma turma mudou desde que este link foi salvo pela última vez. A grade escolhida pode ter mudado.
+                </span>
                 <button
                     class="flex h-[44px] cursor-pointer items-center px-4"
                     aria-label="Fechar"
