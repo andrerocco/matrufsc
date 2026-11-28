@@ -95,12 +95,13 @@ async function queryMaterias(parsedUrlMaterias: readonly URLMateria[]): Promise<
         const disciplina = campusData.disciplinaIndex.get(materia.id);
         if (!disciplina) continue;
 
-        const parsedMateria = getDisciplinaFromJSON(
-            disciplina,
-            materia.campus,
-            materia.semester,
-            campusData.data.cursos,
-        );
+        let parsedMateria: Materia;
+        try {
+            parsedMateria = getDisciplinaFromJSON(disciplina, materia.campus, materia.semester, campusData.data.cursos);
+        } catch (error) {
+            console.error(`Skipped materia ${materia.id} from the URL:`, error);
+            continue;
+        }
         parsedMateria.selected = materia.selected; // update selection state from URL
 
         // Update turma selection based on URL
