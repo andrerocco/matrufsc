@@ -4,6 +4,9 @@ on:
   schedule:
     - cron: "0 6 * * *" # 06:00 UTC = 03:00 America/Sao_Paulo
   workflow_dispatch:
+    inputs:
+      semesters:
+        description: "Semestres a re-scrapear, separados por espaço (ex.: 20252 20261 20262 20271). Vazio: execução diária."
 
 permissions:
   contents: write # push to the `data` branch
@@ -21,9 +24,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
 
-      # Baseline = the current `data` branch. Seeds the stage so unchanged campi
-      # stay byte-identical, and lets the reconciler pick the target semester.
-      # Empty on the very first run (branch not created yet).
       - name: Fetch current data
         run: |
           mkdir -p current-data
@@ -46,15 +46,30 @@ jobs:
         working-directory: ./scraper
         run: uv sync
 
-      # Scrapes CAGR, reconciles against the baseline, and validates the result
-      # against the frontend tuple contract. Fails (keeping the last good data)
-      # if CAGR is unreachable or the payload looks broken.
       - name: Scrape and reconcile
         working-directory: ./scraper/src
+        env:
+          SEMESTERS: ${{ inputs.semesters }}
         run: |
           uv run python main.py \
             --public-data-dir "$GITHUB_WORKSPACE/current-data" \
-            --stage-dir "$GITHUB_WORKSPACE/staged-data"
+            --stage-dir "$GITHUB_WORKSPACE/staged-data" \
+            ${SEMESTERS:+--semester $SEMESTERS}
+
+      - name: Set up Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: lts/*
+          cache: "npm"
+          cache-dependency-path: matrufsc/package-lock.json
+
+      - name: Install site dependencies
+        working-directory: ./matrufsc
+        run: npm ci
+
+      - name: Check the data with the site parser
+        working-directory: ./matrufsc
+        run: npm run data:gate -- "$GITHUB_WORKSPACE/staged-data"
 
       - name: Detect changes
         id: diff
@@ -67,9 +82,6 @@ jobs:
             echo "Alteracoes detectadas."
           fi
 
-      # Keeps full history on `data` (one commit per real change), so the log
-      # doubles as a record of when CAGR data changed. Skipped when nothing
-      # changed, so idle days add no commits.
       - name: Publish to data branch
         if: steps.diff.outputs.changed == 'true'
         uses: peaceiris/actions-gh-pages@v4
