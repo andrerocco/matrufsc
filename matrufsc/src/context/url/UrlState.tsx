@@ -19,7 +19,14 @@ import { findCombinacao, hashCombinacao, isCombinacaoHash } from "./combinacao-h
 
 const MATERIAS_URL_PARAM = "m";
 const COMBINACAO_URL_PARAM = "c";
-const COMBINACAO_WRITE_DELAY_MS = 400;
+const COMBINACAO_WRITE_DELAY_MS = 1000;
+
+let pendingWrite: (() => void) | undefined;
+
+/** Writes the combinação still waiting on its delay, so the address reflects the grid right now. */
+export function flushUrl() {
+    pendingWrite?.();
+}
 
 const UrlStateContext = createContext<{
     loading: Accessor<boolean>;
@@ -54,11 +61,16 @@ export function UrlStateProvider(props: { children?: JSXElement }) {
         } else if (combinacao !== urlCombinacao()) {
             // Stepping through the combinações with a key held down would pass Safari's limit of 100 history
             // writes per 30 seconds.
-            const timeoutId = window.setTimeout(
-                () => setUrlCombinacao(combinacao, { replace: true }),
-                COMBINACAO_WRITE_DELAY_MS,
-            );
-            onCleanup(() => window.clearTimeout(timeoutId));
+            const write = () => setUrlCombinacao(combinacao, { replace: true });
+            const timeoutId = window.setTimeout(write, COMBINACAO_WRITE_DELAY_MS);
+            pendingWrite = () => {
+                window.clearTimeout(timeoutId);
+                write();
+            };
+            onCleanup(() => {
+                window.clearTimeout(timeoutId);
+                pendingWrite = undefined;
+            });
         }
     });
 
