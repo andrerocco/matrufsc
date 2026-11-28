@@ -21,6 +21,7 @@ import Materias from "~/components/materias/Materias";
 import Turmas from "~/components/turmas/Turmas";
 import Horarios from "~/components/horarios/Horarios";
 import CombinacaoSpinner from "./components/horarios/CombinacaoSpinner";
+import Announcements from "~/components/announcements/Announcements";
 
 const CAMPUS: { title: string; value: JSONCampusCode }[] = [
     { title: "Florianópolis", value: "FLO" },
@@ -138,6 +139,7 @@ export default function App() {
             <div class="mx-auto w-full max-w-[1000px] shrink-0 px-6">
                 <Footer class="mt-2" />
             </div>
+            <Announcements />
         </div>
     );
 }
